@@ -9,7 +9,7 @@ const pageHasLoaded = 'DOMContentLoaded';
 const imageAltClass = 'img_alt';
 
 
-const defaultSiteLanguage = 'en';
+const defaultSiteLanguage = 'pt';
 const baseURL = 'https://hybridego.github.io/';
 const searchFieldClass = '.search_field';
 const searchClass = '.search';
