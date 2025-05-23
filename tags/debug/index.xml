@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Debug on Lionel Blog</title><link>https://hybridego.github.io/tags/debug/</link><description>Recent content in Debug on Lionel Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>Copyright © 2025, Hybridego; all rights reserved.</copyright><lastBuildDate>Fri, 23 May 2025 07:42:23 +0900</lastBuildDate><atom:link href="https://hybridego.github.io/tags/debug/index.xml" rel="self" type="application/rss+xml"/><item><title>linux debugging</title><link>https://hybridego.github.io/post/linux_debugging_skill/</link><pubDate>Fri, 23 May 2025 07:42:23 +0900</pubDate><guid>https://hybridego.github.io/post/linux_debugging_skill/</guid><description>
+&lt;h1 id="리눅스-환경에서의-메모리-디버깅-스킬">리눅스 환경에서의 메모리 디버깅 스킬&lt;/h1>
+&lt;p>이 교육 자료는 리눅스 환경에서 메모리 관련 문제를 디버깅하는 데 필요한 핵심 개념과 도구를 다룹니다. 페이지, 페이지 폴트, 신호(SIGSEGV, SIGBUS), 댕글링 포인터, &lt;code>/proc&lt;/code> 파일, OOM Killer, Shadow Memory, LD_PRELOAD, RAII를 기반으로 디버깅 스킬을 정리했습니다.&lt;/p>
+&lt;h2 id="1-메모리-관리-기본-개념">1. 메모리 관리 기본 개념&lt;/h2>
+&lt;h3 id="11-페이지와-가상-메모리">1.1 페이지와 가상 메모리&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>페이지&lt;/strong>: 리눅스 메모리 관리의 기본 단위(보통 4KB). 가상 메모리와 물리 메모리를 페이지 단위로 매핑.&lt;/li>
+&lt;li>&lt;strong>가상 메모리&lt;/strong>:
+&lt;ul>
+&lt;li>32비트: 프로세스당 최대 4GB(사용자 공간 ~3GB, 커널 ~1GB).&lt;/li>
+&lt;li>64비트: 최대 256TB(실제 48비트, 사용자 공간 ~128TB).&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>디버깅 팁&lt;/strong>: &lt;code>/proc/[pid]/status&lt;/code>에서 &lt;code>VmSize&lt;/code>(가상 메모리), &lt;code>VmRSS&lt;/code>(물리 메모리) 확인.&lt;/li>
+&lt;/ul>
+&lt;h3 id="12-페이지-폴트">1.2 페이지 폴트&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>정의&lt;/strong>: 프로세스가 접근하려는 가상 페이지가 물리 메모리에 없거나 권한이 없을 때 발생.&lt;/li>
+&lt;li>&lt;strong>원인&lt;/strong>:
+&lt;ul>
+&lt;li>페이지가 스왑 공간에 있음.&lt;/li>
+&lt;li>읽기/쓰기/실행 권한 위반.&lt;/li>
+&lt;li>요구 페이징(Demand Paging).&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>디버깅 팁&lt;/strong>: 페이지 폴트가 빈번하면 &lt;code>/proc/meminfo&lt;/code>의 &lt;code>SwapFree&lt;/code> 확인, 스왑 사용량 증가 점검.&lt;/li>
+&lt;/ul>
+&lt;h3 id="13-sigsegv와-sigbus">1.3 SIGSEGV와 SIGBUS&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>SIGSEGV (Segmentation Fault)&lt;/strong>:
+&lt;ul>
+&lt;li>유효하지 않은 메모리 접근(예: 댕글링 포인터, 권한 위반).&lt;/li>
+&lt;li>예: &lt;code>int *p = NULL; *p = 10;&lt;/code> → SIGSEGV.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>SIGBUS (Bus Error)&lt;/strong>:
+&lt;ul>
+&lt;li>하드웨어 수준 오류(예: 정렬 문제, &lt;code>mmap&lt;/code> 파일 손상).&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>디버깅 팁&lt;/strong>: &lt;code>/proc/[pid]/maps&lt;/code>로 오류 주소(PC, LR) 확인, 세그먼트 분석.&lt;/li>
+&lt;/ul>
+&lt;h3 id="14-댕글링-포인터">1.4 댕글링 포인터&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>정의&lt;/strong>: 이미 해제된 메모리를 가리키는 포인터.&lt;/li>
+&lt;li>&lt;strong>문제&lt;/strong>: 정의되지 않은 동작, SIGSEGV 발생 가능.&lt;/li>
+&lt;li>&lt;strong>디버깅 팁&lt;/strong>: &lt;code>free(p); p = NULL;&lt;/code>로 방지, Valgrind 또는 AddressSanitizer 사용.&lt;/li>
+&lt;/ul>
+&lt;h2 id="2-주요-디버깅-파일과-도구">2. 주요 디버깅 파일과 도구&lt;/h2>
+&lt;h3 id="21-procpidstatus">2.1 &lt;code>/proc/[pid]/status&lt;/code>&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>주요 항목&lt;/strong>:
+&lt;ul>
+&lt;li>&lt;code>VmSize&lt;/code>: 가상 메모리 크기(전체 주소 공간).&lt;/li>
+&lt;li>&lt;code>VmRSS&lt;/code>: 물리 메모리 사용량(RAM).&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>디버깅 시나리오&lt;/strong>:
+&lt;ul>
+&lt;li>&lt;strong>VmSize만 증가&lt;/strong>: 과도한 메모리 예약, 스파스 메모리 사용. 설계 최적화 필요.&lt;/li>
+&lt;li>&lt;strong>VmRSS만 증가&lt;/strong>: 메모리 누수, 캐시 과다 사용. Valgrind로 점검.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>확인 명령&lt;/strong>:
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">cat /proc/&lt;span class="o">[&lt;/span>pid&lt;span class="o">]&lt;/span>/status &lt;span class="p">|&lt;/span> grep -E &lt;span class="s1">&amp;#39;VmSize|VmRSS&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ul>
+&lt;h3 id="22-procpidmaps">2.2 &lt;code>/proc/[pid]/maps&lt;/code>&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>내용&lt;/strong>: 프로세스의 가상 메모리 매핑(코드, 힙, 스택, 라이브러리 등).&lt;/li>
+&lt;li>&lt;strong>디버깅 활용&lt;/strong>:
+&lt;ul>
+&lt;li>스택 덤프의 &lt;strong>PC&lt;/strong>(오류 명령어 주소)를 확인해 세그먼트 파악.&lt;/li>
+&lt;li>&lt;strong>LR&lt;/strong>(반환 주소)로 호출 문맥 분석.&lt;/li>
+&lt;li>&lt;strong>SP&lt;/strong>(스택 포인터)로 스택 오버플로우 점검.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>명령&lt;/strong>:
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">cat /proc/&lt;span class="o">[&lt;/span>pid&lt;span class="o">]&lt;/span>/maps
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">2&lt;/span>&lt;span class="cl">addr2line -e /path/to/binary -a 0x7f8b12345678
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ul>
+&lt;h3 id="23-procslabinfo">2.3 &lt;code>/proc/slabinfo&lt;/code>&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>내용&lt;/strong>: 커널 슬랩 할당자의 캐시 정보.&lt;/li>
+&lt;li>&lt;strong>주요 항목&lt;/strong>:
+&lt;ul>
+&lt;li>&lt;code>SReclaimable&lt;/code>: 회수 가능한 슬랩 메모리(예: 파일 캐시).&lt;/li>
+&lt;li>&lt;code>SUnreclaim&lt;/code>: 회수 불가능한 슬랩 메모리(커널 필수 데이터).&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>디버깅 팁&lt;/strong>: &lt;code>SUnreclaim&lt;/code> 증가 시 커널 메모리 누수 의심, &lt;code>/proc/slabinfo&lt;/code>와 &lt;code>slabtop&lt;/code>으로 분석.&lt;/li>
+&lt;/ul>
+&lt;h3 id="24-procmeminfo">2.4 &lt;code>/proc/meminfo&lt;/code>&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>주요 항목&lt;/strong>:
+&lt;ul>
+&lt;li>&lt;code>MemTotal&lt;/code>, &lt;code>MemFree&lt;/code>, &lt;code>MemAvailable&lt;/code>: 메모리 부족 여부.&lt;/li>
+&lt;li>&lt;code>SwapTotal&lt;/code>, &lt;code>SwapFree&lt;/code>: 스왑 사용량, 성능 저하 원인.&lt;/li>
+&lt;li>&lt;code>SReclaimable&lt;/code>, &lt;code>SUnreclaim&lt;/code>: 커널 메모리 상태.&lt;/li>
+&lt;li>&lt;code>Dirty&lt;/code>: 디스크 쓰기 지연, I/O 병목.&lt;/li>
+&lt;li>&lt;code>Committed_AS&lt;/code>: 오버커밋 상태.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>디버깅 팁&lt;/strong>: &lt;code>MemAvailable&lt;/code> 낮거나 &lt;code>SwapFree&lt;/code> 감소 시 OOM 위험, &lt;code>SUnreclaim&lt;/code> 증가로 커널 누수 점검.&lt;/li>
+&lt;li>&lt;strong>명령&lt;/strong>:
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">cat /proc/meminfo &lt;span class="p">|&lt;/span> grep -E &lt;span class="s1">&amp;#39;Mem|Swap|Slab|SReclaimable|SUnreclaim|Dirty|Committed_AS&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ul>
+&lt;h3 id="25-oom-killer">2.5 OOM Killer&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>정의&lt;/strong>: 메모리 부족 시 프로세스 종료.&lt;/li>
+&lt;li>&lt;strong>기준&lt;/strong>: &lt;code>oom_score&lt;/code> 기반, &lt;code>VmRSS&lt;/code>와 &lt;code>VmSize&lt;/code> 고려, &lt;code>oom_score_adj&lt;/code>로 조정.&lt;/li>
+&lt;li>&lt;strong>디버깅 팁&lt;/strong>:
+&lt;ul>
+&lt;li>&lt;code>/proc/[pid]/oom_score&lt;/code>로 종료 대상 우선순위 확인.&lt;/li>
+&lt;li>&lt;code>MemAvailable&lt;/code>과 &lt;code>Committed_AS&lt;/code>로 OOM 트리거 분석.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>명령&lt;/strong>:
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">cat /proc/&lt;span class="o">[&lt;/span>pid&lt;span class="o">]&lt;/span>/oom_score
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ul>
+&lt;h2 id="3-디버깅-도구와-기법">3. 디버깅 도구와 기법&lt;/h2>
+&lt;h3 id="31-shadow-memory-scheme">3.1 Shadow Memory Scheme&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>정의&lt;/strong>: 메모리 상태를 추적하기 위해 주 메모리에 매핑된 메타데이터 저장.&lt;/li>
+&lt;li>&lt;strong>도구&lt;/strong>:
+&lt;ul>
+&lt;li>&lt;strong>Valgrind (Memcheck)&lt;/strong>: 댕글링 포인터, 메모리 누수 탐지.&lt;/li>
+&lt;li>&lt;strong>AddressSanitizer (ASan)&lt;/strong>: 빠른 메모리 오류 탐지.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>메모리 영향&lt;/strong>: &lt;code>VmSize&lt;/code>, &lt;code>VmRSS&lt;/code> 증가, &lt;code>/proc/meminfo&lt;/code>의 &lt;code>MemAvailable&lt;/code> 감소.&lt;/li>
+&lt;li>&lt;strong>명령&lt;/strong>:
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">valgrind --tool&lt;span class="o">=&lt;/span>memcheck ./program
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">2&lt;/span>&lt;span class="cl">&lt;span class="nv">LD_PRELOAD&lt;/span>&lt;span class="o">=&lt;/span>/usr/lib/libasan.so ./program
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ul>
+&lt;h3 id="32-ld_preload">3.2 LD_PRELOAD&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>정의&lt;/strong>: 동적 링커가 우선 로드할 공유 라이브러리 지정.&lt;/li>
+&lt;li>&lt;strong>용도&lt;/strong>: 메모리 디버깅(예: ASan), 함수 후킹.&lt;/li>
+&lt;li>&lt;strong>디버깅 팁&lt;/strong>: &lt;code>/proc/[pid]/maps&lt;/code>로 로드된 라이브러리 확인, &lt;code>VmRSS&lt;/code> 증가 점검.&lt;/li>
+&lt;li>&lt;strong>명령&lt;/strong>:
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">&lt;span class="nb">export&lt;/span> &lt;span class="nv">LD_PRELOAD&lt;/span>&lt;span class="o">=&lt;/span>/path/to/libasan.so
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">2&lt;/span>&lt;span class="cl">./program
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ul>
+&lt;h3 id="33-raii-c-전용">3.3 RAII (C++ 전용)&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>정의&lt;/strong>: 자원(메모리, 파일, 뮤텍스)을 객체 생명주기로 관리.&lt;/li>
+&lt;li>&lt;strong>주요 클래스&lt;/strong>:
+&lt;ul>
+&lt;li>&lt;code>std::unique_ptr&lt;/code>, &lt;code>std::shared_ptr&lt;/code>: 메모리 관리, 댕글링 포인터 방지.&lt;/li>
+&lt;li>&lt;code>std::lock_guard&lt;/code>, &lt;code>std::unique_lock&lt;/code>: 뮤텍스 관리.&lt;/li>
+&lt;li>&lt;code>std::fstream&lt;/code>: 파일 자원 관리.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>디버깅 팁&lt;/strong>: RAII 사용으로 SIGSEGV, 메모리 누수 방지. ASan과 함께 사용 권장.&lt;/li>
+&lt;li>&lt;strong>예시&lt;/strong>:
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-cpp" data-lang="cpp">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">&lt;span class="cp">#include&lt;/span> &lt;span class="cpf">&amp;lt;memory&amp;gt;&lt;/span>&lt;span class="cp">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">2&lt;/span>&lt;span class="cl">&lt;span class="cp">&lt;/span>&lt;span class="n">std&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">unique_ptr&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="kt">int&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="n">ptr&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">std&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">make_unique&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="kt">int&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">42&lt;/span>&lt;span class="p">);&lt;/span> &lt;span class="c1">// 자동 해제
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ul>
+&lt;h2 id="4-디버깅-워크플로우">4. 디버깅 워크플로우&lt;/h2>
+&lt;ol>
+&lt;li>&lt;strong>문제 증상 확인&lt;/strong>:
+&lt;ul>
+&lt;li>SIGSEGV/SIGBUS: &lt;code>/proc/[pid]/maps&lt;/code>로 PC/LR 주소 분석.&lt;/li>
+&lt;li>메모리 누수: &lt;code>/proc/[pid]/status&lt;/code>에서 &lt;code>VmRSS&lt;/code> 증가 확인.&lt;/li>
+&lt;li>OOM: &lt;code>/proc/meminfo&lt;/code>로 &lt;code>MemAvailable&lt;/code>, &lt;code>SwapFree&lt;/code> 점검.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>도구 활용&lt;/strong>:
+&lt;ul>
+&lt;li>Valgrind: 댕글링 포인터, 메모리 누수.&lt;/li>
+&lt;li>ASan: 빠른 오류 탐지, &lt;code>LD_PRELOAD&lt;/code>로 활성화.&lt;/li>
+&lt;li>&lt;code>gdb&lt;/code>: 스택 트레이스 분석.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>커널 메모리 점검&lt;/strong>:
+&lt;ul>
+&lt;li>&lt;code>/proc/slabinfo&lt;/code>: &lt;code>SUnreclaim&lt;/code> 증가로 커널 누수 확인.&lt;/li>
+&lt;li>&lt;code>slabtop&lt;/code>으로 슬랩 캐시 모니터링.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>최적화&lt;/strong>:
+&lt;ul>
+&lt;li>RAII로 자원 관리 개선.&lt;/li>
+&lt;li>불필요한 캐시 정리: &lt;code>echo 3 &amp;gt; /proc/sys/vm/drop_caches&lt;/code>.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ol>
+&lt;h2 id="5-실습-예제">5. 실습 예제&lt;/h2>
+&lt;h3 id="예제-1-댕글링-포인터-디버깅">예제 1: 댕글링 포인터 디버깅&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-cpp" data-lang="cpp">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">&lt;span class="cp">#include&lt;/span> &lt;span class="cpf">&amp;lt;stdlib.h&amp;gt;&lt;/span>&lt;span class="cp">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">2&lt;/span>&lt;span class="cl">&lt;span class="cp">&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">3&lt;/span>&lt;span class="cl"> &lt;span class="kt">int&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">p&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">malloc&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">sizeof&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">int&lt;/span>&lt;span class="p">));&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">4&lt;/span>&lt;span class="cl"> &lt;span class="o">*&lt;/span>&lt;span class="n">p&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">42&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">5&lt;/span>&lt;span class="cl"> &lt;span class="n">free&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">p&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">6&lt;/span>&lt;span class="cl"> &lt;span class="o">*&lt;/span>&lt;span class="n">p&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">10&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="c1">// 댕글링 포인터
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">7&lt;/span>&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="k">return&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">8&lt;/span>&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>&lt;strong>디버깅&lt;/strong>:
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">valgrind --tool&lt;span class="o">=&lt;/span>memcheck ./program
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>&lt;code>/proc/[pid]/maps&lt;/code>로 오류 주소 확인.&lt;/li>
+&lt;li>ASan: &lt;code>LD_PRELOAD=/usr/lib/libasan.so ./program&lt;/code>.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="예제-2-메모리-사용량-확인">예제 2: 메모리 사용량 확인&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">cat /proc/&lt;span class="o">[&lt;/span>pid&lt;span class="o">]&lt;/span>/status &lt;span class="p">|&lt;/span> grep -E &lt;span class="s1">&amp;#39;VmSize|VmRSS&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">2&lt;/span>&lt;span class="cl">cat /proc/meminfo &lt;span class="p">|&lt;/span> grep -E &lt;span class="s1">&amp;#39;MemAvailable|SwapFree&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="6-결론">6. 결론&lt;/h2>
+&lt;ul>
+&lt;li>리눅스 메모리 디버깅은 페이지, 페이지 폴트, 신호, &lt;code>/proc&lt;/code> 파일을 이해하는 것이 핵심.&lt;/li>
+&lt;li>Valgrind, ASan, LD_PRELOAD, RAII를 활용해 메모리 오류를 효과적으로 탐지.&lt;/li>
+&lt;li>&lt;code>/proc/meminfo&lt;/code>, &lt;code>/proc/[pid]/status&lt;/code>, &lt;code>/proc/[pid]/maps&lt;/code>로 시스템/프로세스 상태 분석.&lt;/li>
+&lt;li>지속적인 모니터링과 최적화로 안정적인 프로그램 개발 가능.&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;p>&lt;strong>참고&lt;/strong>: &lt;code>/proc/slabinfo&lt;/code>, &lt;code>slabtop&lt;/code>, &lt;code>gdb&lt;/code>, &lt;code>addr2line&lt;/code> 활용으로 커널 및 사용자 메모리 문제 심층 분석 권장.&lt;/p></description></item></channel></rss>
