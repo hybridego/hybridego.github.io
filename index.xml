@@ -1,372 +1,101 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Lionel Blog</title><link>https://hybridego.github.io/</link><description>Recent content on Lionel Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>Copyright © 2025, Hybridego; all rights reserved.</copyright><lastBuildDate>Fri, 23 May 2025 07:42:23 +0900</lastBuildDate><atom:link href="https://hybridego.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>linux debugging</title><link>https://hybridego.github.io/post/linux_debugging_skill/</link><pubDate>Fri, 23 May 2025 07:42:23 +0900</pubDate><guid>https://hybridego.github.io/post/linux_debugging_skill/</guid><description>
-&lt;h1 id="리눅스-환경에서의-메모리-디버깅-스킬">리눅스 환경에서의 메모리 디버깅 스킬&lt;/h1>
-&lt;p>이 교육 자료는 리눅스 환경에서 메모리 관련 문제를 디버깅하는 데 필요한 핵심 개념과 도구를 다룹니다. 페이지, 페이지 폴트, 신호(SIGSEGV, SIGBUS), 댕글링 포인터, &lt;code>/proc&lt;/code> 파일, OOM Killer, Shadow Memory, LD_PRELOAD, RAII를 기반으로 디버깅 스킬을 정리했습니다.&lt;/p>
-&lt;h2 id="1-메모리-관리-기본-개념">1. 메모리 관리 기본 개념&lt;/h2>
-&lt;h3 id="11-페이지와-가상-메모리">1.1 페이지와 가상 메모리&lt;/h3>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Huabing Blog</title><link>https://zhaohuabing.com/</link><description>Recent content on Huabing Blog</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 09 Jan 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://zhaohuabing.com/index.xml" rel="self" type="application/rss+xml"/><item><title>Clean White Theme for Hugo</title><link>https://zhaohuabing.com/post/readme/</link><pubDate>Wed, 09 Jan 2019 00:00:00 +0000</pubDate><guid>https://zhaohuabing.com/post/readme/</guid><description>&lt;h1 id="clean-white-theme-for-hugo">Clean White Theme for Hugo&lt;/h1>
+&lt;p>CleanWhite is a clean, elegant, but fully functional blog theme for Hugo. Here is a live &lt;a href="https://zhaohuabing.com">demo site&lt;/a> using this theme.&lt;/p>
+&lt;p>It is based on &lt;a href="https://github.com/Huxpro/huxpro.github.io">huxblog Jekyll Theme&lt;/a>
+and &lt;a href="https://github.com/BlackrockDigital/startbootstrap-clean-blog-jekyll">Clean Blog Jekyll Theme&lt;/a>.&lt;/p>
+&lt;p>These two upstream projects have done awesome jobs to create a blog theme, what I&amp;rsquo;m doing here is porting it to Hugo, of which I like the simplicity and the much faster compiling speed. Some other features which I think could be useful, such as site search with algolia and proxy for Disqus access in China, have also been built in the CleanWhite theme. Other fancy features of upstream projects are not supported by this Hugo theme, I&amp;rsquo;d like to make it as simple as possible and only focus on blog purpose, at least for now.
+While I created this theme, I followed the Hugo theme best practice and tried to make every part of the template as a replaceable partial html, so it could be much easier for you to make your customization based on it.&lt;/p></description></item><item><title>Istio v1aplha3 routing API介绍(译文）</title><link>https://zhaohuabing.com/2018/06/04/introducing-the-istio-v1alpha3-routing-api/</link><pubDate>Mon, 04 Jun 2018 00:00:00 +0000</pubDate><guid>https://zhaohuabing.com/2018/06/04/introducing-the-istio-v1alpha3-routing-api/</guid><description>&lt;p>到目前为止，Istio提供了一个简单的API来进行流量管理，该API包括了四种资源：RouteRule，DestinationPolicy，EgressRule和Ingress（直接使用了Kubernets的Ingress资源）。借助此API，用户可以轻松管理Istio服务网格中的流量。该API允许用户将请求路由到特定版本的服务，为弹性测试注入延迟和失败，添加超时和断路器等等，所有这些功能都不必更改应用程序本身的代码。&lt;/p></description></item><item><title>Istio 0.8 Release发布</title><link>https://zhaohuabing.com/2018/06/02/istio08/</link><pubDate>Sat, 02 Jun 2018 00:00:00 +0000</pubDate><guid>https://zhaohuabing.com/2018/06/02/istio08/</guid><description>&lt;blockquote>
+&lt;p>在6月1日这一天的早上，Istio社区宣布发布0.8 Release，除了常规的故障修复和性能改进外，这个儿童节礼物里面还有什么值得期待内容呢？让我们来看一看：&lt;/p>&lt;/blockquote></description></item><item><title>Everything about Setting Up My Ubuntu Desktop</title><link>https://zhaohuabing.com/2018/05/24/set_up_my_ubuntu_desktop/</link><pubDate>Thu, 24 May 2018 00:00:00 +0000</pubDate><guid>https://zhaohuabing.com/2018/05/24/set_up_my_ubuntu_desktop/</guid><description>&lt;h2 id="generate-ssh-key-pair">Generate SSH Key Pair&lt;/h2>
+&lt;pre tabindex="0">&lt;code>ssh-keygen -C &amp;#34;zhaohuabing@gmail.com&amp;#34;
+&lt;/code>&lt;/pre>&lt;h2 id="shadowsocks">Shadowsocks&lt;/h2>
+&lt;p>Install shadowsokcs&lt;/p>
+&lt;pre tabindex="0">&lt;code>sudo apt-get install python3-pip
+
+sudo pip3 install shadowsocks
+&lt;/code>&lt;/pre>&lt;p>Create config at &lt;code>config/shadowsocks.json&lt;/code>, with the following content:&lt;/p>
+&lt;pre tabindex="0">&lt;code>{
+	&amp;#34;server&amp;#34;:&amp;#34;remote-shadowsocks-server-ip-addr&amp;#34;,
+	&amp;#34;server_port&amp;#34;:443,
+	&amp;#34;local_address&amp;#34;:&amp;#34;127.0.0.1&amp;#34;,
+	&amp;#34;local_port&amp;#34;:1080,
+	&amp;#34;password&amp;#34;:&amp;#34;your-passwd&amp;#34;,
+	&amp;#34;timeout&amp;#34;:300,
+	&amp;#34;method&amp;#34;:&amp;#34;aes-256-cfb&amp;#34;,
+	&amp;#34;fast_open&amp;#34;:false,
+	&amp;#34;workers&amp;#34;:1
+}
+&lt;/code>&lt;/pre>&lt;p>Start a local socks proxy&lt;/p>
+&lt;pre tabindex="0">&lt;code>sudo sslocal -c config/shadowsocks.json -d start
+&lt;/code>&lt;/pre>&lt;p>In case there is an openssl error, modify shadowsocks source file.&lt;/p>
+&lt;pre tabindex="0">&lt;code>sudo vi /usr/local/lib/python3.6/dist-packages/shadowsocks/crypto/openssl.py 
+
+:%s/cleanup/reset/gc
+&lt;/code>&lt;/pre>&lt;p>Convert shadowsocks socks proxy to http proxy&lt;/p>
+&lt;pre tabindex="0">&lt;code>sudo apt-get install polipo
+
+echo &amp;#34;socksParentProxy = localhost:1080&amp;#34; | sudo tee -a /etc/polipo/config 
+sudo service polipo restart
+&lt;/code>&lt;/pre>&lt;p>Http proxy now is available at port 8123&lt;/p></description></item><item><title>微服务安全沉思录之三</title><link>https://zhaohuabing.com/2018/05/23/external_system_auth/</link><pubDate>Wed, 23 May 2018 18:00:00 +0000</pubDate><guid>https://zhaohuabing.com/2018/05/23/external_system_auth/</guid><description>&lt;h2 id="外部系统访问控制">外部系统访问控制&lt;/h2>
+&lt;p>除用户访问和微服务之间的相互访问外，外部的第三方系统也可能需要访问系统内部的微服务。例如在上一篇博客的网上商店例子中，外部的推荐服务可能需要接入系统，以获取商店的商品目录信息。相对于内部服务之间的访问而言，外部系统的访问需要进行严格的安全控制。&lt;/p></description></item><item><title>微服务安全沉思录之二</title><link>https://zhaohuabing.com/2018/05/23/service_2_service_auth/</link><pubDate>Wed, 23 May 2018 15:00:00 +0000</pubDate><guid>https://zhaohuabing.com/2018/05/23/service_2_service_auth/</guid><description>&lt;h2 id="服务间认证与鉴权">服务间认证与鉴权&lt;/h2>
+&lt;p>除来自用户的访问请求以外，微服务应用中的各个微服务相互之间还有大量的访问，包括下述场景：&lt;/p>
 &lt;ul>
-&lt;li>&lt;strong>페이지&lt;/strong>: 리눅스 메모리 관리의 기본 단위(보통 4KB). 가상 메모리와 물리 메모리를 페이지 단위로 매핑.&lt;/li>
-&lt;li>&lt;strong>가상 메모리&lt;/strong>:
-&lt;ul>
-&lt;li>32비트: 프로세스당 최대 4GB(사용자 공간 ~3GB, 커널 ~1GB).&lt;/li>
-&lt;li>64비트: 최대 256TB(실제 48비트, 사용자 공간 ~128TB).&lt;/li>
+&lt;li>用户间接触发的微服务之间的相互访问&lt;BR>
+例如在一个网上商店应用中，用户访问购物车微服务进行结算时，购物车微服务可能需要访问用户评级微服务获取用户的会员级别，以得到用户可以享受购物折扣。&lt;/li>
+&lt;li>非用户触发的微服务之间的相互访问&lt;BR>
+例如数据同步或者后台定时任务导致的微服务之间的相互访问。&lt;/li>
 &lt;/ul>
-&lt;/li>
-&lt;li>&lt;strong>디버깅 팁&lt;/strong>: &lt;code>/proc/[pid]/status&lt;/code>에서 &lt;code>VmSize&lt;/code>(가상 메모리), &lt;code>VmRSS&lt;/code>(물리 메모리) 확인.&lt;/li>
-&lt;/ul>
-&lt;h3 id="12-페이지-폴트">1.2 페이지 폴트&lt;/h3>
-&lt;ul>
-&lt;li>&lt;strong>정의&lt;/strong>: 프로세스가 접근하려는 가상 페이지가 물리 메모리에 없거나 권한이 없을 때 발생.&lt;/li>
-&lt;li>&lt;strong>원인&lt;/strong>:
-&lt;ul>
-&lt;li>페이지가 스왑 공간에 있음.&lt;/li>
-&lt;li>읽기/쓰기/실행 권한 위반.&lt;/li>
-&lt;li>요구 페이징(Demand Paging).&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>&lt;strong>디버깅 팁&lt;/strong>: 페이지 폴트가 빈번하면 &lt;code>/proc/meminfo&lt;/code>의 &lt;code>SwapFree&lt;/code> 확인, 스왑 사용량 증가 점검.&lt;/li>
-&lt;/ul>
-&lt;h3 id="13-sigsegv와-sigbus">1.3 SIGSEGV와 SIGBUS&lt;/h3>
-&lt;ul>
-&lt;li>&lt;strong>SIGSEGV (Segmentation Fault)&lt;/strong>:
-&lt;ul>
-&lt;li>유효하지 않은 메모리 접근(예: 댕글링 포인터, 권한 위반).&lt;/li>
-&lt;li>예: &lt;code>int *p = NULL; *p = 10;&lt;/code> → SIGSEGV.&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>&lt;strong>SIGBUS (Bus Error)&lt;/strong>:
-&lt;ul>
-&lt;li>하드웨어 수준 오류(예: 정렬 문제, &lt;code>mmap&lt;/code> 파일 손상).&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>&lt;strong>디버깅 팁&lt;/strong>: &lt;code>/proc/[pid]/maps&lt;/code>로 오류 주소(PC, LR) 확인, 세그먼트 분석.&lt;/li>
-&lt;/ul>
-&lt;h3 id="14-댕글링-포인터">1.4 댕글링 포인터&lt;/h3>
-&lt;ul>
-&lt;li>&lt;strong>정의&lt;/strong>: 이미 해제된 메모리를 가리키는 포인터.&lt;/li>
-&lt;li>&lt;strong>문제&lt;/strong>: 정의되지 않은 동작, SIGSEGV 발생 가능.&lt;/li>
-&lt;li>&lt;strong>디버깅 팁&lt;/strong>: &lt;code>free(p); p = NULL;&lt;/code>로 방지, Valgrind 또는 AddressSanitizer 사용.&lt;/li>
-&lt;/ul>
-&lt;h2 id="2-주요-디버깅-파일과-도구">2. 주요 디버깅 파일과 도구&lt;/h2>
-&lt;h3 id="21-procpidstatus">2.1 &lt;code>/proc/[pid]/status&lt;/code>&lt;/h3>
-&lt;ul>
-&lt;li>&lt;strong>주요 항목&lt;/strong>:
-&lt;ul>
-&lt;li>&lt;code>VmSize&lt;/code>: 가상 메모리 크기(전체 주소 공간).&lt;/li>
-&lt;li>&lt;code>VmRSS&lt;/code>: 물리 메모리 사용량(RAM).&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>&lt;strong>디버깅 시나리오&lt;/strong>:
-&lt;ul>
-&lt;li>&lt;strong>VmSize만 증가&lt;/strong>: 과도한 메모리 예약, 스파스 메모리 사용. 설계 최적화 필요.&lt;/li>
-&lt;li>&lt;strong>VmRSS만 증가&lt;/strong>: 메모리 누수, 캐시 과다 사용. Valgrind로 점검.&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>&lt;strong>확인 명령&lt;/strong>:
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">cat /proc/&lt;span class="o">[&lt;/span>pid&lt;span class="o">]&lt;/span>/status &lt;span class="p">|&lt;/span> grep -E &lt;span class="s1">&amp;#39;VmSize|VmRSS&amp;#39;&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
-&lt;/ul>
-&lt;h3 id="22-procpidmaps">2.2 &lt;code>/proc/[pid]/maps&lt;/code>&lt;/h3>
-&lt;ul>
-&lt;li>&lt;strong>내용&lt;/strong>: 프로세스의 가상 메모리 매핑(코드, 힙, 스택, 라이브러리 등).&lt;/li>
-&lt;li>&lt;strong>디버깅 활용&lt;/strong>:
-&lt;ul>
-&lt;li>스택 덤프의 &lt;strong>PC&lt;/strong>(오류 명령어 주소)를 확인해 세그먼트 파악.&lt;/li>
-&lt;li>&lt;strong>LR&lt;/strong>(반환 주소)로 호출 문맥 분석.&lt;/li>
-&lt;li>&lt;strong>SP&lt;/strong>(스택 포인터)로 스택 오버플로우 점검.&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>&lt;strong>명령&lt;/strong>:
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">cat /proc/&lt;span class="o">[&lt;/span>pid&lt;span class="o">]&lt;/span>/maps
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">2&lt;/span>&lt;span class="cl">addr2line -e /path/to/binary -a 0x7f8b12345678
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
-&lt;/ul>
-&lt;h3 id="23-procslabinfo">2.3 &lt;code>/proc/slabinfo&lt;/code>&lt;/h3>
-&lt;ul>
-&lt;li>&lt;strong>내용&lt;/strong>: 커널 슬랩 할당자의 캐시 정보.&lt;/li>
-&lt;li>&lt;strong>주요 항목&lt;/strong>:
-&lt;ul>
-&lt;li>&lt;code>SReclaimable&lt;/code>: 회수 가능한 슬랩 메모리(예: 파일 캐시).&lt;/li>
-&lt;li>&lt;code>SUnreclaim&lt;/code>: 회수 불가능한 슬랩 메모리(커널 필수 데이터).&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>&lt;strong>디버깅 팁&lt;/strong>: &lt;code>SUnreclaim&lt;/code> 증가 시 커널 메모리 누수 의심, &lt;code>/proc/slabinfo&lt;/code>와 &lt;code>slabtop&lt;/code>으로 분석.&lt;/li>
-&lt;/ul>
-&lt;h3 id="24-procmeminfo">2.4 &lt;code>/proc/meminfo&lt;/code>&lt;/h3>
-&lt;ul>
-&lt;li>&lt;strong>주요 항목&lt;/strong>:
-&lt;ul>
-&lt;li>&lt;code>MemTotal&lt;/code>, &lt;code>MemFree&lt;/code>, &lt;code>MemAvailable&lt;/code>: 메모리 부족 여부.&lt;/li>
-&lt;li>&lt;code>SwapTotal&lt;/code>, &lt;code>SwapFree&lt;/code>: 스왑 사용량, 성능 저하 원인.&lt;/li>
-&lt;li>&lt;code>SReclaimable&lt;/code>, &lt;code>SUnreclaim&lt;/code>: 커널 메모리 상태.&lt;/li>
-&lt;li>&lt;code>Dirty&lt;/code>: 디스크 쓰기 지연, I/O 병목.&lt;/li>
-&lt;li>&lt;code>Committed_AS&lt;/code>: 오버커밋 상태.&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>&lt;strong>디버깅 팁&lt;/strong>: &lt;code>MemAvailable&lt;/code> 낮거나 &lt;code>SwapFree&lt;/code> 감소 시 OOM 위험, &lt;code>SUnreclaim&lt;/code> 증가로 커널 누수 점검.&lt;/li>
-&lt;li>&lt;strong>명령&lt;/strong>:
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">cat /proc/meminfo &lt;span class="p">|&lt;/span> grep -E &lt;span class="s1">&amp;#39;Mem|Swap|Slab|SReclaimable|SUnreclaim|Dirty|Committed_AS&amp;#39;&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
-&lt;/ul>
-&lt;h3 id="25-oom-killer">2.5 OOM Killer&lt;/h3>
-&lt;ul>
-&lt;li>&lt;strong>정의&lt;/strong>: 메모리 부족 시 프로세스 종료.&lt;/li>
-&lt;li>&lt;strong>기준&lt;/strong>: &lt;code>oom_score&lt;/code> 기반, &lt;code>VmRSS&lt;/code>와 &lt;code>VmSize&lt;/code> 고려, &lt;code>oom_score_adj&lt;/code>로 조정.&lt;/li>
-&lt;li>&lt;strong>디버깅 팁&lt;/strong>:
-&lt;ul>
-&lt;li>&lt;code>/proc/[pid]/oom_score&lt;/code>로 종료 대상 우선순위 확인.&lt;/li>
-&lt;li>&lt;code>MemAvailable&lt;/code>과 &lt;code>Committed_AS&lt;/code>로 OOM 트리거 분석.&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>&lt;strong>명령&lt;/strong>:
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">cat /proc/&lt;span class="o">[&lt;/span>pid&lt;span class="o">]&lt;/span>/oom_score
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
-&lt;/ul>
-&lt;h2 id="3-디버깅-도구와-기법">3. 디버깅 도구와 기법&lt;/h2>
-&lt;h3 id="31-shadow-memory-scheme">3.1 Shadow Memory Scheme&lt;/h3>
-&lt;ul>
-&lt;li>&lt;strong>정의&lt;/strong>: 메모리 상태를 추적하기 위해 주 메모리에 매핑된 메타데이터 저장.&lt;/li>
-&lt;li>&lt;strong>도구&lt;/strong>:
-&lt;ul>
-&lt;li>&lt;strong>Valgrind (Memcheck)&lt;/strong>: 댕글링 포인터, 메모리 누수 탐지.&lt;/li>
-&lt;li>&lt;strong>AddressSanitizer (ASan)&lt;/strong>: 빠른 메모리 오류 탐지.&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>&lt;strong>메모리 영향&lt;/strong>: &lt;code>VmSize&lt;/code>, &lt;code>VmRSS&lt;/code> 증가, &lt;code>/proc/meminfo&lt;/code>의 &lt;code>MemAvailable&lt;/code> 감소.&lt;/li>
-&lt;li>&lt;strong>명령&lt;/strong>:
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">valgrind --tool&lt;span class="o">=&lt;/span>memcheck ./program
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">2&lt;/span>&lt;span class="cl">&lt;span class="nv">LD_PRELOAD&lt;/span>&lt;span class="o">=&lt;/span>/usr/lib/libasan.so ./program
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
-&lt;/ul>
-&lt;h3 id="32-ld_preload">3.2 LD_PRELOAD&lt;/h3>
-&lt;ul>
-&lt;li>&lt;strong>정의&lt;/strong>: 동적 링커가 우선 로드할 공유 라이브러리 지정.&lt;/li>
-&lt;li>&lt;strong>용도&lt;/strong>: 메모리 디버깅(예: ASan), 함수 후킹.&lt;/li>
-&lt;li>&lt;strong>디버깅 팁&lt;/strong>: &lt;code>/proc/[pid]/maps&lt;/code>로 로드된 라이브러리 확인, &lt;code>VmRSS&lt;/code> 증가 점검.&lt;/li>
-&lt;li>&lt;strong>명령&lt;/strong>:
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">&lt;span class="nb">export&lt;/span> &lt;span class="nv">LD_PRELOAD&lt;/span>&lt;span class="o">=&lt;/span>/path/to/libasan.so
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">2&lt;/span>&lt;span class="cl">./program
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
-&lt;/ul>
-&lt;h3 id="33-raii-c-전용">3.3 RAII (C++ 전용)&lt;/h3>
-&lt;ul>
-&lt;li>&lt;strong>정의&lt;/strong>: 자원(메모리, 파일, 뮤텍스)을 객체 생명주기로 관리.&lt;/li>
-&lt;li>&lt;strong>주요 클래스&lt;/strong>:
-&lt;ul>
-&lt;li>&lt;code>std::unique_ptr&lt;/code>, &lt;code>std::shared_ptr&lt;/code>: 메모리 관리, 댕글링 포인터 방지.&lt;/li>
-&lt;li>&lt;code>std::lock_guard&lt;/code>, &lt;code>std::unique_lock&lt;/code>: 뮤텍스 관리.&lt;/li>
-&lt;li>&lt;code>std::fstream&lt;/code>: 파일 자원 관리.&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>&lt;strong>디버깅 팁&lt;/strong>: RAII 사용으로 SIGSEGV, 메모리 누수 방지. ASan과 함께 사용 권장.&lt;/li>
-&lt;li>&lt;strong>예시&lt;/strong>:
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-cpp" data-lang="cpp">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">&lt;span class="cp">#include&lt;/span> &lt;span class="cpf">&amp;lt;memory&amp;gt;&lt;/span>&lt;span class="cp">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">2&lt;/span>&lt;span class="cl">&lt;span class="cp">&lt;/span>&lt;span class="n">std&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">unique_ptr&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="kt">int&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="n">ptr&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">std&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">make_unique&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="kt">int&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">42&lt;/span>&lt;span class="p">);&lt;/span> &lt;span class="c1">// 자동 해제
-&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
-&lt;/ul>
-&lt;h2 id="4-디버깅-워크플로우">4. 디버깅 워크플로우&lt;/h2>
-&lt;ol>
-&lt;li>&lt;strong>문제 증상 확인&lt;/strong>:
-&lt;ul>
-&lt;li>SIGSEGV/SIGBUS: &lt;code>/proc/[pid]/maps&lt;/code>로 PC/LR 주소 분석.&lt;/li>
-&lt;li>메모리 누수: &lt;code>/proc/[pid]/status&lt;/code>에서 &lt;code>VmRSS&lt;/code> 증가 확인.&lt;/li>
-&lt;li>OOM: &lt;code>/proc/meminfo&lt;/code>로 &lt;code>MemAvailable&lt;/code>, &lt;code>SwapFree&lt;/code> 점검.&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>&lt;strong>도구 활용&lt;/strong>:
-&lt;ul>
-&lt;li>Valgrind: 댕글링 포인터, 메모리 누수.&lt;/li>
-&lt;li>ASan: 빠른 오류 탐지, &lt;code>LD_PRELOAD&lt;/code>로 활성화.&lt;/li>
-&lt;li>&lt;code>gdb&lt;/code>: 스택 트레이스 분석.&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>&lt;strong>커널 메모리 점검&lt;/strong>:
-&lt;ul>
-&lt;li>&lt;code>/proc/slabinfo&lt;/code>: &lt;code>SUnreclaim&lt;/code> 증가로 커널 누수 확인.&lt;/li>
-&lt;li>&lt;code>slabtop&lt;/code>으로 슬랩 캐시 모니터링.&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>&lt;strong>최적화&lt;/strong>:
-&lt;ul>
-&lt;li>RAII로 자원 관리 개선.&lt;/li>
-&lt;li>불필요한 캐시 정리: &lt;code>echo 3 &amp;gt; /proc/sys/vm/drop_caches&lt;/code>.&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ol>
-&lt;h2 id="5-실습-예제">5. 실습 예제&lt;/h2>
-&lt;h3 id="예제-1-댕글링-포인터-디버깅">예제 1: 댕글링 포인터 디버깅&lt;/h3>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-cpp" data-lang="cpp">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">&lt;span class="cp">#include&lt;/span> &lt;span class="cpf">&amp;lt;stdlib.h&amp;gt;&lt;/span>&lt;span class="cp">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">2&lt;/span>&lt;span class="cl">&lt;span class="cp">&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">3&lt;/span>&lt;span class="cl"> &lt;span class="kt">int&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">p&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">malloc&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">sizeof&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">int&lt;/span>&lt;span class="p">));&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">4&lt;/span>&lt;span class="cl"> &lt;span class="o">*&lt;/span>&lt;span class="n">p&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">42&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">5&lt;/span>&lt;span class="cl"> &lt;span class="n">free&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">p&lt;/span>&lt;span class="p">);&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">6&lt;/span>&lt;span class="cl"> &lt;span class="o">*&lt;/span>&lt;span class="n">p&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">10&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="c1">// 댕글링 포인터
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">7&lt;/span>&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="k">return&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">8&lt;/span>&lt;span class="cl">&lt;span class="p">}&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
-&lt;li>&lt;strong>디버깅&lt;/strong>:
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">valgrind --tool&lt;span class="o">=&lt;/span>memcheck ./program
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
-&lt;li>&lt;code>/proc/[pid]/maps&lt;/code>로 오류 주소 확인.&lt;/li>
-&lt;li>ASan: &lt;code>LD_PRELOAD=/usr/lib/libasan.so ./program&lt;/code>.&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;h3 id="예제-2-메모리-사용량-확인">예제 2: 메모리 사용량 확인&lt;/h3>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">cat /proc/&lt;span class="o">[&lt;/span>pid&lt;span class="o">]&lt;/span>/status &lt;span class="p">|&lt;/span> grep -E &lt;span class="s1">&amp;#39;VmSize|VmRSS&amp;#39;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">2&lt;/span>&lt;span class="cl">cat /proc/meminfo &lt;span class="p">|&lt;/span> grep -E &lt;span class="s1">&amp;#39;MemAvailable|SwapFree&amp;#39;&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="6-결론">6. 결론&lt;/h2>
-&lt;ul>
-&lt;li>리눅스 메모리 디버깅은 페이지, 페이지 폴트, 신호, &lt;code>/proc&lt;/code> 파일을 이해하는 것이 핵심.&lt;/li>
-&lt;li>Valgrind, ASan, LD_PRELOAD, RAII를 활용해 메모리 오류를 효과적으로 탐지.&lt;/li>
-&lt;li>&lt;code>/proc/meminfo&lt;/code>, &lt;code>/proc/[pid]/status&lt;/code>, &lt;code>/proc/[pid]/maps&lt;/code>로 시스템/프로세스 상태 분석.&lt;/li>
-&lt;li>지속적인 모니터링과 최적화로 안정적인 프로그램 개발 가능.&lt;/li>
-&lt;/ul>
+&lt;p>根据应用系统的数据敏感程度的不同，对于系统内微服务的相互访问可能有不同的安全要求。&lt;/p></description></item><item><title>微服务安全沉思录之一</title><link>https://zhaohuabing.com/2018/05/22/user_authentication_authorization/</link><pubDate>Wed, 23 May 2018 10:00:00 +0000</pubDate><guid>https://zhaohuabing.com/2018/05/22/user_authentication_authorization/</guid><description>&lt;blockquote>
+&lt;p>这段时间对之前微服务安全相关的一些想法进行了进一步总结和归纳，理清了在之前文章里面没有想得太清楚的地方，例如服务间的认证与鉴权以及用户身份在服务调用链中的传递。&lt;/p></description></item><item><title>Istio Sidecar自动注入原理</title><link>https://zhaohuabing.com/2018/05/23/istio-auto-injection-with-webhook/</link><pubDate>Wed, 23 May 2018 00:00:00 +0000</pubDate><guid>https://zhaohuabing.com/2018/05/23/istio-auto-injection-with-webhook/</guid><description>&lt;h2 id="前言">前言&lt;/h2>
 &lt;hr>
-&lt;p>&lt;strong>참고&lt;/strong>: &lt;code>/proc/slabinfo&lt;/code>, &lt;code>slabtop&lt;/code>, &lt;code>gdb&lt;/code>, &lt;code>addr2line&lt;/code> 활용으로 커널 및 사용자 메모리 문제 심층 분석 권장.&lt;/p></description></item><item><title>Docker SSH tunneling</title><link>https://hybridego.github.io/post/docker_ssh_tunneling/</link><pubDate>Wed, 21 May 2025 23:11:23 +0900</pubDate><guid>https://hybridego.github.io/post/docker_ssh_tunneling/</guid><description>
-&lt;h2 id="docker-와-ssh-터널링-설정">Docker 와 ssh 터널링 설정&lt;/h2>
-&lt;ol>
-&lt;li>처음 실행 (필요한 디렉토리 mount 하고 이미지와 shell 선택, user 지정)&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">docker run -it \
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">2&lt;/span>&lt;span class="cl"> -v /home/lionelj:/home/lionelj \
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">3&lt;/span>&lt;span class="cl"> --name lj-ubuntu \
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">4&lt;/span>&lt;span class="cl"> -v /opt:/opt \
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">5&lt;/span>&lt;span class="cl"> ubuntu:24.04 \
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">6&lt;/span>&lt;span class="cl"> /bin/bash
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="2">
-&lt;li>Docker 에서 필요한 기본 설정&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="ln"> 1&lt;/span>&lt;span class="cl">apt-get update
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 2&lt;/span>&lt;span class="cl">apt-get install -y sudo
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 3&lt;/span>&lt;span class="cl">apt-get install -y vim git zsh
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 4&lt;/span>&lt;span class="cl">groupadd -g &lt;span class="m">1016&lt;/span> lionelj
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 5&lt;/span>&lt;span class="cl">useradd -u &lt;span class="m">1016&lt;/span> -g &lt;span class="m">1016&lt;/span> -m -s /bin/zsh lionelj
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 6&lt;/span>&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 7&lt;/span>&lt;span class="cl">usermod -aG sudo lionelj &lt;span class="c1">#사용자를 sudo 그룹에 추가. -a: 기존 그룹을 유지하면서 추가. -G sudo: sudo 그룹에 추가.&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 8&lt;/span>&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 9&lt;/span>&lt;span class="cl">sudo apt-get install -y locales
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">10&lt;/span>&lt;span class="cl">sudo locale-gen en_US.UTF-8
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="3">
-&lt;li>다음부터는 만들어진 container로 접속&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">&lt;span class="c1"># container name으로 접속&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">2&lt;/span>&lt;span class="cl">docker start lj-ubuntu
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">3&lt;/span>&lt;span class="cl">&lt;span class="c1"># container id로 접속&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">4&lt;/span>&lt;span class="cl">docker start 708d99e6c6b9
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">5&lt;/span>&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">6&lt;/span>&lt;span class="cl">&lt;span class="c1"># start 후 shell로 접속&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">7&lt;/span>&lt;span class="cl">docker &lt;span class="nb">exec&lt;/span> -it lj-ubuntu /bin/bash
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="4">
-&lt;li>컨테이너를 이미지로 만들기 (이렇게 하면 누적된 image를 다 유지해야 함. 중간 image 삭제 불가)&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="ln"> 1&lt;/span>&lt;span class="cl">docker commit &amp;lt;컨테이너_ID&amp;gt; my-ubuntu:custom
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 2&lt;/span>&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 3&lt;/span>&lt;span class="cl">&lt;span class="c1"># ex)&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 4&lt;/span>&lt;span class="cl">$ docker commit 7a613f013271 lionel-ubuntu:custom
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 5&lt;/span>&lt;span class="cl">sha256:ec1a4af2f69aa0b7b9366279979d80b0cce02ffd2b3f1e07f81ded54875f7666
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 6&lt;/span>&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 7&lt;/span>&lt;span class="cl">$ docker images
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 8&lt;/span>&lt;span class="cl">REPOSITORY TAG IMAGE ID CREATED SIZE
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 9&lt;/span>&lt;span class="cl">lionel-ubuntu custom ec1a4af2f69a &lt;span class="m">6&lt;/span> seconds ago 235MB
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">10&lt;/span>&lt;span class="cl">ubuntu 24.04 602eb6fb314b &lt;span class="m">2&lt;/span> weeks ago 78.1MB
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="5">
-&lt;li>새로 만든 이미지로 컨테이너 띄우기&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="ln"> 1&lt;/span>&lt;span class="cl">$ docker images
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 2&lt;/span>&lt;span class="cl">REPOSITORY TAG IMAGE ID CREATED SIZE
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 3&lt;/span>&lt;span class="cl">lionel-ubuntu 24.04 fa9ec891a58d 24 seconds ago 235MB
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 4&lt;/span>&lt;span class="cl">ubuntu 24.04 602eb6fb314b 2 weeks ago 78.1MB
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 5&lt;/span>&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 6&lt;/span>&lt;span class="cl">docker run -it \
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 7&lt;/span>&lt;span class="cl"> -v /home/lionelj:/home/lionelj \
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 8&lt;/span>&lt;span class="cl"> --name lj-ubuntu \
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 9&lt;/span>&lt;span class="cl"> -v /opt:/opt \
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">10&lt;/span>&lt;span class="cl"> lionel-ubuntu:24.04 \
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">11&lt;/span>&lt;span class="cl"> /bin/bash
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="6">
-&lt;li>ssh 설정 (container에 접속해서 sshd를 띄운다.)&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">mkdir /run/sshd
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">2&lt;/span>&lt;span class="cl">/usr/sbin/sshd
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">3&lt;/span>&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">4&lt;/span>&lt;span class="cl">&lt;span class="c1"># 컨테이너는 기본적으로 systemd를 사용하지 않으므로, systemctl 대신 직접 sshd를 실행.&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="7">
-&lt;li>ip 설정 (host 에서 docker container의 ip를 확인한다. ssh 터널링 설정을 해야 하기 때문)&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">$ ip addr
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">2&lt;/span>&lt;span class="cl">1: lo: &amp;lt;LOOPBACK,UP,LOWER_UP&amp;gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">3&lt;/span>&lt;span class="cl"> link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">4&lt;/span>&lt;span class="cl"> inet 127.0.0.1/8 scope host lo
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">5&lt;/span>&lt;span class="cl"> valid_lft forever preferred_lft forever
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">6&lt;/span>&lt;span class="cl">1839: eth0@if1840: &amp;lt;BROADCAST,MULTICAST,UP,LOWER_UP&amp;gt; mtu 1500 qdisc noqueue state UP group default
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">7&lt;/span>&lt;span class="cl"> link/ether 02:42:ac:11:00:02 brd ff:ff:ff:ff:ff:ff link-netnsid 0
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">8&lt;/span>&lt;span class="cl"> inet 172.17.0.2/16 brd 172.17.255.255 scope global eth0 &amp;lt;&amp;lt;== 이 번호를 확인.
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">9&lt;/span>&lt;span class="cl"> valid_lft forever preferred_lft forever
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
-&lt;li>또 다른 ip 확인 방법 (host에서)&lt;/li>
-&lt;/ul>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">$ docker inspect 85d05024ca50 | grep IPAddress
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">2&lt;/span>&lt;span class="cl"> &amp;#34;SecondaryIPAddresses&amp;#34;: null,
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">3&lt;/span>&lt;span class="cl"> &amp;#34;IPAddress&amp;#34;: &amp;#34;172.17.0.2&amp;#34;,
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">4&lt;/span>&lt;span class="cl"> &amp;#34;IPAddress&amp;#34;: &amp;#34;172.17.0.2&amp;#34;,
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="8">
-&lt;li>컨테이너 중지 및 삭제 후 포트 매핑 포함하여 재실행&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">docker run -it --name lj-ubuntu \
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">2&lt;/span>&lt;span class="cl"> -v /home/lionelj:/home/lionelj \
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">3&lt;/span>&lt;span class="cl"> -v /opt:/opt \
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">4&lt;/span>&lt;span class="cl"> --user 1016:1016 \
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">5&lt;/span>&lt;span class="cl"> -p 2222:2222 \
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">6&lt;/span>&lt;span class="cl"> lj-ubuntu-3:24.04 \
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">7&lt;/span>&lt;span class="cl"> /bin/bash
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="9">
-&lt;li>이미지 이름 바꾸는 방법&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">docker tag 원래_이미지_이름:태그 새_이미지_이름:태그
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">2&lt;/span>&lt;span class="cl">docker rmi 원래_이미지_이름:태그
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
-&lt;li>접속 하는 방법 ssh 터널링 (윈도우에서 설정.)&lt;/li>
-&lt;/ul>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">ssh -L 2222:172.17.0.2:2222 lionelj@&amp;lt;호스트_IP&amp;gt;
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">2&lt;/span>&lt;span class="cl">ssh -L 2222:172.17.0.2:2222 lionelj@192.168.85.15
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
-&lt;li>Windows ssh 설정&lt;/li>
-&lt;/ul>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">C:\Users\lionel.j\.ssh\config 파일을 열고
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">2&lt;/span>&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">3&lt;/span>&lt;span class="cl">Host lj-ubuntu
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">4&lt;/span>&lt;span class="cl">  HostName localhost
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">5&lt;/span>&lt;span class="cl">  User lionelj
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">6&lt;/span>&lt;span class="cl">  Port 2222
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">7&lt;/span>&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">8&lt;/span>&lt;span class="cl">이렇게 추가 후
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">9&lt;/span>&lt;span class="cl">vscode 에서 Remote-SSH: Connect to Host...로 lj-ubuntu 로 접속.
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;hr>
-&lt;h2 id="다음부터-사용할-때는-이렇게">다음부터 사용할 때는 이렇게&lt;/h2>
-&lt;p>다 설정하면 이렇게 하면 됨.&lt;/p></description></item><item><title>Python uv</title><link>https://hybridego.github.io/post/python_uv/</link><pubDate>Fri, 16 May 2025 23:11:23 +0900</pubDate><guid>https://hybridego.github.io/post/python_uv/</guid><description>
-&lt;h1 id="python-uv-사용법">Python UV 사용법&lt;/h1>
+&lt;p>Kubernets 1.9版本引入了Admission Webhook(web 回调)扩展机制，通过Webhook,开发者可以非常灵活地对Kubernets API Server的功能进行扩展，在API Server创建资源时对资源进行验证或者修改。&lt;/p>
+&lt;p>使用webhook的优势是不需要对API Server的源码进行修改和重新编译就可以扩展其功能。插入的逻辑实现为一个独立的web进程，通过参数方式传入到kubernets中，由kubernets在进行自身逻辑处理时对扩展逻辑进行回调。&lt;/p>
+&lt;p>Istio 0.7版本就利用了Kubernets webhook实现了sidecar的自动注入。&lt;/p></description></item><item><title>使用Algolia为Gitpage博客提供站内搜索</title><link>https://zhaohuabing.com/2018/05/21/algolia-integration-with-jekyll/</link><pubDate>Mon, 21 May 2018 11:00:00 +0000</pubDate><guid>https://zhaohuabing.com/2018/05/21/algolia-integration-with-jekyll/</guid><description>&lt;blockquote>
+&lt;p>This series of articles are my notes of &amp;ldquo;Bitcoin and Cryptocurrency Technologies&amp;rdquo; online course.&lt;/p>&lt;/blockquote>
+&lt;h2 id="table-of-content">Table of Content&lt;/h2>
+&lt;p>{:.no_toc}&lt;/p>
 &lt;ul>
-&lt;li>
-&lt;p>회사에서 uv python install 잘 안될 때
-사용 중인 네트워크(예: 회사 네트워크)가 Zscaler, Cisco Umbrella 같은 프록시를 통해 SSL 검사를 수행하고 있을 가능성이 높습니다. 이 경우, 프록시가 중간에 자체 인증서를 삽입하여 uv가 사용하는 기본 인증서 저장소(Mozilla의 webpki-roots)에서 이를 신뢰하지 못해 UnknownIssuer 에러가 발생합니다.&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>설치된 python 버전 보는 방법
-&lt;code>uv python list&lt;/code>&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>설치방법
-&lt;strong>시스템 신뢰 저장소 사용 (--native-tls 옵션)&lt;/strong>
-uv가 시스템의 신뢰 저장소(Windows 인증서 저장소)를 사용하도록 설정하면, 기업 CA 인증서를 신뢰할 가능성이 높아집니다.
-&lt;code>uv python install cpython-3.13.3+freethreaded-windows-x86_64-none --native-tls&lt;/code>&lt;/p></description></item><item><title>Using Hugo page bundles</title><link>https://hybridego.github.io/post/bundle/</link><pubDate>Thu, 24 Mar 2022 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/post/bundle/</guid><description>
-Page bundles are an optional way to organize page resources within Hugo. You can opt-in to using page bundles in Hugo Clarity with `usePageBundles` in your site configuration --- or in a page's front matter.</description></item><item><title>Using OpenStreetMap</title><link>https://hybridego.github.io/post/map/</link><pubDate>Mon, 14 Feb 2022 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/post/map/</guid><description>
-&lt;iframe class="openstreetmap" width="100%" height="600px" src="https://umap.openstreetmap.fr/en/map/demo-map_1?scaleControl=true&amp;miniMap=false&amp;scrollWheelZoom=true&amp;zoomControl=true&amp;allowEdit=false&amp;moreControl=true&amp;searchControl=true&amp;tilelayersControl=null&amp;embedControl=null&amp;datalayersControl=true&amp;onLoadPanel=none&amp;captionBar=false#14/-37.7989/145.0003">&lt;/iframe></description></item><item><title>Using Notices</title><link>https://hybridego.github.io/post/notices/</link><pubDate>Fri, 20 Aug 2021 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/post/notices/</guid><description>
-&lt;p>The &amp;quot;Notices&amp;quot; shortcode enables you to call out pieces of information - sidebars, warnings, tips, etc.&lt;/p>
-&lt;p>To create a notice on a page, you can use the &lt;code>notice&lt;/code> shortcode.&lt;br>
-You use the &lt;code>notice&lt;/code> shortcode, with the first parameter being one of &lt;code>note&lt;/code>, &lt;code>info&lt;/code>, &lt;code>tip&lt;/code>, and &lt;code>warning&lt;/code>. Then add a title for your
-note in quotes as the second parameter. The inner body of the note can be whatever markdown you want to create.&lt;/p></description></item><item><title>Markdown Syntax Guide</title><link>https://hybridego.github.io/post/markdown-syntax/</link><pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/post/markdown-syntax/</guid><description>
-&lt;p>This article offers a sample of basic Markdown syntax that can be used in Hugo content files, also it shows whether basic HTML elements are decorated with CSS in a Hugo theme.&lt;/p></description></item><item><title>Rich Content</title><link>https://hybridego.github.io/post/rich-content/</link><pubDate>Sun, 10 Mar 2019 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/post/rich-content/</guid><description>
-&lt;p>Hugo ships with several &lt;a href="https://gohugo.io/content-management/shortcodes/#embedded">Embedded Shortcodes&lt;/a> for rich content, along with a &lt;a href="https://gohugo.io/about/hugo-and-gdpr/">Privacy Config&lt;/a> and a set of Simple Shortcodes that enable static and no-JS versions of various social media embeds.&lt;/p></description></item><item><title>Placeholder Text</title><link>https://hybridego.github.io/post/placeholder-text/</link><pubDate>Sat, 09 Mar 2019 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/post/placeholder-text/</guid><description>
-&lt;p>Lorem est tota propiore conpellat pectoribus de pectora summo.&lt;/p></description></item><item><title>Math Typesetting</title><link>https://hybridego.github.io/post/math-typesetting/</link><pubDate>Fri, 08 Mar 2019 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/post/math-typesetting/</guid><description>
-&lt;p>Mathematical notation in a Hugo project can be enabled by using third party JavaScript libraries.&lt;/p></description></item><item><title>Emoji Support</title><link>https://hybridego.github.io/post/emoji-support/</link><pubDate>Tue, 05 Mar 2019 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/post/emoji-support/</guid><description>
-&lt;p>Emoji can be enabled in a Hugo project in a number of ways.&lt;/p></description></item></channel></rss>
+&lt;li>Table of Content
+{:toc}&lt;/li>
+&lt;/ul>
+&lt;h2 id="scrooge-coin-transaction">Scrooge Coin Transaction&lt;/h2>
+&lt;p>Scrooge Coin programming assignment is a little bit tricky, the video of this lesson hasn&amp;rsquo;t explained some implementation details. To help you understand the transaction data structure used in Scrooge Coin, I draw this diagram:
+
+ &lt;img src="https://zhaohuabing.com/img/2018-5-20-cryptocurrency_week1_scroogecoin/scroogecoin.png" alt="Scrooge Coin">
+
+&lt;/p></description></item><item><title>川西秘境探险</title><link>https://zhaohuabing.com/2018/05/01/may-day-jiulonghu/</link><pubDate>Tue, 01 May 2018 00:00:00 +0000</pubDate><guid>https://zhaohuabing.com/2018/05/01/may-day-jiulonghu/</guid><description>&lt;h2 id="寻浮云牧场不遇">寻浮云牧场不遇&lt;/h2>
+&lt;p>五一节前的一周内，几个朋友就纷纷坐不住了，一个二个不再安心上班，开始在微信群里讨论过节要到哪里耍。
+大家思来想去，最后决定还是去理县方向。因为根据多年自驾的经验，只要出了汶川，沿途都是风景。&lt;/p></description></item><item><title>Helm介绍</title><link>https://zhaohuabing.com/2018/04/16/using-helm-to-deploy-to-kubernetes/</link><pubDate>Mon, 16 Apr 2018 15:00:00 +0000</pubDate><guid>https://zhaohuabing.com/2018/04/16/using-helm-to-deploy-to-kubernetes/</guid><description>&lt;h2 id="前言">前言&lt;/h2>
+&lt;hr>
+&lt;p>Helm是Kubernetes生态系统中的一个软件包管理工具。本文将介绍为何要使用Helm进行Kubernetes软件包管理，澄清Helm中使用到的相关概念，并通过一个具体的示例学习如何使用Helm打包，分发，安装，升级及回退Kubernetes应用。&lt;/p></description></item><item><title>Service Mesh 和 API Gateway的关系探讨（译文）</title><link>https://zhaohuabing.com/2018/04/11/service-mesh-vs-api-gateway/</link><pubDate>Wed, 11 Apr 2018 09:32:00 +0000</pubDate><guid>https://zhaohuabing.com/2018/04/11/service-mesh-vs-api-gateway/</guid><description>&lt;h2 id="service-mesh-vs-api-gateway">Service Mesh vs API Gateway&lt;/h2>
+&lt;p>在&lt;a href="https://medium.com/microservices-in-practice/service-mesh-for-microservices-2953109a3c9a">前一篇关于Service Mesh的文章&lt;/a>中,我提到了几个关于Service Mesh和API Gateway之间关系的问题，在本篇文章中，我打算就Service Mesh和API Gateway的用途进行进一步讨论。&lt;/p></description></item><item><title>谈谈微服务架构中的基础设施：Service Mesh与Istio</title><link>https://zhaohuabing.com/2018/03/29/what-is-service-mesh-and-istio/</link><pubDate>Thu, 29 Mar 2018 12:00:00 +0000</pubDate><guid>https://zhaohuabing.com/2018/03/29/what-is-service-mesh-and-istio/</guid><description>&lt;h2 id="微服务架构的演进">微服务架构的演进&lt;/h2>
+&lt;p>作为一种架构模式，微服务将复杂系统切分为数十乃至上百个小服务，每个服务负责实现一个独立的业务逻辑。这些小服务易于被小型的软件工程师团队所理解和修改，并带来了语言和框架选择灵活性，缩短应用开发上线时间，可根据不同的工作负载和资源要求对服务进行独立缩扩容等优势。&lt;/p>
+&lt;p>另一方面，当应用被拆分为多个微服务进程后，进程内的方法调用变成了了进程间的远程调用。引入了对大量服务的连接、管理和监控的复杂性。&lt;/p></description></item><item><title>如何配置docker使用HTTP代理</title><link>https://zhaohuabing.com/2018/03/13/use-docker-behind-http-proxy/</link><pubDate>Tue, 13 Mar 2018 18:00:00 +0000</pubDate><guid>https://zhaohuabing.com/2018/03/13/use-docker-behind-http-proxy/</guid><description>&lt;h2 id="ubuntu">Ubuntu&lt;/h2>
+&lt;h3 id="设置docker使用http-proxy">设置docker使用http proxy&lt;/h3>
+&lt;pre tabindex="0">&lt;code>sudo /etc/default/docker
+
+export http_proxy=&amp;#34;http://127.0.0.1:3128/&amp;#34;
+export https_proxy=&amp;#34;http://127.0.0.1:3128/&amp;#34;
+export HTTP_PROXY=&amp;#34;http://127.0.0.1:3128/&amp;#34;
+export HTTPS_PROXY=&amp;#34;http://127.0.0.1:3128/&amp;#34;
+&lt;/code>&lt;/pre></description></item><item><title>Vim Tips</title><link>https://zhaohuabing.com/2018/02/09/vim-tips/</link><pubDate>Fri, 09 Feb 2018 11:00:00 +0000</pubDate><guid>https://zhaohuabing.com/2018/02/09/vim-tips/</guid><description>&lt;h2 id="vim-graphical-cheat-sheet">vim graphical cheat sheet&lt;/h2>
+&lt;p>
+ &lt;img src="//img/2018-02-09-vim-tips/vi-vim-cheat-sheet.svg" alt="">
+
+&lt;/p></description></item><item><title>如何使用非root用户执行docker命令</title><link>https://zhaohuabing.com/2018/02/09/docker-without-sudo/</link><pubDate>Fri, 09 Feb 2018 10:00:00 +0000</pubDate><guid>https://zhaohuabing.com/2018/02/09/docker-without-sudo/</guid><description>&lt;h3 id="add-the-docker-group-if-it-doesnt-already-exist">Add the docker group if it doesn&amp;rsquo;t already exist:&lt;/h3>
+&lt;p>sudo groupadd docker&lt;/p>
+&lt;h3 id="add-the-connected-user-user-to-the-docker-group-change-the-user-name-to-match-your-preferred-user-if-you-do-not-want-to-use-your-current-user">Add the connected user &amp;ldquo;$USER&amp;rdquo; to the docker group. Change the user name to match your preferred user if you do not want to use your current user:&lt;/h3>
+&lt;p>sudo gpasswd -a $USER docker&lt;/p>
+&lt;h3 id="either-do-a-newgrp-docker-or-log-outin-to-activate-the-changes-to-groups">Either do a newgrp docker or log out/in to activate the changes to groups.&lt;/h3></description></item><item><title>如何构建安全的微服务应用？</title><link>https://zhaohuabing.com/2018/05/22/user_authentication_authorization/</link><pubDate>Sat, 03 Feb 2018 12:00:00 +0000</pubDate><guid>https://zhaohuabing.com/2018/05/22/user_authentication_authorization/</guid><description>&lt;h2 id="前言">前言&lt;/h2>
+&lt;p>微服务架构的引入为软件应用带来了诸多好处：包括小开发团队，缩短开发周期，语言选择灵活性，增强服务伸缩能力等。与此同时，也引入了分布式系统的诸多复杂问题。其中一个挑战就是如何在微服务架构中实现一个灵活，安全，高效的认证和鉴权方案。本文将尝试就此问题进行一次比较完整的探讨。&lt;/p></description></item><item><title>Nginx开源Service Mesh组件Nginmesh安装指南</title><link>https://zhaohuabing.com/2018/01/02/nginmesh-install/</link><pubDate>Tue, 02 Jan 2018 12:00:00 +0000</pubDate><guid>https://zhaohuabing.com/2018/01/02/nginmesh-install/</guid><description>&lt;h2 id="前言">前言&lt;/h2>
+&lt;p>Nginmesh是NGINX的Service Mesh开源项目，用于Istio服务网格平台中的数据面代理。它旨在提供七层负载均衡和服务路由功能，与Istio集成作为sidecar部署，并将以“标准，可靠和安全的方式”使得服务间通信更容易。Nginmesh在今年底已经连续发布了0.2和0.3版本，提供了服务发现，请求转发，路由规则，性能指标收集等功能。&lt;/p></description></item><item><title>如何从外部访问Kubernetes集群中的应用？</title><link>https://zhaohuabing.com/2017/11/28/access-application-from-outside/</link><pubDate>Tue, 28 Nov 2017 12:00:00 +0000</pubDate><guid>https://zhaohuabing.com/2017/11/28/access-application-from-outside/</guid><description>&lt;h2 id="前言">前言&lt;/h2>
+&lt;p>我们知道，kubernetes的Cluster Network属于私有网络，只能在cluster Network内部才能访问部署的应用，那如何才能将Kubernetes集群中的应用暴露到外部网络，为外部用户提供服务呢？本文探讨了从外部网络访问kubernetes cluster中应用的几种实现方式。&lt;/p></description></item><item><title>采用Istio实现灰度发布(金丝雀发布)</title><link>https://zhaohuabing.com/2017/11/08/istio-canary-release/</link><pubDate>Wed, 08 Nov 2017 15:00:00 +0000</pubDate><guid>https://zhaohuabing.com/2017/11/08/istio-canary-release/</guid><description>&lt;h2 id="灰度发布又名金丝雀发布介绍">灰度发布（又名金丝雀发布）介绍&lt;/h2>
+&lt;p>当应用上线以后，运维面临的一大挑战是如何能够在不影响已上线业务的情况下进行升级。做过产品的同学都清楚，不管在发布前做过多么完备的自动化和人工测试，在发布后都会出现或多或少的故障。根据墨菲定律，可能会出错的版本发布一定会出错。&lt;/p></description></item><item><title>使用Istio实现应用流量转移</title><link>https://zhaohuabing.com/2017/11/07/istio-traffic-shifting/</link><pubDate>Tue, 07 Nov 2017 00:00:00 +0000</pubDate><guid>https://zhaohuabing.com/2017/11/07/istio-traffic-shifting/</guid><description>&lt;p>关于Istio的更多内容请参考&lt;a href="http://istio.doczh.cn/">istio中文文档&lt;/a>。&lt;/p>
+&lt;p>原文参见&lt;a href="https://istio.io/docs/tasks/traffic-management/traffic-shifting.html">Traffic Shifting&lt;/a>。&lt;/p>
+&lt;p>本任务将演示如何将应用流量逐渐从旧版本的服务迁移到新版本。通过Istio，可以使用一系列不同权重的规则（10%，20%，··· 100%）将流量平缓地从旧版本服务迁移到新版本服务。&lt;/p></description></item><item><title>Istio及Bookinfo示例程序安装试用笔记</title><link>https://zhaohuabing.com/2017/11/04/istio-install_and_example/</link><pubDate>Sat, 04 Nov 2017 12:00:00 +0000</pubDate><guid>https://zhaohuabing.com/2017/11/04/istio-install_and_example/</guid><description>&lt;h2 id="服务网格简介">服务网格简介&lt;/h2>
+&lt;p>&lt;strong>服务网格&lt;/strong>（Service Mesh）是为解决微服务的通信和治理而出现的一种&lt;strong>架构模式&lt;/strong>。&lt;/p>
+&lt;p>服务网格将服务间通讯以及与此相关的管理控制功能从业务程序中下移到一个基础设施层，从而彻底隔离了业务逻辑和服务通讯两个关注点。采用服务网格后，应用开发者只需要关注并实现应用业务逻辑。服务之间的通信，包括服务发现，通讯的可靠性，通讯的安全性，服务路由等由服务网格层进行处理，并对应用程序透明。&lt;/p></description></item><item><title>Welcome to Zhaohuabing Blog</title><link>https://zhaohuabing.com/2017/11/03/hello-world/</link><pubDate>Sat, 04 Nov 2017 00:00:00 +0000</pubDate><guid>https://zhaohuabing.com/2017/11/03/hello-world/</guid><description>&lt;blockquote>
+&lt;p>“Yeah It&amp;rsquo;s on. ”&lt;/p>&lt;/blockquote>
+&lt;h2 id="hello-world">Hello World!&lt;/h2></description></item><item><title/><link>https://zhaohuabing.com/about/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://zhaohuabing.com/about/</guid><description>&lt;h2 id="about-me">About Me&lt;/h2>
+&lt;p>&lt;strong>&lt;em>Huabing Zhao&lt;/em>&lt;/strong> is a software architect, an Istio Member and an ONAP PTL. He has a solid experience in the information and telecommunication technology industry for more than 17 years.&lt;/p>
+&lt;p>Throughout his career, he has built a number of large-scale, cross-country software systems, most of them are still running in production.&lt;/p>
+&lt;p>He loves open source and has been contributing to various open source projects, he is a member of Istio, previous PTL of ONAP, the author of the Hugo clean-white theme and the open source project Aeraki Mesh.&lt;/p></description></item><item><title/><link>https://zhaohuabing.com/notes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://zhaohuabing.com/notes/</guid><description>&lt;h2 id="go-语言学习笔记">&lt;a href="https://zhaohuabing.com/learning-golang">Go 语言学习笔记&lt;/a>&lt;/h2>
+&lt;h2 id="envoy-学习笔记">&lt;a href="https://zhaohuabing.com/learning-envoy">Envoy 学习笔记&lt;/a>&lt;/h2></description></item><item><title/><link>https://zhaohuabing.com/search/placeholder/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://zhaohuabing.com/search/placeholder/</guid><description/></item><item><title>Posts Archive</title><link>https://zhaohuabing.com/archive/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://zhaohuabing.com/archive/</guid><description/></item></channel></rss>
