@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Github.io on Lionel Blog</title><link>https://hybridego.github.io/tags/github.io/</link><description>Recent content in Github.io on Lionel Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>Copyright © 2025, Hybridego; all rights reserved.</copyright><lastBuildDate>Mon, 26 May 2025 14:16:23 +0900</lastBuildDate><atom:link href="https://hybridego.github.io/tags/github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Hugo install</title><link>https://hybridego.github.io/post/hugo_install/</link><pubDate>Mon, 26 May 2025 14:16:23 +0900</pubDate><guid>https://hybridego.github.io/post/hugo_install/</guid><description>
+&lt;ol>
+&lt;li>
+&lt;p>hugo 설치
+&lt;code>winget install Hugo.Hugo.Extended&lt;/code>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>hugo uninstall
+&lt;code>winget uninstall --name &amp;quot;Hugo (Extended)&amp;quot;&lt;/code>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>site 만들기&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="ln"> 1&lt;/span>&lt;span class="cl">PS D:\dev&amp;gt; hugo new site hybridego_playground
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 2&lt;/span>&lt;span class="cl">Congratulations! Your new Hugo site was created in D:\dev\hybridego_playground.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 3&lt;/span>&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 4&lt;/span>&lt;span class="cl">Just a few more steps...
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 5&lt;/span>&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 6&lt;/span>&lt;span class="cl">1. Change the current directory to D:\dev\hybridego_playground.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 7&lt;/span>&lt;span class="cl">2. Create or install a theme:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 8&lt;/span>&lt;span class="cl"> - Create a new theme with the command &amp;#34;hugo new theme &amp;lt;THEMENAME&amp;gt;&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 9&lt;/span>&lt;span class="cl"> - Or, install a theme from https://themes.gohugo.io/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">10&lt;/span>&lt;span class="cl">1. Edit hugo.toml, setting the &amp;#34;theme&amp;#34; property to the theme name.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">11&lt;/span>&lt;span class="cl">2. Create new content with the command &amp;#34;hugo new content &amp;lt;SECTIONNAME&amp;gt;\&amp;lt;FILENAME&amp;gt;.&amp;lt;FORMAT&amp;gt;&amp;#34;.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">12&lt;/span>&lt;span class="cl">3. Start the embedded web server with the command &amp;#34;hugo server --buildDrafts&amp;#34;.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">13&lt;/span>&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">14&lt;/span>&lt;span class="cl">See documentation at https://gohugo.io/.
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>git 설정 및 테마 설정&lt;/p></description></item></channel></rss>
