@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Rust on Lionel Blog</title><link>https://hybridego.github.io/tags/rust/</link><description>Recent content in Rust on Lionel Blog</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Mon, 26 May 2025 12:52:23 +0900</lastBuildDate><atom:link href="https://hybridego.github.io/tags/rust/index.xml" rel="self" type="application/rss+xml"/><item><title>Cargo troubleshooting</title><link>https://hybridego.github.io/post/2025-05-30-cargo_install_troubleshotting/</link><pubDate>Mon, 26 May 2025 12:52:23 +0900</pubDate><guid>https://hybridego.github.io/post/2025-05-30-cargo_install_troubleshotting/</guid><description>&lt;h2 id="cargo-install-troubleshooting">Cargo install troubleshooting&lt;/h2>
+&lt;p>cargo로 뭐 설치하려고 할 때&lt;/p>
+&lt;pre tabindex="0">&lt;code>PS D:\dev\rust&amp;gt; rustup update
+info: syncing channel updates for &amp;#39;stable-x86_64-pc-windows-msvc&amp;#39;
+info: checking for self-update
+
+ stable-x86_64-pc-windows-msvc unchanged - rustc 1.87.0 (17067e9ac 2025-05-09)
+
+info: cleaning up downloads &amp;amp; tmp directories
+PS D:\dev\rust&amp;gt; cargo install create-tauri-app --locked
+ Updating crates.io index
+warning: spurious network error (3 tries remaining): [35] SSL connect error (schannel: next InitializeSecurityContext failed: CRYPT_E_NO_REVOCATION_CHECK (0x80092012))
+warning: spurious network error (2 tries remaining): [35] SSL connect error (schannel: next InitializeSecurityContext failed: CRYPT_E_NO_REVOCATION_CHECK (0x80092012))
+warning: spurious network error (1 tries remaining): [35] SSL connect error (schannel: next InitializeSecurityContext failed: CRYPT_E_NO_REVOCATION_CHECK (0x80092012))
+error: download of config.json failed
+
+Caused by:
+ failed to download from `https://index.crates.io/config.json`
+
+Caused by:
+ [35] SSL connect error (schannel: next InitializeSecurityContext failed: CRYPT_E_NO_REVOCATION_CHECK (0x80092012))
+&lt;/code>&lt;/pre>&lt;p>이런 에러가 발생한다면&lt;/p></description></item><item><title>Dioxus vs Tauri</title><link>https://hybridego.github.io/post/2025-05-30-dioxus_vs_tauri/</link><pubDate>Mon, 26 May 2025 10:11:23 +0900</pubDate><guid>https://hybridego.github.io/post/2025-05-30-dioxus_vs_tauri/</guid><description>&lt;h1 id="dioxus와-tauri-비교">Dioxus와 Tauri 비교&lt;/h1>
+&lt;h2 id="dioxus란">Dioxus란?&lt;/h2>
+&lt;p>Dioxus는 Rust로 작성된 풀스택 UI 프레임워크로, React와 유사한 선언적 프로그래밍 모델을 제공합니다. 웹, 데스크톱, 모바일, 서버사이드 렌더링(SSR), LiveView 등 다양한 플랫폼을 단일 코드베이스로 지원합니다. Rust의 메모리 안전성과 성능을 활용하여 빠르고 안정적인 애플리케이션을 개발할 수 있도록 설계되었습니다. Dioxus는 가상 DOM(Virtual DOM)을 사용하여 UI를 효율적으로 관리하며, React의 컴포넌트 기반 아키텍처와 유사한 개발 경험을 제공합니다. 또한, HTML과 CSS를 적극 활용하며, Tailwind CSS와 같은 외부 CSS 라이브러리와의 통합도 지원합니다. 모바일 지원은 Tauri의 Tao와 Wry 라이브러리를 활용하며, 특히 데스크톱과 웹에서 강력한 성능을 발휘합니다.&lt;a href="https://dioxuslabs.com/blog/introducing-dioxus/">&lt;/a>&lt;a href="https://www.syntax-stories.com/2024/12/dioxus-framework.html">&lt;/a>&lt;/p></description></item></channel></rss>
