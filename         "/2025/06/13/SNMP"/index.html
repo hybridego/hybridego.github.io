@@ -1,0 +1,126 @@
+<!doctype html><html lang=ko-kr><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><meta property="og:site_name" content="Lionel Blog"><meta property="og:type" content="article"><meta property="og:image" content='      ""'><meta property="twitter:image" content='      ""'><meta name=title content='      "SNMP"'><meta property="og:title" content='      "SNMP"'><meta property="twitter:title" content='      "SNMP"'><meta name=description content="SNMP의 기능에 대한 간략한 정리"><meta property="og:description" content="SNMP의 기능에 대한 간략한 정리"><meta property="twitter:description" content="SNMP의 기능에 대한 간략한 정리"><meta property="twitter:card" content="summary"><meta name=keyword content="Lionel.J, lionel jeon, Lionel Jeon, hybridego, Lionel's web log, Lionel's blog, Lionel Blog, blog, personal website, internet, Web, cloud native, PaaS, Istio, Kubernetes, microservices"><link rel="shortcut icon" href=/img/favicon.ico><title>      "SNMP" | Lionel 블로그 | Lionel Blog</title><link rel=canonical href=/%C2%A0%20%C2%A0%20%C2%A0%20%C2%A0%20%22/2025/06/13/SNMP%22/><link rel=stylesheet href=/css/bootstrap.min.css><link rel=stylesheet href=/css/hugo-theme-cleanwhite.min.css><link rel=stylesheet href=/css/zanshang.css><link rel=stylesheet href=/css/font-awesome.all.min.css><script src=/js/jquery.min.js></script><script src=/js/bootstrap.min.js></script><script src=/js/hux-blog.min.js></script><script src=/js/lazysizes.min.js></script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2995694833554782" crossorigin=anonymous></script></head><nav class="navbar navbar-default navbar-custom navbar-fixed-top"><div class=container-fluid><div class="navbar-header page-scroll"><button type=button class=navbar-toggle>
+<span class=sr-only>Toggle navigation</span>
+<span class=icon-bar></span>
+<span class=icon-bar></span>
+<span class=icon-bar></span>
+</button>
+<a class=navbar-brand href=/>Lionel Blog</a></div><div id=huxblog_navbar><div class=navbar-collapse><ul class="nav navbar-nav navbar-right"><li><a href=/>All Posts</a></li><li><a href=/categories/life/>life</a></li><li><a href=/categories/tech/>tech</a></li><li><a href=/categories/tips/>tips</a></li><li><a href=/categories/tech/> ["tech" ]</a></li><li><a href=/archive//>ARCHIVE</a></li><li><a href=/notes//>NOTES</a></li><li><a href=/about//>ABOUT</a></li><li><a href=/search><i class="fa fa-search"></i></a></li></ul></div></div></div></nav><script>var $body=document.body,$toggle=document.querySelector(".navbar-toggle"),$navbar=document.querySelector("#huxblog_navbar"),$collapse=document.querySelector(".navbar-collapse");$toggle.addEventListener("click",handleMagic);function handleMagic(){$navbar.className.indexOf("in")>0?($navbar.className=" ",setTimeout(function(){$navbar.className.indexOf("in")<0&&($collapse.style.height="0px")},400)):($collapse.style.height="auto",$navbar.className+=" in")}</script><header class=intro-header style=background-image:url(/img/home-bg-jeep.jpg)><div class=container><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><div class=site-heading><h1>Lionel Blog</h1><span class=subheading>The road is under your feet, the heart looks to the distance</span></div></div></div></div></header><article><div class=container><div class=row><div class="col-lg-8 col-lg-offset-1
+col-md-8 col-md-offset-1
+col-sm-12
+col-xs-12
+post-container"><h2 id=1-snmp-프로토콜로-할-수-있는-것은>1. SNMP 프로토콜로 할 수 있는 것은?</h2><p>SNMP(Simple Network Management Protocol) 프로토콜을 사용하면 네트워크 관리자가 중앙에서 다양한 네트워크 장치(라우터, 스위치, 서버, 프린터 등)를 효과적으로 모니터링하고 관리할 수 있습니다. 구체적으로 SNMP로 할 수 있는 주요 기능은 다음과 같습니다.</p><ul><li><p><strong>네트워크 장치 모니터링</strong><br>장치의 상태(가동/비가동), 성능(CPU 사용률, 메모리 사용량, 트래픽 통계 등) 정보를 실시간으로 수집하여 이상 징후를 빠르게 감지할 수 있습니다.</p></li><li><p><strong>구성(설정) 관리</strong><br>장치의 설정 정보(예: IP 주소, 라우팅 테이블, 방화벽 규칙 등)를 원격으로 변경 및 관리할 수 있습니다.</p></li><li><p><strong>장애 및 이벤트 관리</strong><br>장애나 특정 이벤트 발생 시 자동으로 관리자에게 알림(Trap)을 전송하여 신속한 대응이 가능합니다.</p></li><li><p><strong>성능 데이터 수집 및 분석</strong><br>트래픽, 패킷, 오류 수 등 성능 데이터를 주기적으로 수집해 네트워크 최적화에 활용할 수 있습니다.</p></li></ul><h3 id=주요-동작-방식>주요 동작 방식</h3><table><thead><tr><th>동작 방식</th><th>설명</th></tr></thead><tbody><tr><td>GET</td><td>장치 상태/성능 정보 요청</td></tr><tr><td>SET</td><td>장치 설정 정보 변경</td></tr><tr><td>GET-NEXT</td><td>MIB의 다음 정보 요청</td></tr><tr><td>TRAP</td><td>이벤트 발생 시 관리자에게 알림 전송</td></tr></tbody></table><hr><h2 id=2-가장-간단한-snmp-통신-c-샘플코드>2. 가장 간단한 SNMP 통신 C 샘플코드</h2><p>아래는 net-snmp 라이브러리를 이용해 SNMP GET 요청을 보내는 간단한 C 코드 예제입니다.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>#include</span> <span style=color:#ff79c6>&lt;net-snmp/net-snmp-config.h&gt;</span><span style=color:#ff79c6>
+</span></span></span><span style=display:flex><span><span style=color:#ff79c6>#include</span> <span style=color:#ff79c6>&lt;net-snmp/net-snmp-includes.h&gt;</span><span style=color:#ff79c6>
+</span></span></span><span style=display:flex><span><span style=color:#ff79c6></span>
+</span></span><span style=display:flex><span><span style=color:#8be9fd>int</span> <span style=color:#50fa7b>main</span>(<span style=color:#8be9fd>int</span> argc, <span style=color:#8be9fd>char</span> <span style=color:#ff79c6>**</span>argv) {
+</span></span><span style=display:flex><span>netsnmp_session session, <span style=color:#ff79c6>*</span>ss;
+</span></span><span style=display:flex><span>netsnmp_pdu <span style=color:#ff79c6>*</span>pdu, <span style=color:#ff79c6>*</span>response;
+</span></span><span style=display:flex><span>oid anOID[MAX_OID_LEN];
+</span></span><span style=display:flex><span><span style=color:#8be9fd>size_t</span> anOID_len;
+</span></span><span style=display:flex><span><span style=color:#8be9fd>int</span> status;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#50fa7b>init_snmp</span>(<span style=color:#f1fa8c>&#34;snmpdemoapp&#34;</span>);
+</span></span><span style=display:flex><span>    <span style=color:#50fa7b>snmp_sess_init</span>(<span style=color:#ff79c6>&amp;</span>session);
+</span></span><span style=display:flex><span>    session.peername <span style=color:#ff79c6>=</span> <span style=color:#50fa7b>strdup</span>(<span style=color:#f1fa8c>&#34;127.0.0.1&#34;</span>);
+</span></span><span style=display:flex><span>    session.version <span style=color:#ff79c6>=</span> SNMP_VERSION_2c;
+</span></span><span style=display:flex><span>    session.community <span style=color:#ff79c6>=</span> (u_char <span style=color:#ff79c6>*</span>)<span style=color:#f1fa8c>&#34;public&#34;</span>;
+</span></span><span style=display:flex><span>    session.community_len <span style=color:#ff79c6>=</span> <span style=color:#50fa7b>strlen</span>((<span style=color:#8be9fd>char</span> <span style=color:#ff79c6>*</span>)session.community);
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    ss <span style=color:#ff79c6>=</span> <span style=color:#50fa7b>snmp_open</span>(<span style=color:#ff79c6>&amp;</span>session);
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>if</span> (<span style=color:#ff79c6>!</span>ss) {
+</span></span><span style=display:flex><span>        <span style=color:#50fa7b>snmp_perror</span>(<span style=color:#f1fa8c>&#34;snmp_open&#34;</span>);
+</span></span><span style=display:flex><span>        <span style=color:#50fa7b>exit</span>(<span style=color:#bd93f9>1</span>);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    pdu <span style=color:#ff79c6>=</span> <span style=color:#50fa7b>snmp_pdu_create</span>(SNMP_MSG_GET);
+</span></span><span style=display:flex><span>    anOID_len <span style=color:#ff79c6>=</span> MAX_OID_LEN;
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>if</span> (<span style=color:#ff79c6>!</span><span style=color:#50fa7b>snmp_parse_oid</span>(<span style=color:#f1fa8c>&#34;.1.3.6.1.2.1.1.1.0&#34;</span>, anOID, <span style=color:#ff79c6>&amp;</span>anOID_len)) {
+</span></span><span style=display:flex><span>        <span style=color:#50fa7b>snmp_perror</span>(<span style=color:#f1fa8c>&#34;.1.3.6.1.2.1.1.1.0&#34;</span>);
+</span></span><span style=display:flex><span>        <span style=color:#50fa7b>exit</span>(<span style=color:#bd93f9>1</span>);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=color:#50fa7b>snmp_add_null_var</span>(pdu, anOID, anOID_len);
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    status <span style=color:#ff79c6>=</span> <span style=color:#50fa7b>snmp_synch_response</span>(ss, pdu, <span style=color:#ff79c6>&amp;</span>response);
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>if</span> (status <span style=color:#ff79c6>==</span> STAT_SUCCESS <span style=color:#ff79c6>&amp;&amp;</span> response<span style=color:#ff79c6>-&gt;</span>errstat <span style=color:#ff79c6>==</span> SNMP_ERR_NOERROR) {
+</span></span><span style=display:flex><span>        <span style=color:#8be9fd>char</span> buf[<span style=color:#bd93f9>1024</span>];
+</span></span><span style=display:flex><span>        <span style=color:#50fa7b>snprint_value</span>(buf, <span style=color:#ff79c6>sizeof</span>(buf), response<span style=color:#ff79c6>-&gt;</span>variables<span style=color:#ff79c6>-&gt;</span>name, response<span style=color:#ff79c6>-&gt;</span>variables<span style=color:#ff79c6>-&gt;</span>name_length, response<span style=color:#ff79c6>-&gt;</span>variables);
+</span></span><span style=display:flex><span>        <span style=color:#50fa7b>printf</span>(<span style=color:#f1fa8c>&#34;Result: %s</span><span style=color:#f1fa8c>\n</span><span style=color:#f1fa8c>&#34;</span>, buf);
+</span></span><span style=display:flex><span>    } <span style=color:#ff79c6>else</span> {
+</span></span><span style=display:flex><span>        <span style=color:#ff79c6>if</span> (status <span style=color:#ff79c6>==</span> STAT_SUCCESS)
+</span></span><span style=display:flex><span>            <span style=color:#50fa7b>fprintf</span>(stderr, <span style=color:#f1fa8c>&#34;Error in packet: %s</span><span style=color:#f1fa8c>\n</span><span style=color:#f1fa8c>&#34;</span>, <span style=color:#50fa7b>snmp_errstring</span>(response<span style=color:#ff79c6>-&gt;</span>errstat));
+</span></span><span style=display:flex><span>        <span style=color:#ff79c6>else</span>
+</span></span><span style=display:flex><span>            <span style=color:#50fa7b>snmp_sess_perror</span>(<span style=color:#f1fa8c>&#34;snmp_synch_response&#34;</span>, ss);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>if</span> (response)
+</span></span><span style=display:flex><span>        <span style=color:#50fa7b>snmp_free_pdu</span>(response);
+</span></span><span style=display:flex><span>    <span style=color:#50fa7b>snmp_close</span>(ss);
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>return</span> <span style=color:#bd93f9>0</span>;
+</span></span><span style=display:flex><span>    }
+</span></span></code></pre></div><ul><li>컴파일: <code>gcc -o snmpdemo snmpdemo.c -lnetsnmp</code></li></ul><hr><h2 id=3-서버쪽-샘플-코드>3. 서버쪽 샘플 코드</h2><p>아래는 SNMP 서버(에이전트) 역할을 하는 간단한 C 코드 예제입니다.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>#include</span> <span style=color:#ff79c6>&lt;net-snmp/net-snmp-config.h&gt;</span><span style=color:#ff79c6>
+</span></span></span><span style=display:flex><span><span style=color:#ff79c6>#include</span> <span style=color:#ff79c6>&lt;net-snmp/net-snmp-includes.h&gt;</span><span style=color:#ff79c6>
+</span></span></span><span style=display:flex><span><span style=color:#ff79c6>#include</span> <span style=color:#ff79c6>&lt;net-snmp/agent/net-snmp-agent-includes.h&gt;</span><span style=color:#ff79c6>
+</span></span></span><span style=display:flex><span><span style=color:#ff79c6></span>
+</span></span><span style=display:flex><span><span style=color:#8be9fd>int</span> <span style=color:#50fa7b>handle_snmp_request</span>(netsnmp_mib_handler <span style=color:#ff79c6>*</span>handler,
+</span></span><span style=display:flex><span>netsnmp_handler_registration <span style=color:#ff79c6>*</span>reginfo,
+</span></span><span style=display:flex><span>netsnmp_agent_request_info <span style=color:#ff79c6>*</span>reqinfo,
+</span></span><span style=display:flex><span>netsnmp_request_info <span style=color:#ff79c6>*</span>requests) {
+</span></span><span style=display:flex><span><span style=color:#ff79c6>switch</span> (reqinfo<span style=color:#ff79c6>-&gt;</span>mode) {
+</span></span><span style=display:flex><span><span style=color:#ff79c6>case</span> <span style=color:#8be9fd;font-style:italic>MODE_GET</span>:
+</span></span><span style=display:flex><span><span style=color:#50fa7b>snmp_set_var_typed_value</span>(requests<span style=color:#ff79c6>-&gt;</span>requestvb, ASN_OCTET_STR,
+</span></span><span style=display:flex><span>(u_char <span style=color:#ff79c6>*</span>)<span style=color:#f1fa8c>&#34;SNMP Agent Demo&#34;</span>, <span style=color:#50fa7b>strlen</span>(<span style=color:#f1fa8c>&#34;SNMP Agent Demo&#34;</span>));
+</span></span><span style=display:flex><span><span style=color:#ff79c6>break</span>;
+</span></span><span style=display:flex><span><span style=color:#ff79c6>default</span><span style=color:#ff79c6>:</span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>return</span> SNMP_ERR_GENERR;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span><span style=color:#ff79c6>return</span> SNMP_ERR_NOERROR;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#8be9fd>int</span> <span style=color:#50fa7b>main</span>(<span style=color:#8be9fd>int</span> argc, <span style=color:#8be9fd>char</span> <span style=color:#ff79c6>**</span>argv) {
+</span></span><span style=display:flex><span><span style=color:#50fa7b>netsnmp_agent_init</span>();
+</span></span><span style=display:flex><span><span style=color:#50fa7b>init_agent</span>(<span style=color:#f1fa8c>&#34;snmpdemoagent&#34;</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    oid system_desc_oid[] <span style=color:#ff79c6>=</span> {<span style=color:#bd93f9>1</span>,<span style=color:#bd93f9>3</span>,<span style=color:#bd93f9>6</span>,<span style=color:#bd93f9>1</span>,<span style=color:#bd93f9>2</span>,<span style=color:#bd93f9>1</span>,<span style=color:#bd93f9>1</span>,<span style=color:#bd93f9>1</span>,<span style=color:#bd93f9>0</span>};
+</span></span><span style=display:flex><span>    netsnmp_handler_registration <span style=color:#ff79c6>*</span>reginfo;
+</span></span><span style=display:flex><span>    reginfo <span style=color:#ff79c6>=</span> <span style=color:#50fa7b>netsnmp_create_handler_registration</span>(
+</span></span><span style=display:flex><span>        <span style=color:#f1fa8c>&#34;systemDesc&#34;</span>, handle_snmp_request,
+</span></span><span style=display:flex><span>        system_desc_oid, <span style=color:#50fa7b>OID_LENGTH</span>(system_desc_oid),
+</span></span><span style=display:flex><span>        HANDLER_CAN_RONLY
+</span></span><span style=display:flex><span>    );
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#50fa7b>netsnmp_register_scalar</span>(reginfo);
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#50fa7b>snmp_log</span>(LOG_INFO, <span style=color:#f1fa8c>&#34;SNMP Agent 시작</span><span style=color:#f1fa8c>\n</span><span style=color:#f1fa8c>&#34;</span>);
+</span></span><span style=display:flex><span>    <span style=color:#50fa7b>init_snmp</span>(<span style=color:#f1fa8c>&#34;snmpdemoagent&#34;</span>);
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>while</span>(<span style=color:#bd93f9>1</span>) {
+</span></span><span style=display:flex><span>        <span style=color:#50fa7b>agent_check_and_process</span>(<span style=color:#bd93f9>1</span>);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#50fa7b>snmp_shutdown</span>(<span style=color:#f1fa8c>&#34;snmpdemoagent&#34;</span>);
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>return</span> <span style=color:#bd93f9>0</span>;
+</span></span><span style=display:flex><span>    }
+</span></span></code></pre></div><ul><li>컴파일: <code>gcc -o snmpagent snmpagent.c -lnetsnmp -lnetsnmpagent</code></li><li>실행 시 기존 SNMP 데몬 충돌 주의 (예: <code>sudo systemctl stop snmpd</code>)</li></ul><link href=https://hybridego.github.io/dist/Artalk.css rel=stylesheet><script src=https://hybridego.github.io/dist/Artalk.js></script><div id=Comments></div><script>Artalk.init({el:"#Comments",pageKey:"https://hybridego.github.io/%C2%A0%20%C2%A0%20%C2%A0%20%C2%A0%20%22/2025/06/13/SNMP%22/",pageTitle:'      "SNMP"',server:"https://hybridego.github.io",site:"lionel blog"})</script></div><div class="col-lg-3 col-lg-offset-0
+col-md-3 col-md-offset-0
+col-sm-12
+col-xs-12
+sidebar-container"><section class="visible-md visible-lg"><div class=short-about><a href=/about><img src=/img/lionelj.png alt=avatar style=cursor:pointer></a><p>Software Developer, Embedded Systems Engineer, Linux Application Developer, Open Source Enthusiast and Life Adventurer</p><ul class=list-inline><li><a href=mailto:hybridego@gmail.com><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i>
+<i class="fa fa-envelope fa-stack-1x fa-inverse"></i></span></a></li><li><a href=https://x.com/LioJeon><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-twitter fa-stack-1x fa-inverse"></i></span></a></li><li><a target=_blank href=/img/wechat.png><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-weixin fa-stack-1x fa-inverse"></i></span></a></li><li><a target=_blank href=https://github.com/hybridego><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-github fa-stack-1x fa-inverse"></i></span></a></li><li><a target=_blank href=https://www.linkedin.com/in/hocheol-jeon-5569b067/><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-linkedin fa-stack-1x fa-inverse"></i></span></a></li></ul></div></section><section><hr><h5>QUICK LINKS</h5><ul class=list-inline><li><a target=_blank href=#ZgotmplZ>NotebookLM</a></li><li><a target=_blank href=https://www.perplexity.ai/>Perplexity</a></li><li><a target=_blank href=https://chatgpt.com/>Chatgpt</a></li><li><a target=_blank href=https://claude.ai/new>Claude</a></li><li><a target=_blank href=https://grok.com/>Grok</a></li></ul></section><section><hr class="hidden-sm hidden-xs"><h5>FEATURED TAGS</h5><div class=tags><a href=/tags/docker title=docker>docker
+</a><a href=/tags/istio title=istio>istio
+</a><a href=/tags/kubernetes title=kubernetes>kubernetes
+</a><a href=/tags/microservice title=microservice>microservice
+</a><a href=/tags/rust title=rust>rust
+</a><a href=/tags/security title=security>security
+</a><a href=/tags/service-mesh title="service mesh">service mesh
+</a><a href=/tags/tips title=tips>tips</a></div></section><section><hr class="hidden-sm hidden-xs"><h5>FRIENDS</h5><ul class=list-inline><li><a target=_blank href=https://hybridego.net/>Lionel's Blog</a></li></ul></section></div></div></div></article><footer><div class=container><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><ul class="list-inline text-center"><li><a href=mailto:hybridego@gmail.com><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
+<i class="fas fa-envelope fa-stack-1x fa-inverse"></i></span></a></li><li><a href=https://x.com/LioJeon><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-twitter fa-stack-1x fa-inverse"></i></span></a></li><li><a target=_blank href=/img/wechat.png><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-weixin fa-stack-1x fa-inverse"></i></span></a></li><li><a target=_blank href=https://github.com/hybridego><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-github fa-stack-1x fa-inverse"></i></span></a></li><li><a target=_blank href=https://www.linkedin.com/in/hocheol-jeon-5569b067/><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-linkedin fa-stack-1x fa-inverse"></i></span></a></li><li><a href rel=alternate type=application/rss+xml title="Lionel Blog"><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
+<i class="fas fa-rss fa-stack-1x fa-inverse"></i></span></a></li></ul><p class="copyright text-muted">Copyright &copy; Lionel Blog 2025<br><a href=https://themes.gohugo.io/hugo-theme-cleanwhite>CleanWhite Hugo Theme</a> by <a href=https://zhaohuabing.com>Huabing</a> |
+<iframe style=margin-left:2px;margin-bottom:-5px frameborder=0 scrolling=0 width=100px height=20px src="https://ghbtns.com/github-btn.html?user=zhaohuabing&repo=hugo-theme-cleanwhite&type=star&count=true"></iframe></p></div></div></div></footer><script>function loadAsync(e,t){var s=document,o="script",n=s.createElement(o),i=s.getElementsByTagName(o)[0];n.src=e,t&&n.addEventListener("load",function(e){t(null,e)},!1),i.parentNode.insertBefore(n,i)}</script><script>$("#tag_cloud").length!==0&&loadAsync("/js/jquery.tagcloud.js",function(){$.fn.tagcloud.defaults={color:{start:"#bbbbee",end:"#0085a1"}},$("#tag_cloud a").tagcloud()})</script><script>loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js",function(){var e=document.querySelector("nav");e&&FastClick.attach(e)})</script><script type=text/javascript>function generateCatalog(e){_containerSelector="div.post-container";var t,n,s,o,i,a=$(_containerSelector),r=a.find("h1,h2,h3,h4,h5,h6");return $(e).html(""),r.each(function(){n=$(this).prop("tagName").toLowerCase(),o="#"+$(this).prop("id"),t=$(this).text(),i=$('<a href="'+o+'" rel="nofollow" title="'+t+'">'+t+"</a>"),s=$('<li class="'+n+'_nav"></li>').append(i),$(e).append(s)}),!0}generateCatalog(".catalog-body"),$(".catalog-toggle").click(function(e){e.preventDefault(),$(".side-catalog").toggleClass("fold")}),loadAsync("/js/jquery.nav.js",function(){$(".catalog-body").onePageNav({currentClass:"active",changeHash:!1,easing:"swing",filter:"",scrollSpeed:700,scrollOffset:0,scrollThreshold:.2,begin:null,end:null,scrollChange:null,padding:80})})</script></body></html>
