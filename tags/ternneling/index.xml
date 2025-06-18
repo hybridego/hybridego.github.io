@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Ternneling on Lionel Blog</title><link>https://hybridego.github.io/tags/ternneling/</link><description>Recent content in Ternneling on Lionel Blog</description><generator>Hugo</generator><language>ko-kr</language><lastBuildDate>Wed, 18 Jun 2025 16:16:23 +0900</lastBuildDate><atom:link href="https://hybridego.github.io/tags/ternneling/index.xml" rel="self" type="application/rss+xml"/><item><title>vscode remoteSSH용 docker 생성</title><link>https://hybridego.github.io/2025/06/18/VSCode-RemoteSSH-Docker/</link><pubDate>Wed, 18 Jun 2025 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2025/06/18/VSCode-RemoteSSH-Docker/</guid><description>&lt;ol>
+&lt;li>
+&lt;p>사용자에게 docker 권한 부여하기&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>sudo usermod -aG docker &lt;span style="color:#8be9fd;font-style:italic">$USER&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>newgrp docker
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>Dockerfile 작성&lt;/p>
+&lt;pre tabindex="0">&lt;code>FROM ubuntu:24.04
+
+# Install required packages for minimal build environment and requested tools
+RUN apt-get update &amp;amp;&amp;amp; \
+ apt-get install -y \
+ build-essential \
+ cmake \
+ clang-tidy \
+ git \
+ vim \
+ sudo \
+ zsh \
+ openssh-server \
+ locales &amp;amp;&amp;amp; \
+ apt-get clean &amp;amp;&amp;amp; \
+ rm -rf /var/lib/apt/lists/*
+
+# Configure locale
+RUN locale-gen en_US.UTF-8
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
+ENV LC_ALL en_US.UTF-8
+
+# Create user and group
+RUN groupadd -g 1016 lionelj &amp;amp;&amp;amp; \
+ useradd -u 1016 -g 1016 -m -s /bin/zsh lionelj &amp;amp;&amp;amp; \
+ usermod -aG sudo lionelj
+
+# Configure SSH
+RUN mkdir /var/run/sshd &amp;amp;&amp;amp; \
+ echo &amp;#34;lionelj ALL=(ALL) NOPASSWD:ALL&amp;#34; &amp;gt;&amp;gt; /etc/sudoers.d/lionelj &amp;amp;&amp;amp; \
+ chmod 0440 /etc/sudoers.d/lionelj &amp;amp;&amp;amp; \
+ sed -i &amp;#39;s/#Port 22/Port 2222/&amp;#39; /etc/ssh/sshd_config
+
+# Expose SSH port
+EXPOSE 2222
+
+# Start SSH server
+CMD [&amp;#34;/usr/sbin/sshd&amp;#34;, &amp;#34;-D&amp;#34;]
+&lt;/code>&lt;/pre>&lt;/li>
+&lt;li>
+&lt;p>build&lt;/p></description></item></channel></rss>

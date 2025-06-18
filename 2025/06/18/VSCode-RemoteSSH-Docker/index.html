@@ -1,0 +1,126 @@
+<!doctype html><html lang=ko-kr><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><meta property="og:site_name" content="Lionel Blog"><meta property="og:type" content="article"><meta property="og:image" content="https://hybridego.github.io//img/home-bg-jeep.jpg"><meta property="twitter:image" content="https://hybridego.github.io//img/home-bg-jeep.jpg"><meta name=title content="vscode remoteSSH용 docker 생성"><meta property="og:title" content="vscode remoteSSH용 docker 생성"><meta property="twitter:title" content="vscode remoteSSH용 docker 생성"><meta name=description content="docker를 만들고 ssh ternneling 으로 vscode retmoe ssh를 붙이는 방법"><meta property="og:description" content="docker를 만들고 ssh ternneling 으로 vscode retmoe ssh를 붙이는 방법"><meta property="twitter:description" content="docker를 만들고 ssh ternneling 으로 vscode retmoe ssh를 붙이는 방법"><meta property="twitter:card" content="summary"><meta name=keyword content="Lionel.J, lionel jeon, Lionel Jeon, hybridego, Lionel's web log, Lionel's blog, Lionel Blog, blog, personal website, internet, Web, cloud native, PaaS, Istio, Kubernetes, microservices"><link rel="shortcut icon" href=/img/favicon.ico><title>vscode remoteSSH용 docker 생성 | Lionel 블로그 | Lionel Blog</title><link rel=canonical href=/2025/06/18/VSCode-RemoteSSH-Docker/><link rel=stylesheet href=/css/bootstrap.min.css><link rel=stylesheet href=/css/hugo-theme-cleanwhite.min.css><link rel=stylesheet href=/css/zanshang.css><link rel=stylesheet href=/css/font-awesome.all.min.css><script src=/js/jquery.min.js></script><script src=/js/bootstrap.min.js></script><script src=/js/hux-blog.min.js></script><script src=/js/lazysizes.min.js></script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2995694833554782" crossorigin=anonymous></script></head><nav class="navbar navbar-default navbar-custom navbar-fixed-top"><div class=container-fluid><div class="navbar-header page-scroll"><button type=button class=navbar-toggle>
+<span class=sr-only>Toggle navigation</span>
+<span class=icon-bar></span>
+<span class=icon-bar></span>
+<span class=icon-bar></span>
+</button>
+<a class=navbar-brand href=/>Lionel Blog</a></div><div id=huxblog_navbar><div class=navbar-collapse><ul class="nav navbar-nav navbar-right"><li><a href=/>All Posts</a></li><li><a href=/categories/life/>life</a></li><li><a href=/categories/tech/>tech</a></li><li><a href=/categories/tips/>tips</a></li><li><a href=/categories/tech/> [ "tech" ]</a></li><li><a href=/archive//>ARCHIVE</a></li><li><a href=/notes//>NOTES</a></li><li><a href=/about//>ABOUT</a></li><li><a href=/search><i class="fa fa-search"></i></a></li></ul></div></div></div></nav><script>var $body=document.body,$toggle=document.querySelector(".navbar-toggle"),$navbar=document.querySelector("#huxblog_navbar"),$collapse=document.querySelector(".navbar-collapse");$toggle.addEventListener("click",handleMagic);function handleMagic(){$navbar.className.indexOf("in")>0?($navbar.className=" ",setTimeout(function(){$navbar.className.indexOf("in")<0&&($collapse.style.height="0px")},400)):($collapse.style.height="auto",$navbar.className+=" in")}</script><header class=intro-header style=background-image:url(/img/home-bg-jeep.jpg)><div class=container><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><div class=site-heading><h1>Lionel Blog</h1><span class=subheading>The road is under your feet, the heart looks to the distance</span></div></div></div></div></header><article><div class=container><div class=row><div class="col-lg-8 col-lg-offset-1
+col-md-8 col-md-offset-1
+col-sm-12
+col-xs-12
+post-container"><ol><li><p>사용자에게 docker 권한 부여하기</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>sudo usermod -aG docker <span style=color:#8be9fd;font-style:italic>$USER</span>
+</span></span><span style=display:flex><span>newgrp docker
+</span></span></code></pre></div></li><li><p>Dockerfile 작성</p><pre tabindex=0><code>FROM ubuntu:24.04
+
+# Install required packages for minimal build environment and requested tools
+RUN apt-get update &amp;&amp; \
+    apt-get install -y \
+    build-essential \
+    cmake \
+    clang-tidy \
+    git \
+    vim \
+    sudo \
+    zsh \
+    openssh-server \
+    locales &amp;&amp; \
+    apt-get clean &amp;&amp; \
+    rm -rf /var/lib/apt/lists/*
+
+# Configure locale
+RUN locale-gen en_US.UTF-8
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
+ENV LC_ALL en_US.UTF-8
+
+# Create user and group
+RUN groupadd -g 1016 lionelj &amp;&amp; \
+    useradd -u 1016 -g 1016 -m -s /bin/zsh lionelj &amp;&amp; \
+    usermod -aG sudo lionelj
+
+# Configure SSH
+RUN mkdir /var/run/sshd &amp;&amp; \
+    echo &#34;lionelj ALL=(ALL) NOPASSWD:ALL&#34; &gt;&gt; /etc/sudoers.d/lionelj &amp;&amp; \
+    chmod 0440 /etc/sudoers.d/lionelj &amp;&amp; \
+    sed -i &#39;s/#Port 22/Port 2222/&#39; /etc/ssh/sshd_config
+
+# Expose SSH port
+EXPOSE 2222
+
+# Start SSH server
+CMD [&#34;/usr/sbin/sshd&#34;, &#34;-D&#34;]
+</code></pre></li><li><p>build</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>docker build -t lionel-build-env:v1 .
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># 잘 성공하면 다음과 같이 나옴</span>
+</span></span><span style=display:flex><span>docker images
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>REPOSITORY                                           TAG            IMAGE ID       CREATED         SIZE
+</span></span><span style=display:flex><span>lionel-build-env                                     v1             f061ec87e272   <span style=color:#bd93f9>8</span> minutes ago   1.6GB
+</span></span></code></pre></div></li><li><p>빌드 잘 되었는지 테스트 (ssh로 접속해본다.)</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span><span style=color:#6272a4># 2222 포트를 22포트로 매핑</span>
+</span></span><span style=display:flex><span>docker run -d -p 2222:22 --name lio-container lionel-build-env:v1
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># 최초 암호 설정</span>
+</span></span><span style=display:flex><span>docker <span style=color:#8be9fd;font-style:italic>exec</span> -it lio-container passwd lionelj
+</span></span></code></pre></div></li><li><p>컨테이너 중지, 삭제, 포트 매핑 환경 포함하여 재시작</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span><span style=color:#6272a4># 중지</span>
+</span></span><span style=display:flex><span>docker stop 9d58655d09c7
+</span></span><span style=display:flex><span><span style=color:#6272a4>#삭제</span>
+</span></span><span style=display:flex><span>docker rm -f 9d58655d09c7
+</span></span><span style=display:flex><span><span style=color:#6272a4># 재시작</span>
+</span></span><span style=display:flex><span>docker run -it --name lio-container <span style=color:#f1fa8c>\
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c></span>  -v /home/lionelj:/home/lionelj <span style=color:#f1fa8c>\
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c></span>  -v /opt:/opt <span style=color:#f1fa8c>\
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c></span>  --user 1016:1016 <span style=color:#f1fa8c>\
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c></span>  -p 2222:2222 <span style=color:#f1fa8c>\
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c></span>  lionel-build-env:v1 <span style=color:#f1fa8c>\
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c></span>  /bin/zsh
+</span></span></code></pre></div></li><li><p>ip 설정 (host 에서 docker container의 ip를 확인한다. ssh 터널링 설정을 해야 하기 때문)</p><pre tabindex=0><code>ip addr
+1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1
+	link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+	inet 127.0.0.1/8 scope host lo
+	   valid_lft forever preferred_lft forever
+1839: eth0@if1840: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue state UP group default
+	link/ether 02:42:ac:11:00:02 brd ff:ff:ff:ff:ff:ff link-netnsid 0
+	inet 172.17.0.2/16 brd 172.17.255.255 scope global eth0  &lt;&lt;== 이 번호를 확인.
+	   valid_lft forever preferred_lft forever
+</code></pre><ul><li>또 다른 ip 확인 방법 (host에서)</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>sudo docker inspect dc6d671ba3b0 | grep IPAddress
+</span></span><span style=display:flex><span>		<span style=color:#f1fa8c>&#34;SecondaryIPAddresses&#34;</span>: null,
+</span></span><span style=display:flex><span>		<span style=color:#f1fa8c>&#34;IPAddress&#34;</span>: <span style=color:#f1fa8c>&#34;172.17.0.2&#34;</span>,
+</span></span><span style=display:flex><span>				<span style=color:#f1fa8c>&#34;IPAddress&#34;</span>: <span style=color:#f1fa8c>&#34;172.17.0.2&#34;</span>,
+</span></span></code></pre></div></li><li><p>윈도우에서 터널링 설정</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>ssh -L 2222:172.17.0.2:2222 lionelj@&lt;호스트_IP&gt;
+</span></span><span style=display:flex><span>ssh -L 2222:172.17.0.2:2222 lionelj@192.168.71.41
+</span></span></code></pre></div></li><li><p>Windows ssh 설정</p><pre tabindex=0><code>C:\Users\lionel.j\.ssh\config 파일을 열고
+
+Host heimdall
+  HostName localhost
+  User lionelj
+  Port 2222
+
+이렇게 추가 후
+vscode 에서 Remote-SSH: Connect to Host...로 heimdall 로 접속.
+</code></pre></li><li><p>뭔가 잘 안되는 것 같으면 다음 명령으로 ssh 접속 테스트를 해 볼 수 있다.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>ssh -v lj-ubuntu
+</span></span></code></pre></div></li></ol><link href=https://hybridego.github.io/dist/Artalk.css rel=stylesheet><script src=https://hybridego.github.io/dist/Artalk.js></script><div id=Comments></div><script>Artalk.init({el:"#Comments",pageKey:"https://hybridego.github.io/2025/06/18/VSCode-RemoteSSH-Docker/",pageTitle:"vscode remoteSSH용 docker 생성",server:"https://hybridego.github.io",site:"lionel blog"})</script></div><div class="col-lg-3 col-lg-offset-0
+col-md-3 col-md-offset-0
+col-sm-12
+col-xs-12
+sidebar-container"><section class="visible-md visible-lg"><div class=short-about><a href=/about><img src=/img/lionelj.png alt=avatar style=cursor:pointer></a><p>Software Developer, Embedded Systems Engineer, Linux Application Developer, Open Source Enthusiast and Life Adventurer</p><ul class=list-inline><li><a href=mailto:hybridego@gmail.com><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i>
+<i class="fa fa-envelope fa-stack-1x fa-inverse"></i></span></a></li><li><a href=https://x.com/LioJeon><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-twitter fa-stack-1x fa-inverse"></i></span></a></li><li><a target=_blank href=/img/wechat.png><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-weixin fa-stack-1x fa-inverse"></i></span></a></li><li><a target=_blank href=https://github.com/hybridego><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-github fa-stack-1x fa-inverse"></i></span></a></li><li><a target=_blank href=https://www.linkedin.com/in/hocheol-jeon-5569b067/><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-linkedin fa-stack-1x fa-inverse"></i></span></a></li></ul></div></section><section><hr><h5>QUICK LINKS</h5><ul class=list-inline><li><a target=_blank href=#ZgotmplZ>NotebookLM</a></li><li><a target=_blank href=https://www.perplexity.ai/>Perplexity</a></li><li><a target=_blank href=https://chatgpt.com/>Chatgpt</a></li><li><a target=_blank href=https://claude.ai/new>Claude</a></li><li><a target=_blank href=https://grok.com/>Grok</a></li></ul></section><section><hr class="hidden-sm hidden-xs"><h5>FEATURED TAGS</h5><div class=tags><a href=/tags/docker title=docker>docker
+</a><a href=/tags/istio title=istio>istio
+</a><a href=/tags/kubernetes title=kubernetes>kubernetes
+</a><a href=/tags/microservice title=microservice>microservice
+</a><a href=/tags/rust title=rust>rust
+</a><a href=/tags/security title=security>security
+</a><a href=/tags/service-mesh title="service mesh">service mesh
+</a><a href=/tags/ssh title=ssh>ssh
+</a><a href=/tags/tips title=tips>tips
+</a><a href=/tags/vscode title=vscode>vscode</a></div></section><section><hr class="hidden-sm hidden-xs"><h5>FRIENDS</h5><ul class=list-inline><li><a target=_blank href=https://hybridego.net/>Lionel's Blog</a></li></ul></section></div></div></div></article><footer><div class=container><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><ul class="list-inline text-center"><li><a href=mailto:hybridego@gmail.com><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
+<i class="fas fa-envelope fa-stack-1x fa-inverse"></i></span></a></li><li><a href=https://x.com/LioJeon><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-twitter fa-stack-1x fa-inverse"></i></span></a></li><li><a target=_blank href=/img/wechat.png><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-weixin fa-stack-1x fa-inverse"></i></span></a></li><li><a target=_blank href=https://github.com/hybridego><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-github fa-stack-1x fa-inverse"></i></span></a></li><li><a target=_blank href=https://www.linkedin.com/in/hocheol-jeon-5569b067/><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-linkedin fa-stack-1x fa-inverse"></i></span></a></li><li><a href rel=alternate type=application/rss+xml title="Lionel Blog"><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
+<i class="fas fa-rss fa-stack-1x fa-inverse"></i></span></a></li></ul><p class="copyright text-muted">Copyright &copy; Lionel Blog 2025<br><a href=https://themes.gohugo.io/hugo-theme-cleanwhite>CleanWhite Hugo Theme</a> by <a href=https://zhaohuabing.com>Huabing</a> |
+<iframe style=margin-left:2px;margin-bottom:-5px frameborder=0 scrolling=0 width=100px height=20px src="https://ghbtns.com/github-btn.html?user=zhaohuabing&repo=hugo-theme-cleanwhite&type=star&count=true"></iframe></p></div></div></div></footer><script>function loadAsync(e,t){var s=document,o="script",n=s.createElement(o),i=s.getElementsByTagName(o)[0];n.src=e,t&&n.addEventListener("load",function(e){t(null,e)},!1),i.parentNode.insertBefore(n,i)}</script><script>$("#tag_cloud").length!==0&&loadAsync("/js/jquery.tagcloud.js",function(){$.fn.tagcloud.defaults={color:{start:"#bbbbee",end:"#0085a1"}},$("#tag_cloud a").tagcloud()})</script><script>loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js",function(){var e=document.querySelector("nav");e&&FastClick.attach(e)})</script><script type=text/javascript>function generateCatalog(e){_containerSelector="div.post-container";var t,n,s,o,i,a=$(_containerSelector),r=a.find("h1,h2,h3,h4,h5,h6");return $(e).html(""),r.each(function(){n=$(this).prop("tagName").toLowerCase(),o="#"+$(this).prop("id"),t=$(this).text(),i=$('<a href="'+o+'" rel="nofollow" title="'+t+'">'+t+"</a>"),s=$('<li class="'+n+'_nav"></li>').append(i),$(e).append(s)}),!0}generateCatalog(".catalog-body"),$(".catalog-toggle").click(function(e){e.preventDefault(),$(".side-catalog").toggleClass("fold")}),loadAsync("/js/jquery.nav.js",function(){$(".catalog-body").onePageNav({currentClass:"active",changeHash:!1,easing:"swing",filter:"",scrollSpeed:700,scrollOffset:0,scrollThreshold:.2,begin:null,end:null,scrollChange:null,padding:80})})</script></body></html>
