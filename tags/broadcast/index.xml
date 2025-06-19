@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Broadcast on Lionel Blog</title><link>https://hybridego.github.io/tags/broadcast/</link><description>Recent content in Broadcast on Lionel Blog</description><generator>Hugo</generator><language>ko-kr</language><lastBuildDate>Fri, 13 Jun 2025 10:13:23 +0900</lastBuildDate><atom:link href="https://hybridego.github.io/tags/broadcast/index.xml" rel="self" type="application/rss+xml"/><item><title>Unicast, Broadcast, Multicast, SubnetMask</title><link>https://hybridego.github.io/2025/06/13/Unicast_Broadcast_Multicast_SubnetMask/</link><pubDate>Fri, 13 Jun 2025 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2025/06/13/Unicast_Broadcast_Multicast_SubnetMask/</guid><description>&lt;h1 id="유니캐스트-브로드캐스트-멀티캐스트와-서브넷-마스크">유니캐스트, 브로드캐스트, 멀티캐스트와 서브넷 마스크&lt;/h1>
+&lt;h2 id="1-유니캐스트와-멀티캐스트의-차이">1. 유니캐스트와 멀티캐스트의 차이&lt;/h2>
+&lt;p>&lt;strong>유니캐스트(Unicast)&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>1:1 통신 방식&lt;/strong>으로, 한 송신자가 한 수신자에게만 데이터를 전송합니다.&lt;/li>
+&lt;li>예시: 웹서핑, 이메일 등 대부분의 인터넷 통신&lt;/li>
+&lt;li>&lt;strong>장점:&lt;/strong> 신뢰성 있는 전송이 가능&lt;/li>
+&lt;li>&lt;strong>단점:&lt;/strong> 여러 수신자에게 같은 데이터를 보내려면 각각 개별로 전송해야 하므로 네트워크 트래픽이 증가할 수 있음&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>멀티캐스트(Multicast)&lt;/strong>&lt;/p></description></item></channel></rss>
