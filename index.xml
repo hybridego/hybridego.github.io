@@ -228,7 +228,7 @@ Host lj-ubuntu
 vscode 에서 Remote-SSH: Connect to Host...로 lj-ubuntu 로 접속.
 &lt;/code>&lt;/pre>&lt;hr>
 &lt;h2 id="다음부터-사용할-때는-이렇게">다음부터 사용할 때는 이렇게&lt;/h2>
-&lt;p>다 설정하면 이렇게 하면 됨.&lt;/p></description></item><item><title>Python uv</title><link>https://hybridego.github.io/post/2025-05-22-python_uv/</link><pubDate>Fri, 16 May 2025 23:11:23 +0900</pubDate><guid>https://hybridego.github.io/post/2025-05-22-python_uv/</guid><description>&lt;h1 id="python-uv-사용법">Python UV 사용법&lt;/h1>
+&lt;p>다 설정하면 이렇게 하면 됨.&lt;/p></description></item><item><title>Python uv</title><link>https://hybridego.github.io/2025/05/16/Python_uv/</link><pubDate>Fri, 16 May 2025 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2025/05/16/Python_uv/</guid><description>&lt;h1 id="python-uv-사용법">Python UV 사용법&lt;/h1>
 &lt;ul>
 &lt;li>
 &lt;p>회사에서 uv python install 잘 안될 때
