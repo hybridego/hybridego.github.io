@@ -84,7 +84,7 @@ Just a few more steps...
 See documentation at https://gohugo.io/.
 &lt;/code>&lt;/pre>&lt;/li>
 &lt;li>
-&lt;p>git 설정 및 테마 설정&lt;/p></description></item><item><title>Cargo troubleshooting</title><link>https://hybridego.github.io/post/2025-05-30-cargo_install_troubleshotting/</link><pubDate>Mon, 26 May 2025 12:52:23 +0900</pubDate><guid>https://hybridego.github.io/post/2025-05-30-cargo_install_troubleshotting/</guid><description>&lt;h2 id="cargo-install-troubleshooting">Cargo install troubleshooting&lt;/h2>
+&lt;p>git 설정 및 테마 설정&lt;/p></description></item><item><title>Cargo troubleshooting</title><link>https://hybridego.github.io/2025/05/26/Cargo_troubleshooting/</link><pubDate>Mon, 26 May 2025 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2025/05/26/Cargo_troubleshooting/</guid><description>&lt;h2 id="cargo-install-troubleshooting">Cargo install troubleshooting&lt;/h2>
 &lt;p>cargo로 뭐 설치하려고 할 때&lt;/p>
 &lt;pre tabindex="0">&lt;code>PS D:\dev\rust&amp;gt; rustup update
 info: syncing channel updates for &amp;#39;stable-x86_64-pc-windows-msvc&amp;#39;
