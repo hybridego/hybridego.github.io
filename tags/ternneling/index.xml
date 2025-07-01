@@ -35,16 +35,25 @@ RUN groupadd -g 1016 lionelj &amp;amp;&amp;amp; \
  usermod -aG sudo lionelj
 
 # Configure SSH
-RUN mkdir /var/run/sshd &amp;amp;&amp;amp; \
+RUN ssh-keygen -A &amp;amp;&amp;amp; \
+ mkdir -p /var/run/sshd &amp;amp;&amp;amp; \
+ chmod 0755 /var/run/sshd &amp;amp;&amp;amp; \
  echo &amp;#34;lionelj ALL=(ALL) NOPASSWD:ALL&amp;#34; &amp;gt;&amp;gt; /etc/sudoers.d/lionelj &amp;amp;&amp;amp; \
  chmod 0440 /etc/sudoers.d/lionelj &amp;amp;&amp;amp; \
- sed -i &amp;#39;s/#Port 22/Port 2222/&amp;#39; /etc/ssh/sshd_config
+ sed -i &amp;#39;s/#Port 22/Port 2222/&amp;#39; /etc/ssh/sshd_config &amp;amp;&amp;amp; \
+ echo &amp;#34;PasswordAuthentication yes&amp;#34; &amp;gt;&amp;gt; /etc/ssh/sshd_config &amp;amp;&amp;amp; \
+ echo &amp;#39;lionelj:your_password&amp;#39; | chpasswd
 
 # Expose SSH port
 EXPOSE 2222
 
-# Start SSH server
-CMD [&amp;#34;/usr/sbin/sshd&amp;#34;, &amp;#34;-D&amp;#34;]
+# Start SSH server in background and keep container running
+RUN echo &amp;#39;#!/bin/bash\n\
+ /usr/sbin/sshd\n\
+ tail -f /dev/null&amp;#39; &amp;gt; /start.sh &amp;amp;&amp;amp; \
+ chmod +x /start.sh
+
+CMD [&amp;#34;/start.sh&amp;#34;]
 &lt;/code>&lt;/pre>&lt;/li>
 &lt;li>
 &lt;p>build&lt;/p></description></item></channel></rss>
