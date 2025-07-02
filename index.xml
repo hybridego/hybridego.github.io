@@ -269,15 +269,15 @@ vscode 에서 Remote-SSH: Connect to Host...로 lj-ubuntu 로 접속.
 &lt;p>It is based on &lt;a href="https://github.com/Huxpro/huxpro.github.io">huxblog Jekyll Theme&lt;/a>
 and &lt;a href="https://github.com/BlackrockDigital/startbootstrap-clean-blog-jekyll">Clean Blog Jekyll Theme&lt;/a>.&lt;/p>
 &lt;p>These two upstream projects have done awesome jobs to create a blog theme, what I&amp;rsquo;m doing here is porting it to Hugo, of which I like the simplicity and the much faster compiling speed. Some other features which I think could be useful, such as site search with algolia and proxy for Disqus access in China, have also been built in the CleanWhite theme. Other fancy features of upstream projects are not supported by this Hugo theme, I&amp;rsquo;d like to make it as simple as possible and only focus on blog purpose, at least for now.
-While I created this theme, I followed the Hugo theme best practice and tried to make every part of the template as a replaceable partial html, so it could be much easier for you to make your customization based on it.&lt;/p></description></item><item><title>Introduction to Istio v1alpha3 Routing API</title><link>https://hybridego.github.io/2018/06/04/introducing-the-istio-v1alpha3-routing-api/</link><pubDate>Mon, 04 Jun 2018 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/06/04/introducing-the-istio-v1alpha3-routing-api/</guid><description>&lt;p>So far, Istio has provided a simple API for traffic management, which includes four resources: RouteRule, DestinationPolicy, EgressRule, and Ingress (which directly uses Kubernetes&amp;rsquo; Ingress resource). With this API, users can easily manage traffic within the Istio service mesh. The API allows users to route requests to specific versions of a service, inject delays and failures for resilience testing, add timeouts and circuit breakers, and more—all without having to modify the application code itself.&lt;/p></description></item><item><title>Istio 0.8 Release发布</title><link>https://hybridego.github.io/2018/06/02/istio08/</link><pubDate>Sat, 02 Jun 2018 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/06/02/istio08/</guid><description>&lt;blockquote>
-&lt;p>在6月1日这一天的早上，Istio社区宣布发布0.8 Release，除了常规的故障修复和性能改进外，这个儿童节礼物里面还有什么值得期待内容呢？让我们来看一看：&lt;/p>&lt;/blockquote></description></item><item><title>Everything about Setting Up My Ubuntu Desktop</title><link>https://hybridego.github.io/2018/05/24/set_up_my_ubuntu_desktop/</link><pubDate>Thu, 24 May 2018 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/05/24/set_up_my_ubuntu_desktop/</guid><description>&lt;h2 id="generate-ssh-key-pair">Generate SSH Key Pair&lt;/h2>
+While I created this theme, I followed the Hugo theme best practice and tried to make every part of the template as a replaceable partial html, so it could be much easier for you to make your customization based on it.&lt;/p></description></item><item><title>Istio v1alpha3 라우팅 API 소개</title><link>https://hybridego.github.io/2018/06/04/introducing-the-istio-v1alpha3-routing-api/</link><pubDate>Mon, 04 Jun 2018 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/06/04/introducing-the-istio-v1alpha3-routing-api/</guid><description>&lt;p>지금까지 Istio는 RouteRule, DestinationPolicy, EgressRule, Ingress(Kubernetes의 Ingress 리소스를 직접 사용)의 네 가지 리소스를 포함하는 간단한 트래픽 관리 API를 제공했습니다. 이 API를 통해 사용자는 Istio 서비스 메시 내에서 트래픽을 쉽게 관리할 수 있습니다. 이 API를 통해 사용자는 요청을 특정 서비스 버전으로 라우팅하고, 복원력 테스트를 위해 지연 및 오류를 주입하고, 타임아웃 및 회로 차단기를 추가하는 등 애플리케이션 코드를 수정할 필요 없이 모든 작업을 수행할 수 있습니다.&lt;/p></description></item><item><title>Istio 0.8 릴리스 발표</title><link>https://hybridego.github.io/2018/06/02/istio08/</link><pubDate>Sat, 02 Jun 2018 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/06/02/istio08/</guid><description>&lt;blockquote>
+&lt;p>6월 1일 아침, Istio 커뮤니티는 0.8 릴리스를 발표했습니다. 일반적인 버그 수정 및 성능 개선 외에, 이 어린이날 선물에는 어떤 기대할 만한 내용이 있을까요? 함께 살펴보겠습니다.&lt;/p>&lt;/blockquote></description></item><item><title>내 Ubuntu 데스크톱 설정에 대한 모든 것</title><link>https://hybridego.github.io/2018/05/24/set_up_my_ubuntu_desktop/</link><pubDate>Thu, 24 May 2018 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/05/24/set_up_my_ubuntu_desktop/</guid><description>&lt;h2 id="ssh-키-쌍-생성">SSH 키 쌍 생성&lt;/h2>
 &lt;pre tabindex="0">&lt;code>ssh-keygen -C &amp;#34;zhaohuabing@gmail.com&amp;#34;
 &lt;/code>&lt;/pre>&lt;h2 id="shadowsocks">Shadowsocks&lt;/h2>
-&lt;p>Install shadowsokcs&lt;/p>
+&lt;p>Shadowsocks 설치&lt;/p>
 &lt;pre tabindex="0">&lt;code>sudo apt-get install python3-pip
 
 sudo pip3 install shadowsocks
-&lt;/code>&lt;/pre>&lt;p>Create config at &lt;code>config/shadowsocks.json&lt;/code>, with the following content:&lt;/p>
+&lt;/code>&lt;/pre>&lt;p>다음 내용을 포함하는 &lt;code>config/shadowsocks.json&lt;/code>에 구성 파일 생성:&lt;/p>
 &lt;pre tabindex="0">&lt;code>{
 	&amp;#34;server&amp;#34;:&amp;#34;remote-shadowsocks-server-ip-addr&amp;#34;,
 	&amp;#34;server_port&amp;#34;:443,
@@ -289,68 +289,55 @@ sudo pip3 install shadowsocks
 	&amp;#34;fast_open&amp;#34;:false,
 	&amp;#34;workers&amp;#34;:1
 }
-&lt;/code>&lt;/pre>&lt;p>Start a local socks proxy&lt;/p>
-&lt;pre tabindex="0">&lt;code>sudo sslocal -c config/shadowsocks.json -d start
-&lt;/code>&lt;/pre>&lt;p>In case there is an openssl error, modify shadowsocks source file.&lt;/p>
-&lt;pre tabindex="0">&lt;code>sudo vi /usr/local/lib/python3.6/dist-packages/shadowsocks/crypto/openssl.py 
-
-:%s/cleanup/reset/gc
-&lt;/code>&lt;/pre>&lt;p>Convert shadowsocks socks proxy to http proxy&lt;/p>
-&lt;pre tabindex="0">&lt;code>sudo apt-get install polipo
-
-echo &amp;#34;socksParentProxy = localhost:1080&amp;#34; | sudo tee -a /etc/polipo/config 
-sudo service polipo restart
-&lt;/code>&lt;/pre>&lt;p>Http proxy now is available at port 8123&lt;/p></description></item><item><title>微服务安全沉思录之三</title><link>https://hybridego.github.io/2018/05/23/external_system_auth/</link><pubDate>Wed, 23 May 2018 18:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/05/23/external_system_auth/</guid><description>&lt;h2 id="外部系统访问控制">外部系统访问控制&lt;/h2>
-&lt;p>除用户访问和微服务之间的相互访问外，外部的第三方系统也可能需要访问系统内部的微服务。例如在上一篇博客的网上商店例子中，外部的推荐服务可能需要接入系统，以获取商店的商品目录信息。相对于内部服务之间的访问而言，外部系统的访问需要进行严格的安全控制。&lt;/p></description></item><item><title>微服务安全沉思录之二</title><link>https://hybridego.github.io/2018/05/23/service_2_service_auth/</link><pubDate>Wed, 23 May 2018 15:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/05/23/service_2_service_auth/</guid><description>&lt;h2 id="服务间认证与鉴权">服务间认证与鉴权&lt;/h2>
-&lt;p>除来自用户的访问请求以外，微服务应用中的各个微服务相互之间还有大量的访问，包括下述场景：&lt;/p>
+&lt;/code>&lt;/pre>&lt;p>로컬 socks 프록시 시작&lt;/p></description></item><item><title>마이크로서비스 보안 성찰록 3부</title><link>https://hybridego.github.io/2018/05/23/external_system_auth/</link><pubDate>Wed, 23 May 2018 18:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/05/23/external_system_auth/</guid><description>&lt;h2 id="외부-시스템-접근-제어">외부 시스템 접근 제어&lt;/h2>
+&lt;p>사용자 접근 및 마이크로서비스 간 상호 접근 외에도, 외부 타사 시스템도 시스템 내부의 마이크로서비스에 접근해야 할 수 있습니다. 예를 들어 이전 블로그의 온라인 상점 예시에서, 외부 추천 서비스가 상점의 상품 카탈로그 정보를 얻기 위해 시스템에 연결해야 할 수 있습니다. 내부 서비스 간의 접근과 비교하여 외부 시스템의 접근은 엄격한 보안 제어가 필요합니다.&lt;/p></description></item><item><title>마이크로서비스 보안 성찰록 2부</title><link>https://hybridego.github.io/2018/05/23/service_2_service_auth/</link><pubDate>Wed, 23 May 2018 15:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/05/23/service_2_service_auth/</guid><description>&lt;h2 id="서비스-간-인증-및-권한-부여">서비스 간 인증 및 권한 부여&lt;/h2>
+&lt;p>사용자로부터의 접근 요청 외에도, 마이크로서비스 애플리케이션 내의 각 마이크로서비스는 서로 많은 접근을 합니다. 다음 시나리오를 포함합니다.&lt;/p>
 &lt;ul>
-&lt;li>用户间接触发的微服务之间的相互访问&lt;BR>
-例如在一个网上商店应用中，用户访问购物车微服务进行结算时，购物车微服务可能需要访问用户评级微服务获取用户的会员级别，以得到用户可以享受购物折扣。&lt;/li>
-&lt;li>非用户触发的微服务之间的相互访问&lt;BR>
-例如数据同步或者后台定时任务导致的微服务之间的相互访问。&lt;/li>
+&lt;li>사용자 간접적으로 트리거되는 마이크로서비스 간 상호 접근&lt;BR>
+예를 들어 온라인 상점 애플리케이션에서 사용자가 장바구니 마이크로서비스에 접근하여 결제할 때, 장바구니 마이크로서비스는 사용자 등급 마이크로서비스에 접근하여 사용자의 회원 등급을 얻어 사용자가 받을 수 있는 쇼핑 할인을 확인해야 할 수 있습니다.&lt;/li>
+&lt;li>사용자 트리거가 아닌 마이크로서비스 간 상호 접근&lt;BR>
+예를 들어 데이터 동기화 또는 백그라운드 정기 작업으로 인한 마이크로서비스 간 상호 접근.&lt;/li>
 &lt;/ul>
-&lt;p>根据应用系统的数据敏感程度的不同，对于系统内微服务的相互访问可能有不同的安全要求。&lt;/p></description></item><item><title>微服务安全沉思录之一</title><link>https://hybridego.github.io/2018/05/22/user_authentication_authorization/</link><pubDate>Wed, 23 May 2018 10:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/05/22/user_authentication_authorization/</guid><description>&lt;blockquote>
-&lt;p>这段时间对之前微服务安全相关的一些想法进行了进一步总结和归纳，理清了在之前文章里面没有想得太清楚的地方，例如服务间的认证与鉴权以及用户身份在服务调用链中的传递。&lt;/p></description></item><item><title>Istio Sidecar自动注入原理</title><link>https://hybridego.github.io/2018/05/23/istio-auto-injection-with-webhook/</link><pubDate>Wed, 23 May 2018 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/05/23/istio-auto-injection-with-webhook/</guid><description>&lt;h2 id="前言">前言&lt;/h2>
+&lt;p>애플리케이션 시스템의 데이터 민감도에 따라 시스템 내 마이크로서비스 간 상호 접근에 대해 다른 보안 요구 사항이 있을 수 있습니다.&lt;/p></description></item><item><title>마이크로서비스 보안 성찰록 1부</title><link>https://hybridego.github.io/2018/05/22/user_authentication_authorization/</link><pubDate>Wed, 23 May 2018 10:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/05/22/user_authentication_authorization/</guid><description>&lt;blockquote>
+&lt;p>최근 마이크로서비스 보안 관련 기존 아이디어를 추가로 요약하고 정리하여, 이전 글에서 명확하지 않았던 부분, 예를 들어 서비스 간 인증 및 권한 부여, 서비스 호출 체인에서 사용자 신원 전달 등을 명확히 했습니다.&lt;/p></description></item><item><title>Istio 사이드카 자동 주입 원리</title><link>https://hybridego.github.io/2018/05/23/istio-auto-injection-with-webhook/</link><pubDate>Wed, 23 May 2018 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/05/23/istio-auto-injection-with-webhook/</guid><description>&lt;h2 id="서론">서론&lt;/h2>
 &lt;hr>
-&lt;p>Kubernets 1.9版本引入了Admission Webhook(web 回调)扩展机制，通过Webhook,开发者可以非常灵活地对Kubernets API Server的功能进行扩展，在API Server创建资源时对资源进行验证或者修改。&lt;/p>
-&lt;p>使用webhook的优势是不需要对API Server的源码进行修改和重新编译就可以扩展其功能。插入的逻辑实现为一个独立的web进程，通过参数方式传入到kubernets中，由kubernets在进行自身逻辑处理时对扩展逻辑进行回调。&lt;/p>
-&lt;p>Istio 0.7版本就利用了Kubernets webhook实现了sidecar的自动注入。&lt;/p></description></item><item><title>使用Algolia为Gitpage博客提供站内搜索</title><link>https://hybridego.github.io/2018/05/21/algolia-integration-with-jekyll/</link><pubDate>Mon, 21 May 2018 11:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/05/21/algolia-integration-with-jekyll/</guid><description>&lt;blockquote>
-&lt;p>This series of articles are my notes of &amp;ldquo;Bitcoin and Cryptocurrency Technologies&amp;rdquo; online course.&lt;/p>&lt;/blockquote>
-&lt;h2 id="table-of-content">Table of Content&lt;/h2>
+&lt;p>Kubernetes 1.9 버전은 Admission Webhook(웹 콜백) 확장 메커니즘을 도입했습니다. 웹훅을 통해 개발자는 Kubernetes API 서버의 기능을 매우 유연하게 확장하여 API 서버가 리소스를 생성할 때 리소스를 검증하거나 수정할 수 있습니다.&lt;/p>
+&lt;p>웹훅 사용의 장점은 API 서버의 소스 코드를 수정하고 다시 컴파일할 필요 없이 기능을 확장할 수 있다는 것입니다. 삽입된 로직은 독립적인 웹 프로세스로 구현되며, 매개변수 방식으로 Kubernetes에 전달되어 Kubernetes가 자체 로직을 처리할 때 확장 로직을 콜백합니다.&lt;/p>
+&lt;p>Istio 0.7 버전은 Kubernetes 웹훅을 활용하여 사이드카 자동 주입을 구현했습니다.&lt;/p></description></item><item><title>Algolia를 사용하여 Gitpage 블로그에 사이트 내 검색 기능 제공</title><link>https://hybridego.github.io/2018/05/21/algolia-integration-with-jekyll/</link><pubDate>Mon, 21 May 2018 11:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/05/21/algolia-integration-with-jekyll/</guid><description>&lt;blockquote>
+&lt;p>이 일련의 기사는 &amp;ldquo;비트코인 및 암호화폐 기술&amp;rdquo; 온라인 강좌의 제 노트입니다.&lt;/p>&lt;/blockquote>
+&lt;h2 id="목차">목차&lt;/h2>
 &lt;p>{:.no_toc}&lt;/p>
 &lt;ul>
-&lt;li>Table of Content
+&lt;li>목차
 {:toc}&lt;/li>
 &lt;/ul>
-&lt;h2 id="scrooge-coin-transaction">Scrooge Coin Transaction&lt;/h2>
-&lt;p>Scrooge Coin programming assignment is a little bit tricky, the video of this lesson hasn&amp;rsquo;t explained some implementation details. To help you understand the transaction data structure used in Scrooge Coin, I draw this diagram:
+&lt;h2 id="스크루지-코인-거래">스크루지 코인 거래&lt;/h2>
+&lt;p>스크루지 코인 프로그래밍 과제는 약간 까다롭습니다. 이 강의의 비디오는 일부 구현 세부 사항을 설명하지 않았습니다. 스크루지 코인에서 사용되는 거래 데이터 구조를 이해하는 데 도움이 되도록 이 다이어그램을 그렸습니다.
 
- &lt;img src="https://hybridego.github.io/img/2018-5-20-cryptocurrency_week1_scroogecoin/scroogecoin.png" alt="Scrooge Coin">
+ &lt;img src="https://hybridego.github.io/img/2018-5-20-cryptocurrency_week1_scroogecoin/scroogecoin.png" alt="스크루지 코인">
 
-&lt;/p></description></item><item><title>川西秘境探险</title><link>https://hybridego.github.io/2018/05/01/may-day-jiulonghu/</link><pubDate>Tue, 01 May 2018 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/05/01/may-day-jiulonghu/</guid><description>&lt;h2 id="寻浮云牧场不遇">寻浮云牧场不遇&lt;/h2>
-&lt;p>五一节前的一周内，几个朋友就纷纷坐不住了，一个二个不再安心上班，开始在微信群里讨论过节要到哪里耍。
-大家思来想去，最后决定还是去理县方向。因为根据多年自驾的经验，只要出了汶川，沿途都是风景。&lt;/p></description></item><item><title>Helm介绍</title><link>https://hybridego.github.io/2018/04/16/using-helm-to-deploy-to-kubernetes/</link><pubDate>Mon, 16 Apr 2018 15:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/04/16/using-helm-to-deploy-to-kubernetes/</guid><description>&lt;h2 id="前言">前言&lt;/h2>
-&lt;hr>
-&lt;p>Helm是Kubernetes生态系统中的一个软件包管理工具。本文将介绍为何要使用Helm进行Kubernetes软件包管理，澄清Helm中使用到的相关概念，并通过一个具体的示例学习如何使用Helm打包，分发，安装，升级及回退Kubernetes应用。&lt;/p></description></item><item><title>Service Mesh 和 API Gateway的关系探讨（译文）</title><link>https://hybridego.github.io/2018/04/11/service-mesh-vs-api-gateway/</link><pubDate>Wed, 11 Apr 2018 09:32:00 +0000</pubDate><guid>https://hybridego.github.io/2018/04/11/service-mesh-vs-api-gateway/</guid><description>&lt;h2 id="service-mesh-vs-api-gateway">Service Mesh vs API Gateway&lt;/h2>
-&lt;p>在&lt;a href="https://medium.com/microservices-in-practice/service-mesh-for-microservices-2953109a3c9a">前一篇关于Service Mesh的文章&lt;/a>中,我提到了几个关于Service Mesh和API Gateway之间关系的问题，在本篇文章中，我打算就Service Mesh和API Gateway的用途进行进一步讨论。&lt;/p></description></item><item><title>谈谈微服务架构中的基础设施：Service Mesh与Istio</title><link>https://hybridego.github.io/2018/03/29/what-is-service-mesh-and-istio/</link><pubDate>Thu, 29 Mar 2018 12:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/03/29/what-is-service-mesh-and-istio/</guid><description>&lt;h2 id="微服务架构的演进">微服务架构的演进&lt;/h2>
-&lt;p>作为一种架构模式，微服务将复杂系统切分为数十乃至上百个小服务，每个服务负责实现一个独立的业务逻辑。这些小服务易于被小型的软件工程师团队所理解和修改，并带来了语言和框架选择灵活性，缩短应用开发上线时间，可根据不同的工作负载和资源要求对服务进行独立缩扩容等优势。&lt;/p>
-&lt;p>另一方面，当应用被拆分为多个微服务进程后，进程内的方法调用变成了了进程间的远程调用。引入了对大量服务的连接、管理和监控的复杂性。&lt;/p></description></item><item><title>如何配置docker使用HTTP代理</title><link>https://hybridego.github.io/2018/03/13/use-docker-behind-http-proxy/</link><pubDate>Tue, 13 Mar 2018 18:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/03/13/use-docker-behind-http-proxy/</guid><description>&lt;h2 id="ubuntu">Ubuntu&lt;/h2>
-&lt;h3 id="设置docker使用http-proxy">设置docker使用http proxy&lt;/h3>
+&lt;/p></description></item><item><title>쓰촨 서부 비경 탐험</title><link>https://hybridego.github.io/2018/05/01/may-day-jiulonghu/</link><pubDate>Tue, 01 May 2018 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/05/01/may-day-jiulonghu/</guid><description>&lt;h2 id="부유운-목장을-찾았으나-만나지-못하다">부유운 목장을 찾았으나 만나지 못하다&lt;/h2>
+&lt;p>5월 1일 연휴 전 일주일 동안 몇몇 친구들은 더 이상 앉아 있을 수 없었고, 하나둘씩 더 이상 일에 집중하지 못하고 위챗 그룹에서 연휴에 어디로 놀러 갈지 논의하기 시작했습니다.
+모두가 고민 끝에 결국 리현 방향으로 가기로 결정했습니다. 수년간의 자율 여행 경험에 따르면, 원촨을 벗어나면 길을 따라 풍경이 펼쳐지기 때문입니다.&lt;/p></description></item><item><title>Helm을 사용하여 Kubernetes에 배포하는 방법</title><link>https://hybridego.github.io/2018/04/16/using-helm-to-deploy-to-kubernetes/</link><pubDate>Mon, 16 Apr 2018 10:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/04/16/using-helm-to-deploy-to-kubernetes/</guid><description>&lt;h2 id="helm이란">Helm이란?&lt;/h2>
+&lt;p>Helm은 Kubernetes 애플리케이션을 관리하는 도구입니다. Helm은 Kubernetes 애플리케이션을 패키징하고 배포하는 데 사용됩니다. Helm은 Kubernetes 애플리케이션을 쉽게 설치, 업그레이드, 롤백할 수 있도록 도와줍니다.&lt;/p></description></item><item><title>Service Mesh 和 API Gateway的关系探讨（译文）</title><link>https://hybridego.github.io/2018/04/11/service-mesh-vs-api-gateway/</link><pubDate>Wed, 11 Apr 2018 09:32:00 +0000</pubDate><guid>https://hybridego.github.io/2018/04/11/service-mesh-vs-api-gateway/</guid><description>&lt;h2 id="service-mesh-vs-api-gateway">Service Mesh vs API Gateway&lt;/h2>
+&lt;p>在&lt;a href="https://medium.com/microservices-in-practice/service-mesh-for-microservices-2953109a3c9a">前一篇关于Service Mesh的文章&lt;/a>中,我提到了几个关于Service Mesh和API Gateway之间关系的问题，在本篇文章中，我打算就Service Mesh和API Gateway的用途进行进一步讨论。&lt;/p></description></item><item><title>마이크로서비스 아키텍처의 인프라: 서비스 메시와 Istio에 대해 이야기하다</title><link>https://hybridego.github.io/2018/03/29/what-is-service-mesh-and-istio/</link><pubDate>Thu, 29 Mar 2018 12:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/03/29/what-is-service-mesh-and-istio/</guid><description>&lt;h2 id="마이크로서비스-아키텍처의-진화">마이크로서비스 아키텍처의 진화&lt;/h2>
+&lt;p>아키텍처 패턴으로서 마이크로서비스는 복잡한 시스템을 수십에서 수백 개의 작은 서비스로 분할하며, 각 서비스는 독립적인 비즈니스 로직을 구현합니다. 이러한 작은 서비스는 소규모 소프트웨어 엔지니어링 팀이 이해하고 수정하기 쉽고, 언어 및 프레임워크 선택의 유연성을 제공하며, 애플리케이션 개발 및 출시 시간을 단축하고, 다양한 워크로드 및 리소스 요구 사항에 따라 서비스를 독립적으로 확장/축소할 수 있는 이점을 제공합니다.&lt;/p>
+&lt;p>반면에 애플리케이션이 여러 마이크로서비스 프로세스로 분할되면 프로세스 내 메서드 호출이 프로세스 간 원격 호출로 변경됩니다. 이는 수많은 서비스의 연결, 관리 및 모니터링의 복잡성을 야기합니다.&lt;/p></description></item><item><title>HTTP 프록시 뒤에서 Docker를 사용하는 방법</title><link>https://hybridego.github.io/2018/03/13/use-docker-behind-http-proxy/</link><pubDate>Tue, 13 Mar 2018 18:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/03/13/use-docker-behind-http-proxy/</guid><description>&lt;h2 id="ubuntu">Ubuntu&lt;/h2>
+&lt;h3 id="docker에서-http-프록시-설정">Docker에서 HTTP 프록시 설정&lt;/h3>
 &lt;pre tabindex="0">&lt;code>sudo /etc/default/docker
 
 export http_proxy=&amp;#34;http://127.0.0.1:3128/&amp;#34;
 export https_proxy=&amp;#34;http://127.0.0.1:3128/&amp;#34;
 export HTTP_PROXY=&amp;#34;http://127.0.0.1:3128/&amp;#34;
 export HTTPS_PROXY=&amp;#34;http://127.0.0.1:3128/&amp;#34;
-&lt;/code>&lt;/pre></description></item><item><title>Vim Tips</title><link>https://hybridego.github.io/2018/02/09/vim-tips/</link><pubDate>Fri, 09 Feb 2018 11:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/02/09/vim-tips/</guid><description>&lt;h2 id="vim-graphical-cheat-sheet">vim graphical cheat sheet&lt;/h2>
+&lt;/code>&lt;/pre></description></item><item><title>Vim 팁</title><link>https://hybridego.github.io/2018/02/09/vim-tips/</link><pubDate>Fri, 09 Feb 2018 11:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/02/09/vim-tips/</guid><description>&lt;h2 id="vim-그래픽-치트-시트">vim 그래픽 치트 시트&lt;/h2>
 &lt;p>
  &lt;img src="//img/2018-02-09-vim-tips/vi-vim-cheat-sheet.svg" alt="">
 
-&lt;/p></description></item><item><title>如何使用非root用户执行docker命令</title><link>https://hybridego.github.io/2018/02/09/docker-without-sudo/</link><pubDate>Fri, 09 Feb 2018 10:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/02/09/docker-without-sudo/</guid><description>&lt;h3 id="add-the-docker-group-if-it-doesnt-already-exist">Add the docker group if it doesn&amp;rsquo;t already exist:&lt;/h3>
-&lt;p>sudo groupadd docker&lt;/p>
-&lt;h3 id="add-the-connected-user-user-to-the-docker-group-change-the-user-name-to-match-your-preferred-user-if-you-do-not-want-to-use-your-current-user">Add the connected user &amp;ldquo;$USER&amp;rdquo; to the docker group. Change the user name to match your preferred user if you do not want to use your current user:&lt;/h3>
-&lt;p>sudo gpasswd -a $USER docker&lt;/p>
-&lt;h3 id="either-do-a-newgrp-docker-or-log-outin-to-activate-the-changes-to-groups">Either do a newgrp docker or log out/in to activate the changes to groups.&lt;/h3></description></item><item><title>안전한 마이크로서비스 애플리케이션을 구축하는 방법은?</title><link>https://hybridego.github.io/2018/05/22/user_authentication_authorization/</link><pubDate>Sat, 03 Feb 2018 12:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/05/22/user_authentication_authorization/</guid><description>&lt;h2 id="서론">서론&lt;/h2>
+&lt;/p></description></item><item><title>sudo 없이 Docker 명령을 실행하는 방법</title><link>https://hybridego.github.io/2018/02/09/docker-without-sudo/</link><pubDate>Fri, 09 Feb 2018 10:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/02/09/docker-without-sudo/</guid><description>&lt;h3 id="docker-그룹이-아직-존재하지-않으면-추가합니다">Docker 그룹이 아직 존재하지 않으면 추가합니다:&lt;/h3>
+&lt;p>&lt;code>sudo groupadd docker&lt;/code>&lt;/p>
+&lt;h3 id="연결된-사용자-user를-docker-그룹에-추가합니다-현재-사용자를-사용하지-않으려면-사용자-이름을-원하는-사용자와-일치하도록-변경하십시오">연결된 사용자 &amp;ldquo;$USER&amp;quot;를 docker 그룹에 추가합니다. 현재 사용자를 사용하지 않으려면 사용자 이름을 원하는 사용자와 일치하도록 변경하십시오:&lt;/h3>
+&lt;p>&lt;code>sudo gpasswd -a $USER docker&lt;/code>&lt;/p></description></item><item><title>안전한 마이크로서비스 애플리케이션을 구축하는 방법은?</title><link>https://hybridego.github.io/2018/05/22/user_authentication_authorization/</link><pubDate>Sat, 03 Feb 2018 12:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/05/22/user_authentication_authorization/</guid><description>&lt;h2 id="서론">서론&lt;/h2>
 &lt;p>마이크로서비스 아키텍처의 도입은 소프트웨어 애플리케이션에 많은 이점을 가져다주었습니다: 소규모 개발팀, 개발 주기 단축, 언어 선택의 유연성, 서비스 확장성 향상 등. 동시에 분산 시스템의 복잡한 문제들도 함께 도입되었습니다. 그중 하나의 과제는 마이크로서비스 아키텍처에서 유연하고 안전하며 효율적인 인증 및 권한 부여 방안을 구현하는 것입니다. 이 글에서는 이 문제에 대해 비교적 완전한 논의를 시도할 것입니다.&lt;/p></description></item><item><title>Nginx 오픈소스 서비스 메시 컴포넌트 Nginmesh 설치 가이드</title><link>https://hybridego.github.io/2018/01/02/nginmesh-install/</link><pubDate>Tue, 02 Jan 2018 12:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/01/02/nginmesh-install/</guid><description>&lt;h2 id="서문">서문&lt;/h2>
 &lt;p>Nginmesh는 Istio 서비스 메시 플랫폼의 데이터 플레인 프록시로 사용되는 NGINX의 오픈소스 서비스 메시 프로젝트입니다. 이는 7계층 로드 밸런싱 및 서비스 라우팅 기능을 제공하며, Istio와 사이드카로 통합되어 &amp;lsquo;표준적이고 안정적이며 안전한 방식&amp;rsquo;으로 서비스 간 통신을 용이하게 하는 것을 목표로 합니다. Nginmesh는 연말에 0.2 및 0.3 버전을 연속으로 출시하여 서비스 디스커버리, 요청 전달, 라우팅 규칙, 성능 지표 수집 등의 기능을 제공합니다.&lt;/p></description></item><item><title>Kubernetes 클러스터 외부에서 애플리케이션에 접근하는 방법은 무엇인가요?</title><link>https://hybridego.github.io/2017/11/28/access-application-from-outside/</link><pubDate>Tue, 28 Nov 2017 12:00:00 +0000</pubDate><guid>https://hybridego.github.io/2017/11/28/access-application-from-outside/</guid><description>&lt;h2 id="서론">서론&lt;/h2>
 &lt;p>Kubernetes의 클러스터 네트워크는 사설 네트워크에 속하며, 배포된 애플리케이션은 클러스터 네트워크 내부에서만 접근할 수 있다는 것을 알고 있습니다. 그렇다면 Kubernetes 클러스터의 애플리케이션을 외부 네트워크에 노출하여 외부 사용자에게 서비스를 제공하는 방법은 무엇일까요? 이 글에서는 외부 네트워크에서 Kubernetes 클러스터의 애플리케이션에 접근하는 몇 가지 구현 방식을 탐구합니다.&lt;/p></description></item><item><title>Istio를 이용한 카나리 릴리스(Canary Release) 구현</title><link>https://hybridego.github.io/2017/11/08/istio-canary-release-ko/</link><pubDate>Wed, 08 Nov 2017 15:00:00 +0000</pubDate><guid>https://hybridego.github.io/2017/11/08/istio-canary-release-ko/</guid><description>&lt;h2 id="카나리-릴리스canary-release-소개">카나리 릴리스(Canary Release) 소개&lt;/h2>

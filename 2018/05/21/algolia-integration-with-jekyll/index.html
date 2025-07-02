@@ -1,4 +1,4 @@
-<!doctype html><html lang=ko-kr><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><meta property="og:site_name" content="Lionel Blog"><meta property="og:type" content="article"><meta property="og:image" content="/img/2018-05-06-cryptocurrency_week1/bitcoin_header.jpg"><meta property="twitter:image" content="/img/2018-05-06-cryptocurrency_week1/bitcoin_header.jpg"><meta name=title content="使用Algolia为Gitpage博客提供站内搜索"><meta property="og:title" content="使用Algolia为Gitpage博客提供站内搜索"><meta property="twitter:title" content="使用Algolia为Gitpage博客提供站内搜索"><meta name=description content="Lionel.J, programmer, open source enthusiast, life adventurer | This is Lionel's blog, discovering a bigger world with you."><meta property="og:description" content="Lionel.J, programmer, open source enthusiast, life adventurer | This is Lionel's blog, discovering a bigger world with you."><meta property="twitter:description" content="Lionel.J, programmer, open source enthusiast, life adventurer | This is Lionel's blog, discovering a bigger world with you."><meta property="twitter:card" content="summary"><meta name=keyword content="Lionel.J, lionel jeon, Lionel Jeon, hybridego, Lionel's web log, Lionel's blog, Lionel Blog, blog, personal website, internet, Web, cloud native, PaaS, Istio, Kubernetes, microservices"><link rel="shortcut icon" href=/img/favicon.ico><title>使用Algolia为Gitpage博客提供站内搜索 | Lionel 블로그 | Lionel Blog</title><link rel=canonical href=/2018/05/21/algolia-integration-with-jekyll/><link rel=stylesheet href=/css/bootstrap.min.css><link rel=stylesheet href=/css/hugo-theme-cleanwhite.min.css><link rel=stylesheet href=/css/zanshang.css><link rel=stylesheet href=/css/font-awesome.all.min.css><script src=/js/jquery.min.js></script><script src=/js/bootstrap.min.js></script><script src=/js/hux-blog.min.js></script><script src=/js/lazysizes.min.js></script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2995694833554782" crossorigin=anonymous></script></head><nav class="navbar navbar-default navbar-custom navbar-fixed-top"><div class=container-fluid><div class="navbar-header page-scroll"><button type=button class=navbar-toggle>
+<!doctype html><html lang=ko-kr><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><meta property="og:site_name" content="Lionel Blog"><meta property="og:type" content="article"><meta property="og:image" content="/img/2018-05-06-cryptocurrency_week1/bitcoin_header.jpg"><meta property="twitter:image" content="/img/2018-05-06-cryptocurrency_week1/bitcoin_header.jpg"><meta name=title content="Algolia를 사용하여 Gitpage 블로그에 사이트 내 검색 기능 제공"><meta property="og:title" content="Algolia를 사용하여 Gitpage 블로그에 사이트 내 검색 기능 제공"><meta property="twitter:title" content="Algolia를 사용하여 Gitpage 블로그에 사이트 내 검색 기능 제공"><meta name=description content="Lionel.J, programmer, open source enthusiast, life adventurer | This is Lionel's blog, discovering a bigger world with you."><meta property="og:description" content="Lionel.J, programmer, open source enthusiast, life adventurer | This is Lionel's blog, discovering a bigger world with you."><meta property="twitter:description" content="Lionel.J, programmer, open source enthusiast, life adventurer | This is Lionel's blog, discovering a bigger world with you."><meta property="twitter:card" content="summary"><meta name=keyword content="Lionel.J, lionel jeon, Lionel Jeon, hybridego, Lionel's web log, Lionel's blog, Lionel Blog, blog, personal website, internet, Web, cloud native, PaaS, Istio, Kubernetes, microservices"><link rel="shortcut icon" href=/img/favicon.ico><title>Algolia를 사용하여 Gitpage 블로그에 사이트 내 검색 기능 제공 | Lionel 블로그 | Lionel Blog</title><link rel=canonical href=/2018/05/21/algolia-integration-with-jekyll/><link rel=stylesheet href=/css/bootstrap.min.css><link rel=stylesheet href=/css/hugo-theme-cleanwhite.min.css><link rel=stylesheet href=/css/zanshang.css><link rel=stylesheet href=/css/font-awesome.all.min.css><script src=/js/jquery.min.js></script><script src=/js/bootstrap.min.js></script><script src=/js/hux-blog.min.js></script><script src=/js/lazysizes.min.js></script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2995694833554782" crossorigin=anonymous></script></head><nav class="navbar navbar-default navbar-custom navbar-fixed-top"><div class=container-fluid><div class="navbar-header page-scroll"><button type=button class=navbar-toggle>
 <span class=sr-only>Toggle navigation</span>
 <span class=icon-bar></span>
 <span class=icon-bar></span>
@@ -8,9 +8,9 @@
 col-md-8 col-md-offset-1
 col-sm-12
 col-xs-12
-post-container"><blockquote><p>This series of articles are my notes of &ldquo;Bitcoin and Cryptocurrency Technologies&rdquo; online course.</p></blockquote><h2 id=table-of-content>Table of Content</h2><p>{:.no_toc}</p><ul><li>Table of Content
-{:toc}</li></ul><h2 id=scrooge-coin-transaction>Scrooge Coin Transaction</h2><p>Scrooge Coin programming assignment is a little bit tricky, the video of this lesson hasn&rsquo;t explained some implementation details. To help you understand the transaction data structure used in Scrooge Coin, I draw this diagram:
-<img src=/img/2018-5-20-cryptocurrency_week1_scroogecoin/scroogecoin.png alt="Scrooge Coin"></p><p>Every transaction has a set of inputs and a set of outputs. An input in a transaction must use a hash pointer to refer to its corresponding output in the previous transaction, and it must be signed with the private key of the owner because the owner needs to prove he/she agrees to spend his/her coins.</p><p>Every output is correlated to the public key of the receiver, which is his/her ScroogeCoin address.</p><p>In the first transaction, we assume that Scrooge has created 10 coins and assigned them to himself, we don&rsquo;t doubt that because the system-Scroogecoin has a building rule which says that Scrooge has right to create coins.</p><p>In the second transaction, Scrooge transferred 3.9 coins to Alice and 5.9 coins to Bob. The sum of the two outputs is 0.2 less than the input because the transaction fee was 0.2 coin.</p><p>In the third transaction, there were two inputs and one output, Alice and Bob transferred 9.7 coins to mike, and the transaction fee was 0.1 coin.</p><h2 id=unclaimed-transaction-outputs-pool>Unclaimed transaction outputs pool</h2><p>Another trick we need to Note when doing the programming assignment is that an UTXOPool is introduced to track the unclaimed outputs (unspent coins), so we can know whether the corresponding output of an input of the transaction is available or not.</p><h2 id=txhandler-java-code>TxHandler Java Code</h2><pre tabindex=0><code>import java.security.PublicKey;
+post-container"><blockquote><p>이 일련의 기사는 &ldquo;비트코인 및 암호화폐 기술&rdquo; 온라인 강좌의 제 노트입니다.</p></blockquote><h2 id=목차>목차</h2><p>{:.no_toc}</p><ul><li>목차
+{:toc}</li></ul><h2 id=스크루지-코인-거래>스크루지 코인 거래</h2><p>스크루지 코인 프로그래밍 과제는 약간 까다롭습니다. 이 강의의 비디오는 일부 구현 세부 사항을 설명하지 않았습니다. 스크루지 코인에서 사용되는 거래 데이터 구조를 이해하는 데 도움이 되도록 이 다이어그램을 그렸습니다.
+<img src=/img/2018-5-20-cryptocurrency_week1_scroogecoin/scroogecoin.png alt="스크루지 코인"></p><p>모든 거래에는 입력 세트와 출력 세트가 있습니다. 거래의 입력은 이전 거래의 해당 출력을 참조하기 위해 해시 포인터를 사용해야 하며, 소유자가 자신의 코인을 사용하기로 동의했음을 증명해야 하므로 소유자의 개인 키로 서명되어야 합니다.</p><p>모든 출력은 수신자의 공개 키와 관련되어 있으며, 이는 수신자의 스크루지 코인 주소입니다.</p><p>첫 번째 거래에서 스크루지는 10개의 코인을 생성하여 자신에게 할당했다고 가정합니다. 시스템인 스크루지 코인에는 스크루지가 코인을 생성할 권리가 있다는 내장 규칙이 있으므로 우리는 의심하지 않습니다.</p><p>두 번째 거래에서 스크루지는 3.9개의 코인을 앨리스에게, 5.9개의 코인을 밥에게 전송했습니다. 두 출력의 합계가 입력보다 0.2 적은 이유는 거래 수수료가 0.2 코인이었기 때문입니다.</p><p>세 번째 거래에서는 두 개의 입력과 하나의 출력이 있었고, 앨리스와 밥은 9.7개의 코인을 마이크에게 전송했으며, 거래 수수료는 0.1 코인이었습니다.</p><h2 id=미청구-거래-출력-풀>미청구 거래 출력 풀</h2><p>프로그래밍 과제를 수행할 때 주의해야 할 또 다른 점은 미청구 출력(미사용 코인)을 추적하기 위해 UTXOPool이 도입된다는 것입니다. 이를 통해 거래 입력의 해당 출력이 사용 가능한지 여부를 알 수 있습니다.</p><h2 id=txhandler-자바-코드>TxHandler 자바 코드</h2><pre tabindex=0><code>import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -20,21 +20,21 @@ public class TxHandler {
 	private UTXOPool utxoPool;
 
 	/**
-	 * Creates a public ledger whose current UTXOPool (collection of unspent
-	 * transaction outputs) is {@code utxoPool}. This should make a copy of utxoPool
-	 * by using the UTXOPool(UTXOPool uPool) constructor.
+	 * 현재 UTXOPool(미사용 거래 출력 컬렉션)이 {@code utxoPool}인 공개 원장을 생성합니다.
+	 * UTXOPool(UTXOPool uPool) 생성자를 사용하여 utxoPool의 복사본을 만들어야 합니다.
 	 */
 	public TxHandler(UTXOPool utxoPool) {
 		this.utxoPool = new UTXOPool(utxoPool);
 	}
 
 	/**
-	 * @return true if: (1) all outputs claimed by {@code tx} are in the current
-	 *         UTXO pool, (2) the signatures on each input of {@code tx} are valid,
-	 *         (3) no UTXO is claimed multiple times by {@code tx}, (4) all of
-	 *         {@code tx}s output values are non-negative, and (5) the sum of
-	 *         {@code tx}s input values is greater than or equal to the sum of its
-	 *         output values; and false otherwise.
+	 * @return 다음 조건이 모두 참이면 true를 반환합니다:
+	 *         (1) {@code tx}에 의해 청구된 모든 출력이 현재 UTXO 풀에 있습니다.
+	 *         (2) {@code tx}의 각 입력에 대한 서명이 유효합니다.
+	 *         (3) {@code tx}에 의해 UTXO가 여러 번 청구되지 않습니다.
+	 *         (4) {@code tx}의 모든 출력 값이 음수가 아닙니다.
+	 *         (5) {@code tx}의 입력 값 합계가 출력 값 합계보다 크거나 같습니다.
+	 *         그렇지 않으면 false를 반환합니다.
 	 */
 	public boolean isValidTx(Transaction tx) {
 		Set&lt;UTXO&gt; claimedUTXO = new HashSet&lt;UTXO&gt;();
@@ -73,9 +73,8 @@ public class TxHandler {
 			outputSum += output.value;
 		}
 
-		// Should the input value and output value be equal? Otherwise the ledger will
-		// become unbalanced.
-		// The difference between inputSum and outputSum is the transaction fee
+		// 입력 값과 출력 값이 같아야 합니까? 그렇지 않으면 원장이 불균형해집니다.
+		// inputSum과 outputSum의 차이는 거래 수수료입니다.
 		if (outputSum &gt; inputSum) {
 			return false;
 		}
@@ -101,9 +100,9 @@ public class TxHandler {
 	}
 
 	/**
-	 * Handles each epoch by receiving an unordered array of proposed transactions,
-	 * checking each transaction for correctness, returning a mutually valid array
-	 * of accepted transactions, and updating the current UTXO pool as appropriate.
+	 * 제안된 거래의 정렬되지 않은 배열을 수신하고, 각 거래의 정확성을 확인하고,
+	 * 상호 유효한 승인된 거래 배열을 반환하고,
+	 * 현재 UTXO 풀을 적절하게 업데이트하여 각 에포크를 처리합니다.
 	 */
 	public Transaction[] handleTxs(Transaction[] possibleTxs) {
 		List&lt;Transaction&gt; acceptedTx = new ArrayList&lt;Transaction&gt;();
@@ -141,7 +140,7 @@ public class TxHandler {
 	}
 
 }
-</code></pre><h2 id=all-the-example-codes-on-github>All the Example Codes on GitHub</h2><p>I wrap the codes into a maven project, just run <code>mvn test</code> then the example codes will build and run all the test cases.</p><p><a href=https://github.com/zhaohuabing/scroogecoin>Scrooge Coin example in Java</a></p><link href=https://hybridego.github.io/dist/Artalk.css rel=stylesheet><script src=https://hybridego.github.io/dist/Artalk.js></script><div id=Comments></div><script>Artalk.init({el:"#Comments",pageKey:"https://hybridego.github.io/2018/05/21/algolia-integration-with-jekyll/",pageTitle:"使用Algolia为Gitpage博客提供站内搜索",server:"https://hybridego.github.io",site:"lionel blog"})</script></div><div class="col-lg-3 col-lg-offset-0
+</code></pre><h2 id=github의-모든-예제-코드>GitHub의 모든 예제 코드</h2><p>코드를 Maven 프로젝트로 묶었습니다. <code>mvn test</code>를 실행하면 예제 코드가 빌드되고 모든 테스트 케이스가 실행됩니다.</p><p><a href=https://github.com/zhaohuabing/scroogecoin>Java로 된 스크루지 코인 예제</a></p><link href=https://hybridego.github.io/dist/Artalk.css rel=stylesheet><script src=https://hybridego.github.io/dist/Artalk.js></script><div id=Comments></div><script>Artalk.init({el:"#Comments",pageKey:"https://hybridego.github.io/2018/05/21/algolia-integration-with-jekyll/",pageTitle:"Algolia를 사용하여 Gitpage 블로그에 사이트 내 검색 기능 제공",server:"https://hybridego.github.io",site:"lionel blog"})</script></div><div class="col-lg-3 col-lg-offset-0
 col-md-3 col-md-offset-0
 col-sm-12
 col-xs-12

@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Tips on Lionel Blog</title><link>https://hybridego.github.io/categories/tips/</link><description>Recent content in Tips on Lionel Blog</description><generator>Hugo</generator><language>ko-kr</language><lastBuildDate>Thu, 24 May 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://hybridego.github.io/categories/tips/index.xml" rel="self" type="application/rss+xml"/><item><title>Everything about Setting Up My Ubuntu Desktop</title><link>https://hybridego.github.io/2018/05/24/set_up_my_ubuntu_desktop/</link><pubDate>Thu, 24 May 2018 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/05/24/set_up_my_ubuntu_desktop/</guid><description>&lt;h2 id="generate-ssh-key-pair">Generate SSH Key Pair&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Tips on Lionel Blog</title><link>https://hybridego.github.io/categories/tips/</link><description>Recent content in Tips on Lionel Blog</description><generator>Hugo</generator><language>ko-kr</language><lastBuildDate>Thu, 24 May 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://hybridego.github.io/categories/tips/index.xml" rel="self" type="application/rss+xml"/><item><title>내 Ubuntu 데스크톱 설정에 대한 모든 것</title><link>https://hybridego.github.io/2018/05/24/set_up_my_ubuntu_desktop/</link><pubDate>Thu, 24 May 2018 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/05/24/set_up_my_ubuntu_desktop/</guid><description>&lt;h2 id="ssh-키-쌍-생성">SSH 키 쌍 생성&lt;/h2>
 &lt;pre tabindex="0">&lt;code>ssh-keygen -C &amp;#34;zhaohuabing@gmail.com&amp;#34;
 &lt;/code>&lt;/pre>&lt;h2 id="shadowsocks">Shadowsocks&lt;/h2>
-&lt;p>Install shadowsokcs&lt;/p>
+&lt;p>Shadowsocks 설치&lt;/p>
 &lt;pre tabindex="0">&lt;code>sudo apt-get install python3-pip
 
 sudo pip3 install shadowsocks
-&lt;/code>&lt;/pre>&lt;p>Create config at &lt;code>config/shadowsocks.json&lt;/code>, with the following content:&lt;/p>
+&lt;/code>&lt;/pre>&lt;p>다음 내용을 포함하는 &lt;code>config/shadowsocks.json&lt;/code>에 구성 파일 생성:&lt;/p>
 &lt;pre tabindex="0">&lt;code>{
 	&amp;#34;server&amp;#34;:&amp;#34;remote-shadowsocks-server-ip-addr&amp;#34;,
 	&amp;#34;server_port&amp;#34;:443,
@@ -17,31 +17,19 @@ sudo pip3 install shadowsocks
 	&amp;#34;fast_open&amp;#34;:false,
 	&amp;#34;workers&amp;#34;:1
 }
-&lt;/code>&lt;/pre>&lt;p>Start a local socks proxy&lt;/p>
-&lt;pre tabindex="0">&lt;code>sudo sslocal -c config/shadowsocks.json -d start
-&lt;/code>&lt;/pre>&lt;p>In case there is an openssl error, modify shadowsocks source file.&lt;/p>
-&lt;pre tabindex="0">&lt;code>sudo vi /usr/local/lib/python3.6/dist-packages/shadowsocks/crypto/openssl.py 
-
-:%s/cleanup/reset/gc
-&lt;/code>&lt;/pre>&lt;p>Convert shadowsocks socks proxy to http proxy&lt;/p>
-&lt;pre tabindex="0">&lt;code>sudo apt-get install polipo
-
-echo &amp;#34;socksParentProxy = localhost:1080&amp;#34; | sudo tee -a /etc/polipo/config 
-sudo service polipo restart
-&lt;/code>&lt;/pre>&lt;p>Http proxy now is available at port 8123&lt;/p></description></item><item><title>如何配置docker使用HTTP代理</title><link>https://hybridego.github.io/2018/03/13/use-docker-behind-http-proxy/</link><pubDate>Tue, 13 Mar 2018 18:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/03/13/use-docker-behind-http-proxy/</guid><description>&lt;h2 id="ubuntu">Ubuntu&lt;/h2>
-&lt;h3 id="设置docker使用http-proxy">设置docker使用http proxy&lt;/h3>
+&lt;/code>&lt;/pre>&lt;p>로컬 socks 프록시 시작&lt;/p></description></item><item><title>HTTP 프록시 뒤에서 Docker를 사용하는 방법</title><link>https://hybridego.github.io/2018/03/13/use-docker-behind-http-proxy/</link><pubDate>Tue, 13 Mar 2018 18:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/03/13/use-docker-behind-http-proxy/</guid><description>&lt;h2 id="ubuntu">Ubuntu&lt;/h2>
+&lt;h3 id="docker에서-http-프록시-설정">Docker에서 HTTP 프록시 설정&lt;/h3>
 &lt;pre tabindex="0">&lt;code>sudo /etc/default/docker
 
 export http_proxy=&amp;#34;http://127.0.0.1:3128/&amp;#34;
 export https_proxy=&amp;#34;http://127.0.0.1:3128/&amp;#34;
 export HTTP_PROXY=&amp;#34;http://127.0.0.1:3128/&amp;#34;
 export HTTPS_PROXY=&amp;#34;http://127.0.0.1:3128/&amp;#34;
-&lt;/code>&lt;/pre></description></item><item><title>Vim Tips</title><link>https://hybridego.github.io/2018/02/09/vim-tips/</link><pubDate>Fri, 09 Feb 2018 11:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/02/09/vim-tips/</guid><description>&lt;h2 id="vim-graphical-cheat-sheet">vim graphical cheat sheet&lt;/h2>
+&lt;/code>&lt;/pre></description></item><item><title>Vim 팁</title><link>https://hybridego.github.io/2018/02/09/vim-tips/</link><pubDate>Fri, 09 Feb 2018 11:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/02/09/vim-tips/</guid><description>&lt;h2 id="vim-그래픽-치트-시트">vim 그래픽 치트 시트&lt;/h2>
 &lt;p>
  &lt;img src="//img/2018-02-09-vim-tips/vi-vim-cheat-sheet.svg" alt="">
 
-&lt;/p></description></item><item><title>如何使用非root用户执行docker命令</title><link>https://hybridego.github.io/2018/02/09/docker-without-sudo/</link><pubDate>Fri, 09 Feb 2018 10:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/02/09/docker-without-sudo/</guid><description>&lt;h3 id="add-the-docker-group-if-it-doesnt-already-exist">Add the docker group if it doesn&amp;rsquo;t already exist:&lt;/h3>
-&lt;p>sudo groupadd docker&lt;/p>
-&lt;h3 id="add-the-connected-user-user-to-the-docker-group-change-the-user-name-to-match-your-preferred-user-if-you-do-not-want-to-use-your-current-user">Add the connected user &amp;ldquo;$USER&amp;rdquo; to the docker group. Change the user name to match your preferred user if you do not want to use your current user:&lt;/h3>
-&lt;p>sudo gpasswd -a $USER docker&lt;/p>
-&lt;h3 id="either-do-a-newgrp-docker-or-log-outin-to-activate-the-changes-to-groups">Either do a newgrp docker or log out/in to activate the changes to groups.&lt;/h3></description></item></channel></rss>
+&lt;/p></description></item><item><title>sudo 없이 Docker 명령을 실행하는 방법</title><link>https://hybridego.github.io/2018/02/09/docker-without-sudo/</link><pubDate>Fri, 09 Feb 2018 10:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/02/09/docker-without-sudo/</guid><description>&lt;h3 id="docker-그룹이-아직-존재하지-않으면-추가합니다">Docker 그룹이 아직 존재하지 않으면 추가합니다:&lt;/h3>
+&lt;p>&lt;code>sudo groupadd docker&lt;/code>&lt;/p>
+&lt;h3 id="연결된-사용자-user를-docker-그룹에-추가합니다-현재-사용자를-사용하지-않으려면-사용자-이름을-원하는-사용자와-일치하도록-변경하십시오">연결된 사용자 &amp;ldquo;$USER&amp;quot;를 docker 그룹에 추가합니다. 현재 사용자를 사용하지 않으려면 사용자 이름을 원하는 사용자와 일치하도록 변경하십시오:&lt;/h3>
+&lt;p>&lt;code>sudo gpasswd -a $USER docker&lt;/code>&lt;/p></description></item></channel></rss>
