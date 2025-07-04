@@ -8,7 +8,7 @@
 col-md-8 col-md-offset-1
 col-sm-12
 col-xs-12
-post-container"><ul><li>/proc/sys/vm/drop_caches 사용
+post-container"><h1 id=linux-에서-시스템-buff-and-cache-비우기>linux 에서 시스템 Buff and Cache 비우기</h1><ul><li>/proc/sys/vm/drop_caches 사용
 리눅스 커널은 /proc/sys/vm/drop_caches 파일을 통해 캐시를 강제로 비울 수 있는 인터페이스를 제공합니다. 이 방법을 사용하려면 <strong>루트 권한</strong>이 필요합니다.</li></ul><pre tabindex=0><code># 캐시 비우기 (페이지 캐시만 비움)
 echo 1 | tee /proc/sys/vm/drop_caches
 
