@@ -1,0 +1,168 @@
+<!doctype html><html lang=ko-kr><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><meta property="og:site_name" content="Lionel Blog"><meta property="og:type" content="article"><meta property="og:image" content="/img/2018-05-06-cryptocurrency_week1/bitcoin_header.jpg"><meta property="twitter:image" content="/img/2018-05-06-cryptocurrency_week1/bitcoin_header.jpg"><meta name=title content="Algolia를 사용하여 Gitpage 블로그에 사이트 내 검색 기능 제공"><meta property="og:title" content="Algolia를 사용하여 Gitpage 블로그에 사이트 내 검색 기능 제공"><meta property="twitter:title" content="Algolia를 사용하여 Gitpage 블로그에 사이트 내 검색 기능 제공"><meta name=description content="Lionel.J, programmer, open source enthusiast, life adventurer | This is Lionel's blog, discovering a bigger world with you."><meta property="og:description" content="Lionel.J, programmer, open source enthusiast, life adventurer | This is Lionel's blog, discovering a bigger world with you."><meta property="twitter:description" content="Lionel.J, programmer, open source enthusiast, life adventurer | This is Lionel's blog, discovering a bigger world with you."><meta property="twitter:card" content="summary"><meta name=keyword content="Lionel.J, lionel jeon, Lionel Jeon, hybridego, Lionel's web log, Lionel's blog, Lionel Blog, blog, personal website, internet, Web, cloud native, PaaS, Istio, Kubernetes, microservices"><link rel="shortcut icon" href=/img/favicon.ico><title>Algolia를 사용하여 Gitpage 블로그에 사이트 내 검색 기능 제공 | Lionel 블로그 | Lionel Blog</title><link rel=canonical href=/2018/05/21/algolia-integration-with-jekyll/><link rel=stylesheet href=/css/bootstrap.min.css><link rel=stylesheet href=/css/hugo-theme-cleanwhite.min.css><link rel=stylesheet href=/css/zanshang.css><link rel=stylesheet href=/css/font-awesome.all.min.css><script src=/js/jquery.min.js></script><script src=/js/bootstrap.min.js></script><script src=/js/hux-blog.min.js></script><script src=/js/lazysizes.min.js></script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2995694833554782" crossorigin=anonymous></script></head><nav class="navbar navbar-default navbar-custom navbar-fixed-top"><div class=container-fluid><div class="navbar-header page-scroll"><button type=button class=navbar-toggle>
+<span class=sr-only>Toggle navigation</span>
+<span class=icon-bar></span>
+<span class=icon-bar></span>
+<span class=icon-bar></span>
+</button>
+<a class=navbar-brand href=/>Lionel Blog</a></div><div id=huxblog_navbar><div class=navbar-collapse><ul class="nav navbar-nav navbar-right"><li><a href=/>All Posts</a></li><li><a href=/categories/life/>life</a></li><li><a href=/categories/tech/>tech</a></li><li><a href=/categories/tips/>tips</a></li><li><a href=/archive//>ARCHIVE</a></li><li><a href=/notes//>NOTES</a></li><li><a href=/about//>ABOUT</a></li><li><a href=/search><i class="fa fa-search"></i></a></li></ul></div></div></div></nav><script>var $body=document.body,$toggle=document.querySelector(".navbar-toggle"),$navbar=document.querySelector("#huxblog_navbar"),$collapse=document.querySelector(".navbar-collapse");$toggle.addEventListener("click",handleMagic);function handleMagic(){$navbar.className.indexOf("in")>0?($navbar.className=" ",setTimeout(function(){$navbar.className.indexOf("in")<0&&($collapse.style.height="0px")},400)):($collapse.style.height="auto",$navbar.className+=" in")}</script><header class=intro-header style=background-image:url(/img/home-bg-jeep.jpg)><div class=container><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><div class=site-heading><h1>Lionel Blog</h1><span class=subheading>The road is under your feet, the heart looks to the distance</span></div></div></div></div></header><article><div class=container><div class=row><div class="col-lg-8 col-lg-offset-1
+col-md-8 col-md-offset-1
+col-sm-12
+col-xs-12
+post-container"><blockquote><p>이 일련의 기사는 &ldquo;비트코인 및 암호화폐 기술&rdquo; 온라인 강좌의 제 노트입니다.</p></blockquote><h2 id=목차>목차</h2><p>{:.no_toc}</p><ul><li>목차
+{:toc}</li></ul><h2 id=스크루지-코인-거래>스크루지 코인 거래</h2><p>스크루지 코인 프로그래밍 과제는 약간 까다롭습니다. 이 강의의 비디오는 일부 구현 세부 사항을 설명하지 않았습니다. 스크루지 코인에서 사용되는 거래 데이터 구조를 이해하는 데 도움이 되도록 이 다이어그램을 그렸습니다.
+<img src=/img/2018-5-20-cryptocurrency_week1_scroogecoin/scroogecoin.png alt="스크루지 코인"></p><p>모든 거래에는 입력 세트와 출력 세트가 있습니다. 거래의 입력은 이전 거래의 해당 출력을 참조하기 위해 해시 포인터를 사용해야 하며, 소유자가 자신의 코인을 사용하기로 동의했음을 증명해야 하므로 소유자의 개인 키로 서명되어야 합니다.</p><p>모든 출력은 수신자의 공개 키와 관련되어 있으며, 이는 수신자의 스크루지 코인 주소입니다.</p><p>첫 번째 거래에서 스크루지는 10개의 코인을 생성하여 자신에게 할당했다고 가정합니다. 시스템인 스크루지 코인에는 스크루지가 코인을 생성할 권리가 있다는 내장 규칙이 있으므로 우리는 의심하지 않습니다.</p><p>두 번째 거래에서 스크루지는 3.9개의 코인을 앨리스에게, 5.9개의 코인을 밥에게 전송했습니다. 두 출력의 합계가 입력보다 0.2 적은 이유는 거래 수수료가 0.2 코인이었기 때문입니다.</p><p>세 번째 거래에서는 두 개의 입력과 하나의 출력이 있었고, 앨리스와 밥은 9.7개의 코인을 마이크에게 전송했으며, 거래 수수료는 0.1 코인이었습니다.</p><h2 id=미청구-거래-출력-풀>미청구 거래 출력 풀</h2><p>프로그래밍 과제를 수행할 때 주의해야 할 또 다른 점은 미청구 출력(미사용 코인)을 추적하기 위해 UTXOPool이 도입된다는 것입니다. 이를 통해 거래 입력의 해당 출력이 사용 가능한지 여부를 알 수 있습니다.</p><h2 id=txhandler-자바-코드>TxHandler 자바 코드</h2><pre tabindex=0><code>import java.security.PublicKey;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+public class TxHandler {
+	private UTXOPool utxoPool;
+
+	/**
+	 * 현재 UTXOPool(미사용 거래 출력 컬렉션)이 {@code utxoPool}인 공개 원장을 생성합니다.
+	 * UTXOPool(UTXOPool uPool) 생성자를 사용하여 utxoPool의 복사본을 만들어야 합니다.
+	 */
+	public TxHandler(UTXOPool utxoPool) {
+		this.utxoPool = new UTXOPool(utxoPool);
+	}
+
+	/**
+	 * @return 다음 조건이 모두 참이면 true를 반환합니다:
+	 *         (1) {@code tx}에 의해 청구된 모든 출력이 현재 UTXO 풀에 있습니다.
+	 *         (2) {@code tx}의 각 입력에 대한 서명이 유효합니다.
+	 *         (3) {@code tx}에 의해 UTXO가 여러 번 청구되지 않습니다.
+	 *         (4) {@code tx}의 모든 출력 값이 음수가 아닙니다.
+	 *         (5) {@code tx}의 입력 값 합계가 출력 값 합계보다 크거나 같습니다.
+	 *         그렇지 않으면 false를 반환합니다.
+	 */
+	public boolean isValidTx(Transaction tx) {
+		Set&lt;UTXO&gt; claimedUTXO = new HashSet&lt;UTXO&gt;();
+		double inputSum = 0;
+		double outputSum = 0;
+
+		List&lt;Transaction.Input&gt; inputs = tx.getInputs();
+		for (int i = 0; i &lt; inputs.size(); i++) {
+			Transaction.Input input = inputs.get(i);
+
+			if (!isConsumedCoinAvailable(input)) {
+				return false;
+			}
+
+			if (!verifySignatureOfConsumeCoin(tx, i, input)) {
+				return false;
+			}
+
+			if (isCoinConsumedMultipleTimes(claimedUTXO, input)) {
+				return false;
+			}
+
+			UTXO utxo = new UTXO(input.prevTxHash, input.outputIndex);
+			Transaction.Output correspondingOutput = utxoPool.getTxOutput(utxo);
+			inputSum += correspondingOutput.value;
+
+		}
+
+		List&lt;Transaction.Output&gt; outputs = tx.getOutputs();
+		for (int i = 0; i &lt; outputs.size(); i++) {
+			Transaction.Output output = outputs.get(i);
+			if (output.value &lt;= 0) {
+				return false;
+			}
+
+			outputSum += output.value;
+		}
+
+		// 입력 값과 출력 값이 같아야 합니까? 그렇지 않으면 원장이 불균형해집니다.
+		// inputSum과 outputSum의 차이는 거래 수수료입니다.
+		if (outputSum &gt; inputSum) {
+			return false;
+		}
+
+		return true;
+	}
+
+	private boolean isCoinConsumedMultipleTimes(Set&lt;UTXO&gt; claimedUTXO, Transaction.Input input) {
+		UTXO utxo = new UTXO(input.prevTxHash, input.outputIndex);
+		return !claimedUTXO.add(utxo);
+	}
+
+	private boolean verifySignatureOfConsumeCoin(Transaction tx, int index, Transaction.Input input) {
+		UTXO utxo = new UTXO(input.prevTxHash, input.outputIndex);
+		Transaction.Output correspondingOutput = utxoPool.getTxOutput(utxo);
+		PublicKey pk = correspondingOutput.address;
+		return Crypto.verifySignature(pk, tx.getRawDataToSign(index), input.signature);
+	}
+
+	private boolean isConsumedCoinAvailable(Transaction.Input input) {
+		UTXO utxo = new UTXO(input.prevTxHash, input.outputIndex);
+		return utxoPool.contains(utxo);
+	}
+
+	/**
+	 * 제안된 거래의 정렬되지 않은 배열을 수신하고, 각 거래의 정확성을 확인하고,
+	 * 상호 유효한 승인된 거래 배열을 반환하고,
+	 * 현재 UTXO 풀을 적절하게 업데이트하여 각 에포크를 처리합니다.
+	 */
+	public Transaction[] handleTxs(Transaction[] possibleTxs) {
+		List&lt;Transaction&gt; acceptedTx = new ArrayList&lt;Transaction&gt;();
+		for (int i = 0; i &lt; possibleTxs.length; i++) {
+			Transaction tx = possibleTxs[i];
+			if (isValidTx(tx)) {
+				acceptedTx.add(tx);
+
+				removeConsumedCoinsFromPool(tx);
+				addCreatedCoinsToPool(tx);
+			}
+		}
+
+		Transaction[] result = new Transaction[acceptedTx.size()];
+		acceptedTx.toArray(result);
+		return result;
+	}
+
+	private void addCreatedCoinsToPool(Transaction tx) {
+		List&lt;Transaction.Output&gt; outputs = tx.getOutputs();
+		for (int j = 0; j &lt; outputs.size(); j++) {
+			Transaction.Output output = outputs.get(j);
+			UTXO utxo = new UTXO(tx.getHash(), j);
+			utxoPool.addUTXO(utxo, output);
+		}
+	}
+
+	private void removeConsumedCoinsFromPool(Transaction tx) {
+		List&lt;Transaction.Input&gt; inputs = tx.getInputs();
+		for (int j = 0; j &lt; inputs.size(); j++) {
+			Transaction.Input input = inputs.get(j);
+			UTXO utxo = new UTXO(input.prevTxHash, input.outputIndex);
+			utxoPool.removeUTXO(utxo);
+		}
+	}
+
+}
+</code></pre><h2 id=github의-모든-예제-코드>GitHub의 모든 예제 코드</h2><p>코드를 Maven 프로젝트로 묶었습니다. <code>mvn test</code>를 실행하면 예제 코드가 빌드되고 모든 테스트 케이스가 실행됩니다.</p><p><a href=https://github.com/zhaohuabing/scroogecoin>Java로 된 스크루지 코인 예제</a></p><link href=https://hybridego.github.io/dist/Artalk.css rel=stylesheet><script src=https://hybridego.github.io/dist/Artalk.js></script><div id=Comments></div><script>Artalk.init({el:"#Comments",pageKey:"https://hybridego.github.io/2018/05/21/algolia-integration-with-jekyll/",pageTitle:"Algolia를 사용하여 Gitpage 블로그에 사이트 내 검색 기능 제공",server:"https://hybridego.github.io",site:"lionel blog"})</script></div><div class="col-lg-3 col-lg-offset-0
+col-md-3 col-md-offset-0
+col-sm-12
+col-xs-12
+sidebar-container"><section class="visible-md visible-lg"><div class=short-about><a href=/about><img src=/img/lionelj.png alt=avatar style=cursor:pointer></a><p>Software Developer, Embedded Systems Engineer, Linux Application Developer, Open Source Enthusiast and Life Adventurer</p><ul class=list-inline><li><a href=mailto:hybridego@gmail.com><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i>
+<i class="fa fa-envelope fa-stack-1x fa-inverse"></i></span></a></li><li><a href=https://x.com/LioJeon><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-twitter fa-stack-1x fa-inverse"></i></span></a></li><li><a target=_blank href=/img/wechat.png><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-weixin fa-stack-1x fa-inverse"></i></span></a></li><li><a target=_blank href=https://github.com/hybridego><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-github fa-stack-1x fa-inverse"></i></span></a></li><li><a target=_blank href=https://www.linkedin.com/in/hocheol-jeon-5569b067/><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-linkedin fa-stack-1x fa-inverse"></i></span></a></li></ul></div></section><section><hr><h5>QUICK LINKS</h5><ul class=list-inline><li><a target=_blank href=#ZgotmplZ>NotebookLM</a></li><li><a target=_blank href=https://www.perplexity.ai/>Perplexity</a></li><li><a target=_blank href=https://chatgpt.com/>Chatgpt</a></li><li><a target=_blank href=https://claude.ai/new>Claude</a></li><li><a target=_blank href=https://grok.com/>Grok</a></li></ul></section><section><hr class="hidden-sm hidden-xs"><h5>FEATURED TAGS</h5><div class=tags><a href=/tags/docker title=docker>docker
+</a><a href=/tags/istio title=istio>istio
+</a><a href=/tags/kubernetes title=kubernetes>kubernetes
+</a><a href=/tags/linux title=linux>linux
+</a><a href=/tags/microservice title=microservice>microservice
+</a><a href=/tags/rust title=rust>rust
+</a><a href=/tags/security title=security>security
+</a><a href=/tags/service-mesh title="service mesh">service mesh
+</a><a href=/tags/ssh title=ssh>ssh
+</a><a href=/tags/tips title=tips>tips
+</a><a href=/tags/vscode title=vscode>vscode</a></div></section><section><hr class="hidden-sm hidden-xs"><h5>FRIENDS</h5><ul class=list-inline><li><a target=_blank href=https://hybridego.net/>Lionel's Blog</a></li></ul></section></div></div></div></article><footer><div class=container><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><ul class="list-inline text-center"><li><a href=mailto:hybridego@gmail.com><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
+<i class="fas fa-envelope fa-stack-1x fa-inverse"></i></span></a></li><li><a href=https://x.com/LioJeon><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-twitter fa-stack-1x fa-inverse"></i></span></a></li><li><a target=_blank href=/img/wechat.png><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-weixin fa-stack-1x fa-inverse"></i></span></a></li><li><a target=_blank href=https://github.com/hybridego><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-github fa-stack-1x fa-inverse"></i></span></a></li><li><a target=_blank href=https://www.linkedin.com/in/hocheol-jeon-5569b067/><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-linkedin fa-stack-1x fa-inverse"></i></span></a></li><li><a href rel=alternate type=application/rss+xml title="Lionel Blog"><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
+<i class="fas fa-rss fa-stack-1x fa-inverse"></i></span></a></li></ul><p class="copyright text-muted">Copyright &copy; Lionel Blog 2025<br></p></div></div></div></footer><script>function loadAsync(e,t){var s=document,o="script",n=s.createElement(o),i=s.getElementsByTagName(o)[0];n.src=e,t&&n.addEventListener("load",function(e){t(null,e)},!1),i.parentNode.insertBefore(n,i)}</script><script>$("#tag_cloud").length!==0&&loadAsync("/js/jquery.tagcloud.js",function(){$.fn.tagcloud.defaults={color:{start:"#bbbbee",end:"#0085a1"}},$("#tag_cloud a").tagcloud()})</script><script>loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js",function(){var e=document.querySelector("nav");e&&FastClick.attach(e)})</script><script type=text/javascript>function generateCatalog(e){_containerSelector="div.post-container";var t,n,s,o,i,a=$(_containerSelector),r=a.find("h1,h2,h3,h4,h5,h6");return $(e).html(""),r.each(function(){n=$(this).prop("tagName").toLowerCase(),o="#"+$(this).prop("id"),t=$(this).text(),i=$('<a href="'+o+'" rel="nofollow" title="'+t+'">'+t+"</a>"),s=$('<li class="'+n+'_nav"></li>').append(i),$(e).append(s)}),!0}generateCatalog(".catalog-body"),$(".catalog-toggle").click(function(e){e.preventDefault(),$(".side-catalog").toggleClass("fold")}),loadAsync("/js/jquery.nav.js",function(){$(".catalog-body").onePageNav({currentClass:"active",changeHash:!1,easing:"swing",filter:"",scrollSpeed:700,scrollOffset:0,scrollThreshold:.2,begin:null,end:null,scrollChange:null,padding:80})})</script></body></html>

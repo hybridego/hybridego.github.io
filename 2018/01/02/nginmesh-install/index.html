@@ -1,0 +1,293 @@
+<!doctype html><html lang=ko-kr><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><meta property="og:site_name" content="Lionel Blog"><meta property="og:type" content="article"><meta property="og:image" content="img/post-bg-2015.jpg"><meta property="twitter:image" content="img/post-bg-2015.jpg"><meta name=title content="Nginx 오픈소스 서비스 메시 컴포넌트 Nginmesh 설치 가이드"><meta property="og:title" content="Nginx 오픈소스 서비스 메시 컴포넌트 Nginmesh 설치 가이드"><meta property="twitter:title" content="Nginx 오픈소스 서비스 메시 컴포넌트 Nginmesh 설치 가이드"><meta name=description content="Nginmesh는 Istio 서비스 메시 플랫폼의 데이터 플레인 프록시로 사용되는 NGINX의 오픈소스 서비스 메시 프로젝트입니다. 이는 7계층 로드 밸런싱 및 서비스 라우팅 기능을 제공하며, Istio와 사이드카로 통합되어 '표준적이고 안정적이며 안전한 방식'으로 서비스 간 통신을 용이하게 하는 것을 목표로 합니다. Nginmesh는 연말에 0.2 및 0.3 버전을 연속으로 출시하여 서비스 디스커버리, 요청 전달, 라우팅 규칙, 성능 지표 수집 등의 기능을 제공합니다. 이 문서에서는 kubeadm을 사용하여 Kubernetes 클러스터를 설치하고 Nginmesh 사이드카를 배포하는 방법을 설명합니다."><meta property="og:description" content="Nginmesh는 Istio 서비스 메시 플랫폼의 데이터 플레인 프록시로 사용되는 NGINX의 오픈소스 서비스 메시 프로젝트입니다. 이는 7계층 로드 밸런싱 및 서비스 라우팅 기능을 제공하며, Istio와 사이드카로 통합되어 '표준적이고 안정적이며 안전한 방식'으로 서비스 간 통신을 용이하게 하는 것을 목표로 합니다. Nginmesh는 연말에 0.2 및 0.3 버전을 연속으로 출시하여 서비스 디스커버리, 요청 전달, 라우팅 규칙, 성능 지표 수집 등의 기능을 제공합니다. 이 문서에서는 kubeadm을 사용하여 Kubernetes 클러스터를 설치하고 Nginmesh 사이드카를 배포하는 방법을 설명합니다."><meta property="twitter:description" content="Nginmesh는 Istio 서비스 메시 플랫폼의 데이터 플레인 프록시로 사용되는 NGINX의 오픈소스 서비스 메시 프로젝트입니다. 이는 7계층 로드 밸런싱 및 서비스 라우팅 기능을 제공하며, Istio와 사이드카로 통합되어 '표준적이고 안정적이며 안전한 방식'으로 서비스 간 통신을 용이하게 하는 것을 목표로 합니다. Nginmesh는 연말에 0.2 및 0.3 버전을 연속으로 출시하여 서비스 디스커버리, 요청 전달, 라우팅 규칙, 성능 지표 수집 등의 기능을 제공합니다. 이 문서에서는 kubeadm을 사용하여 Kubernetes 클러스터를 설치하고 Nginmesh 사이드카를 배포하는 방법을 설명합니다."><meta property="twitter:card" content="summary"><meta name=keyword content="Lionel.J, lionel jeon, Lionel Jeon, hybridego, Lionel's web log, Lionel's blog, Lionel Blog, blog, personal website, internet, Web, cloud native, PaaS, Istio, Kubernetes, microservices"><link rel="shortcut icon" href=/img/favicon.ico><title>Nginx 오픈소스 서비스 메시 컴포넌트 Nginmesh 설치 가이드 | Lionel 블로그 | Lionel Blog</title><link rel=canonical href=/2018/01/02/nginmesh-install/><link rel=stylesheet href=/css/bootstrap.min.css><link rel=stylesheet href=/css/hugo-theme-cleanwhite.min.css><link rel=stylesheet href=/css/zanshang.css><link rel=stylesheet href=/css/font-awesome.all.min.css><script src=/js/jquery.min.js></script><script src=/js/bootstrap.min.js></script><script src=/js/hux-blog.min.js></script><script src=/js/lazysizes.min.js></script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2995694833554782" crossorigin=anonymous></script></head><nav class="navbar navbar-default navbar-custom navbar-fixed-top"><div class=container-fluid><div class="navbar-header page-scroll"><button type=button class=navbar-toggle>
+<span class=sr-only>Toggle navigation</span>
+<span class=icon-bar></span>
+<span class=icon-bar></span>
+<span class=icon-bar></span>
+</button>
+<a class=navbar-brand href=/>Lionel Blog</a></div><div id=huxblog_navbar><div class=navbar-collapse><ul class="nav navbar-nav navbar-right"><li><a href=/>All Posts</a></li><li><a href=/categories/life/>life</a></li><li><a href=/categories/tech/>tech</a></li><li><a href=/categories/tips/>tips</a></li><li><a href=/archive//>ARCHIVE</a></li><li><a href=/notes//>NOTES</a></li><li><a href=/about//>ABOUT</a></li><li><a href=/search><i class="fa fa-search"></i></a></li></ul></div></div></div></nav><script>var $body=document.body,$toggle=document.querySelector(".navbar-toggle"),$navbar=document.querySelector("#huxblog_navbar"),$collapse=document.querySelector(".navbar-collapse");$toggle.addEventListener("click",handleMagic);function handleMagic(){$navbar.className.indexOf("in")>0?($navbar.className=" ",setTimeout(function(){$navbar.className.indexOf("in")<0&&($collapse.style.height="0px")},400)):($collapse.style.height="auto",$navbar.className+=" in")}</script><header class=intro-header style=background-image:url(/img/home-bg-jeep.jpg)><div class=container><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><div class=site-heading><h1>Lionel Blog</h1><span class=subheading>The road is under your feet, the heart looks to the distance</span></div></div></div></div></header><article><div class=container><div class=row><div class="col-lg-8 col-lg-offset-1
+col-md-8 col-md-offset-1
+col-sm-12
+col-xs-12
+post-container"><h2 id=서문>서문</h2><p>Nginmesh는 Istio 서비스 메시 플랫폼의 데이터 플레인 프록시로 사용되는 NGINX의 오픈소스 서비스 메시 프로젝트입니다. 이는 7계층 로드 밸런싱 및 서비스 라우팅 기능을 제공하며, Istio와 사이드카로 통합되어 &lsquo;표준적이고 안정적이며 안전한 방식&rsquo;으로 서비스 간 통신을 용이하게 하는 것을 목표로 합니다. Nginmesh는 연말에 0.2 및 0.3 버전을 연속으로 출시하여 서비스 디스커버리, 요청 전달, 라우팅 규칙, 성능 지표 수집 등의 기능을 제공합니다.</p><p><img src=https://raw.githubusercontent.com/nginmesh/nginmesh/master/images/nginx_sidecar.png alt="Nginmesh sidecar proxy"></p><blockquote><p>참고: 이 설치 가이드는 Ubuntu 16.04를 기반으로 하며, Centos에서는 일부 설치 단계 명령을 약간 수정해야 할 수 있습니다.</p></blockquote><h2 id=kubernetes-클러스터-설치>Kubernetes 클러스터 설치</h2><p>Kubernetes 클러스터는 etcd, API 서버, 스케줄러, 컨트롤러 관리자 등 여러 컴포넌트를 포함하며, 컴포넌트 간의 구성이 비교적 복잡합니다. 각 컴포넌트를 수동으로 하나씩 설치하고 구성하려면 Kubernetes, 운영 체제 및 네트워크에 대한 광범위한 지식이 필요하며, 설치자의 역량이 높아야 합니다. kubeadm은 Kubernetes 클러스터를 쉽고 빠르게 설치할 수 있는 방법을 제공하며, 구성 파일을 통해 높은 유연성을 제공하므로 kubeadm을 사용하여 Kubernetes 클러스터를 설치합니다.</p><p>먼저 <a href=https://kubernetes.io/docs/setup/independent/install-kubeadm>kubeadm 설명서</a>를 참조하여 Kubernetes 클러스터를 배포할 각 노드에 docker, kubeadm, kubelet 및 kubectl을 설치합니다.</p><p>docker 설치</p><pre tabindex=0><code>apt-get update
+apt-get install -y docker.io
+</code></pre><p>Google 소스를 사용하여 kubelet, kubeadm 및 kubectl 설치</p><pre tabindex=0><code>apt-get update &amp;&amp; apt-get install -y apt-transport-https
+curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
+cat &lt;&lt;EOF &gt;/etc/apt/sources.list.d/kubernetes.list
+deb http://apt.kubernetes.io/ kubernetes-xenial main
+EOF
+apt-get update
+apt-get install -y kubelet kubeadm kubectl
+</code></pre><p>kubeadm을 사용하여 Kubernetes 클러스터 설치</p><p>Nginmesh는 Kubernetes의 <a href=https://kubernetes.io/docs/admin/extensible-admission-controllers/#initializers>Initializer 메커니즘</a>을 사용하여 사이드카 자동 주입을 구현합니다. Initializer는 현재 Kubernetes의 알파 기능이며 기본적으로 비활성화되어 있습니다. <a href=https://kubernetes.io/docs/admin/extensible-admission-controllers/#enable-initializers-alpha-feature>API 서버 매개변수</a>를 통해 활성화해야 합니다. 따라서 먼저 API 서버 시작 매개변수를 구성하는 데 사용되는 kubeadm-conf 구성 파일을 만듭니다.</p><pre tabindex=0><code>apiVersion: kubeadm.k8s.io/v1alpha1
+kind: MasterConfiguration
+apiServerExtraArgs:
+  admission-control: Initializers,NamespaceLifecycle,LimitRanger,ServiceAccount,PersistentVolumeLabel,DefaultStorageClass,ValidatingAdmissionWebhook,ResourceQuota,DefaultTolerationSeconds,MutatingAdmissionWebhook
+  runtime-config: admissionregistration.k8s.io/v1alpha1
+</code></pre><p>kubeadm init 명령을 사용하여 Kubernetes 마스터 노드를 생성합니다.
+먼저 &ndash;dry-run 매개변수를 사용하여 구성 파일을 확인해 볼 수 있습니다.</p><pre tabindex=0><code>kubeadm init --config kubeadm-conf --dry-run
+</code></pre><p>모든 것이 정상이면 kubeadm은 &ldquo;Finished dry-running successfully. Above are the resources that would be created.&ldquo;라고 표시합니다.</p><p>이제 실제 생성 명령을 실행합니다.</p><pre tabindex=0><code>kubeadm init --config kubeadm-conf
+</code></pre><p>kubeadm은 docker 이미지를 가져오는 데 시간이 좀 걸리며, 명령이 완료되면 작업 노드를 클러스터에 조인하는 방법이 표시됩니다. 다음과 같습니다.</p><pre tabindex=0><code> kubeadm join --token fffbf6.13bcb3563428cf23 10.12.5.15:6443 --discovery-token-ca-cert-hash sha256:27ad08b4cd9f02e522334979deaf09e3fae80507afde63acf88892c8b72f143f
+</code></pre><blockquote><p>참고: 현재 kubeadm은 단일 노드에 마스터 설치만 지원하며, 고가용성 설치는 향후 버전에서 구현될 예정입니다. Kubernetes 공식 문서에서는 etcd 데이터를 주기적으로 백업하는 것을 권장합니다 <a href=https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/#limitations>kubeadm limitations</a>.</p></blockquote><p>Kubeadm은 Pod에 필요한 네트워크를 설치하지 않으므로 Pod 네트워크를 수동으로 설치해야 합니다. 여기서는 Calico를 사용합니다.</p><pre tabindex=0><code>kubectl apply -f https://docs.projectcalico.org/v2.6/getting-started/kubernetes/installation/hosted/kubeadm/1.6/calico.yaml
+</code></pre><p>kubectl 명령을 사용하여 마스터 노드 설치 결과 확인</p><pre tabindex=0><code>ubuntu@kube-1:~$ kubectl get all
+NAME             TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
+svc/kubernetes   ClusterIP   10.96.0.1    &lt;none&gt;        443/TCP   12m
+</code></pre><p>각 작업 노드에서 위 kubeadm join 명령을 실행하여 작업 노드를 클러스터에 조인할 수 있습니다. kubectl 명령을 사용하여 클러스터의 노드 상태를 확인합니다.</p><pre tabindex=0><code> ubuntu@kube-1:~$ kubectl get nodes
+NAME      STATUS    ROLES     AGE       VERSION
+kube-1    Ready     master    21m       v1.9.0
+kube-2    Ready     &lt;none&gt;    47s       v1.9.0
+</code></pre><h2 id=istio-컨트롤-플레인-및-bookinfo-설치>Istio 컨트롤 플레인 및 Bookinfo 설치</h2><p><a href=https://github.com/nginmesh/nginmesh>Nginmesh 문서</a>를 참조하여 Istio 컨트롤 플레인 및 Bookinfo를 설치합니다.
+이 문서의 단계는 명확하므로 여기서는 자세히 설명하지 않습니다.</p><p>Nginmesh 문서에서는 Ingress의 External IP를 통해 bookinfo 애플리케이션에 액세스하는 것을 권장하지만, <a href=https://kubernetes.io/docs/concepts/services-networking/service/#type-loadbalancer>Loadbalancer는 지원되는 클라우드 환경에서만 작동</a>하며 특정 구성이 필요하다는 점에 유의해야 합니다. 예를 들어, Openstack 환경에서 클러스터를 생성한 경우, <a href=https://docs.openstack.org/magnum/ocata/dev/kubernetes-load-balancer.html>이 문서</a>를 참조하여 Openstack을 구성해야 Kubernetes의 Loadbalancer 서비스를 지원할 수 있습니다. 구성하지 않으면 Ingress External IP가 계속 보류 상태로 표시됩니다.</p><pre tabindex=0><code>NAME            TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)                                                            AGE
+istio-ingress   LoadBalancer   10.111.158.10   &lt;pending&gt;     80:32765/TCP,443:31969/TCP                                         11m
+istio-mixer     ClusterIP      10.107.135.31   &lt;none&gt;        9091/TCP,15004/TCP,9093/TCP,9094/TCP,9102/TCP,9125/UDP,42422/TCP   11m
+istio-pilot     ClusterIP      10.111.110.65   &lt;none&gt;        15003/TCP,443/TCP                                                  11m
+</code></pre><p>클라우드 환경에서 Loadbalancer 기능을 구성할 수 없는 경우, 클러스터의 노드 IP:Nodeport를 사용하여 Bookinfo 애플리케이션에 직접 액세스할 수 있습니다.</p><pre tabindex=0><code>http://10.12.5.31:32765/productpage
+</code></pre><p>클러스터 외부에서 액세스하는 방법에 대한 자세한 내용은 <a href=http://zhaohuabing.com/2017/11/28/access-application-from-outside/>Kubernetes 클러스터 외부에서 애플리케이션에 액세스하는 방법?</a>을 참조하십시오.</p><h2 id=자동-주입된-사이드카-확인>자동 주입된 사이드카 확인</h2><p>kubectl get pod reviews-v3-5fff595d9b-zsb2q -o yaml 명령을 사용하여 Bookinfo 애플리케이션의 reviews 서비스 Pod를 확인합니다.</p><pre tabindex=0><code>apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    sidecar.istio.io/status: injected-version-0.2.12
+  creationTimestamp: 2018-01-02T02:33:36Z
+  generateName: reviews-v3-5fff595d9b-
+  labels:
+    app: reviews
+    pod-template-hash: &#34;1999151856&#34;
+    version: v3
+  name: reviews-v3-5fff595d9b-zsb2q
+  namespace: default
+  ownerReferences:
+  - apiVersion: extensions/v1beta1
+    blockOwnerDeletion: true
+    controller: true
+    kind: ReplicaSet
+    name: reviews-v3-5fff595d9b
+    uid: 5599688c-ef65-11e7-8be6-fa163e160c7d
+  resourceVersion: &#34;3757&#34;
+  selfLink: /api/v1/namespaces/default/pods/reviews-v3-5fff595d9b-zsb2q
+  uid: 559d8c6f-ef65-11e7-8be6-fa163e160c7d
+spec:
+  containers:
+  - image: istio/examples-bookinfo-reviews-v3:0.2.3
+    imagePullPolicy: IfNotPresent
+    name: reviews
+    ports:
+    - containerPort: 9080
+      protocol: TCP
+    resources: {}
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: default-token-48vxx
+      readOnly: true
+  - args:
+    - proxy
+    - sidecar
+    - -v
+    - &#34;2&#34;
+    - --configPath
+    - /etc/istio/proxy
+    - --binaryPath
+    - /usr/local/bin/envoy
+    - --serviceCluster
+    - reviews
+    - --drainDuration
+    - 45s
+    - --parentShutdownDuration
+    - 1m0s
+    - --discoveryAddress
+    - istio-pilot.istio-system:15003
+    - --discoveryRefreshDelay
+    - 1s
+    - --zipkinAddress
+    - zipkin.istio-system:9411
+    - --connectTimeout
+    - 10s
+    - --statsdUdpAddress
+    - istio-mixer.istio-system:9125
+    - --proxyAdminPort
+    - &#34;15000&#34;
+    - --controlPlaneAuthPolicy
+    - NONE
+    env:
+    - name: POD_NAME
+      valueFrom:
+        fieldRef:
+          apiVersion: v1
+          fieldPath: metadata.name
+    - name: POD_NAMESPACE
+      valueFrom:
+        fieldRef:
+          apiVersion: v1
+          fieldPath: metadata.namespace
+    - name: INSTANCE_IP
+      valueFrom:
+        fieldRef:
+          apiVersion: v1
+          fieldPath: status.podIP
+    image: nginmesh/proxy_debug:0.2.12
+    imagePullPolicy: Always
+    name: istio-proxy
+    resources: {}
+    securityContext:
+      privileged: true
+      readOnlyRootFilesystem: false
+      runAsUser: 1337
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /etc/istio/proxy
+      name: istio-envoy
+    - mountPath: /etc/certs/
+      name: istio-certs
+      readOnly: true
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: default-token-48vxx
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  initContainers:
+  - args:
+    - -p
+    - &#34;15001&#34;
+    - -u
+    - &#34;1337&#34;
+    image: nginmesh/proxy_init:0.2.12
+    imagePullPolicy: Always
+    name: istio-init
+    resources: {}
+    securityContext:
+      capabilities:
+        add:
+        - NET_ADMIN
+      privileged: true
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: default-token-48vxx
+      readOnly: true
+  nodeName: kube-2
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - emptyDir:
+      medium: Memory
+    name: istio-envoy
+  - name: istio-certs
+    secret:
+      defaultMode: 420
+      optional: true
+      secretName: istio.default
+  - name: default-token-48vxx
+    secret:
+      defaultMode: 420
+      secretName: default-token-48vxx
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: 2018-01-02T02:33:54Z
+    status: &#34;True&#34;
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: 2018-01-02T02:36:06Z
+    status: &#34;True&#34;
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: 2018-01-02T02:33:36Z
+    status: &#34;True&#34;
+    type: PodScheduled
+  containerStatuses:
+  - containerID: docker://5d0c189b9dde8e14af4c8065ee5cf007508c0bb2b3c9535598d99dc49f531370
+    image: nginmesh/proxy_debug:0.2.12
+    imageID: docker-pullable://nginmesh/proxy_debug@sha256:6275934ea3a1ce5592e728717c4973ac704237b06b78966a1d50de3bc9319c71
+    lastState: {}
+    name: istio-proxy
+    ready: true
+    restartCount: 0
+    state:
+      running:
+        startedAt: 2018-01-02T02:36:05Z
+  - containerID: docker://aba3e114ac1aa87c75e969dcc1b0725696de78d3407c5341691d9db579429f28
+    image: istio/examples-bookinfo-reviews-v3:0.2.3
+    imageID: docker-pullable://istio/examples-bookinfo-reviews-v3@sha256:6e100e4805a8c10c47040ea7b66f10ad619c7e0068696032546ad3e35ad46570
+    lastState: {}
+    name: reviews
+    ready: true
+    restartCount: 0
+    state:
+      running:
+        startedAt: 2018-01-02T02:35:47Z
+  hostIP: 10.12.5.31
+  initContainerStatuses:
+  - containerID: docker://b55108625832a3205a265e8b45e5487df10276d5ae35af572ea4f30583933c1f
+    image: nginmesh/proxy_init:0.2.12
+    imageID: docker-pullable://nginmesh/proxy_init@sha256:f73b68839f6ac1596d6286ca498e4478b8fcfa834e4884418d23f9f625cbe5f5
+    lastState: {}
+    name: istio-init
+    ready: true
+    restartCount: 0
+    state:
+      terminated:
+        containerID: docker://b55108625832a3205a265e8b45e5487df10276d5ae35af572ea4f30583933c1f
+        exitCode: 0
+        finishedAt: 2018-01-02T02:33:53Z
+        reason: Completed
+        startedAt: 2018-01-02T02:33:53Z
+  phase: Running
+  podIP: 192.168.79.138
+  qosClass: BestEffort
+  startTime: 2018-01-02T02:33:39Z
+</code></pre><p>이 명령줄 출력은 상당히 길지만, Pod에 nginmesh/proxy_debug 컨테이너가 주입되었고 initContainer nginmesh/proxy_init가 추가된 것을 볼 수 있습니다. 이 두 컨테이너는 Kubernetes 이니셜라이저를 통해 Pod에 자동으로 주입됩니다. 이 두 컨테이너는 각각 어떤 역할을 할까요? <a href=https://github.com/nginmesh/nginmesh/tree/49cd69a61d7d330685ef39ccd63fac06421c3da2/istio/agent>Nginmesh 소스 코드의 설명</a>을 살펴보겠습니다.</p><ul><li><p>proxy_debug: 에이전트 및 NGINX와 함께 제공됩니다.</p></li><li><p>proxy_init: proxy_debug 이미지에서 NGINX 프록시를 애플리케이션 Pod에 투명하게 주입하기 위한 iptables 규칙을 구성하는 데 사용됩니다.</p></li></ul><p>proxy_debug는 사이드카 프록시이고, proxy_init는 iptable 규칙을 구성하여 애플리케이션 트래픽을 사이드카 프록시로 라우팅하는 데 사용됩니다.</p><p>proxy_init의 Dockerfile을 보면 proxy_init가 실제로 <a href=https://github.com/nginmesh/nginmesh/blob/49cd69a61d7d330685ef39ccd63fac06421c3da2/istio/agent/docker-init/prepare_proxy.sh>prepare_proxy.sh</a> 스크립트를 호출하여 iptable 규칙을 생성하는 것을 알 수 있습니다.</p><p>proxy_debug Dockerfile</p><pre tabindex=0><code>FROM debian:stretch-slim
+RUN apt-get update &amp;&amp; apt-get install -y iptables
+ADD prepare_proxy.sh /
+ENTRYPOINT [&#34;/prepare_proxy.sh&#34;]
+</code></pre><p>prepare_proxy.sh 발췌</p><pre tabindex=0><code>...생략
+
+# 인바운드 및 아웃바운드 트래픽을 공통 Envoy 포트로 리디렉션하기 위한 새 체인 생성.
+iptables -t nat -N ISTIO_REDIRECT                                             -m comment --comment &#34;istio/redirect-common-chain&#34;
+iptables -t nat -A ISTIO_REDIRECT -p tcp -j REDIRECT --to-port ${ENVOY_PORT}  -m comment --comment &#34;istio/redirect-to-envoy-port&#34;
+
+# 모든 인바운드 트래픽을 Envoy로 리디렉션.
+iptables -t nat -A PREROUTING -j ISTIO_REDIRECT                               -m comment --comment &#34;istio/install-istio-prerouting&#34;
+
+# 아웃바운드 패킷을 Envoy로 선택적으로 리디렉션하기 위한 새 체인 생성.
+iptables -t nat -N ISTIO_OUTPUT                                               -m comment --comment &#34;istio/common-output-chain&#34;
+
+...생략
+</code></pre><h2 id=관련-자료>관련 자료</h2><p><a href=http://zhaohuabing.com/2017/11/04/istio-install_and_example/>Istio 및 Bookinfo 예제 프로그램 설치 및 사용 노트</a></p><h2 id=참고-자료>참고 자료</h2><ul><li><p><a href=https://github.com/nginmesh/nginmesh/>Istio 및 NGINX를 사용한 서비스 메시</a></p></li><li><p><a href=https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/#14-installing-kubeadm-on-your-hosts>kubeadm을 사용하여 클러스터 생성</a></p></li><li><p><a href=https://kubernetes.io/docs/admin/extensible-admission-controllers/#enable-initializers-alpha-feature>Kubernetes 참조 문서 - 동적 어드미션 컨트롤</a></p></li></ul><link href=https://hybridego.github.io/dist/Artalk.css rel=stylesheet><script src=https://hybridego.github.io/dist/Artalk.js></script><div id=Comments></div><script>Artalk.init({el:"#Comments",pageKey:"https://hybridego.github.io/2018/01/02/nginmesh-install/",pageTitle:"Nginx 오픈소스 서비스 메시 컴포넌트 Nginmesh 설치 가이드",server:"https://hybridego.github.io",site:"lionel blog"})</script></div><div class="col-lg-3 col-lg-offset-0
+col-md-3 col-md-offset-0
+col-sm-12
+col-xs-12
+sidebar-container"><section class="visible-md visible-lg"><div class=short-about><a href=/about><img src=/img/lionelj.png alt=avatar style=cursor:pointer></a><p>Software Developer, Embedded Systems Engineer, Linux Application Developer, Open Source Enthusiast and Life Adventurer</p><ul class=list-inline><li><a href=mailto:hybridego@gmail.com><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i>
+<i class="fa fa-envelope fa-stack-1x fa-inverse"></i></span></a></li><li><a href=https://x.com/LioJeon><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-twitter fa-stack-1x fa-inverse"></i></span></a></li><li><a target=_blank href=/img/wechat.png><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-weixin fa-stack-1x fa-inverse"></i></span></a></li><li><a target=_blank href=https://github.com/hybridego><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-github fa-stack-1x fa-inverse"></i></span></a></li><li><a target=_blank href=https://www.linkedin.com/in/hocheol-jeon-5569b067/><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-linkedin fa-stack-1x fa-inverse"></i></span></a></li></ul></div></section><section><hr><h5>QUICK LINKS</h5><ul class=list-inline><li><a target=_blank href=#ZgotmplZ>NotebookLM</a></li><li><a target=_blank href=https://www.perplexity.ai/>Perplexity</a></li><li><a target=_blank href=https://chatgpt.com/>Chatgpt</a></li><li><a target=_blank href=https://claude.ai/new>Claude</a></li><li><a target=_blank href=https://grok.com/>Grok</a></li></ul></section><section><hr class="hidden-sm hidden-xs"><h5>FEATURED TAGS</h5><div class=tags><a href=/tags/docker title=docker>docker
+</a><a href=/tags/istio title=istio>istio
+</a><a href=/tags/kubernetes title=kubernetes>kubernetes
+</a><a href=/tags/linux title=linux>linux
+</a><a href=/tags/microservice title=microservice>microservice
+</a><a href=/tags/rust title=rust>rust
+</a><a href=/tags/security title=security>security
+</a><a href=/tags/service-mesh title="service mesh">service mesh
+</a><a href=/tags/ssh title=ssh>ssh
+</a><a href=/tags/tips title=tips>tips
+</a><a href=/tags/vscode title=vscode>vscode</a></div></section><section><hr class="hidden-sm hidden-xs"><h5>FRIENDS</h5><ul class=list-inline><li><a target=_blank href=https://hybridego.net/>Lionel's Blog</a></li></ul></section></div></div></div></article><footer><div class=container><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><ul class="list-inline text-center"><li><a href=mailto:hybridego@gmail.com><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
+<i class="fas fa-envelope fa-stack-1x fa-inverse"></i></span></a></li><li><a href=https://x.com/LioJeon><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-twitter fa-stack-1x fa-inverse"></i></span></a></li><li><a target=_blank href=/img/wechat.png><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-weixin fa-stack-1x fa-inverse"></i></span></a></li><li><a target=_blank href=https://github.com/hybridego><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-github fa-stack-1x fa-inverse"></i></span></a></li><li><a target=_blank href=https://www.linkedin.com/in/hocheol-jeon-5569b067/><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-linkedin fa-stack-1x fa-inverse"></i></span></a></li><li><a href rel=alternate type=application/rss+xml title="Lionel Blog"><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
+<i class="fas fa-rss fa-stack-1x fa-inverse"></i></span></a></li></ul><p class="copyright text-muted">Copyright &copy; Lionel Blog 2025<br></p></div></div></div></footer><script>function loadAsync(e,t){var s=document,o="script",n=s.createElement(o),i=s.getElementsByTagName(o)[0];n.src=e,t&&n.addEventListener("load",function(e){t(null,e)},!1),i.parentNode.insertBefore(n,i)}</script><script>$("#tag_cloud").length!==0&&loadAsync("/js/jquery.tagcloud.js",function(){$.fn.tagcloud.defaults={color:{start:"#bbbbee",end:"#0085a1"}},$("#tag_cloud a").tagcloud()})</script><script>loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js",function(){var e=document.querySelector("nav");e&&FastClick.attach(e)})</script><script type=text/javascript>function generateCatalog(e){_containerSelector="div.post-container";var t,n,s,o,i,a=$(_containerSelector),r=a.find("h1,h2,h3,h4,h5,h6");return $(e).html(""),r.each(function(){n=$(this).prop("tagName").toLowerCase(),o="#"+$(this).prop("id"),t=$(this).text(),i=$('<a href="'+o+'" rel="nofollow" title="'+t+'">'+t+"</a>"),s=$('<li class="'+n+'_nav"></li>').append(i),$(e).append(s)}),!0}generateCatalog(".catalog-body"),$(".catalog-toggle").click(function(e){e.preventDefault(),$(".side-catalog").toggleClass("fold")}),loadAsync("/js/jquery.nav.js",function(){$(".catalog-body").onePageNav({currentClass:"active",changeHash:!1,easing:"swing",filter:"",scrollSpeed:700,scrollOffset:0,scrollThreshold:.2,begin:null,end:null,scrollChange:null,padding:80})})</script></body></html>
