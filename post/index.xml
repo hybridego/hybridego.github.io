@@ -1,4 +1,17 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Lionel Blog</title><link>https://hybridego.github.io/post/</link><description>Recent content in Posts on Lionel Blog</description><generator>Hugo</generator><language>ko-kr</language><lastBuildDate>Fri, 04 Jul 2025 12:49:23 +0900</lastBuildDate><atom:link href="https://hybridego.github.io/post/index.xml" rel="self" type="application/rss+xml"/><item><title>High-Performance I/O in Unix Systems</title><link>https://hybridego.github.io/2025/07/04/High-Performance-IO-in-Unix-Systems/</link><pubDate>Fri, 04 Jul 2025 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2025/07/04/High-Performance-IO-in-Unix-Systems/</guid><description>&lt;h1 id="고성능-io를-위한-유닉스-시스템-호출-가이드">고성능 I/O를 위한 유닉스 시스템 호출 가이드&lt;/h1>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Lionel Blog</title><link>https://hybridego.github.io/post/</link><description>Recent content in Posts on Lionel Blog</description><generator>Hugo</generator><language>ko-kr</language><lastBuildDate>Wed, 09 Jul 2025 15:11:23 +0900</lastBuildDate><atom:link href="https://hybridego.github.io/post/index.xml" rel="self" type="application/rss+xml"/><item><title>How to Check the C++ Version in Use</title><link>https://hybridego.github.io/2025/07/04/Cpp_version_check/</link><pubDate>Wed, 09 Jul 2025 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2025/07/04/Cpp_version_check/</guid><description>&lt;h1 id="c-표준-버전-확인하기">C++ 표준 버전 확인하기&lt;/h1>
+&lt;pre>&lt;code>g++ -std=c++14 -E -dM -x c++ /dev/null | grep '__cplusplus'
+&lt;/code>&lt;/pre>
+&lt;p>이 명령은 g++ 컴파일러가 인식하는 C++ 표준 버전을 확인하는 명령입니다. 각 옵션의 역할은 다음과 같습니다:&lt;/p>
+&lt;ul>
+&lt;li>g++: GNU C++ 컴파일러를 실행합니다.&lt;/li>
+&lt;li>-std=c++14: C++14 표준을 사용하도록 지정합니다. 다른 버전(c++11, c++17 등)으로 변경할 수 있습니다.&lt;/li>
+&lt;li>-E: 전처리 단계만 수행하고 결과를 출력합니다. 컴파일 과정은 생략됩니다.&lt;/li>
+&lt;li>-dM: 전처리된 출력에서 매크로 정의만 포함하도록 지정합니다.&lt;/li>
+&lt;li>-x c++: 입력 파일의 종류를 C++ 소스 코드로 간주합니다.&lt;/li>
+&lt;li>/dev/null: 실제 소스 코드 파일 대신 null 디바이스를 사용합니다. 이는 컴파일러 자체에서 정의된 매크로를 확인하기 위함입니다.&lt;/li>
+&lt;li>| grep &amp;lsquo;__cplusplus&amp;rsquo;: 전처리된 출력에서 __cplusplus 매크로를 검색하여 출력합니다.&lt;/li>
+&lt;/ul>
+&lt;p>__cplusplus 매크로는 컴파일러가 지원하는 C++ 표준 버전을 나타냅니다. 예를 들어, 출력이 201703L이면 C++17 표준을 지원함을 의미합니다.&lt;/p></description></item><item><title>High-Performance I/O in Unix Systems</title><link>https://hybridego.github.io/2025/07/04/High-Performance-IO-in-Unix-Systems/</link><pubDate>Fri, 04 Jul 2025 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2025/07/04/High-Performance-IO-in-Unix-Systems/</guid><description>&lt;h1 id="고성능-io를-위한-유닉스-시스템-호출-가이드">고성능 I/O를 위한 유닉스 시스템 호출 가이드&lt;/h1>
 &lt;p>유닉스 계열 운영 체제(리눅스, BSD 등)에서 고성능 I/O 작업은 대용량 데이터 전송, 네트워크 서버, 데이터 스트리밍 등에서 필수적입니다. 이번 포스팅에서는 &lt;code>readv()&lt;/code>, &lt;code>writev()&lt;/code>, &lt;code>splice()&lt;/code>, &lt;code>sendfile()&lt;/code>, &lt;code>funopen()&lt;/code>, &lt;code>sendmsg()&lt;/code>, &lt;code>io_uring&lt;/code>, 그리고 &lt;code>shm_open&lt;/code> 같은 함수들의 기능과 사용 예시를 정리하며, 리눅스와 BSD에서의 차이점을 살펴봅니다.&lt;/p></description></item><item><title>Buildroot Package version up</title><link>https://hybridego.github.io/2025/07/04/Buildroot-package-version-up/</link><pubDate>Fri, 04 Jul 2025 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2025/07/04/Buildroot-package-version-up/</guid><description>&lt;h1 id="buildroot-version-변경하는-방법">buildroot version 변경하는 방법&lt;/h1>
 &lt;pre tabindex="0">&lt;code>make nt98567_buildroot_defconfig
 &lt;/code>&lt;/pre>&lt;pre tabindex="0">&lt;code>make clean
