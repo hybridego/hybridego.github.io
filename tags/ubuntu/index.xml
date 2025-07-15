@@ -5,7 +5,7 @@
  &lt;i class="fas fa-copy">&lt;/i>
  &lt;/button>
  &lt;/div>
- &lt;pre>&lt;code class="">ssh-keygen -C &amp;#34;zhaohuabing@gmail.com&amp;#34;&lt;/code>&lt;/pre>
+ &lt;pre>&lt;code class="">ssh-keygen -C &amp;#34;hybridego@gmail.com&amp;#34;&lt;/code>&lt;/pre>
 &lt;/div>
 &lt;h2 id="shadowsocks">Shadowsocks&lt;/h2>
 &lt;p>Shadowsocks 설치&lt;/p>
