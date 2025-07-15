@@ -2,117 +2,165 @@
 &lt;ol>
 &lt;li>
 &lt;p>사용자에게 docker 권한 부여하기&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>sudo usermod -aG docker &lt;span style="color:#8be9fd;font-style:italic">$USER&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>newgrp docker
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;div class="highlight">
+ &lt;div class="code-toolbar">
+ &lt;button class="copy-code-button" title="Copy to clipboard">
+ &lt;i class="fas fa-copy">&lt;/i>
+ &lt;/button>
+ &lt;/div>
+ &lt;pre>&lt;code class="">sudo usermod -aG docker $USER
+newgrp docker&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;/li>
 &lt;li>
 &lt;p>Dockerfile 작성&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-dockerfile" data-lang="dockerfile">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ff79c6">FROM&lt;/span>&lt;span style="color:#f1fa8c"> ubuntu:24.04&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#6272a4"># Install required packages for minimal build environment and requested tools&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ff79c6">RUN&lt;/span> apt-get update &lt;span style="color:#ff79c6">&amp;amp;&amp;amp;&lt;/span> &lt;span style="color:#f1fa8c">\
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f1fa8c">&lt;/span> apt-get install -y &lt;span style="color:#f1fa8c">\
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f1fa8c">&lt;/span> build-essential &lt;span style="color:#f1fa8c">\
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f1fa8c">&lt;/span> cmake &lt;span style="color:#f1fa8c">\
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f1fa8c">&lt;/span> clang-tidy &lt;span style="color:#f1fa8c">\
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f1fa8c">&lt;/span> git &lt;span style="color:#f1fa8c">\
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f1fa8c">&lt;/span> vim &lt;span style="color:#f1fa8c">\
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f1fa8c">&lt;/span> sudo &lt;span style="color:#f1fa8c">\
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f1fa8c">&lt;/span> zsh &lt;span style="color:#f1fa8c">\
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f1fa8c">&lt;/span> openssh-server &lt;span style="color:#f1fa8c">\
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f1fa8c">&lt;/span> locales &lt;span style="color:#ff79c6">&amp;amp;&amp;amp;&lt;/span> &lt;span style="color:#f1fa8c">\
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f1fa8c">&lt;/span> apt-get clean &lt;span style="color:#ff79c6">&amp;amp;&amp;amp;&lt;/span> &lt;span style="color:#f1fa8c">\
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f1fa8c">&lt;/span> rm -rf /var/lib/apt/lists/*
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#6272a4"># Configure locale&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ff79c6">RUN&lt;/span> locale-gen en_US.UTF-8
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ff79c6">ENV&lt;/span> LANG en_US.UTF-8
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ff79c6">ENV&lt;/span> LANGUAGE en_US:en
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ff79c6">ENV&lt;/span> LC_ALL en_US.UTF-8
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#6272a4"># Create user and group (여기에서 1016 은 기존 서버의 userid 번호를 써줍니다.)&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ff79c6">RUN&lt;/span> groupadd -g &lt;span style="color:#bd93f9">1016&lt;/span> lionelj &lt;span style="color:#ff79c6">&amp;amp;&amp;amp;&lt;/span> &lt;span style="color:#f1fa8c">\
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f1fa8c">&lt;/span> useradd -u &lt;span style="color:#bd93f9">1016&lt;/span> -g &lt;span style="color:#bd93f9">1016&lt;/span> -m -s /bin/zsh lionelj &lt;span style="color:#ff79c6">&amp;amp;&amp;amp;&lt;/span> &lt;span style="color:#f1fa8c">\
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f1fa8c">&lt;/span> usermod -aG sudo lionelj
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#6272a4"># Configure SSH&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ff79c6">RUN&lt;/span> ssh-keygen -A &lt;span style="color:#ff79c6">&amp;amp;&amp;amp;&lt;/span> &lt;span style="color:#f1fa8c">\
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f1fa8c">&lt;/span> chmod &lt;span style="color:#bd93f9">600&lt;/span> /etc/ssh/ssh_host_* &lt;span style="color:#ff79c6">&amp;amp;&amp;amp;&lt;/span> &lt;span style="color:#f1fa8c">\
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f1fa8c">&lt;/span> chown root:root /etc/ssh/ssh_host_* &lt;span style="color:#ff79c6">&amp;amp;&amp;amp;&lt;/span> &lt;span style="color:#f1fa8c">\
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f1fa8c">&lt;/span> mkdir -p /var/run/sshd &lt;span style="color:#ff79c6">&amp;amp;&amp;amp;&lt;/span> &lt;span style="color:#f1fa8c">\
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f1fa8c">&lt;/span> chmod &lt;span style="color:#bd93f9">0755&lt;/span> /var/run/sshd &lt;span style="color:#ff79c6">&amp;amp;&amp;amp;&lt;/span> &lt;span style="color:#f1fa8c">\
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f1fa8c">&lt;/span> &lt;span style="color:#8be9fd;font-style:italic">echo&lt;/span> &lt;span style="color:#f1fa8c">&amp;#34;lionelj ALL=(ALL) NOPASSWD:ALL&amp;#34;&lt;/span> &amp;gt;&amp;gt; /etc/sudoers.d/lionelj &lt;span style="color:#ff79c6">&amp;amp;&amp;amp;&lt;/span> &lt;span style="color:#f1fa8c">\
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f1fa8c">&lt;/span> chmod &lt;span style="color:#bd93f9">0440&lt;/span> /etc/sudoers.d/lionelj &lt;span style="color:#ff79c6">&amp;amp;&amp;amp;&lt;/span> &lt;span style="color:#f1fa8c">\
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f1fa8c">&lt;/span> sed -i &lt;span style="color:#f1fa8c">&amp;#39;s/#Port 22/Port 2222/&amp;#39;&lt;/span> /etc/ssh/sshd_config &lt;span style="color:#ff79c6">&amp;amp;&amp;amp;&lt;/span> &lt;span style="color:#f1fa8c">\
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f1fa8c">&lt;/span> &lt;span style="color:#8be9fd;font-style:italic">echo&lt;/span> &lt;span style="color:#f1fa8c">&amp;#34;PasswordAuthentication yes&amp;#34;&lt;/span> &amp;gt;&amp;gt; /etc/ssh/sshd_config &lt;span style="color:#ff79c6">&amp;amp;&amp;amp;&lt;/span> &lt;span style="color:#f1fa8c">\
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f1fa8c">&lt;/span> &lt;span style="color:#8be9fd;font-style:italic">echo&lt;/span> &lt;span style="color:#f1fa8c">&amp;#39;lionelj:qwer&amp;#39;&lt;/span> | chpasswd
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#6272a4"># Expose SSH port&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ff79c6">EXPOSE&lt;/span>&lt;span style="color:#f1fa8c"> 2222&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#6272a4"># Start SSH server in background and keep container running&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ff79c6">RUN&lt;/span> &lt;span style="color:#8be9fd;font-style:italic">echo&lt;/span> &lt;span style="color:#f1fa8c">&amp;#39;#!/bin/bash\n\
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f1fa8c"> sudo /usr/sbin/sshd\n\
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f1fa8c"> if [ $? -ne 0 ]; then\n\
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f1fa8c"> echo &amp;#34;Failed to start sshd&amp;#34;\n\
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f1fa8c"> exit 1\n\
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f1fa8c"> fi\n\
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f1fa8c"> tail -f /dev/null&amp;#39;&lt;/span> &amp;gt; /start.sh &lt;span style="color:#ff79c6">&amp;amp;&amp;amp;&lt;/span> &lt;span style="color:#f1fa8c">\
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f1fa8c">&lt;/span> chmod +x /start.sh
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ff79c6">CMD&lt;/span> [&lt;span style="color:#f1fa8c">&amp;#34;/start.sh&amp;#34;&lt;/span>]
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;div class="highlight">
+ &lt;div class="code-toolbar">
+ &lt;button class="copy-code-button" title="Copy to clipboard">
+ &lt;i class="fas fa-copy">&lt;/i>
+ &lt;/button>
+ &lt;/div>
+ &lt;pre>&lt;code class="">FROM ubuntu:24.04
+
+# Install required packages for minimal build environment and requested tools
+RUN apt-get update &amp;amp;&amp;amp; \
+ apt-get install -y \
+ build-essential \
+ cmake \
+ clang-tidy \
+ git \
+ vim \
+ sudo \
+ zsh \
+ openssh-server \
+ locales &amp;amp;&amp;amp; \
+ apt-get clean &amp;amp;&amp;amp; \
+ rm -rf /var/lib/apt/lists/*
+
+# Configure locale
+RUN locale-gen en_US.UTF-8
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
+ENV LC_ALL en_US.UTF-8
+
+# Create user and group (여기에서 1016 은 기존 서버의 userid 번호를 써줍니다.)
+RUN groupadd -g 1016 lionelj &amp;amp;&amp;amp; \
+ useradd -u 1016 -g 1016 -m -s /bin/zsh lionelj &amp;amp;&amp;amp; \
+ usermod -aG sudo lionelj
+
+# Configure SSH
+RUN ssh-keygen -A &amp;amp;&amp;amp; \
+ chmod 600 /etc/ssh/ssh_host_* &amp;amp;&amp;amp; \
+ chown root:root /etc/ssh/ssh_host_* &amp;amp;&amp;amp; \
+ mkdir -p /var/run/sshd &amp;amp;&amp;amp; \
+ chmod 0755 /var/run/sshd &amp;amp;&amp;amp; \
+ echo &amp;#34;lionelj ALL=(ALL) NOPASSWD:ALL&amp;#34; &amp;gt;&amp;gt; /etc/sudoers.d/lionelj &amp;amp;&amp;amp; \
+ chmod 0440 /etc/sudoers.d/lionelj &amp;amp;&amp;amp; \
+ sed -i &amp;#39;s/#Port 22/Port 2222/&amp;#39; /etc/ssh/sshd_config &amp;amp;&amp;amp; \
+ echo &amp;#34;PasswordAuthentication yes&amp;#34; &amp;gt;&amp;gt; /etc/ssh/sshd_config &amp;amp;&amp;amp; \
+ echo &amp;#39;lionelj:qwer&amp;#39; | chpasswd
+
+# Expose SSH port
+EXPOSE 2222
+
+# Start SSH server in background and keep container running
+RUN echo &amp;#39;#!/bin/bash\n\
+ sudo /usr/sbin/sshd\n\
+ if [ $? -ne 0 ]; then\n\
+ echo &amp;#34;Failed to start sshd&amp;#34;\n\
+ exit 1\n\
+ fi\n\
+ tail -f /dev/null&amp;#39; &amp;gt; /start.sh &amp;amp;&amp;amp; \
+ chmod &amp;#43;x /start.sh
+
+CMD [&amp;#34;/start.sh&amp;#34;]&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;/li>
 &lt;li>
 &lt;p>docker build&lt;/p></description></item><item><title>Docker SSH tunneling</title><link>https://hybridego.github.io/2025/05/21/Docker_SSH_tunneling/</link><pubDate>Wed, 21 May 2025 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2025/05/21/Docker_SSH_tunneling/</guid><description>&lt;h2 id="docker-와-ssh-터널링-설정">Docker 와 ssh 터널링 설정&lt;/h2>
 &lt;ol>
 &lt;li>처음 실행 (필요한 디렉토리 mount 하고 이미지와 shell 선택, user 지정)&lt;/li>
 &lt;/ol>
-&lt;pre tabindex="0">&lt;code class="language-base" data-lang="base">docker run -it \
+&lt;div class="highlight">
+ &lt;div class="code-toolbar">
+ &lt;button class="copy-code-button" title="Copy to clipboard">
+ &lt;i class="fas fa-copy">&lt;/i>
+ &lt;/button>
+ &lt;/div>
+ &lt;pre>&lt;code class="">docker run -it \
  -v /home/lionelj:/home/lionelj \
  --name lj-ubuntu \
  -v /opt:/opt \
  ubuntu:24.04 \
- /bin/bash
-&lt;/code>&lt;/pre>&lt;ol start="2">
+ /bin/bash&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;ol start="2">
 &lt;li>Docker 에서 필요한 기본 설정&lt;/li>
 &lt;/ol>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>apt-get update 
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>apt-get install -y sudo 
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>apt-get install -y vim git zsh
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>groupadd -g &lt;span style="color:#bd93f9">1016&lt;/span> lionelj 
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>useradd -u &lt;span style="color:#bd93f9">1016&lt;/span> -g &lt;span style="color:#bd93f9">1016&lt;/span> -m -s /bin/zsh lionelj
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>usermod -aG sudo lionelj &lt;span style="color:#6272a4">#사용자를 sudo 그룹에 추가. -a: 기존 그룹을 유지하면서 추가. -G sudo: sudo 그룹에 추가.&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>sudo apt-get install -y locales
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>sudo locale-gen en_US.UTF-8
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="3">
+&lt;div class="highlight">
+ &lt;div class="code-toolbar">
+ &lt;button class="copy-code-button" title="Copy to clipboard">
+ &lt;i class="fas fa-copy">&lt;/i>
+ &lt;/button>
+ &lt;/div>
+ &lt;pre>&lt;code class="">apt-get update 
+apt-get install -y sudo 
+apt-get install -y vim git zsh
+groupadd -g 1016 lionelj 
+useradd -u 1016 -g 1016 -m -s /bin/zsh lionelj
+
+usermod -aG sudo lionelj #사용자를 sudo 그룹에 추가. -a: 기존 그룹을 유지하면서 추가. -G sudo: sudo 그룹에 추가.
+
+sudo apt-get install -y locales
+sudo locale-gen en_US.UTF-8&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;ol start="3">
 &lt;li>다음부터는 만들어진 container로 접속&lt;/li>
 &lt;/ol>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#6272a4"># container name으로 접속&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>docker start lj-ubuntu
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#6272a4"># container id로 접속&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>docker start 708d99e6c6b9
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#6272a4"># start 후 shell로 접속&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>docker &lt;span style="color:#8be9fd;font-style:italic">exec&lt;/span> -it lj-ubuntu /bin/bash
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="4">
+&lt;div class="highlight">
+ &lt;div class="code-toolbar">
+ &lt;button class="copy-code-button" title="Copy to clipboard">
+ &lt;i class="fas fa-copy">&lt;/i>
+ &lt;/button>
+ &lt;/div>
+ &lt;pre>&lt;code class=""># container name으로 접속
+docker start lj-ubuntu
+# container id로 접속
+docker start 708d99e6c6b9
+
+# start 후 shell로 접속
+docker exec -it lj-ubuntu /bin/bash&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;ol start="4">
 &lt;li>컨테이너를 이미지로 만들기 (이렇게 하면 누적된 image를 다 유지해야 함. 중간 image 삭제 불가)&lt;/li>
 &lt;/ol>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>docker commit &amp;lt;컨테이너_ID&amp;gt; my-ubuntu:custom
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#6272a4"># ex)&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ docker commit 7a613f013271 lionel-ubuntu:custom
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>sha256:ec1a4af2f69aa0b7b9366279979d80b0cce02ffd2b3f1e07f81ded54875f7666
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ docker images
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>REPOSITORY TAG IMAGE ID CREATED SIZE
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>lionel-ubuntu custom ec1a4af2f69a &lt;span style="color:#bd93f9">6&lt;/span> seconds ago 235MB
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>ubuntu 24.04 602eb6fb314b &lt;span style="color:#bd93f9">2&lt;/span> weeks ago 78.1MB
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="5">
+&lt;div class="highlight">
+ &lt;div class="code-toolbar">
+ &lt;button class="copy-code-button" title="Copy to clipboard">
+ &lt;i class="fas fa-copy">&lt;/i>
+ &lt;/button>
+ &lt;/div>
+ &lt;pre>&lt;code class="">docker commit &amp;lt;컨테이너_ID&amp;gt; my-ubuntu:custom
+
+# ex)
+$ docker commit 7a613f013271 lionel-ubuntu:custom
+sha256:ec1a4af2f69aa0b7b9366279979d80b0cce02ffd2b3f1e07f81ded54875f7666
+
+$ docker images
+REPOSITORY TAG IMAGE ID CREATED SIZE
+lionel-ubuntu custom ec1a4af2f69a 6 seconds ago 235MB
+ubuntu 24.04 602eb6fb314b 2 weeks ago 78.1MB&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;ol start="5">
 &lt;li>새로 만든 이미지로 컨테이너 띄우기&lt;/li>
 &lt;/ol>
-&lt;pre tabindex="0">&lt;code>$ docker images
+&lt;div class="highlight">
+ &lt;div class="code-toolbar">
+ &lt;button class="copy-code-button" title="Copy to clipboard">
+ &lt;i class="fas fa-copy">&lt;/i>
+ &lt;/button>
+ &lt;/div>
+ &lt;pre>&lt;code class="">$ docker images
 REPOSITORY TAG IMAGE ID CREATED SIZE
 lionel-ubuntu 24.04 fa9ec891a58d 24 seconds ago 235MB
 ubuntu 24.04 602eb6fb314b 2 weeks ago 78.1MB
@@ -122,18 +170,32 @@ docker run -it \
  --name lj-ubuntu \
  -v /opt:/opt \
  lionel-ubuntu:24.04 \
- /bin/bash
-&lt;/code>&lt;/pre>&lt;ol start="6">
+ /bin/bash&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;ol start="6">
 &lt;li>ssh 설정 (container에 접속해서 sshd를 띄운다.)&lt;/li>
 &lt;/ol>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>mkdir /run/sshd 
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>/usr/sbin/sshd
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#6272a4"># 컨테이너는 기본적으로 systemd를 사용하지 않으므로, systemctl 대신 직접 sshd를 실행.&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="7">
+&lt;div class="highlight">
+ &lt;div class="code-toolbar">
+ &lt;button class="copy-code-button" title="Copy to clipboard">
+ &lt;i class="fas fa-copy">&lt;/i>
+ &lt;/button>
+ &lt;/div>
+ &lt;pre>&lt;code class="">mkdir /run/sshd 
+/usr/sbin/sshd
+
+# 컨테이너는 기본적으로 systemd를 사용하지 않으므로, systemctl 대신 직접 sshd를 실행.&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;ol start="7">
 &lt;li>ip 설정 (host 에서 docker container의 ip를 확인한다. ssh 터널링 설정을 해야 하기 때문)&lt;/li>
 &lt;/ol>
-&lt;pre tabindex="0">&lt;code>$ ip addr
+&lt;div class="highlight">
+ &lt;div class="code-toolbar">
+ &lt;button class="copy-code-button" title="Copy to clipboard">
+ &lt;i class="fas fa-copy">&lt;/i>
+ &lt;/button>
+ &lt;/div>
+ &lt;pre>&lt;code class="">$ ip addr
 1: lo: &amp;lt;LOOPBACK,UP,LOWER_UP&amp;gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1
  link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
  inet 127.0.0.1/8 scope host lo
@@ -141,38 +203,73 @@ docker run -it \
 1839: eth0@if1840: &amp;lt;BROADCAST,MULTICAST,UP,LOWER_UP&amp;gt; mtu 1500 qdisc noqueue state UP group default
  link/ether 02:42:ac:11:00:02 brd ff:ff:ff:ff:ff:ff link-netnsid 0
  inet 172.17.0.2/16 brd 172.17.255.255 scope global eth0 &amp;lt;&amp;lt;== 이 번호를 확인.
- valid_lft forever preferred_lft forever
-&lt;/code>&lt;/pre>&lt;ul>
+ valid_lft forever preferred_lft forever&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;ul>
 &lt;li>또 다른 ip 확인 방법 (host에서)&lt;/li>
 &lt;/ul>
-&lt;pre tabindex="0">&lt;code>$ docker inspect 85d05024ca50 | grep IPAddress
+&lt;div class="highlight">
+ &lt;div class="code-toolbar">
+ &lt;button class="copy-code-button" title="Copy to clipboard">
+ &lt;i class="fas fa-copy">&lt;/i>
+ &lt;/button>
+ &lt;/div>
+ &lt;pre>&lt;code class="">$ docker inspect 85d05024ca50 | grep IPAddress
  &amp;#34;SecondaryIPAddresses&amp;#34;: null,
  &amp;#34;IPAddress&amp;#34;: &amp;#34;172.17.0.2&amp;#34;,
- &amp;#34;IPAddress&amp;#34;: &amp;#34;172.17.0.2&amp;#34;,
-&lt;/code>&lt;/pre>&lt;ol start="8">
+ &amp;#34;IPAddress&amp;#34;: &amp;#34;172.17.0.2&amp;#34;,&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;ol start="8">
 &lt;li>컨테이너 중지 및 삭제 후 포트 매핑 포함하여 재실행&lt;/li>
 &lt;/ol>
-&lt;pre tabindex="0">&lt;code>docker run -it --name lj-ubuntu \
+&lt;div class="highlight">
+ &lt;div class="code-toolbar">
+ &lt;button class="copy-code-button" title="Copy to clipboard">
+ &lt;i class="fas fa-copy">&lt;/i>
+ &lt;/button>
+ &lt;/div>
+ &lt;pre>&lt;code class="">docker run -it --name lj-ubuntu \
  -v /home/lionelj:/home/lionelj \
  -v /opt:/opt \
  --user 1016:1016 \
  -p 2222:2222 \
  lj-ubuntu-3:24.04 \
- /bin/bash
-&lt;/code>&lt;/pre>&lt;ol start="9">
+ /bin/bash&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;ol start="9">
 &lt;li>이미지 이름 바꾸는 방법&lt;/li>
 &lt;/ol>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>docker tag 원래_이미지_이름:태그 새_이미지_이름:태그
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>docker rmi 원래_이미지_이름:태그
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;div class="highlight">
+ &lt;div class="code-toolbar">
+ &lt;button class="copy-code-button" title="Copy to clipboard">
+ &lt;i class="fas fa-copy">&lt;/i>
+ &lt;/button>
+ &lt;/div>
+ &lt;pre>&lt;code class="">docker tag 원래_이미지_이름:태그 새_이미지_이름:태그
+docker rmi 원래_이미지_이름:태그&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;ul>
 &lt;li>접속 하는 방법 ssh 터널링 (윈도우에서 설정.)&lt;/li>
 &lt;/ul>
-&lt;pre tabindex="0">&lt;code>ssh -L 2222:172.17.0.2:2222 lionelj@&amp;lt;호스트_IP&amp;gt;
-ssh -L 2222:172.17.0.2:2222 lionelj@192.168.85.15
-&lt;/code>&lt;/pre>&lt;ul>
+&lt;div class="highlight">
+ &lt;div class="code-toolbar">
+ &lt;button class="copy-code-button" title="Copy to clipboard">
+ &lt;i class="fas fa-copy">&lt;/i>
+ &lt;/button>
+ &lt;/div>
+ &lt;pre>&lt;code class="">ssh -L 2222:172.17.0.2:2222 lionelj@&amp;lt;호스트_IP&amp;gt;
+ssh -L 2222:172.17.0.2:2222 lionelj@192.168.85.15&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;ul>
 &lt;li>Windows ssh 설정&lt;/li>
 &lt;/ul>
-&lt;pre tabindex="0">&lt;code>C:\Users\lionel.j\.ssh\config 파일을 열고
+&lt;div class="highlight">
+ &lt;div class="code-toolbar">
+ &lt;button class="copy-code-button" title="Copy to clipboard">
+ &lt;i class="fas fa-copy">&lt;/i>
+ &lt;/button>
+ &lt;/div>
+ &lt;pre>&lt;code class="">C:\Users\lionel.j\.ssh\config 파일을 열고
 
 Host lj-ubuntu
   HostName localhost
@@ -180,7 +277,8 @@ Host lj-ubuntu
   Port 2222
 
 이렇게 추가 후
-vscode 에서 Remote-SSH: Connect to Host...로 lj-ubuntu 로 접속.
-&lt;/code>&lt;/pre>&lt;hr>
+vscode 에서 Remote-SSH: Connect to Host...로 lj-ubuntu 로 접속.&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;hr>
 &lt;h2 id="다음부터-사용할-때는-이렇게">다음부터 사용할 때는 이렇게&lt;/h2>
 &lt;p>다 설정하면 이렇게 하면 됨.&lt;/p></description></item></channel></rss>

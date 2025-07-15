@@ -1,21 +1,62 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Buildroot on Lionel Blog</title><link>https://hybridego.github.io/tags/buildroot/</link><description>Recent content in Buildroot on Lionel Blog</description><generator>Hugo</generator><language>ko-kr</language><lastBuildDate>Fri, 04 Jul 2025 10:03:23 +0900</lastBuildDate><atom:link href="https://hybridego.github.io/tags/buildroot/index.xml" rel="self" type="application/rss+xml"/><item><title>Buildroot Package version up</title><link>https://hybridego.github.io/2025/07/04/Buildroot-package-version-up/</link><pubDate>Fri, 04 Jul 2025 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2025/07/04/Buildroot-package-version-up/</guid><description>&lt;h1 id="buildroot-version-변경하는-방법">buildroot version 변경하는 방법&lt;/h1>
-&lt;pre tabindex="0">&lt;code>make nt98567_buildroot_defconfig
-&lt;/code>&lt;/pre>&lt;pre tabindex="0">&lt;code>make clean
-make &amp;lt;패키지이름&amp;gt;-rebuild
-&lt;/code>&lt;/pre>&lt;ul>
+&lt;div class="highlight">
+ &lt;div class="code-toolbar">
+ &lt;button class="copy-code-button" title="Copy to clipboard">
+ &lt;i class="fas fa-copy">&lt;/i>
+ &lt;/button>
+ &lt;/div>
+ &lt;pre>&lt;code class="">make nt98567_buildroot_defconfig&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;div class="highlight">
+ &lt;div class="code-toolbar">
+ &lt;button class="copy-code-button" title="Copy to clipboard">
+ &lt;i class="fas fa-copy">&lt;/i>
+ &lt;/button>
+ &lt;/div>
+ &lt;pre>&lt;code class="">make clean
+make &amp;lt;패키지이름&amp;gt;-rebuild&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;ul>
 &lt;li>패키지의 소스코드를 수정했다면, 캐시를 지우고 빌드해야 합니다&lt;/li>
 &lt;/ul>
-&lt;pre tabindex="0">&lt;code>make &amp;lt;패키지이름&amp;gt;-dirclean
-make &amp;lt;패키지이름&amp;gt;
-&lt;/code>&lt;/pre>&lt;ul>
+&lt;div class="highlight">
+ &lt;div class="code-toolbar">
+ &lt;button class="copy-code-button" title="Copy to clipboard">
+ &lt;i class="fas fa-copy">&lt;/i>
+ &lt;/button>
+ &lt;/div>
+ &lt;pre>&lt;code class="">make &amp;lt;패키지이름&amp;gt;-dirclean
+make &amp;lt;패키지이름&amp;gt;&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;ul>
 &lt;li>packagename.mk 에 다음과 같이 써있으면 host 설정에 따르는 것임&lt;/li>
 &lt;/ul>
-&lt;pre tabindex="0">&lt;code>$(eval $(virtual-package))
-$(eval $(host-virtual-package))
-&lt;/code>&lt;/pre>&lt;ul>
+&lt;div class="highlight">
+ &lt;div class="code-toolbar">
+ &lt;button class="copy-code-button" title="Copy to clipboard">
+ &lt;i class="fas fa-copy">&lt;/i>
+ &lt;/button>
+ &lt;/div>
+ &lt;pre>&lt;code class="">$(eval $(virtual-package))
+$(eval $(host-virtual-package))&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;ul>
 &lt;li>&lt;strong>host package 의 버전 확인하기&lt;/strong>&lt;/li>
 &lt;/ul>
-&lt;pre tabindex="0">&lt;code>pkg-config --modversion zlib
-&lt;/code>&lt;/pre>&lt;h1 id="sha256-hash값-구하기">sha256 hash값 구하기&lt;/h1>
-&lt;pre tabindex="0">&lt;code>sha256sum 파일이름
-&lt;/code>&lt;/pre></description></item></channel></rss>
+&lt;div class="highlight">
+ &lt;div class="code-toolbar">
+ &lt;button class="copy-code-button" title="Copy to clipboard">
+ &lt;i class="fas fa-copy">&lt;/i>
+ &lt;/button>
+ &lt;/div>
+ &lt;pre>&lt;code class="">pkg-config --modversion zlib&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;h1 id="sha256-hash값-구하기">sha256 hash값 구하기&lt;/h1>
+&lt;div class="highlight">
+ &lt;div class="code-toolbar">
+ &lt;button class="copy-code-button" title="Copy to clipboard">
+ &lt;i class="fas fa-copy">&lt;/i>
+ &lt;/button>
+ &lt;/div>
+ &lt;pre>&lt;code class="">sha256sum 파일이름&lt;/code>&lt;/pre>
+&lt;/div></description></item></channel></rss>

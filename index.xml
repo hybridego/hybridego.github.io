@@ -1,10 +1,30 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Lionel Blog</title><link>https://hybridego.github.io/</link><description>Recent content on Lionel Blog</description><generator>Hugo</generator><language>ko-kr</language><lastBuildDate>Wed, 09 Jul 2025 15:13:23 +0900</lastBuildDate><atom:link href="https://hybridego.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>How to Use do-while Loops in Shell Scripts</title><link>https://hybridego.github.io/2025/07/04/How_to_use_do_while_in_shell/</link><pubDate>Wed, 09 Jul 2025 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2025/07/04/How_to_use_do_while_in_shell/</guid><description>&lt;h1 id="how-to-use-do-while-loops-in-shell-scripts">How to Use do-while Loops in Shell Scripts&lt;/h1>
 &lt;h2 id="practical-examples-of-infinite-loops-in-bash">Practical Examples of Infinite Loops in Bash&lt;/h2>
 &lt;h3 id="bash에서-do-while-패턴을-사용하여-무한-루프를-구현하고-시스템-정보를-주기적으로-확인하는-방법을-소개합니다">Bash에서 do-while 패턴을 사용하여 무한 루프를 구현하고, 시스템 정보를 주기적으로 확인하는 방법을 소개합니다.&lt;/h3>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ff79c6">while&lt;/span> true; &lt;span style="color:#ff79c6">do&lt;/span> cat /sys/devices/platform/f01d0000.adc/iio:device0/in_voltage3_raw; sleep 1; &lt;span style="color:#ff79c6">done&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ff79c6">while&lt;/span> true; &lt;span style="color:#ff79c6">do&lt;/span> cat /sys/devices/platform/f01d0000.adc/iio:device0/in_voltage3_raw; &lt;span style="color:#ff79c6">done&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ff79c6">while&lt;/span> true; &lt;span style="color:#ff79c6">do&lt;/span> free -h; sleep 1; &lt;span style="color:#8be9fd;font-style:italic">echo&lt;/span> &lt;span style="color:#f1fa8c">&amp;#34;---&amp;#34;&lt;/span>; &lt;span style="color:#ff79c6">done&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>How to Check the C++ Version in Use</title><link>https://hybridego.github.io/2025/07/04/Cpp_version_check/</link><pubDate>Wed, 09 Jul 2025 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2025/07/04/Cpp_version_check/</guid><description>&lt;h1 id="c-표준-버전-확인하기">C++ 표준 버전 확인하기&lt;/h1>
+&lt;div class="highlight">
+ &lt;div class="code-toolbar">
+ &lt;button class="copy-code-button" title="Copy to clipboard">
+ &lt;i class="fas fa-copy">&lt;/i>
+ &lt;/button>
+ &lt;/div>
+ &lt;pre>&lt;code class="">while true; do cat /sys/devices/platform/f01d0000.adc/iio:device0/in_voltage3_raw; sleep 1; done&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;div class="highlight">
+ &lt;div class="code-toolbar">
+ &lt;button class="copy-code-button" title="Copy to clipboard">
+ &lt;i class="fas fa-copy">&lt;/i>
+ &lt;/button>
+ &lt;/div>
+ &lt;pre>&lt;code class="">while true; do cat /sys/devices/platform/f01d0000.adc/iio:device0/in_voltage3_raw; done&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;div class="highlight">
+ &lt;div class="code-toolbar">
+ &lt;button class="copy-code-button" title="Copy to clipboard">
+ &lt;i class="fas fa-copy">&lt;/i>
+ &lt;/button>
+ &lt;/div>
+ &lt;pre>&lt;code class="">while true; do free -h; sleep 1; echo &amp;#34;---&amp;#34;; done&lt;/code>&lt;/pre>
+&lt;/div></description></item><item><title>How to Check the C++ Version in Use</title><link>https://hybridego.github.io/2025/07/04/Cpp_version_check/</link><pubDate>Wed, 09 Jul 2025 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2025/07/04/Cpp_version_check/</guid><description>&lt;h1 id="c-표준-버전-확인하기">C++ 표준 버전 확인하기&lt;/h1>
 &lt;pre>&lt;code>g++ -std=c++14 -E -dM -x c++ /dev/null | grep '__cplusplus'
 &lt;/code>&lt;/pre>
 &lt;p>이 명령은 g++ 컴파일러가 인식하는 C++ 표준 버전을 확인하는 명령입니다. 각 옵션의 역할은 다음과 같습니다:&lt;/p>
@@ -19,107 +39,175 @@
 &lt;/ul>
 &lt;p>__cplusplus 매크로는 컴파일러가 지원하는 C++ 표준 버전을 나타냅니다. 예를 들어, 출력이 201703L이면 C++17 표준을 지원함을 의미합니다.&lt;/p></description></item><item><title>High-Performance I/O in Unix Systems</title><link>https://hybridego.github.io/2025/07/04/High-Performance-IO-in-Unix-Systems/</link><pubDate>Fri, 04 Jul 2025 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2025/07/04/High-Performance-IO-in-Unix-Systems/</guid><description>&lt;h1 id="고성능-io를-위한-유닉스-시스템-호출-가이드">고성능 I/O를 위한 유닉스 시스템 호출 가이드&lt;/h1>
 &lt;p>유닉스 계열 운영 체제(리눅스, BSD 등)에서 고성능 I/O 작업은 대용량 데이터 전송, 네트워크 서버, 데이터 스트리밍 등에서 필수적입니다. 이번 포스팅에서는 &lt;code>readv()&lt;/code>, &lt;code>writev()&lt;/code>, &lt;code>splice()&lt;/code>, &lt;code>sendfile()&lt;/code>, &lt;code>funopen()&lt;/code>, &lt;code>sendmsg()&lt;/code>, &lt;code>io_uring&lt;/code>, 그리고 &lt;code>shm_open&lt;/code> 같은 함수들의 기능과 사용 예시를 정리하며, 리눅스와 BSD에서의 차이점을 살펴봅니다.&lt;/p></description></item><item><title>Buildroot Package version up</title><link>https://hybridego.github.io/2025/07/04/Buildroot-package-version-up/</link><pubDate>Fri, 04 Jul 2025 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2025/07/04/Buildroot-package-version-up/</guid><description>&lt;h1 id="buildroot-version-변경하는-방법">buildroot version 변경하는 방법&lt;/h1>
-&lt;pre tabindex="0">&lt;code>make nt98567_buildroot_defconfig
-&lt;/code>&lt;/pre>&lt;pre tabindex="0">&lt;code>make clean
-make &amp;lt;패키지이름&amp;gt;-rebuild
-&lt;/code>&lt;/pre>&lt;ul>
+&lt;div class="highlight">
+ &lt;div class="code-toolbar">
+ &lt;button class="copy-code-button" title="Copy to clipboard">
+ &lt;i class="fas fa-copy">&lt;/i>
+ &lt;/button>
+ &lt;/div>
+ &lt;pre>&lt;code class="">make nt98567_buildroot_defconfig&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;div class="highlight">
+ &lt;div class="code-toolbar">
+ &lt;button class="copy-code-button" title="Copy to clipboard">
+ &lt;i class="fas fa-copy">&lt;/i>
+ &lt;/button>
+ &lt;/div>
+ &lt;pre>&lt;code class="">make clean
+make &amp;lt;패키지이름&amp;gt;-rebuild&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;ul>
 &lt;li>패키지의 소스코드를 수정했다면, 캐시를 지우고 빌드해야 합니다&lt;/li>
 &lt;/ul>
-&lt;pre tabindex="0">&lt;code>make &amp;lt;패키지이름&amp;gt;-dirclean
-make &amp;lt;패키지이름&amp;gt;
-&lt;/code>&lt;/pre>&lt;ul>
+&lt;div class="highlight">
+ &lt;div class="code-toolbar">
+ &lt;button class="copy-code-button" title="Copy to clipboard">
+ &lt;i class="fas fa-copy">&lt;/i>
+ &lt;/button>
+ &lt;/div>
+ &lt;pre>&lt;code class="">make &amp;lt;패키지이름&amp;gt;-dirclean
+make &amp;lt;패키지이름&amp;gt;&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;ul>
 &lt;li>packagename.mk 에 다음과 같이 써있으면 host 설정에 따르는 것임&lt;/li>
 &lt;/ul>
-&lt;pre tabindex="0">&lt;code>$(eval $(virtual-package))
-$(eval $(host-virtual-package))
-&lt;/code>&lt;/pre>&lt;ul>
+&lt;div class="highlight">
+ &lt;div class="code-toolbar">
+ &lt;button class="copy-code-button" title="Copy to clipboard">
+ &lt;i class="fas fa-copy">&lt;/i>
+ &lt;/button>
+ &lt;/div>
+ &lt;pre>&lt;code class="">$(eval $(virtual-package))
+$(eval $(host-virtual-package))&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;ul>
 &lt;li>&lt;strong>host package 의 버전 확인하기&lt;/strong>&lt;/li>
 &lt;/ul>
-&lt;pre tabindex="0">&lt;code>pkg-config --modversion zlib
-&lt;/code>&lt;/pre>&lt;h1 id="sha256-hash값-구하기">sha256 hash값 구하기&lt;/h1>
-&lt;pre tabindex="0">&lt;code>sha256sum 파일이름
-&lt;/code>&lt;/pre></description></item><item><title>linux 에서 시스템 Buff and Cache 비우기</title><link>https://hybridego.github.io/2025/07/02/Empty-Buff-Cache/</link><pubDate>Wed, 02 Jul 2025 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2025/07/02/Empty-Buff-Cache/</guid><description>&lt;h1 id="linux-에서-시스템-buff-and-cache-비우기">linux 에서 시스템 Buff and Cache 비우기&lt;/h1>
+&lt;div class="highlight">
+ &lt;div class="code-toolbar">
+ &lt;button class="copy-code-button" title="Copy to clipboard">
+ &lt;i class="fas fa-copy">&lt;/i>
+ &lt;/button>
+ &lt;/div>
+ &lt;pre>&lt;code class="">pkg-config --modversion zlib&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;h1 id="sha256-hash값-구하기">sha256 hash값 구하기&lt;/h1>
+&lt;div class="highlight">
+ &lt;div class="code-toolbar">
+ &lt;button class="copy-code-button" title="Copy to clipboard">
+ &lt;i class="fas fa-copy">&lt;/i>
+ &lt;/button>
+ &lt;/div>
+ &lt;pre>&lt;code class="">sha256sum 파일이름&lt;/code>&lt;/pre>
+&lt;/div></description></item><item><title>linux 에서 시스템 Buff and Cache 비우기</title><link>https://hybridego.github.io/2025/07/02/Empty-Buff-Cache/</link><pubDate>Wed, 02 Jul 2025 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2025/07/02/Empty-Buff-Cache/</guid><description>&lt;h1 id="linux-에서-시스템-buff-and-cache-비우기">linux 에서 시스템 Buff and Cache 비우기&lt;/h1>
 &lt;ul>
 &lt;li>/proc/sys/vm/drop_caches 사용
 리눅스 커널은 /proc/sys/vm/drop_caches 파일을 통해 캐시를 강제로 비울 수 있는 인터페이스를 제공합니다. 이 방법을 사용하려면 &lt;strong>루트 권한&lt;/strong>이 필요합니다.&lt;/li>
 &lt;/ul>
-&lt;pre tabindex="0">&lt;code># 캐시 비우기 (페이지 캐시만 비움)
+&lt;div class="highlight">
+ &lt;div class="code-toolbar">
+ &lt;button class="copy-code-button" title="Copy to clipboard">
+ &lt;i class="fas fa-copy">&lt;/i>
+ &lt;/button>
+ &lt;/div>
+ &lt;pre>&lt;code class=""># 캐시 비우기 (페이지 캐시만 비움)
 echo 1 | tee /proc/sys/vm/drop_caches
 
 # 덴트리(dentries)와 아이노드(inode) 캐시 비우기
 echo 2 | tee /proc/sys/vm/drop_caches
 
 # 페이지 캐시, 덴트리, 아이노드 모두 비우기 (가장 강력)
-echo 3 | tee /proc/sys/vm/drop_caches
-&lt;/code>&lt;/pre>&lt;ul>
+echo 3 | tee /proc/sys/vm/drop_caches&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;ul>
 &lt;li>강제로 비우는 대신, 큰 메모리를 사용하는 프로그램(예: stress 도구)을 실행해 시스템이 자연스럽게 buff/cache를 비우도록 유도할 수도 있습니다.&lt;/li>
 &lt;/ul>
-&lt;pre tabindex="0">&lt;code>sudo apt install stress # 설치 (Ubuntu/Debian 기준)
-stress --vm 1 --vm-bytes 200G # 200GB 메모리 사용 시뮬레이션
-&lt;/code>&lt;/pre></description></item><item><title>vscode remoteSSH용 docker 생성</title><link>https://hybridego.github.io/2025/06/18/VSCode-RemoteSSH-Docker/</link><pubDate>Wed, 18 Jun 2025 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2025/06/18/VSCode-RemoteSSH-Docker/</guid><description>&lt;h1 id="vscode-remotessh용-docker-생성">vscode remoteSSH용 docker 생성&lt;/h1>
+&lt;div class="highlight">
+ &lt;div class="code-toolbar">
+ &lt;button class="copy-code-button" title="Copy to clipboard">
+ &lt;i class="fas fa-copy">&lt;/i>
+ &lt;/button>
+ &lt;/div>
+ &lt;pre>&lt;code class="">sudo apt install stress # 설치 (Ubuntu/Debian 기준)
+stress --vm 1 --vm-bytes 200G # 200GB 메모리 사용 시뮬레이션&lt;/code>&lt;/pre>
+&lt;/div></description></item><item><title>vscode remoteSSH용 docker 생성</title><link>https://hybridego.github.io/2025/06/18/VSCode-RemoteSSH-Docker/</link><pubDate>Wed, 18 Jun 2025 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2025/06/18/VSCode-RemoteSSH-Docker/</guid><description>&lt;h1 id="vscode-remotessh용-docker-생성">vscode remoteSSH용 docker 생성&lt;/h1>
 &lt;ol>
 &lt;li>
 &lt;p>사용자에게 docker 권한 부여하기&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>sudo usermod -aG docker &lt;span style="color:#8be9fd;font-style:italic">$USER&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>newgrp docker
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;div class="highlight">
+ &lt;div class="code-toolbar">
+ &lt;button class="copy-code-button" title="Copy to clipboard">
+ &lt;i class="fas fa-copy">&lt;/i>
+ &lt;/button>
+ &lt;/div>
+ &lt;pre>&lt;code class="">sudo usermod -aG docker $USER
+newgrp docker&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;/li>
 &lt;li>
 &lt;p>Dockerfile 작성&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-dockerfile" data-lang="dockerfile">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ff79c6">FROM&lt;/span>&lt;span style="color:#f1fa8c"> ubuntu:24.04&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#6272a4"># Install required packages for minimal build environment and requested tools&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ff79c6">RUN&lt;/span> apt-get update &lt;span style="color:#ff79c6">&amp;amp;&amp;amp;&lt;/span> &lt;span style="color:#f1fa8c">\
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f1fa8c">&lt;/span> apt-get install -y &lt;span style="color:#f1fa8c">\
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f1fa8c">&lt;/span> build-essential &lt;span style="color:#f1fa8c">\
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f1fa8c">&lt;/span> cmake &lt;span style="color:#f1fa8c">\
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f1fa8c">&lt;/span> clang-tidy &lt;span style="color:#f1fa8c">\
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f1fa8c">&lt;/span> git &lt;span style="color:#f1fa8c">\
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f1fa8c">&lt;/span> vim &lt;span style="color:#f1fa8c">\
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f1fa8c">&lt;/span> sudo &lt;span style="color:#f1fa8c">\
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f1fa8c">&lt;/span> zsh &lt;span style="color:#f1fa8c">\
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f1fa8c">&lt;/span> openssh-server &lt;span style="color:#f1fa8c">\
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f1fa8c">&lt;/span> locales &lt;span style="color:#ff79c6">&amp;amp;&amp;amp;&lt;/span> &lt;span style="color:#f1fa8c">\
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f1fa8c">&lt;/span> apt-get clean &lt;span style="color:#ff79c6">&amp;amp;&amp;amp;&lt;/span> &lt;span style="color:#f1fa8c">\
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f1fa8c">&lt;/span> rm -rf /var/lib/apt/lists/*
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#6272a4"># Configure locale&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ff79c6">RUN&lt;/span> locale-gen en_US.UTF-8
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ff79c6">ENV&lt;/span> LANG en_US.UTF-8
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ff79c6">ENV&lt;/span> LANGUAGE en_US:en
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ff79c6">ENV&lt;/span> LC_ALL en_US.UTF-8
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#6272a4"># Create user and group (여기에서 1016 은 기존 서버의 userid 번호를 써줍니다.)&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ff79c6">RUN&lt;/span> groupadd -g &lt;span style="color:#bd93f9">1016&lt;/span> lionelj &lt;span style="color:#ff79c6">&amp;amp;&amp;amp;&lt;/span> &lt;span style="color:#f1fa8c">\
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f1fa8c">&lt;/span> useradd -u &lt;span style="color:#bd93f9">1016&lt;/span> -g &lt;span style="color:#bd93f9">1016&lt;/span> -m -s /bin/zsh lionelj &lt;span style="color:#ff79c6">&amp;amp;&amp;amp;&lt;/span> &lt;span style="color:#f1fa8c">\
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f1fa8c">&lt;/span> usermod -aG sudo lionelj
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#6272a4"># Configure SSH&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ff79c6">RUN&lt;/span> ssh-keygen -A &lt;span style="color:#ff79c6">&amp;amp;&amp;amp;&lt;/span> &lt;span style="color:#f1fa8c">\
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f1fa8c">&lt;/span> chmod &lt;span style="color:#bd93f9">600&lt;/span> /etc/ssh/ssh_host_* &lt;span style="color:#ff79c6">&amp;amp;&amp;amp;&lt;/span> &lt;span style="color:#f1fa8c">\
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f1fa8c">&lt;/span> chown root:root /etc/ssh/ssh_host_* &lt;span style="color:#ff79c6">&amp;amp;&amp;amp;&lt;/span> &lt;span style="color:#f1fa8c">\
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f1fa8c">&lt;/span> mkdir -p /var/run/sshd &lt;span style="color:#ff79c6">&amp;amp;&amp;amp;&lt;/span> &lt;span style="color:#f1fa8c">\
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f1fa8c">&lt;/span> chmod &lt;span style="color:#bd93f9">0755&lt;/span> /var/run/sshd &lt;span style="color:#ff79c6">&amp;amp;&amp;amp;&lt;/span> &lt;span style="color:#f1fa8c">\
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f1fa8c">&lt;/span> &lt;span style="color:#8be9fd;font-style:italic">echo&lt;/span> &lt;span style="color:#f1fa8c">&amp;#34;lionelj ALL=(ALL) NOPASSWD:ALL&amp;#34;&lt;/span> &amp;gt;&amp;gt; /etc/sudoers.d/lionelj &lt;span style="color:#ff79c6">&amp;amp;&amp;amp;&lt;/span> &lt;span style="color:#f1fa8c">\
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f1fa8c">&lt;/span> chmod &lt;span style="color:#bd93f9">0440&lt;/span> /etc/sudoers.d/lionelj &lt;span style="color:#ff79c6">&amp;amp;&amp;amp;&lt;/span> &lt;span style="color:#f1fa8c">\
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f1fa8c">&lt;/span> sed -i &lt;span style="color:#f1fa8c">&amp;#39;s/#Port 22/Port 2222/&amp;#39;&lt;/span> /etc/ssh/sshd_config &lt;span style="color:#ff79c6">&amp;amp;&amp;amp;&lt;/span> &lt;span style="color:#f1fa8c">\
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f1fa8c">&lt;/span> &lt;span style="color:#8be9fd;font-style:italic">echo&lt;/span> &lt;span style="color:#f1fa8c">&amp;#34;PasswordAuthentication yes&amp;#34;&lt;/span> &amp;gt;&amp;gt; /etc/ssh/sshd_config &lt;span style="color:#ff79c6">&amp;amp;&amp;amp;&lt;/span> &lt;span style="color:#f1fa8c">\
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f1fa8c">&lt;/span> &lt;span style="color:#8be9fd;font-style:italic">echo&lt;/span> &lt;span style="color:#f1fa8c">&amp;#39;lionelj:qwer&amp;#39;&lt;/span> | chpasswd
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#6272a4"># Expose SSH port&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ff79c6">EXPOSE&lt;/span>&lt;span style="color:#f1fa8c"> 2222&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#6272a4"># Start SSH server in background and keep container running&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ff79c6">RUN&lt;/span> &lt;span style="color:#8be9fd;font-style:italic">echo&lt;/span> &lt;span style="color:#f1fa8c">&amp;#39;#!/bin/bash\n\
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f1fa8c"> sudo /usr/sbin/sshd\n\
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f1fa8c"> if [ $? -ne 0 ]; then\n\
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f1fa8c"> echo &amp;#34;Failed to start sshd&amp;#34;\n\
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f1fa8c"> exit 1\n\
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f1fa8c"> fi\n\
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f1fa8c"> tail -f /dev/null&amp;#39;&lt;/span> &amp;gt; /start.sh &lt;span style="color:#ff79c6">&amp;amp;&amp;amp;&lt;/span> &lt;span style="color:#f1fa8c">\
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f1fa8c">&lt;/span> chmod +x /start.sh
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ff79c6">CMD&lt;/span> [&lt;span style="color:#f1fa8c">&amp;#34;/start.sh&amp;#34;&lt;/span>]
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;div class="highlight">
+ &lt;div class="code-toolbar">
+ &lt;button class="copy-code-button" title="Copy to clipboard">
+ &lt;i class="fas fa-copy">&lt;/i>
+ &lt;/button>
+ &lt;/div>
+ &lt;pre>&lt;code class="">FROM ubuntu:24.04
+
+# Install required packages for minimal build environment and requested tools
+RUN apt-get update &amp;amp;&amp;amp; \
+ apt-get install -y \
+ build-essential \
+ cmake \
+ clang-tidy \
+ git \
+ vim \
+ sudo \
+ zsh \
+ openssh-server \
+ locales &amp;amp;&amp;amp; \
+ apt-get clean &amp;amp;&amp;amp; \
+ rm -rf /var/lib/apt/lists/*
+
+# Configure locale
+RUN locale-gen en_US.UTF-8
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
+ENV LC_ALL en_US.UTF-8
+
+# Create user and group (여기에서 1016 은 기존 서버의 userid 번호를 써줍니다.)
+RUN groupadd -g 1016 lionelj &amp;amp;&amp;amp; \
+ useradd -u 1016 -g 1016 -m -s /bin/zsh lionelj &amp;amp;&amp;amp; \
+ usermod -aG sudo lionelj
+
+# Configure SSH
+RUN ssh-keygen -A &amp;amp;&amp;amp; \
+ chmod 600 /etc/ssh/ssh_host_* &amp;amp;&amp;amp; \
+ chown root:root /etc/ssh/ssh_host_* &amp;amp;&amp;amp; \
+ mkdir -p /var/run/sshd &amp;amp;&amp;amp; \
+ chmod 0755 /var/run/sshd &amp;amp;&amp;amp; \
+ echo &amp;#34;lionelj ALL=(ALL) NOPASSWD:ALL&amp;#34; &amp;gt;&amp;gt; /etc/sudoers.d/lionelj &amp;amp;&amp;amp; \
+ chmod 0440 /etc/sudoers.d/lionelj &amp;amp;&amp;amp; \
+ sed -i &amp;#39;s/#Port 22/Port 2222/&amp;#39; /etc/ssh/sshd_config &amp;amp;&amp;amp; \
+ echo &amp;#34;PasswordAuthentication yes&amp;#34; &amp;gt;&amp;gt; /etc/ssh/sshd_config &amp;amp;&amp;amp; \
+ echo &amp;#39;lionelj:qwer&amp;#39; | chpasswd
+
+# Expose SSH port
+EXPOSE 2222
+
+# Start SSH server in background and keep container running
+RUN echo &amp;#39;#!/bin/bash\n\
+ sudo /usr/sbin/sshd\n\
+ if [ $? -ne 0 ]; then\n\
+ echo &amp;#34;Failed to start sshd&amp;#34;\n\
+ exit 1\n\
+ fi\n\
+ tail -f /dev/null&amp;#39; &amp;gt; /start.sh &amp;amp;&amp;amp; \
+ chmod &amp;#43;x /start.sh
+
+CMD [&amp;#34;/start.sh&amp;#34;]&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;/li>
 &lt;li>
 &lt;p>docker build&lt;/p></description></item><item><title>Unicast, Broadcast, Multicast, SubnetMask</title><link>https://hybridego.github.io/2025/06/13/Unicast_Broadcast_Multicast_SubnetMask/</link><pubDate>Fri, 13 Jun 2025 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2025/06/13/Unicast_Broadcast_Multicast_SubnetMask/</guid><description>&lt;h1 id="유니캐스트-브로드캐스트-멀티캐스트와-서브넷-마스크">유니캐스트, 브로드캐스트, 멀티캐스트와 서브넷 마스크&lt;/h1>
 &lt;h2 id="1-유니캐스트와-멀티캐스트의-차이">1. 유니캐스트와 멀티캐스트의 차이&lt;/h2>
@@ -142,7 +230,13 @@ stress --vm 1 --vm-bytes 200G # 200GB 메모리 사용 시뮬레이션
 &lt;/li>
 &lt;li>
 &lt;p>site 만들기&lt;/p>
-&lt;pre tabindex="0">&lt;code>PS D:\dev&amp;gt; hugo new site hybridego_playground
+&lt;div class="highlight">
+ &lt;div class="code-toolbar">
+ &lt;button class="copy-code-button" title="Copy to clipboard">
+ &lt;i class="fas fa-copy">&lt;/i>
+ &lt;/button>
+ &lt;/div>
+ &lt;pre>&lt;code class="">PS D:\dev&amp;gt; hugo new site hybridego_playground
 Congratulations! Your new Hugo site was created in D:\dev\hybridego_playground.
 
 Just a few more steps...
@@ -155,12 +249,19 @@ Just a few more steps...
 2. Create new content with the command &amp;#34;hugo new content &amp;lt;SECTIONNAME&amp;gt;\&amp;lt;FILENAME&amp;gt;.&amp;lt;FORMAT&amp;gt;&amp;#34;.
 3. Start the embedded web server with the command &amp;#34;hugo server --buildDrafts&amp;#34;.
 
-See documentation at https://gohugo.io/.
-&lt;/code>&lt;/pre>&lt;/li>
+See documentation at https://gohugo.io/.&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;/li>
 &lt;li>
 &lt;p>git 설정 및 테마 설정&lt;/p></description></item><item><title>Cargo troubleshooting</title><link>https://hybridego.github.io/2025/05/26/Cargo_troubleshooting/</link><pubDate>Mon, 26 May 2025 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2025/05/26/Cargo_troubleshooting/</guid><description>&lt;h2 id="cargo-install-troubleshooting">Cargo install troubleshooting&lt;/h2>
 &lt;p>cargo로 뭐 설치하려고 할 때&lt;/p>
-&lt;pre tabindex="0">&lt;code>PS D:\dev\rust&amp;gt; rustup update
+&lt;div class="highlight">
+ &lt;div class="code-toolbar">
+ &lt;button class="copy-code-button" title="Copy to clipboard">
+ &lt;i class="fas fa-copy">&lt;/i>
+ &lt;/button>
+ &lt;/div>
+ &lt;pre>&lt;code class="">PS D:\dev\rust&amp;gt; rustup update
 info: syncing channel updates for &amp;#39;stable-x86_64-pc-windows-msvc&amp;#39;
 info: checking for self-update
 
@@ -178,60 +279,95 @@ Caused by:
  failed to download from `https://index.crates.io/config.json`
 
 Caused by:
- [35] SSL connect error (schannel: next InitializeSecurityContext failed: CRYPT_E_NO_REVOCATION_CHECK (0x80092012))
-&lt;/code>&lt;/pre>&lt;p>이런 에러가 발생한다면&lt;/p></description></item><item><title>Dioxus vs Tauri</title><link>https://hybridego.github.io/2025/05/26/Dioxus_vs_Tauri/</link><pubDate>Mon, 26 May 2025 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2025/05/26/Dioxus_vs_Tauri/</guid><description>&lt;h1 id="dioxus와-tauri-비교">Dioxus와 Tauri 비교&lt;/h1>
+ [35] SSL connect error (schannel: next InitializeSecurityContext failed: CRYPT_E_NO_REVOCATION_CHECK (0x80092012))&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;p>이런 에러가 발생한다면&lt;/p></description></item><item><title>Dioxus vs Tauri</title><link>https://hybridego.github.io/2025/05/26/Dioxus_vs_Tauri/</link><pubDate>Mon, 26 May 2025 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2025/05/26/Dioxus_vs_Tauri/</guid><description>&lt;h1 id="dioxus와-tauri-비교">Dioxus와 Tauri 비교&lt;/h1>
 &lt;h2 id="dioxus란">Dioxus란?&lt;/h2>
 &lt;p>Dioxus는 Rust로 작성된 풀스택 UI 프레임워크로, React와 유사한 선언적 프로그래밍 모델을 제공합니다. 웹, 데스크톱, 모바일, 서버사이드 렌더링(SSR), LiveView 등 다양한 플랫폼을 단일 코드베이스로 지원합니다. Rust의 메모리 안전성과 성능을 활용하여 빠르고 안정적인 애플리케이션을 개발할 수 있도록 설계되었습니다. Dioxus는 가상 DOM(Virtual DOM)을 사용하여 UI를 효율적으로 관리하며, React의 컴포넌트 기반 아키텍처와 유사한 개발 경험을 제공합니다. 또한, HTML과 CSS를 적극 활용하며, Tailwind CSS와 같은 외부 CSS 라이브러리와의 통합도 지원합니다. 모바일 지원은 Tauri의 Tao와 Wry 라이브러리를 활용하며, 특히 데스크톱과 웹에서 강력한 성능을 발휘합니다.&lt;a href="https://dioxuslabs.com/blog/introducing-dioxus/">&lt;/a>&lt;a href="https://www.syntax-stories.com/2024/12/dioxus-framework.html">&lt;/a>&lt;/p></description></item><item><title>linux debugging</title><link>https://hybridego.github.io/2025/05/23/Linux_debugging_skil/</link><pubDate>Fri, 23 May 2025 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2025/05/23/Linux_debugging_skil/</guid><description>&lt;h1 id="리눅스-환경에서의-메모리-디버깅-스킬">리눅스 환경에서의 메모리 디버깅 스킬&lt;/h1>
 &lt;p>이 교육 자료는 리눅스 환경에서 메모리 관련 문제를 디버깅하는 데 필요한 핵심 개념과 도구를 다룹니다. 페이지, 페이지 폴트, 신호(SIGSEGV, SIGBUS), 댕글링 포인터, &lt;code>/proc&lt;/code> 파일, OOM Killer, Shadow Memory, LD_PRELOAD, RAII를 기반으로 디버깅 스킬을 정리했습니다.&lt;/p></description></item><item><title>Docker SSH tunneling</title><link>https://hybridego.github.io/2025/05/21/Docker_SSH_tunneling/</link><pubDate>Wed, 21 May 2025 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2025/05/21/Docker_SSH_tunneling/</guid><description>&lt;h2 id="docker-와-ssh-터널링-설정">Docker 와 ssh 터널링 설정&lt;/h2>
 &lt;ol>
 &lt;li>처음 실행 (필요한 디렉토리 mount 하고 이미지와 shell 선택, user 지정)&lt;/li>
 &lt;/ol>
-&lt;pre tabindex="0">&lt;code class="language-base" data-lang="base">docker run -it \
+&lt;div class="highlight">
+ &lt;div class="code-toolbar">
+ &lt;button class="copy-code-button" title="Copy to clipboard">
+ &lt;i class="fas fa-copy">&lt;/i>
+ &lt;/button>
+ &lt;/div>
+ &lt;pre>&lt;code class="">docker run -it \
  -v /home/lionelj:/home/lionelj \
  --name lj-ubuntu \
  -v /opt:/opt \
  ubuntu:24.04 \
- /bin/bash
-&lt;/code>&lt;/pre>&lt;ol start="2">
+ /bin/bash&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;ol start="2">
 &lt;li>Docker 에서 필요한 기본 설정&lt;/li>
 &lt;/ol>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>apt-get update 
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>apt-get install -y sudo 
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>apt-get install -y vim git zsh
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>groupadd -g &lt;span style="color:#bd93f9">1016&lt;/span> lionelj 
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>useradd -u &lt;span style="color:#bd93f9">1016&lt;/span> -g &lt;span style="color:#bd93f9">1016&lt;/span> -m -s /bin/zsh lionelj
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>usermod -aG sudo lionelj &lt;span style="color:#6272a4">#사용자를 sudo 그룹에 추가. -a: 기존 그룹을 유지하면서 추가. -G sudo: sudo 그룹에 추가.&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>sudo apt-get install -y locales
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>sudo locale-gen en_US.UTF-8
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="3">
+&lt;div class="highlight">
+ &lt;div class="code-toolbar">
+ &lt;button class="copy-code-button" title="Copy to clipboard">
+ &lt;i class="fas fa-copy">&lt;/i>
+ &lt;/button>
+ &lt;/div>
+ &lt;pre>&lt;code class="">apt-get update 
+apt-get install -y sudo 
+apt-get install -y vim git zsh
+groupadd -g 1016 lionelj 
+useradd -u 1016 -g 1016 -m -s /bin/zsh lionelj
+
+usermod -aG sudo lionelj #사용자를 sudo 그룹에 추가. -a: 기존 그룹을 유지하면서 추가. -G sudo: sudo 그룹에 추가.
+
+sudo apt-get install -y locales
+sudo locale-gen en_US.UTF-8&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;ol start="3">
 &lt;li>다음부터는 만들어진 container로 접속&lt;/li>
 &lt;/ol>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#6272a4"># container name으로 접속&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>docker start lj-ubuntu
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#6272a4"># container id로 접속&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>docker start 708d99e6c6b9
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#6272a4"># start 후 shell로 접속&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>docker &lt;span style="color:#8be9fd;font-style:italic">exec&lt;/span> -it lj-ubuntu /bin/bash
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="4">
+&lt;div class="highlight">
+ &lt;div class="code-toolbar">
+ &lt;button class="copy-code-button" title="Copy to clipboard">
+ &lt;i class="fas fa-copy">&lt;/i>
+ &lt;/button>
+ &lt;/div>
+ &lt;pre>&lt;code class=""># container name으로 접속
+docker start lj-ubuntu
+# container id로 접속
+docker start 708d99e6c6b9
+
+# start 후 shell로 접속
+docker exec -it lj-ubuntu /bin/bash&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;ol start="4">
 &lt;li>컨테이너를 이미지로 만들기 (이렇게 하면 누적된 image를 다 유지해야 함. 중간 image 삭제 불가)&lt;/li>
 &lt;/ol>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>docker commit &amp;lt;컨테이너_ID&amp;gt; my-ubuntu:custom
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#6272a4"># ex)&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ docker commit 7a613f013271 lionel-ubuntu:custom
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>sha256:ec1a4af2f69aa0b7b9366279979d80b0cce02ffd2b3f1e07f81ded54875f7666
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ docker images
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>REPOSITORY TAG IMAGE ID CREATED SIZE
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>lionel-ubuntu custom ec1a4af2f69a &lt;span style="color:#bd93f9">6&lt;/span> seconds ago 235MB
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>ubuntu 24.04 602eb6fb314b &lt;span style="color:#bd93f9">2&lt;/span> weeks ago 78.1MB
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="5">
+&lt;div class="highlight">
+ &lt;div class="code-toolbar">
+ &lt;button class="copy-code-button" title="Copy to clipboard">
+ &lt;i class="fas fa-copy">&lt;/i>
+ &lt;/button>
+ &lt;/div>
+ &lt;pre>&lt;code class="">docker commit &amp;lt;컨테이너_ID&amp;gt; my-ubuntu:custom
+
+# ex)
+$ docker commit 7a613f013271 lionel-ubuntu:custom
+sha256:ec1a4af2f69aa0b7b9366279979d80b0cce02ffd2b3f1e07f81ded54875f7666
+
+$ docker images
+REPOSITORY TAG IMAGE ID CREATED SIZE
+lionel-ubuntu custom ec1a4af2f69a 6 seconds ago 235MB
+ubuntu 24.04 602eb6fb314b 2 weeks ago 78.1MB&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;ol start="5">
 &lt;li>새로 만든 이미지로 컨테이너 띄우기&lt;/li>
 &lt;/ol>
-&lt;pre tabindex="0">&lt;code>$ docker images
+&lt;div class="highlight">
+ &lt;div class="code-toolbar">
+ &lt;button class="copy-code-button" title="Copy to clipboard">
+ &lt;i class="fas fa-copy">&lt;/i>
+ &lt;/button>
+ &lt;/div>
+ &lt;pre>&lt;code class="">$ docker images
 REPOSITORY TAG IMAGE ID CREATED SIZE
 lionel-ubuntu 24.04 fa9ec891a58d 24 seconds ago 235MB
 ubuntu 24.04 602eb6fb314b 2 weeks ago 78.1MB
@@ -241,18 +377,32 @@ docker run -it \
  --name lj-ubuntu \
  -v /opt:/opt \
  lionel-ubuntu:24.04 \
- /bin/bash
-&lt;/code>&lt;/pre>&lt;ol start="6">
+ /bin/bash&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;ol start="6">
 &lt;li>ssh 설정 (container에 접속해서 sshd를 띄운다.)&lt;/li>
 &lt;/ol>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>mkdir /run/sshd 
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>/usr/sbin/sshd
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#6272a4"># 컨테이너는 기본적으로 systemd를 사용하지 않으므로, systemctl 대신 직접 sshd를 실행.&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="7">
+&lt;div class="highlight">
+ &lt;div class="code-toolbar">
+ &lt;button class="copy-code-button" title="Copy to clipboard">
+ &lt;i class="fas fa-copy">&lt;/i>
+ &lt;/button>
+ &lt;/div>
+ &lt;pre>&lt;code class="">mkdir /run/sshd 
+/usr/sbin/sshd
+
+# 컨테이너는 기본적으로 systemd를 사용하지 않으므로, systemctl 대신 직접 sshd를 실행.&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;ol start="7">
 &lt;li>ip 설정 (host 에서 docker container의 ip를 확인한다. ssh 터널링 설정을 해야 하기 때문)&lt;/li>
 &lt;/ol>
-&lt;pre tabindex="0">&lt;code>$ ip addr
+&lt;div class="highlight">
+ &lt;div class="code-toolbar">
+ &lt;button class="copy-code-button" title="Copy to clipboard">
+ &lt;i class="fas fa-copy">&lt;/i>
+ &lt;/button>
+ &lt;/div>
+ &lt;pre>&lt;code class="">$ ip addr
 1: lo: &amp;lt;LOOPBACK,UP,LOWER_UP&amp;gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1
  link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
  inet 127.0.0.1/8 scope host lo
@@ -260,38 +410,73 @@ docker run -it \
 1839: eth0@if1840: &amp;lt;BROADCAST,MULTICAST,UP,LOWER_UP&amp;gt; mtu 1500 qdisc noqueue state UP group default
  link/ether 02:42:ac:11:00:02 brd ff:ff:ff:ff:ff:ff link-netnsid 0
  inet 172.17.0.2/16 brd 172.17.255.255 scope global eth0 &amp;lt;&amp;lt;== 이 번호를 확인.
- valid_lft forever preferred_lft forever
-&lt;/code>&lt;/pre>&lt;ul>
+ valid_lft forever preferred_lft forever&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;ul>
 &lt;li>또 다른 ip 확인 방법 (host에서)&lt;/li>
 &lt;/ul>
-&lt;pre tabindex="0">&lt;code>$ docker inspect 85d05024ca50 | grep IPAddress
+&lt;div class="highlight">
+ &lt;div class="code-toolbar">
+ &lt;button class="copy-code-button" title="Copy to clipboard">
+ &lt;i class="fas fa-copy">&lt;/i>
+ &lt;/button>
+ &lt;/div>
+ &lt;pre>&lt;code class="">$ docker inspect 85d05024ca50 | grep IPAddress
  &amp;#34;SecondaryIPAddresses&amp;#34;: null,
  &amp;#34;IPAddress&amp;#34;: &amp;#34;172.17.0.2&amp;#34;,
- &amp;#34;IPAddress&amp;#34;: &amp;#34;172.17.0.2&amp;#34;,
-&lt;/code>&lt;/pre>&lt;ol start="8">
+ &amp;#34;IPAddress&amp;#34;: &amp;#34;172.17.0.2&amp;#34;,&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;ol start="8">
 &lt;li>컨테이너 중지 및 삭제 후 포트 매핑 포함하여 재실행&lt;/li>
 &lt;/ol>
-&lt;pre tabindex="0">&lt;code>docker run -it --name lj-ubuntu \
+&lt;div class="highlight">
+ &lt;div class="code-toolbar">
+ &lt;button class="copy-code-button" title="Copy to clipboard">
+ &lt;i class="fas fa-copy">&lt;/i>
+ &lt;/button>
+ &lt;/div>
+ &lt;pre>&lt;code class="">docker run -it --name lj-ubuntu \
  -v /home/lionelj:/home/lionelj \
  -v /opt:/opt \
  --user 1016:1016 \
  -p 2222:2222 \
  lj-ubuntu-3:24.04 \
- /bin/bash
-&lt;/code>&lt;/pre>&lt;ol start="9">
+ /bin/bash&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;ol start="9">
 &lt;li>이미지 이름 바꾸는 방법&lt;/li>
 &lt;/ol>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>docker tag 원래_이미지_이름:태그 새_이미지_이름:태그
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>docker rmi 원래_이미지_이름:태그
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;div class="highlight">
+ &lt;div class="code-toolbar">
+ &lt;button class="copy-code-button" title="Copy to clipboard">
+ &lt;i class="fas fa-copy">&lt;/i>
+ &lt;/button>
+ &lt;/div>
+ &lt;pre>&lt;code class="">docker tag 원래_이미지_이름:태그 새_이미지_이름:태그
+docker rmi 원래_이미지_이름:태그&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;ul>
 &lt;li>접속 하는 방법 ssh 터널링 (윈도우에서 설정.)&lt;/li>
 &lt;/ul>
-&lt;pre tabindex="0">&lt;code>ssh -L 2222:172.17.0.2:2222 lionelj@&amp;lt;호스트_IP&amp;gt;
-ssh -L 2222:172.17.0.2:2222 lionelj@192.168.85.15
-&lt;/code>&lt;/pre>&lt;ul>
+&lt;div class="highlight">
+ &lt;div class="code-toolbar">
+ &lt;button class="copy-code-button" title="Copy to clipboard">
+ &lt;i class="fas fa-copy">&lt;/i>
+ &lt;/button>
+ &lt;/div>
+ &lt;pre>&lt;code class="">ssh -L 2222:172.17.0.2:2222 lionelj@&amp;lt;호스트_IP&amp;gt;
+ssh -L 2222:172.17.0.2:2222 lionelj@192.168.85.15&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;ul>
 &lt;li>Windows ssh 설정&lt;/li>
 &lt;/ul>
-&lt;pre tabindex="0">&lt;code>C:\Users\lionel.j\.ssh\config 파일을 열고
+&lt;div class="highlight">
+ &lt;div class="code-toolbar">
+ &lt;button class="copy-code-button" title="Copy to clipboard">
+ &lt;i class="fas fa-copy">&lt;/i>
+ &lt;/button>
+ &lt;/div>
+ &lt;pre>&lt;code class="">C:\Users\lionel.j\.ssh\config 파일을 열고
 
 Host lj-ubuntu
   HostName localhost
@@ -299,8 +484,9 @@ Host lj-ubuntu
   Port 2222
 
 이렇게 추가 후
-vscode 에서 Remote-SSH: Connect to Host...로 lj-ubuntu 로 접속.
-&lt;/code>&lt;/pre>&lt;hr>
+vscode 에서 Remote-SSH: Connect to Host...로 lj-ubuntu 로 접속.&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;hr>
 &lt;h2 id="다음부터-사용할-때는-이렇게">다음부터 사용할 때는 이렇게&lt;/h2>
 &lt;p>다 설정하면 이렇게 하면 됨.&lt;/p></description></item><item><title>Python uv</title><link>https://hybridego.github.io/2025/05/16/Python_uv/</link><pubDate>Fri, 16 May 2025 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2025/05/16/Python_uv/</guid><description>&lt;h1 id="python-uv-사용법">Python UV 사용법&lt;/h1>
 &lt;ul>
@@ -313,14 +499,34 @@ and &lt;a href="https://github.com/BlackrockDigital/startbootstrap-clean-blog-je
 &lt;p>These two upstream projects have done awesome jobs to create a blog theme, what I&amp;rsquo;m doing here is porting it to Hugo, of which I like the simplicity and the much faster compiling speed. Some other features which I think could be useful, such as site search with algolia and proxy for Disqus access in China, have also been built in the CleanWhite theme. Other fancy features of upstream projects are not supported by this Hugo theme, I&amp;rsquo;d like to make it as simple as possible and only focus on blog purpose, at least for now.
 While I created this theme, I followed the Hugo theme best practice and tried to make every part of the template as a replaceable partial html, so it could be much easier for you to make your customization based on it.&lt;/p></description></item><item><title>Istio v1alpha3 라우팅 API 소개</title><link>https://hybridego.github.io/2018/06/04/introducing-the-istio-v1alpha3-routing-api/</link><pubDate>Mon, 04 Jun 2018 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/06/04/introducing-the-istio-v1alpha3-routing-api/</guid><description>&lt;p>지금까지 Istio는 RouteRule, DestinationPolicy, EgressRule, Ingress(Kubernetes의 Ingress 리소스를 직접 사용)의 네 가지 리소스를 포함하는 간단한 트래픽 관리 API를 제공했습니다. 이 API를 통해 사용자는 Istio 서비스 메시 내에서 트래픽을 쉽게 관리할 수 있습니다. 이 API를 통해 사용자는 요청을 특정 서비스 버전으로 라우팅하고, 복원력 테스트를 위해 지연 및 오류를 주입하고, 타임아웃 및 회로 차단기를 추가하는 등 애플리케이션 코드를 수정할 필요 없이 모든 작업을 수행할 수 있습니다.&lt;/p></description></item><item><title>Istio 0.8 릴리스 발표</title><link>https://hybridego.github.io/2018/06/02/istio08/</link><pubDate>Sat, 02 Jun 2018 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/06/02/istio08/</guid><description>&lt;blockquote>
 &lt;p>6월 1일 아침, Istio 커뮤니티는 0.8 릴리스를 발표했습니다. 일반적인 버그 수정 및 성능 개선 외에, 이 어린이날 선물에는 어떤 기대할 만한 내용이 있을까요? 함께 살펴보겠습니다.&lt;/p>&lt;/blockquote></description></item><item><title>내 Ubuntu 데스크톱 설정에 대한 모든 것</title><link>https://hybridego.github.io/2018/05/24/set_up_my_ubuntu_desktop/</link><pubDate>Thu, 24 May 2018 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/05/24/set_up_my_ubuntu_desktop/</guid><description>&lt;h2 id="ssh-키-쌍-생성">SSH 키 쌍 생성&lt;/h2>
-&lt;pre tabindex="0">&lt;code>ssh-keygen -C &amp;#34;zhaohuabing@gmail.com&amp;#34;
-&lt;/code>&lt;/pre>&lt;h2 id="shadowsocks">Shadowsocks&lt;/h2>
+&lt;div class="highlight">
+ &lt;div class="code-toolbar">
+ &lt;button class="copy-code-button" title="Copy to clipboard">
+ &lt;i class="fas fa-copy">&lt;/i>
+ &lt;/button>
+ &lt;/div>
+ &lt;pre>&lt;code class="">ssh-keygen -C &amp;#34;zhaohuabing@gmail.com&amp;#34;&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;h2 id="shadowsocks">Shadowsocks&lt;/h2>
 &lt;p>Shadowsocks 설치&lt;/p>
-&lt;pre tabindex="0">&lt;code>sudo apt-get install python3-pip
+&lt;div class="highlight">
+ &lt;div class="code-toolbar">
+ &lt;button class="copy-code-button" title="Copy to clipboard">
+ &lt;i class="fas fa-copy">&lt;/i>
+ &lt;/button>
+ &lt;/div>
+ &lt;pre>&lt;code class="">sudo apt-get install python3-pip
 
-sudo pip3 install shadowsocks
-&lt;/code>&lt;/pre>&lt;p>다음 내용을 포함하는 &lt;code>config/shadowsocks.json&lt;/code>에 구성 파일 생성:&lt;/p>
-&lt;pre tabindex="0">&lt;code>{
+sudo pip3 install shadowsocks&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;p>다음 내용을 포함하는 &lt;code>config/shadowsocks.json&lt;/code>에 구성 파일 생성:&lt;/p>
+&lt;div class="highlight">
+ &lt;div class="code-toolbar">
+ &lt;button class="copy-code-button" title="Copy to clipboard">
+ &lt;i class="fas fa-copy">&lt;/i>
+ &lt;/button>
+ &lt;/div>
+ &lt;pre>&lt;code class="">{
 	&amp;#34;server&amp;#34;:&amp;#34;remote-shadowsocks-server-ip-addr&amp;#34;,
 	&amp;#34;server_port&amp;#34;:443,
 	&amp;#34;local_address&amp;#34;:&amp;#34;127.0.0.1&amp;#34;,
@@ -330,8 +536,9 @@ sudo pip3 install shadowsocks
 	&amp;#34;method&amp;#34;:&amp;#34;aes-256-cfb&amp;#34;,
 	&amp;#34;fast_open&amp;#34;:false,
 	&amp;#34;workers&amp;#34;:1
-}
-&lt;/code>&lt;/pre>&lt;p>로컬 socks 프록시 시작&lt;/p></description></item><item><title>마이크로서비스 보안 성찰록 3부</title><link>https://hybridego.github.io/2018/05/23/external_system_auth/</link><pubDate>Wed, 23 May 2018 18:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/05/23/external_system_auth/</guid><description>&lt;h2 id="외부-시스템-접근-제어">외부 시스템 접근 제어&lt;/h2>
+}&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;p>로컬 socks 프록시 시작&lt;/p></description></item><item><title>마이크로서비스 보안 성찰록 3부</title><link>https://hybridego.github.io/2018/05/23/external_system_auth/</link><pubDate>Wed, 23 May 2018 18:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/05/23/external_system_auth/</guid><description>&lt;h2 id="외부-시스템-접근-제어">외부 시스템 접근 제어&lt;/h2>
 &lt;p>사용자 접근 및 마이크로서비스 간 상호 접근 외에도, 외부 타사 시스템도 시스템 내부의 마이크로서비스에 접근해야 할 수 있습니다. 예를 들어 이전 블로그의 온라인 상점 예시에서, 외부 추천 서비스가 상점의 상품 카탈로그 정보를 얻기 위해 시스템에 연결해야 할 수 있습니다. 내부 서비스 간의 접근과 비교하여 외부 시스템의 접근은 엄격한 보안 제어가 필요합니다.&lt;/p></description></item><item><title>마이크로서비스 보안 성찰록 2부</title><link>https://hybridego.github.io/2018/05/23/service_2_service_auth/</link><pubDate>Wed, 23 May 2018 15:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/05/23/service_2_service_auth/</guid><description>&lt;h2 id="서비스-간-인증-및-권한-부여">서비스 간 인증 및 권한 부여&lt;/h2>
 &lt;p>사용자로부터의 접근 요청 외에도, 마이크로서비스 애플리케이션 내의 각 마이크로서비스는 서로 많은 접근을 합니다. 다음 시나리오를 포함합니다.&lt;/p>
 &lt;ul>
@@ -366,13 +573,19 @@ sudo pip3 install shadowsocks
 &lt;p>아키텍처 패턴으로서 마이크로서비스는 복잡한 시스템을 수십에서 수백 개의 작은 서비스로 분할하며, 각 서비스는 독립적인 비즈니스 로직을 구현합니다. 이러한 작은 서비스는 소규모 소프트웨어 엔지니어링 팀이 이해하고 수정하기 쉽고, 언어 및 프레임워크 선택의 유연성을 제공하며, 애플리케이션 개발 및 출시 시간을 단축하고, 다양한 워크로드 및 리소스 요구 사항에 따라 서비스를 독립적으로 확장/축소할 수 있는 이점을 제공합니다.&lt;/p>
 &lt;p>반면에 애플리케이션이 여러 마이크로서비스 프로세스로 분할되면 프로세스 내 메서드 호출이 프로세스 간 원격 호출로 변경됩니다. 이는 수많은 서비스의 연결, 관리 및 모니터링의 복잡성을 야기합니다.&lt;/p></description></item><item><title>HTTP 프록시 뒤에서 Docker를 사용하는 방법</title><link>https://hybridego.github.io/2018/03/13/use-docker-behind-http-proxy/</link><pubDate>Tue, 13 Mar 2018 18:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/03/13/use-docker-behind-http-proxy/</guid><description>&lt;h2 id="ubuntu">Ubuntu&lt;/h2>
 &lt;h3 id="docker에서-http-프록시-설정">Docker에서 HTTP 프록시 설정&lt;/h3>
-&lt;pre tabindex="0">&lt;code>sudo /etc/default/docker
+&lt;div class="highlight">
+ &lt;div class="code-toolbar">
+ &lt;button class="copy-code-button" title="Copy to clipboard">
+ &lt;i class="fas fa-copy">&lt;/i>
+ &lt;/button>
+ &lt;/div>
+ &lt;pre>&lt;code class="">sudo /etc/default/docker
 
 export http_proxy=&amp;#34;http://127.0.0.1:3128/&amp;#34;
 export https_proxy=&amp;#34;http://127.0.0.1:3128/&amp;#34;
 export HTTP_PROXY=&amp;#34;http://127.0.0.1:3128/&amp;#34;
-export HTTPS_PROXY=&amp;#34;http://127.0.0.1:3128/&amp;#34;
-&lt;/code>&lt;/pre></description></item><item><title>Vim 팁</title><link>https://hybridego.github.io/2018/02/09/vim-tips/</link><pubDate>Fri, 09 Feb 2018 11:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/02/09/vim-tips/</guid><description>&lt;h2 id="vim-그래픽-치트-시트">vim 그래픽 치트 시트&lt;/h2>
+export HTTPS_PROXY=&amp;#34;http://127.0.0.1:3128/&amp;#34;&lt;/code>&lt;/pre>
+&lt;/div></description></item><item><title>Vim 팁</title><link>https://hybridego.github.io/2018/02/09/vim-tips/</link><pubDate>Fri, 09 Feb 2018 11:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/02/09/vim-tips/</guid><description>&lt;h2 id="vim-그래픽-치트-시트">vim 그래픽 치트 시트&lt;/h2>
 &lt;p>
  &lt;img src="//img/2018-02-09-vim-tips/vi-vim-cheat-sheet.svg" alt="">
 

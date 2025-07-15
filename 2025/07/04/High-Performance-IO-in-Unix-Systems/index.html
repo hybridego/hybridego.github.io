@@ -1,4 +1,4 @@
-<!doctype html><html lang=ko-kr><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><meta property="og:site_name" content="Lionel Blog"><meta property="og:type" content="article"><meta property="og:image" content="https://hybridego.github.io//img/home-bg-jeep.jpg"><meta property="twitter:image" content="https://hybridego.github.io//img/home-bg-jeep.jpg"><meta name=title content="High-Performance I/O in Unix Systems"><meta property="og:title" content="High-Performance I/O in Unix Systems"><meta property="twitter:title" content="High-Performance I/O in Unix Systems"><meta name=description content="Understanding high-performance I/O functions like readv(), writev(), splice(), sendfile(), and more in Linux and BSD"><meta property="og:description" content="Understanding high-performance I/O functions like readv(), writev(), splice(), sendfile(), and more in Linux and BSD"><meta property="twitter:description" content="Understanding high-performance I/O functions like readv(), writev(), splice(), sendfile(), and more in Linux and BSD"><meta property="twitter:card" content="summary"><meta name=keyword content="Lionel.J, lionel jeon, Lionel Jeon, hybridego, Lionel's web log, Lionel's blog, Lionel Blog, blog, personal website, internet, Web, cloud native, PaaS, Istio, Kubernetes, microservices"><link rel="shortcut icon" href=/img/favicon.ico><title>High-Performance I/O in Unix Systems | Lionel 블로그 | Lionel Blog</title><link rel=canonical href=/2025/07/04/High-Performance-IO-in-Unix-Systems/><link rel=stylesheet href=/css/bootstrap.min.css><link rel=stylesheet href=/css/hugo-theme-cleanwhite.min.css><link rel=stylesheet href=/css/zanshang.css><link rel=stylesheet href=/css/font-awesome.all.min.css><script src=/js/jquery.min.js></script><script src=/js/bootstrap.min.js></script><script src=/js/hux-blog.min.js></script><script src=/js/lazysizes.min.js></script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2995694833554782" crossorigin=anonymous></script></head><nav class="navbar navbar-default navbar-custom navbar-fixed-top"><div class=container-fluid><div class="navbar-header page-scroll"><button type=button class=navbar-toggle>
+<!doctype html><html lang=ko-kr><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><meta property="og:site_name" content="Lionel Blog"><meta property="og:type" content="article"><meta property="og:image" content="https://hybridego.github.io//img/home-bg-jeep.jpg"><meta property="twitter:image" content="https://hybridego.github.io//img/home-bg-jeep.jpg"><meta name=title content="High-Performance I/O in Unix Systems"><meta property="og:title" content="High-Performance I/O in Unix Systems"><meta property="twitter:title" content="High-Performance I/O in Unix Systems"><meta name=description content="Understanding high-performance I/O functions like readv(), writev(), splice(), sendfile(), and more in Linux and BSD"><meta property="og:description" content="Understanding high-performance I/O functions like readv(), writev(), splice(), sendfile(), and more in Linux and BSD"><meta property="twitter:description" content="Understanding high-performance I/O functions like readv(), writev(), splice(), sendfile(), and more in Linux and BSD"><meta property="twitter:card" content="summary"><meta name=keyword content="Lionel.J, lionel jeon, Lionel Jeon, hybridego, Lionel's web log, Lionel's blog, Lionel Blog, blog, personal website, internet, Web, cloud native, PaaS, Istio, Kubernetes, microservices"><link rel="shortcut icon" href=/img/favicon.ico><title>High-Performance I/O in Unix Systems | Lionel 블로그 | Lionel Blog</title><link rel=canonical href=/2025/07/04/High-Performance-IO-in-Unix-Systems/><link rel=stylesheet href=/css/bootstrap.min.css><link rel=stylesheet href=/css/hugo-theme-cleanwhite.min.css><link rel=stylesheet href=/css/zanshang.css><link rel=stylesheet href=/css/font-awesome.all.min.css><link rel=stylesheet href=https://hybridego.github.io/css/copy-code.css><script src=/js/jquery.min.js></script><script src=/js/bootstrap.min.js></script><script src=/js/hux-blog.min.js></script><script src=/js/lazysizes.min.js></script><script src=https://hybridego.github.io/js/copy-code.js></script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2995694833554782" crossorigin=anonymous></script></head><nav class="navbar navbar-default navbar-custom navbar-fixed-top"><div class=container-fluid><div class="navbar-header page-scroll"><button type=button class=navbar-toggle>
 <span class=sr-only>Toggle navigation</span>
 <span class=icon-bar></span>
 <span class=icon-bar></span>
@@ -8,101 +8,101 @@
 col-md-8 col-md-offset-1
 col-sm-12
 col-xs-12
-post-container"><h1 id=고성능-io를-위한-유닉스-시스템-호출-가이드>고성능 I/O를 위한 유닉스 시스템 호출 가이드</h1><p>유닉스 계열 운영 체제(리눅스, BSD 등)에서 고성능 I/O 작업은 대용량 데이터 전송, 네트워크 서버, 데이터 스트리밍 등에서 필수적입니다. 이번 포스팅에서는 <code>readv()</code>, <code>writev()</code>, <code>splice()</code>, <code>sendfile()</code>, <code>funopen()</code>, <code>sendmsg()</code>, <code>io_uring</code>, 그리고 <code>shm_open</code> 같은 함수들의 기능과 사용 예시를 정리하며, 리눅스와 BSD에서의 차이점을 살펴봅니다.</p><h2 id=1-readv--writev-scatter-gather-io>1. <code>readv()</code> / <code>writev()</code>: Scatter-Gather I/O</h2><ul><li><strong>기능</strong>: 여러 버퍼를 단일 시스템 호출로 읽거나 쓰는 scatter-gather I/O.</li><li><strong>특징</strong>:<ul><li>리눅스와 BSD 모두 지원.</li><li>메모리 복사(<code>memcpy</code>)가 필요하며, zero-copy는 아님.</li><li>BSD에서 파이프 데이터 전송에 효율적.</li></ul></li><li><strong>사용 예시</strong>:<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span><span style=color:#ff79c6>#include</span> <span style=color:#ff79c6>&lt;sys/uio.h&gt;</span><span style=color:#ff79c6>
-</span></span></span><span style=display:flex><span><span style=color:#ff79c6>#include</span> <span style=color:#ff79c6>&lt;fcntl.h&gt;</span><span style=color:#ff79c6>
-</span></span></span><span style=display:flex><span><span style=color:#ff79c6>#include</span> <span style=color:#ff79c6>&lt;stdio.h&gt;</span><span style=color:#ff79c6>
-</span></span></span><span style=display:flex><span><span style=color:#ff79c6></span>
-</span></span><span style=display:flex><span><span style=color:#8be9fd>int</span> <span style=color:#50fa7b>main</span>() {
-</span></span><span style=display:flex><span>    <span style=color:#8be9fd>int</span> fd <span style=color:#ff79c6>=</span> <span style=color:#50fa7b>open</span>(<span style=color:#f1fa8c>&#34;input.txt&#34;</span>, O_RDONLY);
-</span></span><span style=display:flex><span>    <span style=color:#8be9fd>char</span> buf1[<span style=color:#bd93f9>100</span>], buf2[<span style=color:#bd93f9>100</span>];
-</span></span><span style=display:flex><span>    <span style=color:#ff79c6>struct</span> iovec iov[<span style=color:#bd93f9>2</span>] <span style=color:#ff79c6>=</span> {
-</span></span><span style=display:flex><span>        { .iov_base <span style=color:#ff79c6>=</span> buf1, .iov_len <span style=color:#ff79c6>=</span> <span style=color:#bd93f9>100</span> },
-</span></span><span style=display:flex><span>        { .iov_base <span style=color:#ff79c6>=</span> buf2, .iov_len <span style=color:#ff79c6>=</span> <span style=color:#bd93f9>100</span> }
-</span></span><span style=display:flex><span>    };
-</span></span><span style=display:flex><span>    <span style=color:#8be9fd>ssize_t</span> n <span style=color:#ff79c6>=</span> <span style=color:#50fa7b>readv</span>(fd, iov, <span style=color:#bd93f9>2</span>);
-</span></span><span style=display:flex><span>    <span style=color:#50fa7b>printf</span>(<span style=color:#f1fa8c>&#34;Read %zd bytes</span><span style=color:#f1fa8c>\n</span><span style=color:#f1fa8c>&#34;</span>, n);
-</span></span><span style=display:flex><span>    <span style=color:#50fa7b>close</span>(fd);
-</span></span><span style=display:flex><span>    <span style=color:#ff79c6>return</span> <span style=color:#bd93f9>0</span>;
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div></li></ul><h2 id=2-splice-zero-copy-파이프-전송>2. <code>splice()</code>: Zero-Copy 파이프 전송</h2><ul><li><strong>기능</strong>: 파이프나 유닉스 소켓 간 데이터를 사용자 공간 복사 없이 전송.</li><li><strong>특징</strong>:<ul><li>리눅스 전용, BSD 미지원.</li><li>대용량 데이터 전송에 최적.</li></ul></li><li><strong>사용 예시</strong>:<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span><span style=color:#ff79c6>#include</span> <span style=color:#ff79c6>&lt;fcntl.h&gt;</span><span style=color:#ff79c6>
-</span></span></span><span style=display:flex><span><span style=color:#ff79c6>#include</span> <span style=color:#ff79c6>&lt;stdio.h&gt;</span><span style=color:#ff79c6>
-</span></span></span><span style=display:flex><span><span style=color:#ff79c6></span>
-</span></span><span style=display:flex><span><span style=color:#8be9fd>int</span> <span style=color:#50fa7b>main</span>() {
-</span></span><span style=display:flex><span>    <span style=color:#8be9fd>int</span> fd_in <span style=color:#ff79c6>=</span> <span style=color:#50fa7b>open</span>(<span style=color:#f1fa8c>&#34;input.txt&#34;</span>, O_RDONLY);
-</span></span><span style=display:flex><span>    <span style=color:#8be9fd>int</span> fd_out <span style=color:#ff79c6>=</span> <span style=color:#50fa7b>open</span>(<span style=color:#f1fa8c>&#34;output.txt&#34;</span>, O_WRONLY <span style=color:#ff79c6>|</span> O_CREAT, <span style=color:#bd93f9>0644</span>);
-</span></span><span style=display:flex><span>    <span style=color:#8be9fd>ssize_t</span> n <span style=color:#ff79c6>=</span> <span style=color:#50fa7b>splice</span>(fd_in, <span style=color:#8be9fd;font-style:italic>NULL</span>, fd_out, <span style=color:#8be9fd;font-style:italic>NULL</span>, <span style=color:#bd93f9>1024</span>, SPLICE_F_MOVE);
-</span></span><span style=display:flex><span>    <span style=color:#50fa7b>printf</span>(<span style=color:#f1fa8c>&#34;Spliced %zd bytes</span><span style=color:#f1fa8c>\n</span><span style=color:#f1fa8c>&#34;</span>, n);
-</span></span><span style=display:flex><span>    <span style=color:#50fa7b>close</span>(fd_in);
-</span></span><span style=display:flex><span>    <span style=color:#50fa7b>close</span>(fd_out);
-</span></span><span style=display:flex><span>    <span style=color:#ff79c6>return</span> <span style=color:#bd93f9>0</span>;
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div></li></ul><h2 id=3-sendfile-파일에서-소켓으로-zero-copy-전송>3. <code>sendfile()</code>: 파일에서 소켓으로 Zero-Copy 전송</h2><ul><li><strong>기능</strong>: 파일 데이터를 소켓으로 직접 전송.</li><li><strong>특징</strong>:<ul><li>리눅스와 BSD 모두 지원.</li><li>파일→소켓 전용, 웹 서버에서 주로 사용.</li></ul></li><li><strong>사용 예시</strong>:<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span><span style=color:#ff79c6>#include</span> <span style=color:#ff79c6>&lt;sys/sendfile.h&gt;</span><span style=color:#ff79c6>
-</span></span></span><span style=display:flex><span><span style=color:#ff79c6>#include</span> <span style=color:#ff79c6>&lt;fcntl.h&gt;</span><span style=color:#ff79c6>
-</span></span></span><span style=display:flex><span><span style=color:#ff79c6>#include</span> <span style=color:#ff79c6>&lt;sys/socket.h&gt;</span><span style=color:#ff79c6>
-</span></span></span><span style=display:flex><span><span style=color:#ff79c6></span>
-</span></span><span style=display:flex><span><span style=color:#8be9fd>int</span> <span style=color:#50fa7b>main</span>() {
-</span></span><span style=display:flex><span>    <span style=color:#8be9fd>int</span> file_fd <span style=color:#ff79c6>=</span> <span style=color:#50fa7b>open</span>(<span style=color:#f1fa8c>&#34;file.txt&#34;</span>, O_RDONLY);
-</span></span><span style=display:flex><span>    <span style=color:#8be9fd>int</span> sock_fd <span style=color:#ff79c6>=</span> <span style=color:#50fa7b>socket</span>(AF_INET, SOCK_STREAM, <span style=color:#bd93f9>0</span>);
-</span></span><span style=display:flex><span>    <span style=color:#6272a4>// 소켓 연결 설정 생략
-</span></span></span><span style=display:flex><span><span style=color:#6272a4></span>    <span style=color:#8be9fd>ssize_t</span> n <span style=color:#ff79c6>=</span> <span style=color:#50fa7b>sendfile</span>(sock_fd, file_fd, <span style=color:#8be9fd;font-style:italic>NULL</span>, <span style=color:#bd93f9>1024</span>);
-</span></span><span style=display:flex><span>    <span style=color:#50fa7b>printf</span>(<span style=color:#f1fa8c>&#34;Sent %zd bytes</span><span style=color:#f1fa8c>\n</span><span style=color:#f1fa8c>&#34;</span>, n);
-</span></span><span style=display:flex><span>    <span style=color:#50fa7b>close</span>(file_fd);
-</span></span><span style=display:flex><span>    <span style=color:#50fa7b>close</span>(sock_fd);
-</span></span><span style=display:flex><span>    <span style=color:#ff79c6>return</span> <span style=color:#bd93f9>0</span>;
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div></li></ul><h2 id=4-funopen-사용자-정의-스트림>4. <code>funopen()</code>: 사용자 정의 스트림</h2><ul><li><strong>기능</strong>: 사용자 정의 읽기/쓰기 함수로 커스텀 I/O 스트림 생성.</li><li><strong>특징</strong>:<ul><li>BSD 전용, 리눅스에서는 <code>fopencookie()</code> 사용.</li><li>비표준 I/O 작업에 유연.</li></ul></li><li><strong>사용 예시</strong>:<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span><span style=color:#ff79c6>#include</span> <span style=color:#ff79c6>&lt;stdio.h&gt;</span><span style=color:#ff79c6>
-</span></span></span><span style=display:flex><span><span style=color:#ff79c6>#include</span> <span style=color:#ff79c6>&lt;stdlib.h&gt;</span><span style=color:#ff79c6>
-</span></span></span><span style=display:flex><span><span style=color:#ff79c6></span>
-</span></span><span style=display:flex><span><span style=color:#8be9fd>int</span> <span style=color:#50fa7b>my_read</span>(<span style=color:#8be9fd>void</span> <span style=color:#ff79c6>*</span>cookie, <span style=color:#8be9fd>char</span> <span style=color:#ff79c6>*</span>buf, <span style=color:#8be9fd>int</span> n) {
-</span></span><span style=display:flex><span>    <span style=color:#6272a4>// 사용자 정의 읽기 로직
-</span></span></span><span style=display:flex><span><span style=color:#6272a4></span>    <span style=color:#ff79c6>return</span> n;
-</span></span><span style=display:flex><span>}
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#8be9fd>int</span> <span style=color:#50fa7b>main</span>() {
-</span></span><span style=display:flex><span>    FILE <span style=color:#ff79c6>*</span>fp <span style=color:#ff79c6>=</span> <span style=color:#50fa7b>funopen</span>(<span style=color:#8be9fd;font-style:italic>NULL</span>, my_read, <span style=color:#8be9fd;font-style:italic>NULL</span>, <span style=color:#8be9fd;font-style:italic>NULL</span>, <span style=color:#8be9fd;font-style:italic>NULL</span>);
-</span></span><span style=display:flex><span>    <span style=color:#50fa7b>fclose</span>(fp);
-</span></span><span style=display:flex><span>    <span style=color:#ff79c6>return</span> <span style=color:#bd93f9>0</span>;
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div></li></ul><h2 id=5-sendmsg-소켓-메시지-전송>5. <code>sendmsg()</code>: 소켓 메시지 전송</h2><ul><li><strong>기능</strong>: 소켓을 통해 복잡한 메시지(다중 버퍼, 제어 정보) 전송.</li><li><strong>특징</strong>:<ul><li>리눅스, BSD 지원.</li><li>소켓 전용, 파이프에는 사용 불가.</li></ul></li><li><strong>사용 예시</strong>:<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span><span style=color:#ff79c6>#include</span> <span style=color:#ff79c6>&lt;sys/socket.h&gt;</span><span style=color:#ff79c6>
-</span></span></span><span style=display:flex><span><span style=color:#ff79c6>#include</span> <span style=color:#ff79c6>&lt;string.h&gt;</span><span style=color:#ff79c6>
-</span></span></span><span style=display:flex><span><span style=color:#ff79c6></span>
-</span></span><span style=display:flex><span><span style=color:#8be9fd>int</span> <span style=color:#50fa7b>main</span>() {
-</span></span><span style=display:flex><span>    <span style=color:#8be9fd>int</span> sock_fd <span style=color:#ff79c6>=</span> <span style=color:#50fa7b>socket</span>(AF_UNIX, SOCK_DGRAM, <span style=color:#bd93f9>0</span>);
-</span></span><span style=display:flex><span>    <span style=color:#ff79c6>struct</span> msghdr msg <span style=color:#ff79c6>=</span> {<span style=color:#bd93f9>0</span>};
-</span></span><span style=display:flex><span>    <span style=color:#8be9fd>char</span> buf[] <span style=color:#ff79c6>=</span> <span style=color:#f1fa8c>&#34;Hello&#34;</span>;
-</span></span><span style=display:flex><span>    <span style=color:#ff79c6>struct</span> iovec iov <span style=color:#ff79c6>=</span> { .iov_base <span style=color:#ff79c6>=</span> buf, .iov_len <span style=color:#ff79c6>=</span> <span style=color:#50fa7b>strlen</span>(buf) };
-</span></span><span style=display:flex><span>    msg.msg_iov <span style=color:#ff79c6>=</span> <span style=color:#ff79c6>&amp;</span>iov;
-</span></span><span style=display:flex><span>    msg.msg_iovlen <span style=color:#ff79c6>=</span> <span style=color:#bd93f9>1</span>;
-</span></span><span style=display:flex><span>    <span style=color:#50fa7b>sendmsg</span>(sock_fd, <span style=color:#ff79c6>&amp;</span>msg, <span style=color:#bd93f9>0</span>);
-</span></span><span style=display:flex><span>    <span style=color:#50fa7b>close</span>(sock_fd);
-</span></span><span style=display:flex><span>    <span style=color:#ff79c6>return</span> <span style=color:#bd93f9>0</span>;
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div></li></ul><h2 id=6-io_uring-비동기-io-프레임워크>6. <code>io_uring</code>: 비동기 I/O 프레임워크</h2><ul><li><strong>기능</strong>: 비동기 I/O 작업을 위한 고성능 프레임워크.</li><li><strong>특징</strong>:<ul><li>리눅스 5.1 이상 전용.</li><li><code>splice()</code>와 비슷하거나 더 나은 성능.</li></ul></li><li><strong>사용 예시</strong>:<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span><span style=color:#ff79c6>#include</span> <span style=color:#ff79c6>&lt;liburing.h&gt;</span><span style=color:#ff79c6>
-</span></span></span><span style=display:flex><span><span style=color:#ff79c6>#include</span> <span style=color:#ff79c6>&lt;stdio.h&gt;</span><span style=color:#ff79c6>
-</span></span></span><span style=display:flex><span><span style=color:#ff79c6></span>
-</span></span><span style=display:flex><span><span style=color:#8be9fd>int</span> <span style=color:#50fa7b>main</span>() {
-</span></span><span style=display:flex><span>    <span style=color:#ff79c6>struct</span> io_uring ring;
-</span></span><span style=display:flex><span>    <span style=color:#50fa7b>io_uring_queue_init</span>(<span style=color:#bd93f9>8</span>, <span style=color:#ff79c6>&amp;</span>ring, <span style=color:#bd93f9>0</span>);
-</span></span><span style=display:flex><span>    <span style=color:#6272a4>// 비동기 I/O 작업 추가
-</span></span></span><span style=display:flex><span><span style=color:#6272a4></span>    <span style=color:#50fa7b>io_uring_queue_exit</span>(<span style=color:#ff79c6>&amp;</span>ring);
-</span></span><span style=display:flex><span>    <span style=color:#ff79c6>return</span> <span style=color:#bd93f9>0</span>;
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div></li></ul><h2 id=7-shm_open-공유-메모리>7. <code>shm_open</code>: 공유 메모리</h2><ul><li><strong>기능</strong>: 프로세스 간 공유 메모리 객체 생성.</li><li><strong>특징</strong>:<ul><li>리눅스, BSD 지원, 높은 포터블성.</li><li>동기화 필요.</li></ul></li><li><strong>사용 예시</strong>:<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span><span style=color:#ff79c6>#include</span> <span style=color:#ff79c6>&lt;sys/mman.h&gt;</span><span style=color:#ff79c6>
-</span></span></span><span style=display:flex><span><span style=color:#ff79c6>#include</span> <span style=color:#ff79c6>&lt;fcntl.h&gt;</span><span style=color:#ff79c6>
-</span></span></span><span style=display:flex><span><span style=color:#ff79c6>#include</span> <span style=color:#ff79c6>&lt;stdio.h&gt;</span><span style=color:#ff79c6>
-</span></span></span><span style=display:flex><span><span style=color:#ff79c6></span>
-</span></span><span style=display:flex><span><span style=color:#8be9fd>int</span> <span style=color:#50fa7b>main</span>() {
-</span></span><span style=display:flex><span>    <span style=color:#8be9fd>int</span> fd <span style=color:#ff79c6>=</span> <span style=color:#50fa7b>shm_open</span>(<span style=color:#f1fa8c>&#34;/myshm&#34;</span>, O_CREAT <span style=color:#ff79c6>|</span> O_RDWR, <span style=color:#bd93f9>0666</span>);
-</span></span><span style=display:flex><span>    <span style=color:#50fa7b>ftruncate</span>(fd, <span style=color:#bd93f9>1024</span>);
-</span></span><span style=display:flex><span>    <span style=color:#8be9fd>void</span> <span style=color:#ff79c6>*</span>ptr <span style=color:#ff79c6>=</span> <span style=color:#50fa7b>mmap</span>(<span style=color:#8be9fd;font-style:italic>NULL</span>, <span style=color:#bd93f9>1024</span>, PROT_READ <span style=color:#ff79c6>|</span> PROT_WRITE, MAP_SHARED, fd, <span style=color:#bd93f9>0</span>);
-</span></span><span style=display:flex><span>    <span style=color:#50fa7b>sprintf</span>(ptr, <span style=color:#f1fa8c>&#34;Shared data&#34;</span>);
-</span></span><span style=display:flex><span>    <span style=color:#50fa7b>printf</span>(<span style=color:#f1fa8c>&#34;Wrote: %s</span><span style=color:#f1fa8c>\n</span><span style=color:#f1fa8c>&#34;</span>, (<span style=color:#8be9fd>char</span> <span style=color:#ff79c6>*</span>)ptr);
-</span></span><span style=display:flex><span>    <span style=color:#50fa7b>munmap</span>(ptr, <span style=color:#bd93f9>1024</span>);
-</span></span><span style=display:flex><span>    <span style=color:#50fa7b>shm_unlink</span>(<span style=color:#f1fa8c>&#34;/about&#34;</span>);
-</span></span><span style=display:flex><span>    <span style=color:#50fa7b>close</span>(fd);
-</span></span><span style=display:flex><span>    <span style=color:#ff79c6>return</span> <span style=color:#bd93f9>0</span>;
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div></li></ul><h2 id=bsd-vs-리눅스>BSD vs 리눅스</h2><ul><li><strong>BSD</strong>: <code>splice()</code> 미지원으로 <code>readv()</code>/<code>writev()</code>가 파이프 전송에 효율적. 공유 메모리(<code>shm_open</code>)는 더 빠른 대안.</li><li><strong>리눅스</strong>: <code>splice()</code>와 <code>io_uring</code>이 대용량 데이터 전송에 최적. <code>sendfile()</code>은 파일→소켓 전송에 강력.</li></ul><h2 id=결론>결론</h2><p>고성능 I/O 작업은 사용 사례와 운영 체제에 따라 적합한 함수를 선택해야 합니다. 리눅스에서는 <code>splice()</code>와 <code>io_uring</code>이 뛰어난 성능을 제공하며, BSD에서는 <code>readv()</code>/<code>writev()</code>와 <code>shm_open</code>이 좋은 대안입니다. 각 함수의 특성과 예제를 참고해 최적의 솔루션을 선택하세요!</p><p><strong>참고 자료</strong>:</p><ul><li><a href="https://news.hada.io/topic?id=21623">GeekNews: Fast Pipes</a></li><li><a href=https://mazzo.li/posts/fast-pipes.html>mazzo.li: Fast Pipes</a></li></ul><link href=https://hybridego.github.io/dist/Artalk.css rel=stylesheet><script src=https://hybridego.github.io/dist/Artalk.js></script><div id=Comments></div><script>Artalk.init({el:"#Comments",pageKey:"https://hybridego.github.io/2025/07/04/High-Performance-IO-in-Unix-Systems/",pageTitle:"High-Performance I/O in Unix Systems",server:"https://hybridego.github.io",site:"lionel blog"})</script></div><div class="col-lg-3 col-lg-offset-0
+post-container"><h1 id=고성능-io를-위한-유닉스-시스템-호출-가이드>고성능 I/O를 위한 유닉스 시스템 호출 가이드</h1><p>유닉스 계열 운영 체제(리눅스, BSD 등)에서 고성능 I/O 작업은 대용량 데이터 전송, 네트워크 서버, 데이터 스트리밍 등에서 필수적입니다. 이번 포스팅에서는 <code>readv()</code>, <code>writev()</code>, <code>splice()</code>, <code>sendfile()</code>, <code>funopen()</code>, <code>sendmsg()</code>, <code>io_uring</code>, 그리고 <code>shm_open</code> 같은 함수들의 기능과 사용 예시를 정리하며, 리눅스와 BSD에서의 차이점을 살펴봅니다.</p><h2 id=1-readv--writev-scatter-gather-io>1. <code>readv()</code> / <code>writev()</code>: Scatter-Gather I/O</h2><ul><li><strong>기능</strong>: 여러 버퍼를 단일 시스템 호출로 읽거나 쓰는 scatter-gather I/O.</li><li><strong>특징</strong>:<ul><li>리눅스와 BSD 모두 지원.</li><li>메모리 복사(<code>memcpy</code>)가 필요하며, zero-copy는 아님.</li><li>BSD에서 파이프 데이터 전송에 효율적.</li></ul></li><li><strong>사용 예시</strong>:<div class=highlight><div class=code-toolbar><button class=copy-code-button title="Copy to clipboard">
+<i class="fas fa-copy"></i></button></div><pre><code>#include &lt;sys/uio.h&gt;
+#include &lt;fcntl.h&gt;
+#include &lt;stdio.h&gt;
+
+int main() {
+    int fd = open(&#34;input.txt&#34;, O_RDONLY);
+    char buf1[100], buf2[100];
+    struct iovec iov[2] = {
+        { .iov_base = buf1, .iov_len = 100 },
+        { .iov_base = buf2, .iov_len = 100 }
+    };
+    ssize_t n = readv(fd, iov, 2);
+    printf(&#34;Read %zd bytes\n&#34;, n);
+    close(fd);
+    return 0;
+}</code></pre></div></li></ul><h2 id=2-splice-zero-copy-파이프-전송>2. <code>splice()</code>: Zero-Copy 파이프 전송</h2><ul><li><strong>기능</strong>: 파이프나 유닉스 소켓 간 데이터를 사용자 공간 복사 없이 전송.</li><li><strong>특징</strong>:<ul><li>리눅스 전용, BSD 미지원.</li><li>대용량 데이터 전송에 최적.</li></ul></li><li><strong>사용 예시</strong>:<div class=highlight><div class=code-toolbar><button class=copy-code-button title="Copy to clipboard">
+<i class="fas fa-copy"></i></button></div><pre><code>#include &lt;fcntl.h&gt;
+#include &lt;stdio.h&gt;
+
+int main() {
+    int fd_in = open(&#34;input.txt&#34;, O_RDONLY);
+    int fd_out = open(&#34;output.txt&#34;, O_WRONLY | O_CREAT, 0644);
+    ssize_t n = splice(fd_in, NULL, fd_out, NULL, 1024, SPLICE_F_MOVE);
+    printf(&#34;Spliced %zd bytes\n&#34;, n);
+    close(fd_in);
+    close(fd_out);
+    return 0;
+}</code></pre></div></li></ul><h2 id=3-sendfile-파일에서-소켓으로-zero-copy-전송>3. <code>sendfile()</code>: 파일에서 소켓으로 Zero-Copy 전송</h2><ul><li><strong>기능</strong>: 파일 데이터를 소켓으로 직접 전송.</li><li><strong>특징</strong>:<ul><li>리눅스와 BSD 모두 지원.</li><li>파일→소켓 전용, 웹 서버에서 주로 사용.</li></ul></li><li><strong>사용 예시</strong>:<div class=highlight><div class=code-toolbar><button class=copy-code-button title="Copy to clipboard">
+<i class="fas fa-copy"></i></button></div><pre><code>#include &lt;sys/sendfile.h&gt;
+#include &lt;fcntl.h&gt;
+#include &lt;sys/socket.h&gt;
+
+int main() {
+    int file_fd = open(&#34;file.txt&#34;, O_RDONLY);
+    int sock_fd = socket(AF_INET, SOCK_STREAM, 0);
+    // 소켓 연결 설정 생략
+    ssize_t n = sendfile(sock_fd, file_fd, NULL, 1024);
+    printf(&#34;Sent %zd bytes\n&#34;, n);
+    close(file_fd);
+    close(sock_fd);
+    return 0;
+}</code></pre></div></li></ul><h2 id=4-funopen-사용자-정의-스트림>4. <code>funopen()</code>: 사용자 정의 스트림</h2><ul><li><strong>기능</strong>: 사용자 정의 읽기/쓰기 함수로 커스텀 I/O 스트림 생성.</li><li><strong>특징</strong>:<ul><li>BSD 전용, 리눅스에서는 <code>fopencookie()</code> 사용.</li><li>비표준 I/O 작업에 유연.</li></ul></li><li><strong>사용 예시</strong>:<div class=highlight><div class=code-toolbar><button class=copy-code-button title="Copy to clipboard">
+<i class="fas fa-copy"></i></button></div><pre><code>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int my_read(void *cookie, char *buf, int n) {
+    // 사용자 정의 읽기 로직
+    return n;
+}
+
+int main() {
+    FILE *fp = funopen(NULL, my_read, NULL, NULL, NULL);
+    fclose(fp);
+    return 0;
+}</code></pre></div></li></ul><h2 id=5-sendmsg-소켓-메시지-전송>5. <code>sendmsg()</code>: 소켓 메시지 전송</h2><ul><li><strong>기능</strong>: 소켓을 통해 복잡한 메시지(다중 버퍼, 제어 정보) 전송.</li><li><strong>특징</strong>:<ul><li>리눅스, BSD 지원.</li><li>소켓 전용, 파이프에는 사용 불가.</li></ul></li><li><strong>사용 예시</strong>:<div class=highlight><div class=code-toolbar><button class=copy-code-button title="Copy to clipboard">
+<i class="fas fa-copy"></i></button></div><pre><code>#include &lt;sys/socket.h&gt;
+#include &lt;string.h&gt;
+
+int main() {
+    int sock_fd = socket(AF_UNIX, SOCK_DGRAM, 0);
+    struct msghdr msg = {0};
+    char buf[] = &#34;Hello&#34;;
+    struct iovec iov = { .iov_base = buf, .iov_len = strlen(buf) };
+    msg.msg_iov = &amp;iov;
+    msg.msg_iovlen = 1;
+    sendmsg(sock_fd, &amp;msg, 0);
+    close(sock_fd);
+    return 0;
+}</code></pre></div></li></ul><h2 id=6-io_uring-비동기-io-프레임워크>6. <code>io_uring</code>: 비동기 I/O 프레임워크</h2><ul><li><strong>기능</strong>: 비동기 I/O 작업을 위한 고성능 프레임워크.</li><li><strong>특징</strong>:<ul><li>리눅스 5.1 이상 전용.</li><li><code>splice()</code>와 비슷하거나 더 나은 성능.</li></ul></li><li><strong>사용 예시</strong>:<div class=highlight><div class=code-toolbar><button class=copy-code-button title="Copy to clipboard">
+<i class="fas fa-copy"></i></button></div><pre><code>#include &lt;liburing.h&gt;
+#include &lt;stdio.h&gt;
+
+int main() {
+    struct io_uring ring;
+    io_uring_queue_init(8, &amp;ring, 0);
+    // 비동기 I/O 작업 추가
+    io_uring_queue_exit(&amp;ring);
+    return 0;
+}</code></pre></div></li></ul><h2 id=7-shm_open-공유-메모리>7. <code>shm_open</code>: 공유 메모리</h2><ul><li><strong>기능</strong>: 프로세스 간 공유 메모리 객체 생성.</li><li><strong>특징</strong>:<ul><li>리눅스, BSD 지원, 높은 포터블성.</li><li>동기화 필요.</li></ul></li><li><strong>사용 예시</strong>:<div class=highlight><div class=code-toolbar><button class=copy-code-button title="Copy to clipboard">
+<i class="fas fa-copy"></i></button></div><pre><code>#include &lt;sys/mman.h&gt;
+#include &lt;fcntl.h&gt;
+#include &lt;stdio.h&gt;
+
+int main() {
+    int fd = shm_open(&#34;/myshm&#34;, O_CREAT | O_RDWR, 0666);
+    ftruncate(fd, 1024);
+    void *ptr = mmap(NULL, 1024, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
+    sprintf(ptr, &#34;Shared data&#34;);
+    printf(&#34;Wrote: %s\n&#34;, (char *)ptr);
+    munmap(ptr, 1024);
+    shm_unlink(&#34;/about&#34;);
+    close(fd);
+    return 0;
+}</code></pre></div></li></ul><h2 id=bsd-vs-리눅스>BSD vs 리눅스</h2><ul><li><strong>BSD</strong>: <code>splice()</code> 미지원으로 <code>readv()</code>/<code>writev()</code>가 파이프 전송에 효율적. 공유 메모리(<code>shm_open</code>)는 더 빠른 대안.</li><li><strong>리눅스</strong>: <code>splice()</code>와 <code>io_uring</code>이 대용량 데이터 전송에 최적. <code>sendfile()</code>은 파일→소켓 전송에 강력.</li></ul><h2 id=결론>결론</h2><p>고성능 I/O 작업은 사용 사례와 운영 체제에 따라 적합한 함수를 선택해야 합니다. 리눅스에서는 <code>splice()</code>와 <code>io_uring</code>이 뛰어난 성능을 제공하며, BSD에서는 <code>readv()</code>/<code>writev()</code>와 <code>shm_open</code>이 좋은 대안입니다. 각 함수의 특성과 예제를 참고해 최적의 솔루션을 선택하세요!</p><p><strong>참고 자료</strong>:</p><ul><li><a href="https://news.hada.io/topic?id=21623">GeekNews: Fast Pipes</a></li><li><a href=https://mazzo.li/posts/fast-pipes.html>mazzo.li: Fast Pipes</a></li></ul><link href=https://hybridego.github.io/dist/Artalk.css rel=stylesheet><script src=https://hybridego.github.io/dist/Artalk.js></script><div id=Comments></div><script>Artalk.init({el:"#Comments",pageKey:"https://hybridego.github.io/2025/07/04/High-Performance-IO-in-Unix-Systems/",pageTitle:"High-Performance I/O in Unix Systems",server:"https://hybridego.github.io",site:"lionel blog"})</script></div><div class="col-lg-3 col-lg-offset-0
 col-md-3 col-md-offset-0
 col-sm-12
 col-xs-12

@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Tips on Lionel Blog</title><link>https://hybridego.github.io/tags/tips/</link><description>Recent content in Tips on Lionel Blog</description><generator>Hugo</generator><language>ko-kr</language><lastBuildDate>Tue, 13 Mar 2018 18:00:00 +0000</lastBuildDate><atom:link href="https://hybridego.github.io/tags/tips/index.xml" rel="self" type="application/rss+xml"/><item><title>HTTP 프록시 뒤에서 Docker를 사용하는 방법</title><link>https://hybridego.github.io/2018/03/13/use-docker-behind-http-proxy/</link><pubDate>Tue, 13 Mar 2018 18:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/03/13/use-docker-behind-http-proxy/</guid><description>&lt;h2 id="ubuntu">Ubuntu&lt;/h2>
 &lt;h3 id="docker에서-http-프록시-설정">Docker에서 HTTP 프록시 설정&lt;/h3>
-&lt;pre tabindex="0">&lt;code>sudo /etc/default/docker
+&lt;div class="highlight">
+ &lt;div class="code-toolbar">
+ &lt;button class="copy-code-button" title="Copy to clipboard">
+ &lt;i class="fas fa-copy">&lt;/i>
+ &lt;/button>
+ &lt;/div>
+ &lt;pre>&lt;code class="">sudo /etc/default/docker
 
 export http_proxy=&amp;#34;http://127.0.0.1:3128/&amp;#34;
 export https_proxy=&amp;#34;http://127.0.0.1:3128/&amp;#34;
 export HTTP_PROXY=&amp;#34;http://127.0.0.1:3128/&amp;#34;
-export HTTPS_PROXY=&amp;#34;http://127.0.0.1:3128/&amp;#34;
-&lt;/code>&lt;/pre></description></item><item><title>Vim 팁</title><link>https://hybridego.github.io/2018/02/09/vim-tips/</link><pubDate>Fri, 09 Feb 2018 11:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/02/09/vim-tips/</guid><description>&lt;h2 id="vim-그래픽-치트-시트">vim 그래픽 치트 시트&lt;/h2>
+export HTTPS_PROXY=&amp;#34;http://127.0.0.1:3128/&amp;#34;&lt;/code>&lt;/pre>
+&lt;/div></description></item><item><title>Vim 팁</title><link>https://hybridego.github.io/2018/02/09/vim-tips/</link><pubDate>Fri, 09 Feb 2018 11:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/02/09/vim-tips/</guid><description>&lt;h2 id="vim-그래픽-치트-시트">vim 그래픽 치트 시트&lt;/h2>
 &lt;p>
  &lt;img src="//img/2018-02-09-vim-tips/vi-vim-cheat-sheet.svg" alt="">
 
