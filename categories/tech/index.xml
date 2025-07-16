@@ -1,4 +1,43 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Tech on Lionel Blog</title><link>https://hybridego.github.io/categories/tech/</link><description>Recent content in Tech on Lionel Blog</description><generator>Hugo</generator><language>ko-kr</language><lastBuildDate>Wed, 16 Jul 2025 13:01:23 +0900</lastBuildDate><atom:link href="https://hybridego.github.io/categories/tech/index.xml" rel="self" type="application/rss+xml"/><item><title>Snap, Flatpak, AppImage의 차이와 장단점 비교</title><link>https://hybridego.github.io/2025/07/16/snap-flatpak-appImage/</link><pubDate>Wed, 16 Jul 2025 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2025/07/16/snap-flatpak-appImage/</guid><description>&lt;h1 id="snap-flatpak-appimage-비교-장단점과-차이점">Snap, Flatpak, AppImage 비교: 장단점과 차이점&lt;/h1>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Tech on Lionel Blog</title><link>https://hybridego.github.io/categories/tech/</link><description>Recent content in Tech on Lionel Blog</description><generator>Hugo</generator><language>ko-kr</language><lastBuildDate>Sun, 20 Jul 2025 13:01:23 +0900</lastBuildDate><atom:link href="https://hybridego.github.io/categories/tech/index.xml" rel="self" type="application/rss+xml"/><item><title>PipeWire - 리눅스 오디오의 새로운 표준</title><link>https://hybridego.github.io/2025/07/16/pipeWire/</link><pubDate>Wed, 16 Jul 2025 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2025/07/16/pipeWire/</guid><description>&lt;h1 id="pipewire">PipeWire&lt;/h1>
+&lt;h2 id="pipewire의-히스토리">PipeWire의 히스토리&lt;/h2>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>연도&lt;/th>
+ &lt;th>주요 사건&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>2015&lt;/td>
+ &lt;td>Wim Taymans가 개발 시작, 초기 명칭은 PulseVideo/Pinos&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>2017&lt;/td>
+ &lt;td>오디오 기능 추가, 프로젝트 명칭 PipeWire로 확정&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>2018.11&lt;/td>
+ &lt;td>라이선스 MIT로 변경&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>2021.04&lt;/td>
+ &lt;td>Fedora 34에서 최초 기본 오디오 서버 채택&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>2022~2023&lt;/td>
+ &lt;td>Ubuntu, Pop!_OS, Debian 등 대형 배포판 기본 채택&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>2023.11&lt;/td>
+ &lt;td>버전 1.0 공식 발표&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="탄생-배경과-초기-개발">탄생 배경과 초기 개발&lt;/h2>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;strong>PipeWire&lt;/strong>는 2015년 Red Hat의 Wim Taymans에 의해 시작된 리눅스용 저지연(low-latency) 멀티미디어 프레임워크입니다.&lt;/p></description></item><item><title>Snap, Flatpak, AppImage의 차이와 장단점 비교</title><link>https://hybridego.github.io/2025/07/16/snap-flatpak-appImage/</link><pubDate>Wed, 16 Jul 2025 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2025/07/16/snap-flatpak-appImage/</guid><description>&lt;h1 id="snap-flatpak-appimage-비교-장단점과-차이점">Snap, Flatpak, AppImage 비교: 장단점과 차이점&lt;/h1>
 &lt;table>
  &lt;thead>
  &lt;tr>
