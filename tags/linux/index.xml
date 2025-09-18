@@ -1,247 +1,517 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Linux on Lionel Blog</title><link>https://hybridego.github.io/tags/linux/</link><description>Recent content in Linux on Lionel Blog</description><generator>Hugo</generator><language>ko-kr</language><lastBuildDate>Sun, 20 Jul 2025 13:01:23 +0900</lastBuildDate><atom:link href="https://hybridego.github.io/tags/linux/index.xml" rel="self" type="application/rss+xml"/><item><title>PipeWire - 리눅스 오디오의 새로운 표준</title><link>https://hybridego.github.io/2025/07/16/pipeWire/</link><pubDate>Wed, 16 Jul 2025 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2025/07/16/pipeWire/</guid><description>&lt;h1 id="pipewire">PipeWire&lt;/h1>
-&lt;h2 id="pipewire의-히스토리">PipeWire의 히스토리&lt;/h2>
-&lt;table>
- &lt;thead>
- &lt;tr>
- &lt;th>연도&lt;/th>
- &lt;th>주요 사건&lt;/th>
- &lt;/tr>
- &lt;/thead>
- &lt;tbody>
- &lt;tr>
- &lt;td>2015&lt;/td>
- &lt;td>Wim Taymans가 개발 시작, 초기 명칭은 PulseVideo/Pinos&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>2017&lt;/td>
- &lt;td>오디오 기능 추가, 프로젝트 명칭 PipeWire로 확정&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>2018.11&lt;/td>
- &lt;td>라이선스 MIT로 변경&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>2021.04&lt;/td>
- &lt;td>Fedora 34에서 최초 기본 오디오 서버 채택&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>2022~2023&lt;/td>
- &lt;td>Ubuntu, Pop!_OS, Debian 등 대형 배포판 기본 채택&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>2023.11&lt;/td>
- &lt;td>버전 1.0 공식 발표&lt;/td>
- &lt;/tr>
- &lt;/tbody>
-&lt;/table>
-&lt;h2 id="탄생-배경과-초기-개발">탄생 배경과 초기 개발&lt;/h2>
-&lt;ul>
-&lt;li>
-&lt;p>&lt;strong>PipeWire&lt;/strong>는 2015년 Red Hat의 Wim Taymans에 의해 시작된 리눅스용 저지연(low-latency) 멀티미디어 프레임워크입니다.&lt;/p></description></item><item><title>Snap, Flatpak, AppImage의 차이와 장단점 비교</title><link>https://hybridego.github.io/2025/07/16/snap-flatpak-appImage/</link><pubDate>Wed, 16 Jul 2025 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2025/07/16/snap-flatpak-appImage/</guid><description>&lt;h1 id="snap-flatpak-appimage-비교-장단점과-차이점">Snap, Flatpak, AppImage 비교: 장단점과 차이점&lt;/h1>
-&lt;table>
- &lt;thead>
- &lt;tr>
- &lt;th>항목&lt;/th>
- &lt;th>Snap&lt;/th>
- &lt;th>Flatpak&lt;/th>
- &lt;th>AppImage&lt;/th>
- &lt;/tr>
- &lt;/thead>
- &lt;tbody>
- &lt;tr>
- &lt;td>&lt;strong>주 개발 주체&lt;/strong>&lt;/td>
- &lt;td>Canonical (Ubuntu)&lt;/td>
- &lt;td>Red Hat 등 오픈 커뮤니티&lt;/td>
- &lt;td>커뮤니티 (주로 Peter Simon 등)&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>&lt;strong>설치/실행 방식&lt;/strong>&lt;/td>
- &lt;td>패키지 매니저(명령어나 Gui 통해)&lt;/td>
- &lt;td>패키지 매니저(명령어나 Gui 통해)&lt;/td>
- &lt;td>단일 파일 실행(설치 필요 없음)&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>&lt;strong>샌드박스&lt;/strong>&lt;/td>
- &lt;td>있음(AppArmor 등 활용, 선택적)&lt;/td>
- &lt;td>필수(강력한 샌드박스, Portal 지원)&lt;/td>
- &lt;td>없음(추가 도구로 가능)&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>&lt;strong>자동 업데이트&lt;/strong>&lt;/td>
- &lt;td>기본 지원(자동)&lt;/td>
- &lt;td>기본 지원(자동, 옵션)&lt;/td>
- &lt;td>기본 미지원(별도 도구 필요)&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>&lt;strong>앱 스토어/레포&lt;/strong>&lt;/td>
- &lt;td>있음(snapcraft.io)&lt;/td>
- &lt;td>있음(Flathub 등)&lt;/td>
- &lt;td>없음(개별 배포, 다양한 출처)&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>&lt;strong>네이티브 통합&lt;/strong>&lt;/td>
- &lt;td>약간 제한적(시각/입력 등 이질감)&lt;/td>
- &lt;td>우수(테마/입력 등 네이티브와 유사)&lt;/td>
- &lt;td>없음(최소 통합, 휴대용 실행 우수)&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>&lt;strong>용량·최적화&lt;/strong>&lt;/td>
- &lt;td>대체로 큼, 느린 시작&lt;/td>
- &lt;td>가장 큼, 느린 시작&lt;/td>
- &lt;td>가장 작음, 빠른 실행&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>&lt;strong>권한 및 보안&lt;/strong>&lt;/td>
- &lt;td>중간(권한 인터페이스 방식)&lt;/td>
- &lt;td>강력(세분화된 권한, Portal)&lt;/td>
- &lt;td>약함(별도 조치 없으면 노출 가능)&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>&lt;strong>포팅/휴대성&lt;/strong>&lt;/td>
- &lt;td>어느 리눅스나 동작&lt;/td>
- &lt;td>어느 리눅스나 동작&lt;/td>
- &lt;td>어디서나 단일 파일 실행&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>&lt;strong>서버앱 지원&lt;/strong>&lt;/td>
- &lt;td>가능(서비스 패키지 배포 등)&lt;/td>
- &lt;td>한정적(데스크탑 앱 중심)&lt;/td>
- &lt;td>제한적(데스크탑 중심)&lt;/td>
- &lt;/tr>
- &lt;/tbody>
-&lt;/table>
-&lt;h2 id="snap">Snap&lt;/h2>
-&lt;p>&lt;strong>장점&lt;/strong>&lt;/p></description></item><item><title>How to Use do-while Loops in Shell Scripts</title><link>https://hybridego.github.io/2025/07/04/How_to_use_do_while_in_shell/</link><pubDate>Wed, 09 Jul 2025 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2025/07/04/How_to_use_do_while_in_shell/</guid><description>&lt;h1 id="how-to-use-do-while-loops-in-shell-scripts">How to Use do-while Loops in Shell Scripts&lt;/h1>
-&lt;h2 id="practical-examples-of-infinite-loops-in-bash">Practical Examples of Infinite Loops in Bash&lt;/h2>
-&lt;h3 id="bash에서-do-while-패턴을-사용하여-무한-루프를-구현하고-시스템-정보를-주기적으로-확인하는-방법을-소개합니다">Bash에서 do-while 패턴을 사용하여 무한 루프를 구현하고, 시스템 정보를 주기적으로 확인하는 방법을 소개합니다.&lt;/h3>
-&lt;div class="highlight">
- &lt;div class="code-toolbar">
- &lt;button class="copy-code-button" title="Copy to clipboard">
- &lt;i class="fas fa-copy">&lt;/i>
- &lt;/button>
- &lt;/div>
- &lt;pre>&lt;code class="">while true; do cat /sys/devices/platform/f01d0000.adc/iio:device0/in_voltage3_raw; sleep 1; done&lt;/code>&lt;/pre>
-&lt;/div>
-&lt;div class="highlight">
- &lt;div class="code-toolbar">
- &lt;button class="copy-code-button" title="Copy to clipboard">
- &lt;i class="fas fa-copy">&lt;/i>
- &lt;/button>
- &lt;/div>
- &lt;pre>&lt;code class="">while true; do cat /sys/devices/platform/f01d0000.adc/iio:device0/in_voltage3_raw; done&lt;/code>&lt;/pre>
-&lt;/div>
-&lt;div class="highlight">
- &lt;div class="code-toolbar">
- &lt;button class="copy-code-button" title="Copy to clipboard">
- &lt;i class="fas fa-copy">&lt;/i>
- &lt;/button>
- &lt;/div>
- &lt;pre>&lt;code class="">while true; do free -h; sleep 1; echo &amp;#34;---&amp;#34;; done&lt;/code>&lt;/pre>
-&lt;/div></description></item><item><title>How to Check the C++ Version in Use</title><link>https://hybridego.github.io/2025/07/04/Cpp_version_check/</link><pubDate>Wed, 09 Jul 2025 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2025/07/04/Cpp_version_check/</guid><description>&lt;h1 id="c-표준-버전-확인하기">C++ 표준 버전 확인하기&lt;/h1>
-&lt;pre>&lt;code>g++ -std=c++14 -E -dM -x c++ /dev/null | grep '__cplusplus'
-&lt;/code>&lt;/pre>
-&lt;p>이 명령은 g++ 컴파일러가 인식하는 C++ 표준 버전을 확인하는 명령입니다. 각 옵션의 역할은 다음과 같습니다:&lt;/p>
-&lt;ul>
-&lt;li>g++: GNU C++ 컴파일러를 실행합니다.&lt;/li>
-&lt;li>-std=c++14: C++14 표준을 사용하도록 지정합니다. 다른 버전(c++11, c++17 등)으로 변경할 수 있습니다.&lt;/li>
-&lt;li>-E: 전처리 단계만 수행하고 결과를 출력합니다. 컴파일 과정은 생략됩니다.&lt;/li>
-&lt;li>-dM: 전처리된 출력에서 매크로 정의만 포함하도록 지정합니다.&lt;/li>
-&lt;li>-x c++: 입력 파일의 종류를 C++ 소스 코드로 간주합니다.&lt;/li>
-&lt;li>/dev/null: 실제 소스 코드 파일 대신 null 디바이스를 사용합니다. 이는 컴파일러 자체에서 정의된 매크로를 확인하기 위함입니다.&lt;/li>
-&lt;li>| grep &amp;lsquo;__cplusplus&amp;rsquo;: 전처리된 출력에서 __cplusplus 매크로를 검색하여 출력합니다.&lt;/li>
-&lt;/ul>
-&lt;p>__cplusplus 매크로는 컴파일러가 지원하는 C++ 표준 버전을 나타냅니다. 예를 들어, 출력이 201703L이면 C++17 표준을 지원함을 의미합니다.&lt;/p></description></item><item><title>High-Performance I/O in Unix Systems</title><link>https://hybridego.github.io/2025/07/04/High-Performance-IO-in-Unix-Systems/</link><pubDate>Fri, 04 Jul 2025 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2025/07/04/High-Performance-IO-in-Unix-Systems/</guid><description>&lt;h1 id="고성능-io를-위한-유닉스-시스템-호출-가이드">고성능 I/O를 위한 유닉스 시스템 호출 가이드&lt;/h1>
-&lt;p>유닉스 계열 운영 체제(리눅스, BSD 등)에서 고성능 I/O 작업은 대용량 데이터 전송, 네트워크 서버, 데이터 스트리밍 등에서 필수적입니다. 이번 포스팅에서는 &lt;code>readv()&lt;/code>, &lt;code>writev()&lt;/code>, &lt;code>splice()&lt;/code>, &lt;code>sendfile()&lt;/code>, &lt;code>funopen()&lt;/code>, &lt;code>sendmsg()&lt;/code>, &lt;code>io_uring&lt;/code>, 그리고 &lt;code>shm_open&lt;/code> 같은 함수들의 기능과 사용 예시를 정리하며, 리눅스와 BSD에서의 차이점을 살펴봅니다.&lt;/p></description></item><item><title>Buildroot Package version up</title><link>https://hybridego.github.io/2025/07/04/Buildroot-package-version-up/</link><pubDate>Fri, 04 Jul 2025 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2025/07/04/Buildroot-package-version-up/</guid><description>&lt;h1 id="buildroot-version-변경하는-방법">buildroot version 변경하는 방법&lt;/h1>
-&lt;div class="highlight">
- &lt;div class="code-toolbar">
- &lt;button class="copy-code-button" title="Copy to clipboard">
- &lt;i class="fas fa-copy">&lt;/i>
- &lt;/button>
- &lt;/div>
- &lt;pre>&lt;code class="">make nt98567_buildroot_defconfig&lt;/code>&lt;/pre>
-&lt;/div>
-&lt;div class="highlight">
- &lt;div class="code-toolbar">
- &lt;button class="copy-code-button" title="Copy to clipboard">
- &lt;i class="fas fa-copy">&lt;/i>
- &lt;/button>
- &lt;/div>
- &lt;pre>&lt;code class="">make clean
-make &amp;lt;패키지이름&amp;gt;-rebuild&lt;/code>&lt;/pre>
-&lt;/div>
-&lt;ul>
-&lt;li>패키지의 소스코드를 수정했다면, 캐시를 지우고 빌드해야 합니다&lt;/li>
-&lt;/ul>
-&lt;div class="highlight">
- &lt;div class="code-toolbar">
- &lt;button class="copy-code-button" title="Copy to clipboard">
- &lt;i class="fas fa-copy">&lt;/i>
- &lt;/button>
- &lt;/div>
- &lt;pre>&lt;code class="">make &amp;lt;패키지이름&amp;gt;-dirclean
-make &amp;lt;패키지이름&amp;gt;&lt;/code>&lt;/pre>
-&lt;/div>
-&lt;ul>
-&lt;li>packagename.mk 에 다음과 같이 써있으면 host 설정에 따르는 것임&lt;/li>
-&lt;/ul>
-&lt;div class="highlight">
- &lt;div class="code-toolbar">
- &lt;button class="copy-code-button" title="Copy to clipboard">
- &lt;i class="fas fa-copy">&lt;/i>
- &lt;/button>
- &lt;/div>
- &lt;pre>&lt;code class="">$(eval $(virtual-package))
-$(eval $(host-virtual-package))&lt;/code>&lt;/pre>
-&lt;/div>
-&lt;ul>
-&lt;li>&lt;strong>host package 의 버전 확인하기&lt;/strong>&lt;/li>
-&lt;/ul>
-&lt;div class="highlight">
- &lt;div class="code-toolbar">
- &lt;button class="copy-code-button" title="Copy to clipboard">
- &lt;i class="fas fa-copy">&lt;/i>
- &lt;/button>
- &lt;/div>
- &lt;pre>&lt;code class="">pkg-config --modversion zlib&lt;/code>&lt;/pre>
-&lt;/div>
-&lt;h1 id="sha256-hash값-구하기">sha256 hash값 구하기&lt;/h1>
-&lt;div class="highlight">
- &lt;div class="code-toolbar">
- &lt;button class="copy-code-button" title="Copy to clipboard">
- &lt;i class="fas fa-copy">&lt;/i>
- &lt;/button>
- &lt;/div>
- &lt;pre>&lt;code class="">sha256sum 파일이름&lt;/code>&lt;/pre>
-&lt;/div></description></item><item><title>linux 에서 시스템 Buff and Cache 비우기</title><link>https://hybridego.github.io/2025/07/02/Empty-Buff-Cache/</link><pubDate>Wed, 02 Jul 2025 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2025/07/02/Empty-Buff-Cache/</guid><description>&lt;h1 id="linux-에서-시스템-buff-and-cache-비우기">linux 에서 시스템 Buff and Cache 비우기&lt;/h1>
-&lt;ul>
-&lt;li>/proc/sys/vm/drop_caches 사용
-리눅스 커널은 /proc/sys/vm/drop_caches 파일을 통해 캐시를 강제로 비울 수 있는 인터페이스를 제공합니다. 이 방법을 사용하려면 &lt;strong>루트 권한&lt;/strong>이 필요합니다.&lt;/li>
-&lt;/ul>
-&lt;div class="highlight">
- &lt;div class="code-toolbar">
- &lt;button class="copy-code-button" title="Copy to clipboard">
- &lt;i class="fas fa-copy">&lt;/i>
- &lt;/button>
- &lt;/div>
- &lt;pre>&lt;code class=""># 캐시 비우기 (페이지 캐시만 비움)
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Linux on Lionel Blog</title><link>https://hybridego.github.io/tags/linux/</link><description>Recent content in Linux on Lionel Blog</description><generator>Hugo</generator><language>ko-kr</language><lastBuildDate>Sun, 10 Aug 2025 20:01:23 +0900</lastBuildDate><atom:link href="https://hybridego.github.io/tags/linux/index.xml" rel="self" type="application/rss+xml"/><item><title>PulseAudio 사용 multicast 구현</title><link>https://hybridego.github.io/2025/08/10/pulseAudio/</link><pubDate>Sun, 10 Aug 2025 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2025/08/10/pulseAudio/</guid><description>&lt;ol&gt;
+&lt;li&gt;buildroot 에 pulseaudio 추가 하고 빌드&lt;/li&gt;
+&lt;li&gt;output/nt98567/nt98567 에서
+fd pulse 로 찾음&lt;/li&gt;
+&lt;li&gt;다음의 파일들을 해당 rootfs 위치로 복사&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;
+ &lt;div class="code-toolbar"&gt;
+ &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
+ &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;pre&gt;&lt;code class=""&gt;$ fd pulse
+usr/bin/pulseaudio
+usr/share/pulseaudio/
+usr/lib/libpulse-mainloop-glib.so.0
+usr/lib/libpulse-mainloop-glib.so
+usr/lib/libpulse-mainloop-glib.so.0.0.6
+usr/lib/libpulse.so.0
+usr/lib/libpulse-simple.so.0.1.1
+usr/lib/libpulse.so
+usr/lib/libpulse.so.0.24.2
+usr/lib/libpulse-simple.so.0
+usr/lib/libpulse-simple.so
+etc/init.d/S50pulseaudio
+usr/share/bash-completion/completions/pulseaudio
+etc/pulse/
+usr/lib/pulseaudio/
+usr/lib/pulseaudio/libpulsedsp.so
+usr/lib/pulseaudio/libpulsecommon-16.1.so
+usr/lib/pulseaudio/libpulsecore-16.1.so
+etc/dbus-1/system.d/pulseaudio-system.conf
+sudo cp -a ./usr /home/lionelj/test/ipas/bwc_firmware/nt98567_2/
+sudo cp -a ./etc/pulse /home/lionelj/test/ipas/bwc_firmware/nt98567_2/etc/
+sudo cp -a ./etc/dbus-1/system.d/pulseaudio-system.conf /home/lionelj/test/ipas/bwc_firmware/nt98567_2/etc/dbus-1/system.d/
+sudo cp -a ./etc/init.d/S50pulseaudio /home/lionelj/test/ipas/bwc_firmware/nt98567_2/etc/init.d/&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;ol start="4"&gt;
+&lt;li&gt;&lt;code&gt;rm /etc/init.d/S25_Net&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;dbus 세팅&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;/etc/dbus-1/system.d/pulseaudio-system.conf 수정&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;
+ &lt;div class="code-toolbar"&gt;
+ &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
+ &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;pre&gt;&lt;code class=""&gt;&amp;lt;?xml version=&amp;#34;1.0&amp;#34;?&amp;gt;&amp;lt;!--*-nxml-*--&amp;gt;
+&amp;lt;!DOCTYPE busconfig PUBLIC &amp;#34;-//freedesktop//DTD D-BUS Bus Configuration 1.0//EN&amp;#34;
+ &amp;#34;http://www.freedesktop.org/standards/dbus/1.0/busconfig.dtd&amp;#34;&amp;gt;
+&amp;lt;!--
+This file is part of PulseAudio.
+PulseAudio is free software; you can redistribute it and/or modify it
+under the terms of the GNU Lesser General Public License as
+published by the Free Software Foundation; either version 2.1 of the
+License, or (at your option) any later version.
+PulseAudio is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General
+Public License for more details.
+You should have received a copy of the GNU Lesser General Public
+License along with PulseAudio; if not, see &amp;lt;http://www.gnu.org/licenses/&amp;gt;.
+--&amp;gt;
+&amp;lt;busconfig&amp;gt;
+ &amp;lt;!-- System-wide PulseAudio runs as &amp;#39;pulse&amp;#39; user. This fragment is
+ not necessary for user PulseAudio instances. --&amp;gt;
+ &amp;lt;policy user=&amp;#34;pulse&amp;#34;&amp;gt;
+ &amp;lt;allow own=&amp;#34;org.pulseaudio.Server&amp;#34;/&amp;gt;
+ &amp;lt;/policy&amp;gt;
+ &amp;lt;policy at_console=&amp;#34;true&amp;#34;&amp;gt;
+ &amp;lt;allow send_destination=&amp;#34;org.pulseaudio.Server&amp;#34;/&amp;gt;
+ &amp;lt;/policy&amp;gt;
+ &amp;lt;policy context=&amp;#34;default&amp;#34;&amp;gt;
+ &amp;lt;deny send_destination=&amp;#34;org.pulseaudio.Server&amp;#34;/&amp;gt;
+ &amp;lt;/policy&amp;gt;
+&amp;lt;/busconfig&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;dbus 재시작&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;
+ &lt;div class="code-toolbar"&gt;
+ &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
+ &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;pre&gt;&lt;code class=""&gt;killall dbus-daemon
+dbus-daemon --system --nofork --nopidfile &amp;amp;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;ol start="6"&gt;
+&lt;li&gt;pulseAudio 세팅&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;
+ &lt;div class="code-toolbar"&gt;
+ &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
+ &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;pre&gt;&lt;code class=""&gt;echo &amp;#34;pulse:x:999:&amp;#34; &amp;gt;&amp;gt; /etc/group
+echo &amp;#34;pulse-access:x:1001:root&amp;#34; &amp;gt;&amp;gt; /etc/group
+echo &amp;#34;pulse:x:999:999:PulseAudio User:/var/run/pulse:/sbin/nologin&amp;#34; &amp;gt;&amp;gt; /etc/passwd
+echo &amp;#34;pulse:*:18800:0:99999:7:::&amp;#34; &amp;gt;&amp;gt; /etc/shadow
+mkdir -p /var/run/pulse /var/lib/pulse
+chown -R pulse:pulse /var/run/pulse /var/lib/pulse
+👉
+chmod -R 755 /var/run/pulse /var/lib/pulse
+chown pulse:pulse /etc/pulse/system.pa
+chmod 644 /etc/pulse/system.pa
+chown pulse:pulse /etc/pulse/client.conf
+chmod 644 /etc/pulse/client.conf
+# audio 그룹에 pulse 추가
+sed -i &amp;#39;s/^audio:x:[0-9]*:/&amp;amp;pulse,/&amp;#39; /etc/group
+export XDG_RUNTIME_DIR=/run/user/0
+mkdir -p /run/user/0
+chown root:root /run/user/0
+# pulse 사용자가 ALSA 장치에 접근할 수 있도록:
+👉
+chown pulse:pulse /dev/snd/*
+chmod 660 /dev/snd/*
+export PULSE_RUNTIME_PATH=/var/run/pulse
+export PULSE_CLIENTCONFIG=/etc/pulse/client.conf
+# Restart PulseAudio and check logs:
+pulseaudio --kill
+pulseaudio --system --disallow-exit --disallow-module-loading=0 --verbose &amp;amp;
+pulseaudio --system --disallow-exit --disallow-module-loading=0 --verbose &amp;gt; pulseaudio.log 2&amp;gt;&amp;amp;1 &amp;amp;
+pactl info
+pactl list modules | grep -E &amp;#34;null-sink|rtp|combine|alsa&amp;#34;
+# Look for &amp;#39;nvtcard&amp;#39;, &amp;#39;rtp_multicast&amp;#39;, &amp;#39;combined&amp;#39;
+pactl list sinks
+paplay --device=combined golden.mp3
+paplay --device=combined ./sine_48_le16s_1ch.wav
+paplay --device=nvtcard ./sine_48_le16s_1ch.wav&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;/etc/pulse/default.pa 수정&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;
+ &lt;div class="code-toolbar"&gt;
+ &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
+ &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;pre&gt;&lt;code class=""&gt;# module-detect를 주석 처리하여 자동 탐지 비활성화:
+#load-module module-detect
+# ALSA 싱크/소스 명시적으로 추가:
+load-module module-alsa-sink device=hw:0,0 sink_name=nvtcard
+load-module module-alsa-source device=hw:0,0
+- device=hw:0,0: aplay -l에서 확인된 card 0: nvtcard, device 0.
+- sink_name=nvtcard: PulseAudio에서 사용할 이름.
+- RTP 스트리밍을 위해 추가:
+load-module module-null-sink sink_name=rtp_multicast
+load-module module-rtp-send source=rtp_multicast.monitor destination=224.0.0.56 port=4010 loop=0
+- 자체 재생과 스트리밍 동시 지원을 위해 module-combine-sink 추가:
+load-module module-combine-sink sink_name=combined slaves=nvtcard,rtp_multicast&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;/etc/pulse/default.pa 수정 필요&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;
+ &lt;div class="code-toolbar"&gt;
+ &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
+ &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;pre&gt;&lt;code class=""&gt;# Disable auto detection to avoid failures
+#load-module module-detect
+# Load ALSA sink for local playback
+load-module module-alsa-sink device=hw:0,0 sink_name=nvtcard
+# Load null-sink for RTP streaming
+load-module module-null-sink sink_name=rtp_multicast
+# Load RTP send module
+load-module module-rtp-send source=rtp_multicast.monitor destination=224.0.0.56 port=4010 loop=0
+# Combine for simultaneous local &amp;#43; RTP output
+load-module module-combine-sink sink_name=combined slaves=nvtcard,rtp_multicast&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h1 id="수신-디바이스"&gt;수신 디바이스&lt;/h1&gt;
+&lt;div class="highlight"&gt;
+ &lt;div class="code-toolbar"&gt;
+ &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
+ &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;pre&gt;&lt;code class=""&gt;# rtp_recv 용 null-sink 추가
+pactl unload-module module-rtp-recv
+pactl load-module module-rtp-recv sap_address=224.0.0.56 sink=nvtcard
+pactl load-module module-rtp-recv sap_address=224.0.0.56 sink=nvtcard latency_msec=10
+paplay --device=rtp_multicast /root/sine8.wav&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h1 id="로딩된-모듈-리스트-확인"&gt;로딩된 모듈 리스트 확인&lt;/h1&gt;
+&lt;div class="highlight"&gt;
+ &lt;div class="code-toolbar"&gt;
+ &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
+ &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;pre&gt;&lt;code class=""&gt;pactl list short modules
+pactl list module&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h1 id="기본-소스-확인"&gt;기본 소스 확인:&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;source=default는 현재 시스템의 기본 소스를 사용합니다. 어떤 소스가 기본인지 확인하려면 pactl list sources short 명령을 실행해 보세요. 예를 들어, 마이크 입력을 사용하려면 해당 소스 이름을 명시적으로 지정(예: source=alsa_input.hw:0,0)하는 것이 더 안전할 수 있습니다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;
+ &lt;div class="code-toolbar"&gt;
+ &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
+ &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;pre&gt;&lt;code class=""&gt;pactl list sources short&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h1 id="inittab-에-추가"&gt;inittab 에 추가&lt;/h1&gt;
+&lt;div class="highlight"&gt;
+ &lt;div class="code-toolbar"&gt;
+ &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
+ &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;pre&gt;&lt;code class=""&gt;# PulseAudio를 pulse 유저 대신 root로 실행하도록 설정.
+# Buildroot init 스크립트(/etc/init.d/pulseaudio)나 inittab에 추가:
+::respawn:/usr/bin/pulseaudio --system --daemonize --high-priority=no --realtime=no -nF /etc/pulse/system.pa&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h1 id="ntp-설정-target-에서"&gt;ntp 설정 (target 에서)&lt;/h1&gt;
+&lt;div class="highlight"&gt;
+ &lt;div class="code-toolbar"&gt;
+ &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
+ &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;pre&gt;&lt;code class=""&gt;busybox ntpd -p 192.168.71.41 -g -n&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h1 id="ffmpeg-변환"&gt;ffmpeg 변환&lt;/h1&gt;
+&lt;div class="highlight"&gt;
+ &lt;div class="code-toolbar"&gt;
+ &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
+ &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;pre&gt;&lt;code class=""&gt;ffmpeg -i test.mp3 -t 30 -c:a pcm_s16le test_30s.wav&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h2 id="명령어"&gt;명령어&lt;/h2&gt;
+&lt;div class="highlight"&gt;
+ &lt;div class="code-toolbar"&gt;
+ &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
+ &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;pre&gt;&lt;code class=""&gt;chown pulse:pulse /dev/snd/*
+chmod -R 755 /var/run/pulse /var/lib/pulse
+chmod 660 /dev/snd/*
+export PULSE_RUNTIME_PATH=/var/run/pulse
+export PULSE_CLIENTCONFIG=/etc/pulse/client.conf
+pulseaudio --kill
+pulseaudio --system --disallow-exit --disallow-module-loading=0 --verbose &amp;amp;
+pulseaudio --system --disallow-exit --disallow-module-loading=0 --log-level=info &amp;amp;
+pulseaudio --system --disallow-exit --disallow-module-loading=0 &amp;amp;
+busybox ntpd -p 192.168.71.41 -g -n
+paplay --device=rtp_multicast ./sine_48_le16s_1ch.wav
+paplay --device=nvtcard ./sine_48_le16s_1ch.wav
+paplay --device=combined ./sine_48_le16s_1ch.wav
+pactl unload-module module-rtp-recv
+pactl load-module module-rtp-recv sap_address=224.0.0.56 sink=nvtcard latency_msec=200
+pactl load-module module-rtp-recv sink=nvtcard latency_msec=200
+pactl list sinks short
+pactl list sources short
+pactl list modules short&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;필요한것&lt;/p&gt;</description></item><item><title>PipeWire - 리눅스 오디오의 새로운 표준</title><link>https://hybridego.github.io/2025/07/16/pipeWire/</link><pubDate>Wed, 16 Jul 2025 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2025/07/16/pipeWire/</guid><description>&lt;h1 id="pipewire"&gt;PipeWire&lt;/h1&gt;
+&lt;h2 id="pipewire의-히스토리"&gt;PipeWire의 히스토리&lt;/h2&gt;
+&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th&gt;연도&lt;/th&gt;
+ &lt;th&gt;주요 사건&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td&gt;2015&lt;/td&gt;
+ &lt;td&gt;Wim Taymans가 개발 시작, 초기 명칭은 PulseVideo/Pinos&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;2017&lt;/td&gt;
+ &lt;td&gt;오디오 기능 추가, 프로젝트 명칭 PipeWire로 확정&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;2018.11&lt;/td&gt;
+ &lt;td&gt;라이선스 MIT로 변경&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;2021.04&lt;/td&gt;
+ &lt;td&gt;Fedora 34에서 최초 기본 오디오 서버 채택&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;2022~2023&lt;/td&gt;
+ &lt;td&gt;Ubuntu, Pop!_OS, Debian 등 대형 배포판 기본 채택&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;2023.11&lt;/td&gt;
+ &lt;td&gt;버전 1.0 공식 발표&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id="탄생-배경과-초기-개발"&gt;탄생 배경과 초기 개발&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;PipeWire&lt;/strong&gt;는 2015년 Red Hat의 Wim Taymans에 의해 시작된 리눅스용 저지연(low-latency) 멀티미디어 프레임워크입니다.&lt;/p&gt;</description></item><item><title>Snap, Flatpak, AppImage의 차이와 장단점 비교</title><link>https://hybridego.github.io/2025/07/16/snap-flatpak-appImage/</link><pubDate>Wed, 16 Jul 2025 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2025/07/16/snap-flatpak-appImage/</guid><description>&lt;h1 id="snap-flatpak-appimage-비교-장단점과-차이점"&gt;Snap, Flatpak, AppImage 비교: 장단점과 차이점&lt;/h1&gt;
+&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th&gt;항목&lt;/th&gt;
+ &lt;th&gt;Snap&lt;/th&gt;
+ &lt;th&gt;Flatpak&lt;/th&gt;
+ &lt;th&gt;AppImage&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;주 개발 주체&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;Canonical (Ubuntu)&lt;/td&gt;
+ &lt;td&gt;Red Hat 등 오픈 커뮤니티&lt;/td&gt;
+ &lt;td&gt;커뮤니티 (주로 Peter Simon 등)&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;설치/실행 방식&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;패키지 매니저(명령어나 Gui 통해)&lt;/td&gt;
+ &lt;td&gt;패키지 매니저(명령어나 Gui 통해)&lt;/td&gt;
+ &lt;td&gt;단일 파일 실행(설치 필요 없음)&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;샌드박스&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;있음(AppArmor 등 활용, 선택적)&lt;/td&gt;
+ &lt;td&gt;필수(강력한 샌드박스, Portal 지원)&lt;/td&gt;
+ &lt;td&gt;없음(추가 도구로 가능)&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;자동 업데이트&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;기본 지원(자동)&lt;/td&gt;
+ &lt;td&gt;기본 지원(자동, 옵션)&lt;/td&gt;
+ &lt;td&gt;기본 미지원(별도 도구 필요)&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;앱 스토어/레포&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;있음(snapcraft.io)&lt;/td&gt;
+ &lt;td&gt;있음(Flathub 등)&lt;/td&gt;
+ &lt;td&gt;없음(개별 배포, 다양한 출처)&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;네이티브 통합&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;약간 제한적(시각/입력 등 이질감)&lt;/td&gt;
+ &lt;td&gt;우수(테마/입력 등 네이티브와 유사)&lt;/td&gt;
+ &lt;td&gt;없음(최소 통합, 휴대용 실행 우수)&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;용량·최적화&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;대체로 큼, 느린 시작&lt;/td&gt;
+ &lt;td&gt;가장 큼, 느린 시작&lt;/td&gt;
+ &lt;td&gt;가장 작음, 빠른 실행&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;권한 및 보안&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;중간(권한 인터페이스 방식)&lt;/td&gt;
+ &lt;td&gt;강력(세분화된 권한, Portal)&lt;/td&gt;
+ &lt;td&gt;약함(별도 조치 없으면 노출 가능)&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;포팅/휴대성&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;어느 리눅스나 동작&lt;/td&gt;
+ &lt;td&gt;어느 리눅스나 동작&lt;/td&gt;
+ &lt;td&gt;어디서나 단일 파일 실행&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;서버앱 지원&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;가능(서비스 패키지 배포 등)&lt;/td&gt;
+ &lt;td&gt;한정적(데스크탑 앱 중심)&lt;/td&gt;
+ &lt;td&gt;제한적(데스크탑 중심)&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id="snap"&gt;Snap&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;장점&lt;/strong&gt;&lt;/p&gt;</description></item><item><title>How to Use do-while Loops in Shell Scripts</title><link>https://hybridego.github.io/2025/07/04/How_to_use_do_while_in_shell/</link><pubDate>Wed, 09 Jul 2025 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2025/07/04/How_to_use_do_while_in_shell/</guid><description>&lt;h1 id="how-to-use-do-while-loops-in-shell-scripts"&gt;How to Use do-while Loops in Shell Scripts&lt;/h1&gt;
+&lt;h2 id="practical-examples-of-infinite-loops-in-bash"&gt;Practical Examples of Infinite Loops in Bash&lt;/h2&gt;
+&lt;h3 id="bash에서-do-while-패턴을-사용하여-무한-루프를-구현하고-시스템-정보를-주기적으로-확인하는-방법을-소개합니다"&gt;Bash에서 do-while 패턴을 사용하여 무한 루프를 구현하고, 시스템 정보를 주기적으로 확인하는 방법을 소개합니다.&lt;/h3&gt;
+&lt;div class="highlight"&gt;
+ &lt;div class="code-toolbar"&gt;
+ &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
+ &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;pre&gt;&lt;code class=""&gt;while true; do cat /sys/devices/platform/f01d0000.adc/iio:device0/in_voltage3_raw; sleep 1; done&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class="highlight"&gt;
+ &lt;div class="code-toolbar"&gt;
+ &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
+ &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;pre&gt;&lt;code class=""&gt;while true; do cat /sys/devices/platform/f01d0000.adc/iio:device0/in_voltage3_raw; done&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class="highlight"&gt;
+ &lt;div class="code-toolbar"&gt;
+ &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
+ &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;pre&gt;&lt;code class=""&gt;while true; do free -h; sleep 1; echo &amp;#34;---&amp;#34;; done&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;</description></item><item><title>How to Check the C++ Version in Use</title><link>https://hybridego.github.io/2025/07/04/Cpp_version_check/</link><pubDate>Wed, 09 Jul 2025 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2025/07/04/Cpp_version_check/</guid><description>&lt;h1 id="c-표준-버전-확인하기"&gt;C++ 표준 버전 확인하기&lt;/h1&gt;
+&lt;pre&gt;&lt;code&gt;g++ -std=c++14 -E -dM -x c++ /dev/null | grep '__cplusplus'
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;이 명령은 g++ 컴파일러가 인식하는 C++ 표준 버전을 확인하는 명령입니다. 각 옵션의 역할은 다음과 같습니다:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;g++: GNU C++ 컴파일러를 실행합니다.&lt;/li&gt;
+&lt;li&gt;-std=c++14: C++14 표준을 사용하도록 지정합니다. 다른 버전(c++11, c++17 등)으로 변경할 수 있습니다.&lt;/li&gt;
+&lt;li&gt;-E: 전처리 단계만 수행하고 결과를 출력합니다. 컴파일 과정은 생략됩니다.&lt;/li&gt;
+&lt;li&gt;-dM: 전처리된 출력에서 매크로 정의만 포함하도록 지정합니다.&lt;/li&gt;
+&lt;li&gt;-x c++: 입력 파일의 종류를 C++ 소스 코드로 간주합니다.&lt;/li&gt;
+&lt;li&gt;/dev/null: 실제 소스 코드 파일 대신 null 디바이스를 사용합니다. 이는 컴파일러 자체에서 정의된 매크로를 확인하기 위함입니다.&lt;/li&gt;
+&lt;li&gt;| grep &amp;lsquo;__cplusplus&amp;rsquo;: 전처리된 출력에서 __cplusplus 매크로를 검색하여 출력합니다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;__cplusplus 매크로는 컴파일러가 지원하는 C++ 표준 버전을 나타냅니다. 예를 들어, 출력이 201703L이면 C++17 표준을 지원함을 의미합니다.&lt;/p&gt;</description></item><item><title>High-Performance I/O in Unix Systems</title><link>https://hybridego.github.io/2025/07/04/High-Performance-IO-in-Unix-Systems/</link><pubDate>Fri, 04 Jul 2025 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2025/07/04/High-Performance-IO-in-Unix-Systems/</guid><description>&lt;h1 id="고성능-io를-위한-유닉스-시스템-호출-가이드"&gt;고성능 I/O를 위한 유닉스 시스템 호출 가이드&lt;/h1&gt;
+&lt;p&gt;유닉스 계열 운영 체제(리눅스, BSD 등)에서 고성능 I/O 작업은 대용량 데이터 전송, 네트워크 서버, 데이터 스트리밍 등에서 필수적입니다. 이번 포스팅에서는 &lt;code&gt;readv()&lt;/code&gt;, &lt;code&gt;writev()&lt;/code&gt;, &lt;code&gt;splice()&lt;/code&gt;, &lt;code&gt;sendfile()&lt;/code&gt;, &lt;code&gt;funopen()&lt;/code&gt;, &lt;code&gt;sendmsg()&lt;/code&gt;, &lt;code&gt;io_uring&lt;/code&gt;, 그리고 &lt;code&gt;shm_open&lt;/code&gt; 같은 함수들의 기능과 사용 예시를 정리하며, 리눅스와 BSD에서의 차이점을 살펴봅니다.&lt;/p&gt;</description></item><item><title>Buildroot Package version up</title><link>https://hybridego.github.io/2025/07/04/Buildroot-package-version-up/</link><pubDate>Fri, 04 Jul 2025 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2025/07/04/Buildroot-package-version-up/</guid><description>&lt;h1 id="buildroot-version-변경하는-방법"&gt;buildroot version 변경하는 방법&lt;/h1&gt;
+&lt;div class="highlight"&gt;
+ &lt;div class="code-toolbar"&gt;
+ &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
+ &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;pre&gt;&lt;code class=""&gt;make nt98567_buildroot_defconfig&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class="highlight"&gt;
+ &lt;div class="code-toolbar"&gt;
+ &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
+ &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;pre&gt;&lt;code class=""&gt;make clean
+make &amp;lt;패키지이름&amp;gt;-rebuild&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;패키지의 소스코드를 수정했다면, 캐시를 지우고 빌드해야 합니다&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;
+ &lt;div class="code-toolbar"&gt;
+ &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
+ &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;pre&gt;&lt;code class=""&gt;make &amp;lt;패키지이름&amp;gt;-dirclean
+make &amp;lt;패키지이름&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;packagename.mk 에 다음과 같이 써있으면 host 설정에 따르는 것임&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;
+ &lt;div class="code-toolbar"&gt;
+ &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
+ &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;pre&gt;&lt;code class=""&gt;$(eval $(virtual-package))
+$(eval $(host-virtual-package))&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;host package 의 버전 확인하기&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;
+ &lt;div class="code-toolbar"&gt;
+ &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
+ &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;pre&gt;&lt;code class=""&gt;pkg-config --modversion zlib&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h1 id="sha256-hash값-구하기"&gt;sha256 hash값 구하기&lt;/h1&gt;
+&lt;div class="highlight"&gt;
+ &lt;div class="code-toolbar"&gt;
+ &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
+ &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;pre&gt;&lt;code class=""&gt;sha256sum 파일이름&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;</description></item><item><title>linux 에서 시스템 Buff and Cache 비우기</title><link>https://hybridego.github.io/2025/07/02/Empty-Buff-Cache/</link><pubDate>Wed, 02 Jul 2025 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2025/07/02/Empty-Buff-Cache/</guid><description>&lt;h1 id="linux-에서-시스템-buff-and-cache-비우기"&gt;linux 에서 시스템 Buff and Cache 비우기&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;/proc/sys/vm/drop_caches 사용
+리눅스 커널은 /proc/sys/vm/drop_caches 파일을 통해 캐시를 강제로 비울 수 있는 인터페이스를 제공합니다. 이 방법을 사용하려면 &lt;strong&gt;루트 권한&lt;/strong&gt;이 필요합니다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;
+ &lt;div class="code-toolbar"&gt;
+ &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
+ &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;pre&gt;&lt;code class=""&gt;# 캐시 비우기 (페이지 캐시만 비움)
 echo 1 | tee /proc/sys/vm/drop_caches
 
 # 덴트리(dentries)와 아이노드(inode) 캐시 비우기
 echo 2 | tee /proc/sys/vm/drop_caches
 
 # 페이지 캐시, 덴트리, 아이노드 모두 비우기 (가장 강력)
-echo 3 | tee /proc/sys/vm/drop_caches&lt;/code>&lt;/pre>
-&lt;/div>
-&lt;ul>
-&lt;li>강제로 비우는 대신, 큰 메모리를 사용하는 프로그램(예: stress 도구)을 실행해 시스템이 자연스럽게 buff/cache를 비우도록 유도할 수도 있습니다.&lt;/li>
-&lt;/ul>
-&lt;div class="highlight">
- &lt;div class="code-toolbar">
- &lt;button class="copy-code-button" title="Copy to clipboard">
- &lt;i class="fas fa-copy">&lt;/i>
- &lt;/button>
- &lt;/div>
- &lt;pre>&lt;code class="">sudo apt install stress # 설치 (Ubuntu/Debian 기준)
-stress --vm 1 --vm-bytes 200G # 200GB 메모리 사용 시뮬레이션&lt;/code>&lt;/pre>
-&lt;/div></description></item><item><title>linux debugging</title><link>https://hybridego.github.io/2025/05/23/Linux_debugging_skil/</link><pubDate>Fri, 23 May 2025 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2025/05/23/Linux_debugging_skil/</guid><description>&lt;h1 id="리눅스-환경에서의-메모리-디버깅-스킬">리눅스 환경에서의 메모리 디버깅 스킬&lt;/h1>
-&lt;p>이 교육 자료는 리눅스 환경에서 메모리 관련 문제를 디버깅하는 데 필요한 핵심 개념과 도구를 다룹니다. 페이지, 페이지 폴트, 신호(SIGSEGV, SIGBUS), 댕글링 포인터, &lt;code>/proc&lt;/code> 파일, OOM Killer, Shadow Memory, LD_PRELOAD, RAII를 기반으로 디버깅 스킬을 정리했습니다.&lt;/p></description></item></channel></rss>
+echo 3 | tee /proc/sys/vm/drop_caches&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;강제로 비우는 대신, 큰 메모리를 사용하는 프로그램(예: stress 도구)을 실행해 시스템이 자연스럽게 buff/cache를 비우도록 유도할 수도 있습니다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;
+ &lt;div class="code-toolbar"&gt;
+ &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
+ &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;pre&gt;&lt;code class=""&gt;sudo apt install stress # 설치 (Ubuntu/Debian 기준)
+stress --vm 1 --vm-bytes 200G # 200GB 메모리 사용 시뮬레이션&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;</description></item><item><title>linux debugging</title><link>https://hybridego.github.io/2025/05/23/Linux_debugging_skil/</link><pubDate>Fri, 23 May 2025 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2025/05/23/Linux_debugging_skil/</guid><description>&lt;h1 id="리눅스-환경에서의-메모리-디버깅-스킬"&gt;리눅스 환경에서의 메모리 디버깅 스킬&lt;/h1&gt;
+&lt;p&gt;이 교육 자료는 리눅스 환경에서 메모리 관련 문제를 디버깅하는 데 필요한 핵심 개념과 도구를 다룹니다. 페이지, 페이지 폴트, 신호(SIGSEGV, SIGBUS), 댕글링 포인터, &lt;code&gt;/proc&lt;/code&gt; 파일, OOM Killer, Shadow Memory, LD_PRELOAD, RAII를 기반으로 디버깅 스킬을 정리했습니다.&lt;/p&gt;</description></item></channel></rss>

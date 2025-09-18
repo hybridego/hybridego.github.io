@@ -1,75 +1,75 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Snap on Lionel Blog</title><link>https://hybridego.github.io/tags/snap/</link><description>Recent content in Snap on Lionel Blog</description><generator>Hugo</generator><language>ko-kr</language><lastBuildDate>Wed, 16 Jul 2025 13:01:23 +0900</lastBuildDate><atom:link href="https://hybridego.github.io/tags/snap/index.xml" rel="self" type="application/rss+xml"/><item><title>Snap, Flatpak, AppImage의 차이와 장단점 비교</title><link>https://hybridego.github.io/2025/07/16/snap-flatpak-appImage/</link><pubDate>Wed, 16 Jul 2025 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2025/07/16/snap-flatpak-appImage/</guid><description>&lt;h1 id="snap-flatpak-appimage-비교-장단점과-차이점">Snap, Flatpak, AppImage 비교: 장단점과 차이점&lt;/h1>
-&lt;table>
- &lt;thead>
- &lt;tr>
- &lt;th>항목&lt;/th>
- &lt;th>Snap&lt;/th>
- &lt;th>Flatpak&lt;/th>
- &lt;th>AppImage&lt;/th>
- &lt;/tr>
- &lt;/thead>
- &lt;tbody>
- &lt;tr>
- &lt;td>&lt;strong>주 개발 주체&lt;/strong>&lt;/td>
- &lt;td>Canonical (Ubuntu)&lt;/td>
- &lt;td>Red Hat 등 오픈 커뮤니티&lt;/td>
- &lt;td>커뮤니티 (주로 Peter Simon 등)&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>&lt;strong>설치/실행 방식&lt;/strong>&lt;/td>
- &lt;td>패키지 매니저(명령어나 Gui 통해)&lt;/td>
- &lt;td>패키지 매니저(명령어나 Gui 통해)&lt;/td>
- &lt;td>단일 파일 실행(설치 필요 없음)&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>&lt;strong>샌드박스&lt;/strong>&lt;/td>
- &lt;td>있음(AppArmor 등 활용, 선택적)&lt;/td>
- &lt;td>필수(강력한 샌드박스, Portal 지원)&lt;/td>
- &lt;td>없음(추가 도구로 가능)&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>&lt;strong>자동 업데이트&lt;/strong>&lt;/td>
- &lt;td>기본 지원(자동)&lt;/td>
- &lt;td>기본 지원(자동, 옵션)&lt;/td>
- &lt;td>기본 미지원(별도 도구 필요)&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>&lt;strong>앱 스토어/레포&lt;/strong>&lt;/td>
- &lt;td>있음(snapcraft.io)&lt;/td>
- &lt;td>있음(Flathub 등)&lt;/td>
- &lt;td>없음(개별 배포, 다양한 출처)&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>&lt;strong>네이티브 통합&lt;/strong>&lt;/td>
- &lt;td>약간 제한적(시각/입력 등 이질감)&lt;/td>
- &lt;td>우수(테마/입력 등 네이티브와 유사)&lt;/td>
- &lt;td>없음(최소 통합, 휴대용 실행 우수)&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>&lt;strong>용량·최적화&lt;/strong>&lt;/td>
- &lt;td>대체로 큼, 느린 시작&lt;/td>
- &lt;td>가장 큼, 느린 시작&lt;/td>
- &lt;td>가장 작음, 빠른 실행&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>&lt;strong>권한 및 보안&lt;/strong>&lt;/td>
- &lt;td>중간(권한 인터페이스 방식)&lt;/td>
- &lt;td>강력(세분화된 권한, Portal)&lt;/td>
- &lt;td>약함(별도 조치 없으면 노출 가능)&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>&lt;strong>포팅/휴대성&lt;/strong>&lt;/td>
- &lt;td>어느 리눅스나 동작&lt;/td>
- &lt;td>어느 리눅스나 동작&lt;/td>
- &lt;td>어디서나 단일 파일 실행&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>&lt;strong>서버앱 지원&lt;/strong>&lt;/td>
- &lt;td>가능(서비스 패키지 배포 등)&lt;/td>
- &lt;td>한정적(데스크탑 앱 중심)&lt;/td>
- &lt;td>제한적(데스크탑 중심)&lt;/td>
- &lt;/tr>
- &lt;/tbody>
-&lt;/table>
-&lt;h2 id="snap">Snap&lt;/h2>
-&lt;p>&lt;strong>장점&lt;/strong>&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Snap on Lionel Blog</title><link>https://hybridego.github.io/tags/snap/</link><description>Recent content in Snap on Lionel Blog</description><generator>Hugo</generator><language>ko-kr</language><lastBuildDate>Wed, 16 Jul 2025 13:01:23 +0900</lastBuildDate><atom:link href="https://hybridego.github.io/tags/snap/index.xml" rel="self" type="application/rss+xml"/><item><title>Snap, Flatpak, AppImage의 차이와 장단점 비교</title><link>https://hybridego.github.io/2025/07/16/snap-flatpak-appImage/</link><pubDate>Wed, 16 Jul 2025 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2025/07/16/snap-flatpak-appImage/</guid><description>&lt;h1 id="snap-flatpak-appimage-비교-장단점과-차이점"&gt;Snap, Flatpak, AppImage 비교: 장단점과 차이점&lt;/h1&gt;
+&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th&gt;항목&lt;/th&gt;
+ &lt;th&gt;Snap&lt;/th&gt;
+ &lt;th&gt;Flatpak&lt;/th&gt;
+ &lt;th&gt;AppImage&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;주 개발 주체&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;Canonical (Ubuntu)&lt;/td&gt;
+ &lt;td&gt;Red Hat 등 오픈 커뮤니티&lt;/td&gt;
+ &lt;td&gt;커뮤니티 (주로 Peter Simon 등)&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;설치/실행 방식&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;패키지 매니저(명령어나 Gui 통해)&lt;/td&gt;
+ &lt;td&gt;패키지 매니저(명령어나 Gui 통해)&lt;/td&gt;
+ &lt;td&gt;단일 파일 실행(설치 필요 없음)&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;샌드박스&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;있음(AppArmor 등 활용, 선택적)&lt;/td&gt;
+ &lt;td&gt;필수(강력한 샌드박스, Portal 지원)&lt;/td&gt;
+ &lt;td&gt;없음(추가 도구로 가능)&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;자동 업데이트&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;기본 지원(자동)&lt;/td&gt;
+ &lt;td&gt;기본 지원(자동, 옵션)&lt;/td&gt;
+ &lt;td&gt;기본 미지원(별도 도구 필요)&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;앱 스토어/레포&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;있음(snapcraft.io)&lt;/td&gt;
+ &lt;td&gt;있음(Flathub 등)&lt;/td&gt;
+ &lt;td&gt;없음(개별 배포, 다양한 출처)&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;네이티브 통합&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;약간 제한적(시각/입력 등 이질감)&lt;/td&gt;
+ &lt;td&gt;우수(테마/입력 등 네이티브와 유사)&lt;/td&gt;
+ &lt;td&gt;없음(최소 통합, 휴대용 실행 우수)&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;용량·최적화&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;대체로 큼, 느린 시작&lt;/td&gt;
+ &lt;td&gt;가장 큼, 느린 시작&lt;/td&gt;
+ &lt;td&gt;가장 작음, 빠른 실행&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;권한 및 보안&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;중간(권한 인터페이스 방식)&lt;/td&gt;
+ &lt;td&gt;강력(세분화된 권한, Portal)&lt;/td&gt;
+ &lt;td&gt;약함(별도 조치 없으면 노출 가능)&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;포팅/휴대성&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;어느 리눅스나 동작&lt;/td&gt;
+ &lt;td&gt;어느 리눅스나 동작&lt;/td&gt;
+ &lt;td&gt;어디서나 단일 파일 실행&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;서버앱 지원&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;가능(서비스 패키지 배포 등)&lt;/td&gt;
+ &lt;td&gt;한정적(데스크탑 앱 중심)&lt;/td&gt;
+ &lt;td&gt;제한적(데스크탑 중심)&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id="snap"&gt;Snap&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;장점&lt;/strong&gt;&lt;/p&gt;</description></item></channel></rss>

@@ -1,14 +1,14 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Cpp on Lionel Blog</title><link>https://hybridego.github.io/tags/cpp/</link><description>Recent content in Cpp on Lionel Blog</description><generator>Hugo</generator><language>ko-kr</language><lastBuildDate>Wed, 09 Jul 2025 15:11:23 +0900</lastBuildDate><atom:link href="https://hybridego.github.io/tags/cpp/index.xml" rel="self" type="application/rss+xml"/><item><title>How to Check the C++ Version in Use</title><link>https://hybridego.github.io/2025/07/04/Cpp_version_check/</link><pubDate>Wed, 09 Jul 2025 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2025/07/04/Cpp_version_check/</guid><description>&lt;h1 id="c-표준-버전-확인하기">C++ 표준 버전 확인하기&lt;/h1>
-&lt;pre>&lt;code>g++ -std=c++14 -E -dM -x c++ /dev/null | grep '__cplusplus'
-&lt;/code>&lt;/pre>
-&lt;p>이 명령은 g++ 컴파일러가 인식하는 C++ 표준 버전을 확인하는 명령입니다. 각 옵션의 역할은 다음과 같습니다:&lt;/p>
-&lt;ul>
-&lt;li>g++: GNU C++ 컴파일러를 실행합니다.&lt;/li>
-&lt;li>-std=c++14: C++14 표준을 사용하도록 지정합니다. 다른 버전(c++11, c++17 등)으로 변경할 수 있습니다.&lt;/li>
-&lt;li>-E: 전처리 단계만 수행하고 결과를 출력합니다. 컴파일 과정은 생략됩니다.&lt;/li>
-&lt;li>-dM: 전처리된 출력에서 매크로 정의만 포함하도록 지정합니다.&lt;/li>
-&lt;li>-x c++: 입력 파일의 종류를 C++ 소스 코드로 간주합니다.&lt;/li>
-&lt;li>/dev/null: 실제 소스 코드 파일 대신 null 디바이스를 사용합니다. 이는 컴파일러 자체에서 정의된 매크로를 확인하기 위함입니다.&lt;/li>
-&lt;li>| grep &amp;lsquo;__cplusplus&amp;rsquo;: 전처리된 출력에서 __cplusplus 매크로를 검색하여 출력합니다.&lt;/li>
-&lt;/ul>
-&lt;p>__cplusplus 매크로는 컴파일러가 지원하는 C++ 표준 버전을 나타냅니다. 예를 들어, 출력이 201703L이면 C++17 표준을 지원함을 의미합니다.&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Cpp on Lionel Blog</title><link>https://hybridego.github.io/tags/cpp/</link><description>Recent content in Cpp on Lionel Blog</description><generator>Hugo</generator><language>ko-kr</language><lastBuildDate>Wed, 09 Jul 2025 15:11:23 +0900</lastBuildDate><atom:link href="https://hybridego.github.io/tags/cpp/index.xml" rel="self" type="application/rss+xml"/><item><title>How to Check the C++ Version in Use</title><link>https://hybridego.github.io/2025/07/04/Cpp_version_check/</link><pubDate>Wed, 09 Jul 2025 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2025/07/04/Cpp_version_check/</guid><description>&lt;h1 id="c-표준-버전-확인하기"&gt;C++ 표준 버전 확인하기&lt;/h1&gt;
+&lt;pre&gt;&lt;code&gt;g++ -std=c++14 -E -dM -x c++ /dev/null | grep '__cplusplus'
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;이 명령은 g++ 컴파일러가 인식하는 C++ 표준 버전을 확인하는 명령입니다. 각 옵션의 역할은 다음과 같습니다:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;g++: GNU C++ 컴파일러를 실행합니다.&lt;/li&gt;
+&lt;li&gt;-std=c++14: C++14 표준을 사용하도록 지정합니다. 다른 버전(c++11, c++17 등)으로 변경할 수 있습니다.&lt;/li&gt;
+&lt;li&gt;-E: 전처리 단계만 수행하고 결과를 출력합니다. 컴파일 과정은 생략됩니다.&lt;/li&gt;
+&lt;li&gt;-dM: 전처리된 출력에서 매크로 정의만 포함하도록 지정합니다.&lt;/li&gt;
+&lt;li&gt;-x c++: 입력 파일의 종류를 C++ 소스 코드로 간주합니다.&lt;/li&gt;
+&lt;li&gt;/dev/null: 실제 소스 코드 파일 대신 null 디바이스를 사용합니다. 이는 컴파일러 자체에서 정의된 매크로를 확인하기 위함입니다.&lt;/li&gt;
+&lt;li&gt;| grep &amp;lsquo;__cplusplus&amp;rsquo;: 전처리된 출력에서 __cplusplus 매크로를 검색하여 출력합니다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;__cplusplus 매크로는 컴파일러가 지원하는 C++ 표준 버전을 나타냅니다. 예를 들어, 출력이 201703L이면 C++17 표준을 지원함을 의미합니다.&lt;/p&gt;</description></item></channel></rss>

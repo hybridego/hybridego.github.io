@@ -1,27 +1,27 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Shell on Lionel Blog</title><link>https://hybridego.github.io/tags/shell/</link><description>Recent content in Shell on Lionel Blog</description><generator>Hugo</generator><language>ko-kr</language><lastBuildDate>Wed, 09 Jul 2025 15:13:23 +0900</lastBuildDate><atom:link href="https://hybridego.github.io/tags/shell/index.xml" rel="self" type="application/rss+xml"/><item><title>How to Use do-while Loops in Shell Scripts</title><link>https://hybridego.github.io/2025/07/04/How_to_use_do_while_in_shell/</link><pubDate>Wed, 09 Jul 2025 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2025/07/04/How_to_use_do_while_in_shell/</guid><description>&lt;h1 id="how-to-use-do-while-loops-in-shell-scripts">How to Use do-while Loops in Shell Scripts&lt;/h1>
-&lt;h2 id="practical-examples-of-infinite-loops-in-bash">Practical Examples of Infinite Loops in Bash&lt;/h2>
-&lt;h3 id="bash에서-do-while-패턴을-사용하여-무한-루프를-구현하고-시스템-정보를-주기적으로-확인하는-방법을-소개합니다">Bash에서 do-while 패턴을 사용하여 무한 루프를 구현하고, 시스템 정보를 주기적으로 확인하는 방법을 소개합니다.&lt;/h3>
-&lt;div class="highlight">
- &lt;div class="code-toolbar">
- &lt;button class="copy-code-button" title="Copy to clipboard">
- &lt;i class="fas fa-copy">&lt;/i>
- &lt;/button>
- &lt;/div>
- &lt;pre>&lt;code class="">while true; do cat /sys/devices/platform/f01d0000.adc/iio:device0/in_voltage3_raw; sleep 1; done&lt;/code>&lt;/pre>
-&lt;/div>
-&lt;div class="highlight">
- &lt;div class="code-toolbar">
- &lt;button class="copy-code-button" title="Copy to clipboard">
- &lt;i class="fas fa-copy">&lt;/i>
- &lt;/button>
- &lt;/div>
- &lt;pre>&lt;code class="">while true; do cat /sys/devices/platform/f01d0000.adc/iio:device0/in_voltage3_raw; done&lt;/code>&lt;/pre>
-&lt;/div>
-&lt;div class="highlight">
- &lt;div class="code-toolbar">
- &lt;button class="copy-code-button" title="Copy to clipboard">
- &lt;i class="fas fa-copy">&lt;/i>
- &lt;/button>
- &lt;/div>
- &lt;pre>&lt;code class="">while true; do free -h; sleep 1; echo &amp;#34;---&amp;#34;; done&lt;/code>&lt;/pre>
-&lt;/div></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Shell on Lionel Blog</title><link>https://hybridego.github.io/tags/shell/</link><description>Recent content in Shell on Lionel Blog</description><generator>Hugo</generator><language>ko-kr</language><lastBuildDate>Wed, 09 Jul 2025 15:13:23 +0900</lastBuildDate><atom:link href="https://hybridego.github.io/tags/shell/index.xml" rel="self" type="application/rss+xml"/><item><title>How to Use do-while Loops in Shell Scripts</title><link>https://hybridego.github.io/2025/07/04/How_to_use_do_while_in_shell/</link><pubDate>Wed, 09 Jul 2025 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2025/07/04/How_to_use_do_while_in_shell/</guid><description>&lt;h1 id="how-to-use-do-while-loops-in-shell-scripts"&gt;How to Use do-while Loops in Shell Scripts&lt;/h1&gt;
+&lt;h2 id="practical-examples-of-infinite-loops-in-bash"&gt;Practical Examples of Infinite Loops in Bash&lt;/h2&gt;
+&lt;h3 id="bash에서-do-while-패턴을-사용하여-무한-루프를-구현하고-시스템-정보를-주기적으로-확인하는-방법을-소개합니다"&gt;Bash에서 do-while 패턴을 사용하여 무한 루프를 구현하고, 시스템 정보를 주기적으로 확인하는 방법을 소개합니다.&lt;/h3&gt;
+&lt;div class="highlight"&gt;
+ &lt;div class="code-toolbar"&gt;
+ &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
+ &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;pre&gt;&lt;code class=""&gt;while true; do cat /sys/devices/platform/f01d0000.adc/iio:device0/in_voltage3_raw; sleep 1; done&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class="highlight"&gt;
+ &lt;div class="code-toolbar"&gt;
+ &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
+ &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;pre&gt;&lt;code class=""&gt;while true; do cat /sys/devices/platform/f01d0000.adc/iio:device0/in_voltage3_raw; done&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class="highlight"&gt;
+ &lt;div class="code-toolbar"&gt;
+ &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
+ &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;pre&gt;&lt;code class=""&gt;while true; do free -h; sleep 1; echo &amp;#34;---&amp;#34;; done&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;</description></item></channel></rss>

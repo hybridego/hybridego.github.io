@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Rust on Lionel Blog</title><link>https://hybridego.github.io/tags/rust/</link><description>Recent content in Rust on Lionel Blog</description><generator>Hugo</generator><language>ko-kr</language><lastBuildDate>Mon, 26 May 2025 12:52:23 +0900</lastBuildDate><atom:link href="https://hybridego.github.io/tags/rust/index.xml" rel="self" type="application/rss+xml"/><item><title>Cargo troubleshooting</title><link>https://hybridego.github.io/2025/05/26/Cargo_troubleshooting/</link><pubDate>Mon, 26 May 2025 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2025/05/26/Cargo_troubleshooting/</guid><description>&lt;h2 id="cargo-install-troubleshooting">Cargo install troubleshooting&lt;/h2>
-&lt;p>cargo로 뭐 설치하려고 할 때&lt;/p>
-&lt;div class="highlight">
- &lt;div class="code-toolbar">
- &lt;button class="copy-code-button" title="Copy to clipboard">
- &lt;i class="fas fa-copy">&lt;/i>
- &lt;/button>
- &lt;/div>
- &lt;pre>&lt;code class="">PS D:\dev\rust&amp;gt; rustup update
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Rust on Lionel Blog</title><link>https://hybridego.github.io/tags/rust/</link><description>Recent content in Rust on Lionel Blog</description><generator>Hugo</generator><language>ko-kr</language><lastBuildDate>Mon, 26 May 2025 12:52:23 +0900</lastBuildDate><atom:link href="https://hybridego.github.io/tags/rust/index.xml" rel="self" type="application/rss+xml"/><item><title>Cargo troubleshooting</title><link>https://hybridego.github.io/2025/05/26/Cargo_troubleshooting/</link><pubDate>Mon, 26 May 2025 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2025/05/26/Cargo_troubleshooting/</guid><description>&lt;h2 id="cargo-install-troubleshooting"&gt;Cargo install troubleshooting&lt;/h2&gt;
+&lt;p&gt;cargo로 뭐 설치하려고 할 때&lt;/p&gt;
+&lt;div class="highlight"&gt;
+ &lt;div class="code-toolbar"&gt;
+ &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
+ &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;pre&gt;&lt;code class=""&gt;PS D:\dev\rust&amp;gt; rustup update
 info: syncing channel updates for &amp;#39;stable-x86_64-pc-windows-msvc&amp;#39;
 info: checking for self-update
 
@@ -24,8 +24,8 @@ Caused by:
  failed to download from `https://index.crates.io/config.json`
 
 Caused by:
- [35] SSL connect error (schannel: next InitializeSecurityContext failed: CRYPT_E_NO_REVOCATION_CHECK (0x80092012))&lt;/code>&lt;/pre>
-&lt;/div>
-&lt;p>이런 에러가 발생한다면&lt;/p></description></item><item><title>Dioxus vs Tauri</title><link>https://hybridego.github.io/2025/05/26/Dioxus_vs_Tauri/</link><pubDate>Mon, 26 May 2025 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2025/05/26/Dioxus_vs_Tauri/</guid><description>&lt;h1 id="dioxus와-tauri-비교">Dioxus와 Tauri 비교&lt;/h1>
-&lt;h2 id="dioxus란">Dioxus란?&lt;/h2>
-&lt;p>Dioxus는 Rust로 작성된 풀스택 UI 프레임워크로, React와 유사한 선언적 프로그래밍 모델을 제공합니다. 웹, 데스크톱, 모바일, 서버사이드 렌더링(SSR), LiveView 등 다양한 플랫폼을 단일 코드베이스로 지원합니다. Rust의 메모리 안전성과 성능을 활용하여 빠르고 안정적인 애플리케이션을 개발할 수 있도록 설계되었습니다. Dioxus는 가상 DOM(Virtual DOM)을 사용하여 UI를 효율적으로 관리하며, React의 컴포넌트 기반 아키텍처와 유사한 개발 경험을 제공합니다. 또한, HTML과 CSS를 적극 활용하며, Tailwind CSS와 같은 외부 CSS 라이브러리와의 통합도 지원합니다. 모바일 지원은 Tauri의 Tao와 Wry 라이브러리를 활용하며, 특히 데스크톱과 웹에서 강력한 성능을 발휘합니다.&lt;a href="https://dioxuslabs.com/blog/introducing-dioxus/">&lt;/a>&lt;a href="https://www.syntax-stories.com/2024/12/dioxus-framework.html">&lt;/a>&lt;/p></description></item></channel></rss>
+ [35] SSL connect error (schannel: next InitializeSecurityContext failed: CRYPT_E_NO_REVOCATION_CHECK (0x80092012))&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;이런 에러가 발생한다면&lt;/p&gt;</description></item><item><title>Dioxus vs Tauri</title><link>https://hybridego.github.io/2025/05/26/Dioxus_vs_Tauri/</link><pubDate>Mon, 26 May 2025 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2025/05/26/Dioxus_vs_Tauri/</guid><description>&lt;h1 id="dioxus와-tauri-비교"&gt;Dioxus와 Tauri 비교&lt;/h1&gt;
+&lt;h2 id="dioxus란"&gt;Dioxus란?&lt;/h2&gt;
+&lt;p&gt;Dioxus는 Rust로 작성된 풀스택 UI 프레임워크로, React와 유사한 선언적 프로그래밍 모델을 제공합니다. 웹, 데스크톱, 모바일, 서버사이드 렌더링(SSR), LiveView 등 다양한 플랫폼을 단일 코드베이스로 지원합니다. Rust의 메모리 안전성과 성능을 활용하여 빠르고 안정적인 애플리케이션을 개발할 수 있도록 설계되었습니다. Dioxus는 가상 DOM(Virtual DOM)을 사용하여 UI를 효율적으로 관리하며, React의 컴포넌트 기반 아키텍처와 유사한 개발 경험을 제공합니다. 또한, HTML과 CSS를 적극 활용하며, Tailwind CSS와 같은 외부 CSS 라이브러리와의 통합도 지원합니다. 모바일 지원은 Tauri의 Tao와 Wry 라이브러리를 활용하며, 특히 데스크톱과 웹에서 강력한 성능을 발휘합니다.&lt;a href="https://dioxuslabs.com/blog/introducing-dioxus/"&gt;&lt;/a&gt;&lt;a href="https://www.syntax-stories.com/2024/12/dioxus-framework.html"&gt;&lt;/a&gt;&lt;/p&gt;</description></item></channel></rss>

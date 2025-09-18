@@ -1,0 +1,193 @@
+<!doctype html><html lang=ko-kr><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><meta property="og:site_name" content="Lionel Blog"><meta property="og:type" content="article"><meta property="og:image" content="https://hybridego.github.io//img/home-bg-jeep.jpg"><meta property="twitter:image" content="https://hybridego.github.io//img/home-bg-jeep.jpg"><meta name=title content="PulseAudio 사용 multicast 구현"><meta property="og:title" content="PulseAudio 사용 multicast 구현"><meta property="twitter:title" content="PulseAudio 사용 multicast 구현"><meta name=description content="pipewire 기반 pulseAudio 인터페이스"><meta property="og:description" content="pipewire 기반 pulseAudio 인터페이스"><meta property="twitter:description" content="pipewire 기반 pulseAudio 인터페이스"><meta property="twitter:card" content="summary"><meta name=keyword content="Lionel.J, lionel jeon, Lionel Jeon, hybridego, Lionel's web log, Lionel's blog, Lionel Blog, blog, personal website, internet, Web, cloud native, PaaS, Istio, Kubernetes, microservices"><link rel="shortcut icon" href=/img/favicon.ico><title>PulseAudio 사용 multicast 구현 | Lionel 블로그 | Lionel Blog</title><link rel=canonical href=/2025/08/10/pulseAudio/><link rel=stylesheet href=/css/bootstrap.min.css><link rel=stylesheet href=/css/hugo-theme-cleanwhite.min.css><link rel=stylesheet href=/css/zanshang.css><link rel=stylesheet href=/css/font-awesome.all.min.css><link rel=stylesheet href=https://hybridego.github.io/css/copy-code.css><script src=/js/jquery.min.js></script><script src=/js/bootstrap.min.js></script><script src=/js/hux-blog.min.js></script><script src=/js/lazysizes.min.js></script><script src=https://hybridego.github.io/js/copy-code.js></script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2995694833554782" crossorigin=anonymous></script></head><nav class="navbar navbar-default navbar-custom navbar-fixed-top"><div class=container-fluid><div class="navbar-header page-scroll"><button type=button class=navbar-toggle>
+<span class=sr-only>Toggle navigation</span>
+<span class=icon-bar></span>
+<span class=icon-bar></span>
+<span class=icon-bar></span>
+</button>
+<a class=navbar-brand href=/>Lionel Blog</a></div><div id=huxblog_navbar><div class=navbar-collapse><ul class="nav navbar-nav navbar-right"><li><a href=/>All Posts</a></li><li><a href=/categories/life/>life</a></li><li><a href=/categories/tech/>tech</a></li><li><a href=/categories/tips/>tips</a></li><li><a href=/archive//>ARCHIVE</a></li><li><a href=/notes//>NOTES</a></li><li><a href=/about//>ABOUT</a></li><li><a href=/search><i class="fa fa-search"></i></a></li></ul></div></div></div></nav><script>var $body=document.body,$toggle=document.querySelector(".navbar-toggle"),$navbar=document.querySelector("#huxblog_navbar"),$collapse=document.querySelector(".navbar-collapse");$toggle.addEventListener("click",handleMagic);function handleMagic(){$navbar.className.indexOf("in")>0?($navbar.className=" ",setTimeout(function(){$navbar.className.indexOf("in")<0&&($collapse.style.height="0px")},400)):($collapse.style.height="auto",$navbar.className+=" in")}</script><header class=intro-header style=background-image:url(/img/home-bg-jeep.jpg)><div class=container><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><div class=site-heading><h1>Lionel Blog</h1><span class=subheading>The road is under your feet, the heart looks to the distance</span></div></div></div></div></header><article><div class=container><div class=row><div class="col-lg-8 col-lg-offset-1
+col-md-8 col-md-offset-1
+col-sm-12
+col-xs-12
+post-container"><ol><li>buildroot 에 pulseaudio 추가 하고 빌드</li><li>output/nt98567/nt98567 에서
+fd pulse 로 찾음</li><li>다음의 파일들을 해당 rootfs 위치로 복사</li></ol><div class=highlight><div class=code-toolbar><button class=copy-code-button title="Copy to clipboard">
+<i class="fas fa-copy"></i></button></div><pre><code>$ fd pulse
+usr/bin/pulseaudio
+usr/share/pulseaudio/
+usr/lib/libpulse-mainloop-glib.so.0
+usr/lib/libpulse-mainloop-glib.so
+usr/lib/libpulse-mainloop-glib.so.0.0.6
+usr/lib/libpulse.so.0
+usr/lib/libpulse-simple.so.0.1.1
+usr/lib/libpulse.so
+usr/lib/libpulse.so.0.24.2
+usr/lib/libpulse-simple.so.0
+usr/lib/libpulse-simple.so
+etc/init.d/S50pulseaudio
+usr/share/bash-completion/completions/pulseaudio
+etc/pulse/
+usr/lib/pulseaudio/
+usr/lib/pulseaudio/libpulsedsp.so
+usr/lib/pulseaudio/libpulsecommon-16.1.so
+usr/lib/pulseaudio/libpulsecore-16.1.so
+etc/dbus-1/system.d/pulseaudio-system.conf
+sudo cp -a ./usr /home/lionelj/test/ipas/bwc_firmware/nt98567_2/
+sudo cp -a ./etc/pulse /home/lionelj/test/ipas/bwc_firmware/nt98567_2/etc/
+sudo cp -a ./etc/dbus-1/system.d/pulseaudio-system.conf /home/lionelj/test/ipas/bwc_firmware/nt98567_2/etc/dbus-1/system.d/
+sudo cp -a ./etc/init.d/S50pulseaudio /home/lionelj/test/ipas/bwc_firmware/nt98567_2/etc/init.d/</code></pre></div><ol start=4><li><code>rm /etc/init.d/S25_Net</code></li><li>dbus 세팅</li></ol><ul><li>/etc/dbus-1/system.d/pulseaudio-system.conf 수정</li></ul><div class=highlight><div class=code-toolbar><button class=copy-code-button title="Copy to clipboard">
+<i class="fas fa-copy"></i></button></div><pre><code>&lt;?xml version=&#34;1.0&#34;?&gt;&lt;!--*-nxml-*--&gt;
+&lt;!DOCTYPE busconfig PUBLIC &#34;-//freedesktop//DTD D-BUS Bus Configuration 1.0//EN&#34;
+ &#34;http://www.freedesktop.org/standards/dbus/1.0/busconfig.dtd&#34;&gt;
+&lt;!--
+This file is part of PulseAudio.
+PulseAudio is free software; you can redistribute it and/or modify it
+under the terms of the GNU Lesser General Public License as
+published by the Free Software Foundation; either version 2.1 of the
+License, or (at your option) any later version.
+PulseAudio is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General
+Public License for more details.
+You should have received a copy of the GNU Lesser General Public
+License along with PulseAudio; if not, see &lt;http://www.gnu.org/licenses/&gt;.
+--&gt;
+&lt;busconfig&gt;
+  &lt;!-- System-wide PulseAudio runs as &#39;pulse&#39; user. This fragment is
+       not necessary for user PulseAudio instances. --&gt;
+  &lt;policy user=&#34;pulse&#34;&gt;
+    &lt;allow own=&#34;org.pulseaudio.Server&#34;/&gt;
+  &lt;/policy&gt;
+  &lt;policy at_console=&#34;true&#34;&gt;
+    &lt;allow send_destination=&#34;org.pulseaudio.Server&#34;/&gt;
+  &lt;/policy&gt;
+  &lt;policy context=&#34;default&#34;&gt;
+    &lt;deny send_destination=&#34;org.pulseaudio.Server&#34;/&gt;
+  &lt;/policy&gt;
+&lt;/busconfig&gt;</code></pre></div><ul><li>dbus 재시작</li></ul><div class=highlight><div class=code-toolbar><button class=copy-code-button title="Copy to clipboard">
+<i class="fas fa-copy"></i></button></div><pre><code>killall dbus-daemon
+dbus-daemon --system --nofork --nopidfile &amp;</code></pre></div><ol start=6><li>pulseAudio 세팅</li></ol><div class=highlight><div class=code-toolbar><button class=copy-code-button title="Copy to clipboard">
+<i class="fas fa-copy"></i></button></div><pre><code>echo &#34;pulse:x:999:&#34; &gt;&gt; /etc/group
+echo &#34;pulse-access:x:1001:root&#34; &gt;&gt; /etc/group
+echo &#34;pulse:x:999:999:PulseAudio User:/var/run/pulse:/sbin/nologin&#34; &gt;&gt; /etc/passwd
+echo &#34;pulse:*:18800:0:99999:7:::&#34; &gt;&gt; /etc/shadow
+mkdir -p /var/run/pulse /var/lib/pulse
+chown -R pulse:pulse /var/run/pulse /var/lib/pulse
+👉
+chmod -R 755 /var/run/pulse /var/lib/pulse
+chown pulse:pulse /etc/pulse/system.pa
+chmod 644 /etc/pulse/system.pa
+chown pulse:pulse /etc/pulse/client.conf
+chmod 644 /etc/pulse/client.conf
+# audio 그룹에 pulse 추가
+sed -i &#39;s/^audio:x:[0-9]*:/&amp;pulse,/&#39; /etc/group
+export XDG_RUNTIME_DIR=/run/user/0
+mkdir -p /run/user/0
+chown root:root /run/user/0
+# pulse 사용자가 ALSA 장치에 접근할 수 있도록:
+👉
+chown pulse:pulse /dev/snd/*
+chmod 660 /dev/snd/*
+export PULSE_RUNTIME_PATH=/var/run/pulse
+export PULSE_CLIENTCONFIG=/etc/pulse/client.conf
+# Restart PulseAudio and check logs:
+pulseaudio --kill
+pulseaudio --system --disallow-exit --disallow-module-loading=0 --verbose &amp;
+pulseaudio --system --disallow-exit --disallow-module-loading=0 --verbose &gt; pulseaudio.log 2&gt;&amp;1 &amp;
+pactl info
+pactl list modules | grep -E &#34;null-sink|rtp|combine|alsa&#34;
+# Look for &#39;nvtcard&#39;, &#39;rtp_multicast&#39;, &#39;combined&#39;
+pactl list sinks
+paplay --device=combined golden.mp3
+paplay --device=combined ./sine_48_le16s_1ch.wav
+paplay --device=nvtcard ./sine_48_le16s_1ch.wav</code></pre></div><hr><ul><li>/etc/pulse/default.pa 수정</li></ul><div class=highlight><div class=code-toolbar><button class=copy-code-button title="Copy to clipboard">
+<i class="fas fa-copy"></i></button></div><pre><code># module-detect를 주석 처리하여 자동 탐지 비활성화:
+#load-module module-detect
+# ALSA 싱크/소스 명시적으로 추가:
+load-module module-alsa-sink device=hw:0,0 sink_name=nvtcard
+load-module module-alsa-source device=hw:0,0
+- device=hw:0,0: aplay -l에서 확인된 card 0: nvtcard, device 0.
+- sink_name=nvtcard: PulseAudio에서 사용할 이름.
+- RTP 스트리밍을 위해 추가:
+load-module module-null-sink sink_name=rtp_multicast
+load-module module-rtp-send source=rtp_multicast.monitor destination=224.0.0.56 port=4010 loop=0
+- 자체 재생과 스트리밍 동시 지원을 위해 module-combine-sink 추가:
+load-module module-combine-sink sink_name=combined slaves=nvtcard,rtp_multicast</code></pre></div><ul><li>/etc/pulse/default.pa 수정 필요</li></ul><div class=highlight><div class=code-toolbar><button class=copy-code-button title="Copy to clipboard">
+<i class="fas fa-copy"></i></button></div><pre><code># Disable auto detection to avoid failures
+#load-module module-detect
+# Load ALSA sink for local playback
+load-module module-alsa-sink device=hw:0,0 sink_name=nvtcard
+# Load null-sink for RTP streaming
+load-module module-null-sink sink_name=rtp_multicast
+# Load RTP send module
+load-module module-rtp-send source=rtp_multicast.monitor destination=224.0.0.56 port=4010 loop=0
+# Combine for simultaneous local &#43; RTP output
+load-module module-combine-sink sink_name=combined slaves=nvtcard,rtp_multicast</code></pre></div><h1 id=수신-디바이스>수신 디바이스</h1><div class=highlight><div class=code-toolbar><button class=copy-code-button title="Copy to clipboard">
+<i class="fas fa-copy"></i></button></div><pre><code># rtp_recv 용 null-sink 추가
+pactl unload-module module-rtp-recv
+pactl load-module module-rtp-recv sap_address=224.0.0.56 sink=nvtcard
+pactl load-module module-rtp-recv sap_address=224.0.0.56 sink=nvtcard latency_msec=10
+paplay --device=rtp_multicast /root/sine8.wav</code></pre></div><h1 id=로딩된-모듈-리스트-확인>로딩된 모듈 리스트 확인</h1><div class=highlight><div class=code-toolbar><button class=copy-code-button title="Copy to clipboard">
+<i class="fas fa-copy"></i></button></div><pre><code>pactl list short modules
+pactl list module</code></pre></div><h1 id=기본-소스-확인>기본 소스 확인:</h1><ul><li>source=default는 현재 시스템의 기본 소스를 사용합니다. 어떤 소스가 기본인지 확인하려면 pactl list sources short 명령을 실행해 보세요. 예를 들어, 마이크 입력을 사용하려면 해당 소스 이름을 명시적으로 지정(예: source=alsa_input.hw:0,0)하는 것이 더 안전할 수 있습니다.</li></ul><div class=highlight><div class=code-toolbar><button class=copy-code-button title="Copy to clipboard">
+<i class="fas fa-copy"></i></button></div><pre><code>pactl list sources short</code></pre></div><h1 id=inittab-에-추가>inittab 에 추가</h1><div class=highlight><div class=code-toolbar><button class=copy-code-button title="Copy to clipboard">
+<i class="fas fa-copy"></i></button></div><pre><code># PulseAudio를 pulse 유저 대신 root로 실행하도록 설정.
+# Buildroot init 스크립트(/etc/init.d/pulseaudio)나 inittab에 추가:
+::respawn:/usr/bin/pulseaudio --system --daemonize --high-priority=no --realtime=no -nF /etc/pulse/system.pa</code></pre></div><h1 id=ntp-설정-target-에서>ntp 설정 (target 에서)</h1><div class=highlight><div class=code-toolbar><button class=copy-code-button title="Copy to clipboard">
+<i class="fas fa-copy"></i></button></div><pre><code>busybox ntpd -p 192.168.71.41 -g -n</code></pre></div><h1 id=ffmpeg-변환>ffmpeg 변환</h1><div class=highlight><div class=code-toolbar><button class=copy-code-button title="Copy to clipboard">
+<i class="fas fa-copy"></i></button></div><pre><code>ffmpeg -i test.mp3 -t 30 -c:a pcm_s16le test_30s.wav</code></pre></div><h2 id=명령어>명령어</h2><div class=highlight><div class=code-toolbar><button class=copy-code-button title="Copy to clipboard">
+<i class="fas fa-copy"></i></button></div><pre><code>chown pulse:pulse /dev/snd/*
+chmod -R 755 /var/run/pulse /var/lib/pulse
+chmod 660 /dev/snd/*
+export PULSE_RUNTIME_PATH=/var/run/pulse
+export PULSE_CLIENTCONFIG=/etc/pulse/client.conf
+pulseaudio --kill
+pulseaudio --system --disallow-exit --disallow-module-loading=0 --verbose &amp;
+pulseaudio --system --disallow-exit --disallow-module-loading=0 --log-level=info &amp;
+pulseaudio --system --disallow-exit --disallow-module-loading=0 &amp;
+busybox ntpd -p 192.168.71.41 -g -n
+paplay --device=rtp_multicast ./sine_48_le16s_1ch.wav
+paplay --device=nvtcard ./sine_48_le16s_1ch.wav
+paplay --device=combined ./sine_48_le16s_1ch.wav
+pactl unload-module module-rtp-recv
+pactl load-module module-rtp-recv sap_address=224.0.0.56 sink=nvtcard latency_msec=200
+pactl load-module module-rtp-recv sink=nvtcard latency_msec=200
+pactl list sinks short
+pactl list sources short
+pactl list modules short</code></pre></div><p>필요한것</p><div class=highlight><div class=code-toolbar><button class=copy-code-button title="Copy to clipboard">
+<i class="fas fa-copy"></i></button></div><pre><code>$ sudo dpkg -l | grep pulse
+ii  libpulse-mainloop-glib0:amd64                 1:15.99.1&#43;dfsg1-1ubuntu2.2              amd64        PulseAudio client libraries (glib support)
+ii  libpulse0:amd64                               1:15.99.1&#43;dfsg1-1ubuntu2.2              amd64        PulseAudio client libraries
+ii  libpulsedsp:amd64                             1:15.99.1&#43;dfsg1-1ubuntu2.2              amd64        PulseAudio OSS pre-load library
+ii  pipewire-pulse                                0.3.48-1ubuntu3                         amd64        PipeWire PulseAudio daemon
+ii  pulseaudio                                    1:15.99.1&#43;dfsg1-1ubuntu2.2              amd64        PulseAudio sound server
+ii  pulseaudio-module-bluetooth                   1:15.99.1&#43;dfsg1-1ubuntu2.2              amd64        Bluetooth module for PulseAudio sound server
+ii  pulseaudio-utils                              1:15.99.1&#43;dfsg1-1ubuntu2.2              amd64        Command line tools for the PulseAudio sound server</code></pre></div><link href=https://hybridego.github.io/dist/Artalk.css rel=stylesheet><script src=https://hybridego.github.io/dist/Artalk.js></script><div id=Comments></div><script>Artalk.init({el:"#Comments",pageKey:"https://hybridego.github.io/2025/08/10/pulseAudio/",pageTitle:"PulseAudio 사용 multicast 구현",server:"https://hybridego.github.io",site:"lionel blog"})</script></div><div class="col-lg-3 col-lg-offset-0
+col-md-3 col-md-offset-0
+col-sm-12
+col-xs-12
+sidebar-container"><section class="visible-md visible-lg"><div class=short-about><a href=/about><img src=/img/lionelj.png alt=avatar style=cursor:pointer></a><p>Software Developer, Embedded Systems Engineer, Linux Application Developer, Open Source Enthusiast and Life Adventurer</p><ul class=list-inline><li><a href=mailto:hybridego@gmail.com><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i>
+<i class="fa fa-envelope fa-stack-1x fa-inverse"></i></span></a></li><li><a href=https://x.com/LioJeon><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-twitter fa-stack-1x fa-inverse"></i></span></a></li><li><a target=_blank href=/img/wechat.png><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-weixin fa-stack-1x fa-inverse"></i></span></a></li><li><a target=_blank href=https://github.com/hybridego><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-github fa-stack-1x fa-inverse"></i></span></a></li><li><a target=_blank href=https://www.linkedin.com/in/hocheol-jeon-5569b067/><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-linkedin fa-stack-1x fa-inverse"></i></span></a></li></ul></div></section><section><hr><h5>QUICK LINKS</h5><ul class=list-inline><li><a target=_blank href=#ZgotmplZ>NotebookLM</a></li><li><a target=_blank href=https://www.perplexity.ai/>Perplexity</a></li><li><a target=_blank href=https://chatgpt.com/>Chatgpt</a></li><li><a target=_blank href=https://claude.ai/new>Claude</a></li><li><a target=_blank href=https://grok.com/>Grok</a></li></ul></section><section><hr class="hidden-sm hidden-xs"><h5>FEATURED TAGS</h5><div class=tags><a href=/tags/alsa title=alsa>alsa
+</a><a href=/tags/docker title=docker>docker
+</a><a href=/tags/github title=github>github
+</a><a href=/tags/istio title=istio>istio
+</a><a href=/tags/jack title=jack>jack
+</a><a href=/tags/kubernetes title=kubernetes>kubernetes
+</a><a href=/tags/linux title=linux>linux
+</a><a href=/tags/microservice title=microservice>microservice
+</a><a href=/tags/pipewire title=pipewire>pipewire
+</a><a href=/tags/pulseaudio title=pulseaudio>pulseaudio
+</a><a href=/tags/rust title=rust>rust
+</a><a href=/tags/security title=security>security
+</a><a href=/tags/service-mesh title="service mesh">service mesh
+</a><a href=/tags/ssh title=ssh>ssh
+</a><a href=/tags/tips title=tips>tips
+</a><a href=/tags/vscode title=vscode>vscode</a></div></section><section><hr class="hidden-sm hidden-xs"><h5>FRIENDS</h5><ul class=list-inline><li><a target=_blank href=https://hybridego.net/>Lionel's Tistory Blog</a></li></ul></section></div></div></div></article><footer><div class=container><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><ul class="list-inline text-center"><li><a href=mailto:hybridego@gmail.com><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
+<i class="fas fa-envelope fa-stack-1x fa-inverse"></i></span></a></li><li><a href=https://x.com/LioJeon><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-twitter fa-stack-1x fa-inverse"></i></span></a></li><li><a target=_blank href=/img/wechat.png><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-weixin fa-stack-1x fa-inverse"></i></span></a></li><li><a target=_blank href=https://github.com/hybridego><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-github fa-stack-1x fa-inverse"></i></span></a></li><li><a target=_blank href=https://www.linkedin.com/in/hocheol-jeon-5569b067/><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-linkedin fa-stack-1x fa-inverse"></i></span></a></li><li><a href rel=alternate type=application/rss+xml title="Lionel Blog"><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
+<i class="fas fa-rss fa-stack-1x fa-inverse"></i></span></a></li></ul><p class="copyright text-muted">Copyright &copy; Lionel Blog 2025<br></p></div></div></div></footer><script>function loadAsync(e,t){var s=document,o="script",n=s.createElement(o),i=s.getElementsByTagName(o)[0];n.src=e,t&&n.addEventListener("load",function(e){t(null,e)},!1),i.parentNode.insertBefore(n,i)}</script><script>$("#tag_cloud").length!==0&&loadAsync("/js/jquery.tagcloud.js",function(){$.fn.tagcloud.defaults={color:{start:"#bbbbee",end:"#0085a1"}},$("#tag_cloud a").tagcloud()})</script><script>loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js",function(){var e=document.querySelector("nav");e&&FastClick.attach(e)})</script><script type=text/javascript>function generateCatalog(e){_containerSelector="div.post-container";var t,n,s,o,i,a=$(_containerSelector),r=a.find("h1,h2,h3,h4,h5,h6");return $(e).html(""),r.each(function(){n=$(this).prop("tagName").toLowerCase(),o="#"+$(this).prop("id"),t=$(this).text(),i=$('<a href="'+o+'" rel="nofollow" title="'+t+'">'+t+"</a>"),s=$('<li class="'+n+'_nav"></li>').append(i),$(e).append(s)}),!0}generateCatalog(".catalog-body"),$(".catalog-toggle").click(function(e){e.preventDefault(),$(".side-catalog").toggleClass("fold")}),loadAsync("/js/jquery.nav.js",function(){$(".catalog-body").onePageNav({currentClass:"active",changeHash:!1,easing:"swing",filter:"",scrollSpeed:700,scrollOffset:0,scrollThreshold:.2,begin:null,end:null,scrollChange:null,padding:80})})</script></body></html>

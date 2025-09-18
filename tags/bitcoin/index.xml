@@ -1,14 +1,14 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Bitcoin on Lionel Blog</title><link>https://hybridego.github.io/tags/bitcoin/</link><description>Recent content in Bitcoin on Lionel Blog</description><generator>Hugo</generator><language>ko-kr</language><lastBuildDate>Mon, 21 May 2018 11:00:00 +0000</lastBuildDate><atom:link href="https://hybridego.github.io/tags/bitcoin/index.xml" rel="self" type="application/rss+xml"/><item><title>Algolia를 사용하여 Gitpage 블로그에 사이트 내 검색 기능 제공</title><link>https://hybridego.github.io/2018/05/21/algolia-integration-with-jekyll/</link><pubDate>Mon, 21 May 2018 11:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/05/21/algolia-integration-with-jekyll/</guid><description>&lt;blockquote>
-&lt;p>이 일련의 기사는 &amp;ldquo;비트코인 및 암호화폐 기술&amp;rdquo; 온라인 강좌의 제 노트입니다.&lt;/p>&lt;/blockquote>
-&lt;h2 id="목차">목차&lt;/h2>
-&lt;p>{:.no_toc}&lt;/p>
-&lt;ul>
-&lt;li>목차
-{:toc}&lt;/li>
-&lt;/ul>
-&lt;h2 id="스크루지-코인-거래">스크루지 코인 거래&lt;/h2>
-&lt;p>스크루지 코인 프로그래밍 과제는 약간 까다롭습니다. 이 강의의 비디오는 일부 구현 세부 사항을 설명하지 않았습니다. 스크루지 코인에서 사용되는 거래 데이터 구조를 이해하는 데 도움이 되도록 이 다이어그램을 그렸습니다.
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Bitcoin on Lionel Blog</title><link>https://hybridego.github.io/tags/bitcoin/</link><description>Recent content in Bitcoin on Lionel Blog</description><generator>Hugo</generator><language>ko-kr</language><lastBuildDate>Mon, 21 May 2018 11:00:00 +0000</lastBuildDate><atom:link href="https://hybridego.github.io/tags/bitcoin/index.xml" rel="self" type="application/rss+xml"/><item><title>Algolia를 사용하여 Gitpage 블로그에 사이트 내 검색 기능 제공</title><link>https://hybridego.github.io/2018/05/21/algolia-integration-with-jekyll/</link><pubDate>Mon, 21 May 2018 11:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/05/21/algolia-integration-with-jekyll/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;이 일련의 기사는 &amp;ldquo;비트코인 및 암호화폐 기술&amp;rdquo; 온라인 강좌의 제 노트입니다.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;h2 id="목차"&gt;목차&lt;/h2&gt;
+&lt;p&gt;{:.no_toc}&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;목차
+{:toc}&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="스크루지-코인-거래"&gt;스크루지 코인 거래&lt;/h2&gt;
+&lt;p&gt;스크루지 코인 프로그래밍 과제는 약간 까다롭습니다. 이 강의의 비디오는 일부 구현 세부 사항을 설명하지 않았습니다. 스크루지 코인에서 사용되는 거래 데이터 구조를 이해하는 데 도움이 되도록 이 다이어그램을 그렸습니다.
 
- &lt;img src="https://hybridego.github.io/img/2018-5-20-cryptocurrency_week1_scroogecoin/scroogecoin.png" alt="스크루지 코인">
+ &lt;img src="https://hybridego.github.io/img/2018-5-20-cryptocurrency_week1_scroogecoin/scroogecoin.png" alt="스크루지 코인"&gt;
 
-&lt;/p></description></item></channel></rss>
+&lt;/p&gt;</description></item></channel></rss>

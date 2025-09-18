@@ -1,26 +1,26 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>RemoteSSH on Lionel Blog</title><link>https://hybridego.github.io/tags/remotessh/</link><description>Recent content in RemoteSSH on Lionel Blog</description><generator>Hugo</generator><language>ko-kr</language><lastBuildDate>Wed, 18 Jun 2025 16:16:23 +0900</lastBuildDate><atom:link href="https://hybridego.github.io/tags/remotessh/index.xml" rel="self" type="application/rss+xml"/><item><title>vscode remoteSSH용 docker 생성</title><link>https://hybridego.github.io/2025/06/18/VSCode-RemoteSSH-Docker/</link><pubDate>Wed, 18 Jun 2025 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2025/06/18/VSCode-RemoteSSH-Docker/</guid><description>&lt;h1 id="vscode-remotessh용-docker-생성">vscode remoteSSH용 docker 생성&lt;/h1>
-&lt;ol>
-&lt;li>
-&lt;p>사용자에게 docker 권한 부여하기&lt;/p>
-&lt;div class="highlight">
- &lt;div class="code-toolbar">
- &lt;button class="copy-code-button" title="Copy to clipboard">
- &lt;i class="fas fa-copy">&lt;/i>
- &lt;/button>
- &lt;/div>
- &lt;pre>&lt;code class="">sudo usermod -aG docker $USER
-newgrp docker&lt;/code>&lt;/pre>
-&lt;/div>
-&lt;/li>
-&lt;li>
-&lt;p>Dockerfile 작성&lt;/p>
-&lt;div class="highlight">
- &lt;div class="code-toolbar">
- &lt;button class="copy-code-button" title="Copy to clipboard">
- &lt;i class="fas fa-copy">&lt;/i>
- &lt;/button>
- &lt;/div>
- &lt;pre>&lt;code class="">FROM ubuntu:24.04
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>RemoteSSH on Lionel Blog</title><link>https://hybridego.github.io/tags/remotessh/</link><description>Recent content in RemoteSSH on Lionel Blog</description><generator>Hugo</generator><language>ko-kr</language><lastBuildDate>Wed, 18 Jun 2025 16:16:23 +0900</lastBuildDate><atom:link href="https://hybridego.github.io/tags/remotessh/index.xml" rel="self" type="application/rss+xml"/><item><title>vscode remoteSSH용 docker 생성</title><link>https://hybridego.github.io/2025/06/18/VSCode-RemoteSSH-Docker/</link><pubDate>Wed, 18 Jun 2025 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2025/06/18/VSCode-RemoteSSH-Docker/</guid><description>&lt;h1 id="vscode-remotessh용-docker-생성"&gt;vscode remoteSSH용 docker 생성&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;사용자에게 docker 권한 부여하기&lt;/p&gt;
+&lt;div class="highlight"&gt;
+ &lt;div class="code-toolbar"&gt;
+ &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
+ &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;pre&gt;&lt;code class=""&gt;sudo usermod -aG docker $USER
+newgrp docker&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Dockerfile 작성&lt;/p&gt;
+&lt;div class="highlight"&gt;
+ &lt;div class="code-toolbar"&gt;
+ &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
+ &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;pre&gt;&lt;code class=""&gt;FROM ubuntu:24.04
 
 # Install required packages for minimal build environment and requested tools
 RUN apt-get update &amp;amp;&amp;amp; \
@@ -73,8 +73,8 @@ RUN echo &amp;#39;#!/bin/bash\n\
  tail -f /dev/null&amp;#39; &amp;gt; /start.sh &amp;amp;&amp;amp; \
  chmod &amp;#43;x /start.sh
 
-CMD [&amp;#34;/start.sh&amp;#34;]&lt;/code>&lt;/pre>
-&lt;/div>
-&lt;/li>
-&lt;li>
-&lt;p>docker build&lt;/p></description></item></channel></rss>
+CMD [&amp;#34;/start.sh&amp;#34;]&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;docker build&lt;/p&gt;</description></item></channel></rss>

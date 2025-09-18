@@ -1,26 +1,26 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docker on Lionel Blog</title><link>https://hybridego.github.io/tags/docker/</link><description>Recent content in Docker on Lionel Blog</description><generator>Hugo</generator><language>ko-kr</language><lastBuildDate>Wed, 18 Jun 2025 16:16:23 +0900</lastBuildDate><atom:link href="https://hybridego.github.io/tags/docker/index.xml" rel="self" type="application/rss+xml"/><item><title>vscode remoteSSH용 docker 생성</title><link>https://hybridego.github.io/2025/06/18/VSCode-RemoteSSH-Docker/</link><pubDate>Wed, 18 Jun 2025 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2025/06/18/VSCode-RemoteSSH-Docker/</guid><description>&lt;h1 id="vscode-remotessh용-docker-생성">vscode remoteSSH용 docker 생성&lt;/h1>
-&lt;ol>
-&lt;li>
-&lt;p>사용자에게 docker 권한 부여하기&lt;/p>
-&lt;div class="highlight">
- &lt;div class="code-toolbar">
- &lt;button class="copy-code-button" title="Copy to clipboard">
- &lt;i class="fas fa-copy">&lt;/i>
- &lt;/button>
- &lt;/div>
- &lt;pre>&lt;code class="">sudo usermod -aG docker $USER
-newgrp docker&lt;/code>&lt;/pre>
-&lt;/div>
-&lt;/li>
-&lt;li>
-&lt;p>Dockerfile 작성&lt;/p>
-&lt;div class="highlight">
- &lt;div class="code-toolbar">
- &lt;button class="copy-code-button" title="Copy to clipboard">
- &lt;i class="fas fa-copy">&lt;/i>
- &lt;/button>
- &lt;/div>
- &lt;pre>&lt;code class="">FROM ubuntu:24.04
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docker on Lionel Blog</title><link>https://hybridego.github.io/tags/docker/</link><description>Recent content in Docker on Lionel Blog</description><generator>Hugo</generator><language>ko-kr</language><lastBuildDate>Wed, 18 Jun 2025 16:16:23 +0900</lastBuildDate><atom:link href="https://hybridego.github.io/tags/docker/index.xml" rel="self" type="application/rss+xml"/><item><title>vscode remoteSSH용 docker 생성</title><link>https://hybridego.github.io/2025/06/18/VSCode-RemoteSSH-Docker/</link><pubDate>Wed, 18 Jun 2025 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2025/06/18/VSCode-RemoteSSH-Docker/</guid><description>&lt;h1 id="vscode-remotessh용-docker-생성"&gt;vscode remoteSSH용 docker 생성&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;사용자에게 docker 권한 부여하기&lt;/p&gt;
+&lt;div class="highlight"&gt;
+ &lt;div class="code-toolbar"&gt;
+ &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
+ &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;pre&gt;&lt;code class=""&gt;sudo usermod -aG docker $USER
+newgrp docker&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Dockerfile 작성&lt;/p&gt;
+&lt;div class="highlight"&gt;
+ &lt;div class="code-toolbar"&gt;
+ &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
+ &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;pre&gt;&lt;code class=""&gt;FROM ubuntu:24.04
 
 # Install required packages for minimal build environment and requested tools
 RUN apt-get update &amp;amp;&amp;amp; \
@@ -73,37 +73,37 @@ RUN echo &amp;#39;#!/bin/bash\n\
  tail -f /dev/null&amp;#39; &amp;gt; /start.sh &amp;amp;&amp;amp; \
  chmod &amp;#43;x /start.sh
 
-CMD [&amp;#34;/start.sh&amp;#34;]&lt;/code>&lt;/pre>
-&lt;/div>
-&lt;/li>
-&lt;li>
-&lt;p>docker build&lt;/p></description></item><item><title>Docker SSH tunneling</title><link>https://hybridego.github.io/2025/05/21/Docker_SSH_tunneling/</link><pubDate>Wed, 21 May 2025 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2025/05/21/Docker_SSH_tunneling/</guid><description>&lt;h2 id="docker-와-ssh-터널링-설정">Docker 와 ssh 터널링 설정&lt;/h2>
-&lt;ol>
-&lt;li>처음 실행 (필요한 디렉토리 mount 하고 이미지와 shell 선택, user 지정)&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">
- &lt;div class="code-toolbar">
- &lt;button class="copy-code-button" title="Copy to clipboard">
- &lt;i class="fas fa-copy">&lt;/i>
- &lt;/button>
- &lt;/div>
- &lt;pre>&lt;code class="">docker run -it \
+CMD [&amp;#34;/start.sh&amp;#34;]&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;docker build&lt;/p&gt;</description></item><item><title>Docker SSH tunneling</title><link>https://hybridego.github.io/2025/05/21/Docker_SSH_tunneling/</link><pubDate>Wed, 21 May 2025 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2025/05/21/Docker_SSH_tunneling/</guid><description>&lt;h2 id="docker-와-ssh-터널링-설정"&gt;Docker 와 ssh 터널링 설정&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;처음 실행 (필요한 디렉토리 mount 하고 이미지와 shell 선택, user 지정)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;
+ &lt;div class="code-toolbar"&gt;
+ &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
+ &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;pre&gt;&lt;code class=""&gt;docker run -it \
  -v /home/lionelj:/home/lionelj \
  --name lj-ubuntu \
  -v /opt:/opt \
  ubuntu:24.04 \
- /bin/bash&lt;/code>&lt;/pre>
-&lt;/div>
-&lt;ol start="2">
-&lt;li>Docker 에서 필요한 기본 설정&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">
- &lt;div class="code-toolbar">
- &lt;button class="copy-code-button" title="Copy to clipboard">
- &lt;i class="fas fa-copy">&lt;/i>
- &lt;/button>
- &lt;/div>
- &lt;pre>&lt;code class="">apt-get update 
+ /bin/bash&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;ol start="2"&gt;
+&lt;li&gt;Docker 에서 필요한 기본 설정&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;
+ &lt;div class="code-toolbar"&gt;
+ &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
+ &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;pre&gt;&lt;code class=""&gt;apt-get update 
 apt-get install -y sudo 
 apt-get install -y vim git zsh
 groupadd -g 1016 lionelj 
@@ -112,35 +112,35 @@ useradd -u 1016 -g 1016 -m -s /bin/zsh lionelj
 usermod -aG sudo lionelj #사용자를 sudo 그룹에 추가. -a: 기존 그룹을 유지하면서 추가. -G sudo: sudo 그룹에 추가.
 
 sudo apt-get install -y locales
-sudo locale-gen en_US.UTF-8&lt;/code>&lt;/pre>
-&lt;/div>
-&lt;ol start="3">
-&lt;li>다음부터는 만들어진 container로 접속&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">
- &lt;div class="code-toolbar">
- &lt;button class="copy-code-button" title="Copy to clipboard">
- &lt;i class="fas fa-copy">&lt;/i>
- &lt;/button>
- &lt;/div>
- &lt;pre>&lt;code class=""># container name으로 접속
+sudo locale-gen en_US.UTF-8&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;ol start="3"&gt;
+&lt;li&gt;다음부터는 만들어진 container로 접속&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;
+ &lt;div class="code-toolbar"&gt;
+ &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
+ &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;pre&gt;&lt;code class=""&gt;# container name으로 접속
 docker start lj-ubuntu
 # container id로 접속
 docker start 708d99e6c6b9
 
 # start 후 shell로 접속
-docker exec -it lj-ubuntu /bin/bash&lt;/code>&lt;/pre>
-&lt;/div>
-&lt;ol start="4">
-&lt;li>컨테이너를 이미지로 만들기 (이렇게 하면 누적된 image를 다 유지해야 함. 중간 image 삭제 불가)&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">
- &lt;div class="code-toolbar">
- &lt;button class="copy-code-button" title="Copy to clipboard">
- &lt;i class="fas fa-copy">&lt;/i>
- &lt;/button>
- &lt;/div>
- &lt;pre>&lt;code class="">docker commit &amp;lt;컨테이너_ID&amp;gt; my-ubuntu:custom
+docker exec -it lj-ubuntu /bin/bash&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;ol start="4"&gt;
+&lt;li&gt;컨테이너를 이미지로 만들기 (이렇게 하면 누적된 image를 다 유지해야 함. 중간 image 삭제 불가)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;
+ &lt;div class="code-toolbar"&gt;
+ &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
+ &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;pre&gt;&lt;code class=""&gt;docker commit &amp;lt;컨테이너_ID&amp;gt; my-ubuntu:custom
 
 # ex)
 $ docker commit 7a613f013271 lionel-ubuntu:custom
@@ -149,18 +149,18 @@ sha256:ec1a4af2f69aa0b7b9366279979d80b0cce02ffd2b3f1e07f81ded54875f7666
 $ docker images
 REPOSITORY TAG IMAGE ID CREATED SIZE
 lionel-ubuntu custom ec1a4af2f69a 6 seconds ago 235MB
-ubuntu 24.04 602eb6fb314b 2 weeks ago 78.1MB&lt;/code>&lt;/pre>
-&lt;/div>
-&lt;ol start="5">
-&lt;li>새로 만든 이미지로 컨테이너 띄우기&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">
- &lt;div class="code-toolbar">
- &lt;button class="copy-code-button" title="Copy to clipboard">
- &lt;i class="fas fa-copy">&lt;/i>
- &lt;/button>
- &lt;/div>
- &lt;pre>&lt;code class="">$ docker images
+ubuntu 24.04 602eb6fb314b 2 weeks ago 78.1MB&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;ol start="5"&gt;
+&lt;li&gt;새로 만든 이미지로 컨테이너 띄우기&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;
+ &lt;div class="code-toolbar"&gt;
+ &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
+ &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;pre&gt;&lt;code class=""&gt;$ docker images
 REPOSITORY TAG IMAGE ID CREATED SIZE
 lionel-ubuntu 24.04 fa9ec891a58d 24 seconds ago 235MB
 ubuntu 24.04 602eb6fb314b 2 weeks ago 78.1MB
@@ -170,32 +170,32 @@ docker run -it \
  --name lj-ubuntu \
  -v /opt:/opt \
  lionel-ubuntu:24.04 \
- /bin/bash&lt;/code>&lt;/pre>
-&lt;/div>
-&lt;ol start="6">
-&lt;li>ssh 설정 (container에 접속해서 sshd를 띄운다.)&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">
- &lt;div class="code-toolbar">
- &lt;button class="copy-code-button" title="Copy to clipboard">
- &lt;i class="fas fa-copy">&lt;/i>
- &lt;/button>
- &lt;/div>
- &lt;pre>&lt;code class="">mkdir /run/sshd 
+ /bin/bash&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;ol start="6"&gt;
+&lt;li&gt;ssh 설정 (container에 접속해서 sshd를 띄운다.)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;
+ &lt;div class="code-toolbar"&gt;
+ &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
+ &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;pre&gt;&lt;code class=""&gt;mkdir /run/sshd 
 /usr/sbin/sshd
 
-# 컨테이너는 기본적으로 systemd를 사용하지 않으므로, systemctl 대신 직접 sshd를 실행.&lt;/code>&lt;/pre>
-&lt;/div>
-&lt;ol start="7">
-&lt;li>ip 설정 (host 에서 docker container의 ip를 확인한다. ssh 터널링 설정을 해야 하기 때문)&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">
- &lt;div class="code-toolbar">
- &lt;button class="copy-code-button" title="Copy to clipboard">
- &lt;i class="fas fa-copy">&lt;/i>
- &lt;/button>
- &lt;/div>
- &lt;pre>&lt;code class="">$ ip addr
+# 컨테이너는 기본적으로 systemd를 사용하지 않으므로, systemctl 대신 직접 sshd를 실행.&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;ol start="7"&gt;
+&lt;li&gt;ip 설정 (host 에서 docker container의 ip를 확인한다. ssh 터널링 설정을 해야 하기 때문)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;
+ &lt;div class="code-toolbar"&gt;
+ &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
+ &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;pre&gt;&lt;code class=""&gt;$ ip addr
 1: lo: &amp;lt;LOOPBACK,UP,LOWER_UP&amp;gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1
  link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
  inet 127.0.0.1/8 scope host lo
@@ -203,73 +203,73 @@ docker run -it \
 1839: eth0@if1840: &amp;lt;BROADCAST,MULTICAST,UP,LOWER_UP&amp;gt; mtu 1500 qdisc noqueue state UP group default
  link/ether 02:42:ac:11:00:02 brd ff:ff:ff:ff:ff:ff link-netnsid 0
  inet 172.17.0.2/16 brd 172.17.255.255 scope global eth0 &amp;lt;&amp;lt;== 이 번호를 확인.
- valid_lft forever preferred_lft forever&lt;/code>&lt;/pre>
-&lt;/div>
-&lt;ul>
-&lt;li>또 다른 ip 확인 방법 (host에서)&lt;/li>
-&lt;/ul>
-&lt;div class="highlight">
- &lt;div class="code-toolbar">
- &lt;button class="copy-code-button" title="Copy to clipboard">
- &lt;i class="fas fa-copy">&lt;/i>
- &lt;/button>
- &lt;/div>
- &lt;pre>&lt;code class="">$ docker inspect 85d05024ca50 | grep IPAddress
+ valid_lft forever preferred_lft forever&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;또 다른 ip 확인 방법 (host에서)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;
+ &lt;div class="code-toolbar"&gt;
+ &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
+ &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;pre&gt;&lt;code class=""&gt;$ docker inspect 85d05024ca50 | grep IPAddress
  &amp;#34;SecondaryIPAddresses&amp;#34;: null,
  &amp;#34;IPAddress&amp;#34;: &amp;#34;172.17.0.2&amp;#34;,
- &amp;#34;IPAddress&amp;#34;: &amp;#34;172.17.0.2&amp;#34;,&lt;/code>&lt;/pre>
-&lt;/div>
-&lt;ol start="8">
-&lt;li>컨테이너 중지 및 삭제 후 포트 매핑 포함하여 재실행&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">
- &lt;div class="code-toolbar">
- &lt;button class="copy-code-button" title="Copy to clipboard">
- &lt;i class="fas fa-copy">&lt;/i>
- &lt;/button>
- &lt;/div>
- &lt;pre>&lt;code class="">docker run -it --name lj-ubuntu \
+ &amp;#34;IPAddress&amp;#34;: &amp;#34;172.17.0.2&amp;#34;,&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;ol start="8"&gt;
+&lt;li&gt;컨테이너 중지 및 삭제 후 포트 매핑 포함하여 재실행&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;
+ &lt;div class="code-toolbar"&gt;
+ &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
+ &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;pre&gt;&lt;code class=""&gt;docker run -it --name lj-ubuntu \
  -v /home/lionelj:/home/lionelj \
  -v /opt:/opt \
  --user 1016:1016 \
  -p 2222:2222 \
  lj-ubuntu-3:24.04 \
- /bin/bash&lt;/code>&lt;/pre>
-&lt;/div>
-&lt;ol start="9">
-&lt;li>이미지 이름 바꾸는 방법&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">
- &lt;div class="code-toolbar">
- &lt;button class="copy-code-button" title="Copy to clipboard">
- &lt;i class="fas fa-copy">&lt;/i>
- &lt;/button>
- &lt;/div>
- &lt;pre>&lt;code class="">docker tag 원래_이미지_이름:태그 새_이미지_이름:태그
-docker rmi 원래_이미지_이름:태그&lt;/code>&lt;/pre>
-&lt;/div>
-&lt;ul>
-&lt;li>접속 하는 방법 ssh 터널링 (윈도우에서 설정.)&lt;/li>
-&lt;/ul>
-&lt;div class="highlight">
- &lt;div class="code-toolbar">
- &lt;button class="copy-code-button" title="Copy to clipboard">
- &lt;i class="fas fa-copy">&lt;/i>
- &lt;/button>
- &lt;/div>
- &lt;pre>&lt;code class="">ssh -L 2222:172.17.0.2:2222 lionelj@&amp;lt;호스트_IP&amp;gt;
-ssh -L 2222:172.17.0.2:2222 lionelj@192.168.85.15&lt;/code>&lt;/pre>
-&lt;/div>
-&lt;ul>
-&lt;li>Windows ssh 설정&lt;/li>
-&lt;/ul>
-&lt;div class="highlight">
- &lt;div class="code-toolbar">
- &lt;button class="copy-code-button" title="Copy to clipboard">
- &lt;i class="fas fa-copy">&lt;/i>
- &lt;/button>
- &lt;/div>
- &lt;pre>&lt;code class="">C:\Users\lionel.j\.ssh\config 파일을 열고
+ /bin/bash&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;ol start="9"&gt;
+&lt;li&gt;이미지 이름 바꾸는 방법&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;
+ &lt;div class="code-toolbar"&gt;
+ &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
+ &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;pre&gt;&lt;code class=""&gt;docker tag 원래_이미지_이름:태그 새_이미지_이름:태그
+docker rmi 원래_이미지_이름:태그&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;접속 하는 방법 ssh 터널링 (윈도우에서 설정.)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;
+ &lt;div class="code-toolbar"&gt;
+ &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
+ &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;pre&gt;&lt;code class=""&gt;ssh -L 2222:172.17.0.2:2222 lionelj@&amp;lt;호스트_IP&amp;gt;
+ssh -L 2222:172.17.0.2:2222 lionelj@192.168.85.15&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Windows ssh 설정&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;
+ &lt;div class="code-toolbar"&gt;
+ &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
+ &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;pre&gt;&lt;code class=""&gt;C:\Users\lionel.j\.ssh\config 파일을 열고
 
 Host lj-ubuntu
   HostName localhost
@@ -277,25 +277,25 @@ Host lj-ubuntu
   Port 2222
 
 이렇게 추가 후
-vscode 에서 Remote-SSH: Connect to Host...로 lj-ubuntu 로 접속.&lt;/code>&lt;/pre>
-&lt;/div>
-&lt;hr>
-&lt;h2 id="다음부터-사용할-때는-이렇게">다음부터 사용할 때는 이렇게&lt;/h2>
-&lt;p>다 설정하면 이렇게 하면 됨.&lt;/p></description></item><item><title>HTTP 프록시 뒤에서 Docker를 사용하는 방법</title><link>https://hybridego.github.io/2018/03/13/use-docker-behind-http-proxy/</link><pubDate>Tue, 13 Mar 2018 18:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/03/13/use-docker-behind-http-proxy/</guid><description>&lt;h2 id="ubuntu">Ubuntu&lt;/h2>
-&lt;h3 id="docker에서-http-프록시-설정">Docker에서 HTTP 프록시 설정&lt;/h3>
-&lt;div class="highlight">
- &lt;div class="code-toolbar">
- &lt;button class="copy-code-button" title="Copy to clipboard">
- &lt;i class="fas fa-copy">&lt;/i>
- &lt;/button>
- &lt;/div>
- &lt;pre>&lt;code class="">sudo /etc/default/docker
+vscode 에서 Remote-SSH: Connect to Host...로 lj-ubuntu 로 접속.&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;h2 id="다음부터-사용할-때는-이렇게"&gt;다음부터 사용할 때는 이렇게&lt;/h2&gt;
+&lt;p&gt;다 설정하면 이렇게 하면 됨.&lt;/p&gt;</description></item><item><title>HTTP 프록시 뒤에서 Docker를 사용하는 방법</title><link>https://hybridego.github.io/2018/03/13/use-docker-behind-http-proxy/</link><pubDate>Tue, 13 Mar 2018 18:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/03/13/use-docker-behind-http-proxy/</guid><description>&lt;h2 id="ubuntu"&gt;Ubuntu&lt;/h2&gt;
+&lt;h3 id="docker에서-http-프록시-설정"&gt;Docker에서 HTTP 프록시 설정&lt;/h3&gt;
+&lt;div class="highlight"&gt;
+ &lt;div class="code-toolbar"&gt;
+ &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
+ &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;pre&gt;&lt;code class=""&gt;sudo /etc/default/docker
 
 export http_proxy=&amp;#34;http://127.0.0.1:3128/&amp;#34;
 export https_proxy=&amp;#34;http://127.0.0.1:3128/&amp;#34;
 export HTTP_PROXY=&amp;#34;http://127.0.0.1:3128/&amp;#34;
-export HTTPS_PROXY=&amp;#34;http://127.0.0.1:3128/&amp;#34;&lt;/code>&lt;/pre>
-&lt;/div></description></item><item><title>sudo 없이 Docker 명령을 실행하는 방법</title><link>https://hybridego.github.io/2018/02/09/docker-without-sudo/</link><pubDate>Fri, 09 Feb 2018 10:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/02/09/docker-without-sudo/</guid><description>&lt;h3 id="docker-그룹이-아직-존재하지-않으면-추가합니다">Docker 그룹이 아직 존재하지 않으면 추가합니다:&lt;/h3>
-&lt;p>&lt;code>sudo groupadd docker&lt;/code>&lt;/p>
-&lt;h3 id="연결된-사용자-user를-docker-그룹에-추가합니다-현재-사용자를-사용하지-않으려면-사용자-이름을-원하는-사용자와-일치하도록-변경하십시오">연결된 사용자 &amp;ldquo;$USER&amp;quot;를 docker 그룹에 추가합니다. 현재 사용자를 사용하지 않으려면 사용자 이름을 원하는 사용자와 일치하도록 변경하십시오:&lt;/h3>
-&lt;p>&lt;code>sudo gpasswd -a $USER docker&lt;/code>&lt;/p></description></item></channel></rss>
+export HTTPS_PROXY=&amp;#34;http://127.0.0.1:3128/&amp;#34;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;</description></item><item><title>sudo 없이 Docker 명령을 실행하는 방법</title><link>https://hybridego.github.io/2018/02/09/docker-without-sudo/</link><pubDate>Fri, 09 Feb 2018 10:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/02/09/docker-without-sudo/</guid><description>&lt;h3 id="docker-그룹이-아직-존재하지-않으면-추가합니다"&gt;Docker 그룹이 아직 존재하지 않으면 추가합니다:&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;sudo groupadd docker&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id="연결된-사용자-user를-docker-그룹에-추가합니다-현재-사용자를-사용하지-않으려면-사용자-이름을-원하는-사용자와-일치하도록-변경하십시오"&gt;연결된 사용자 &amp;ldquo;$USER&amp;quot;를 docker 그룹에 추가합니다. 현재 사용자를 사용하지 않으려면 사용자 이름을 원하는 사용자와 일치하도록 변경하십시오:&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;sudo gpasswd -a $USER docker&lt;/code&gt;&lt;/p&gt;</description></item></channel></rss>
