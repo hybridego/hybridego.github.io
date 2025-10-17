@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Milliseconds on Lionel Blog</title><link>https://hybridego.github.io/tags/milliseconds/</link><description>Recent content in Milliseconds on Lionel Blog</description><generator>Hugo</generator><language>ko-kr</language><lastBuildDate>Fri, 17 Oct 2025 09:55:15 +0900</lastBuildDate><atom:link href="https://hybridego.github.io/tags/milliseconds/index.xml" rel="self" type="application/rss+xml"/><item><title>Time 해상도 체크</title><link>https://hybridego.github.io/2025/10/17/sleep-time-check/</link><pubDate>Fri, 17 Oct 2025 10:10:05 +0900</pubDate><guid>https://hybridego.github.io/2025/10/17/sleep-time-check/</guid><description>&lt;div class="highlight"&gt;
+ &lt;div class="code-toolbar"&gt;
+ &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
+ &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;pre&gt;&lt;code class=""&gt;#include &amp;lt;iostream&amp;gt;
+#include &amp;lt;unistd.h&amp;gt;
+#include &amp;lt;ctime&amp;gt;
+#include &amp;lt;chrono&amp;gt;
+
+int main() {
+ // 현재 시간을 마이크로초 단위로 가져오는 함수
+ auto getCurrentMicros = []() {
+ return std::chrono::duration_cast&amp;lt;std::chrono::microseconds&amp;gt;(
+ std::chrono::high_resolution_clock::now().time_since_epoch()
+ ).count();
+ };
+
+ // 여러 대기 시간을 테스트
+ int waitTimes[] = {100000, 500000, 1000000}; // 0.1초, 0.5초, 1초
+
+ for (int waitTime : waitTimes) {
+ std::cout &amp;lt;&amp;lt; &amp;#34;대기 시작: &amp;#34; &amp;lt;&amp;lt; waitTime &amp;lt;&amp;lt; &amp;#34; 마이크로초&amp;#34; &amp;lt;&amp;lt; std::endl;
+
+ // 시작 시간 기록
+ long long startTime = getCurrentMicros();
+
+ // usleep 호출
+ usleep(waitTime);
+
+ // 종료 시간 기록
+ long long endTime = getCurrentMicros();
+
+ // 실제 경과 시간 계산
+ long long elapsedTime = endTime - startTime;
+
+ std::cout &amp;lt;&amp;lt; &amp;#34;예상 대기 시간: &amp;#34; &amp;lt;&amp;lt; waitTime &amp;lt;&amp;lt; &amp;#34; 마이크로초&amp;#34; &amp;lt;&amp;lt; std::endl;
+ std::cout &amp;lt;&amp;lt; &amp;#34;실제 대기 시간: &amp;#34; &amp;lt;&amp;lt; elapsedTime &amp;lt;&amp;lt; &amp;#34; 마이크로초&amp;#34; &amp;lt;&amp;lt; std::endl;
+ std::cout &amp;lt;&amp;lt; &amp;#34;차이: &amp;#34; &amp;lt;&amp;lt; elapsedTime - waitTime &amp;lt;&amp;lt; &amp;#34; 마이크로초&amp;#34; &amp;lt;&amp;lt; std::endl;
+ std::cout &amp;lt;&amp;lt; &amp;#34;------------------------&amp;#34; &amp;lt;&amp;lt; std::endl;
+ }
+
+ return 0;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h2 id="좀-더-개선"&gt;좀 더 개선&lt;/h2&gt;
+&lt;div class="highlight"&gt;
+ &lt;div class="code-toolbar"&gt;
+ &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
+ &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;pre&gt;&lt;code class=""&gt;#include &amp;lt;iostream&amp;gt;
+#include &amp;lt;chrono&amp;gt;
+#include &amp;lt;thread&amp;gt;
+#include &amp;lt;iomanip&amp;gt;
+
+// 시간 측정을 위한 헬퍼 함수
+template&amp;lt;typename Func&amp;gt;
+long long measureTime(Func func) {
+ auto start = std::chrono::high_resolution_clock::now();
+ func();
+ auto end = std::chrono::high_resolution_clock::now();
+ return std::chrono::duration_cast&amp;lt;std::chrono::nanoseconds&amp;gt;(end - start).count();
+}
+
+void testSleep(const std::string&amp;amp; name, auto duration) {
+ long long elapsed = measureTime([&amp;amp;]() {
+ std::this_thread::sleep_for(duration);
+ });
+
+ std::cout &amp;lt;&amp;lt; std::left &amp;lt;&amp;lt; std::setw(15) &amp;lt;&amp;lt; name
+ &amp;lt;&amp;lt; &amp;#34; 요청 시간: &amp;#34; &amp;lt;&amp;lt; std::setw(10) &amp;lt;&amp;lt; duration.count()
+ &amp;lt;&amp;lt; &amp;#34; 실제 시간: &amp;#34; &amp;lt;&amp;lt; std::setw(10) &amp;lt;&amp;lt; elapsed
+ &amp;lt;&amp;lt; &amp;#34; ns (차이: &amp;#34; &amp;lt;&amp;lt; elapsed - duration.count() &amp;lt;&amp;lt; &amp;#34; ns)&amp;#34;
+ &amp;lt;&amp;lt; std::endl;
+}
+
+int main() {
+ std::cout &amp;lt;&amp;lt; &amp;#34;Sleep 시간 테스트 시작...\n&amp;#34; &amp;lt;&amp;lt; std::endl;
+
+ // 나노초 테스트 (100ns, 500ns, 1000ns)
+ testSleep(&amp;#34;100 ns&amp;#34;, std::chrono::nanoseconds(100));
+ testSleep(&amp;#34;500 ns&amp;#34;, std::chrono::nanoseconds(500));
+ testSleep(&amp;#34;1000 ns&amp;#34;, std::chrono::nanoseconds(1000));
+ std::cout &amp;lt;&amp;lt; std::endl;
+
+ // 마이크로초 테스트 (1μs, 10μs, 100μs)
+ testSleep(&amp;#34;1 μs&amp;#34;, std::chrono::microseconds(1));
+ testSleep(&amp;#34;10 μs&amp;#34;, std::chrono::microseconds(10));
+ testSleep(&amp;#34;100 μs&amp;#34;, std::chrono::microseconds(100));
+ std::cout &amp;lt;&amp;lt; std::endl;
+
+ // 밀리초 테스트 (1ms, 10ms, 100ms)
+ testSleep(&amp;#34;1 ms&amp;#34;, std::chrono::milliseconds(1));
+ testSleep(&amp;#34;10 ms&amp;#34;, std::chrono::milliseconds(10));
+ testSleep(&amp;#34;100 ms&amp;#34;, std::chrono::milliseconds(100));
+
+ return 0;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;</description></item></channel></rss>
