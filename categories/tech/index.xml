@@ -876,7 +876,8 @@ vscode 에서 Remote-SSH: Connect to Host...로 lj-ubuntu 로 접속.&lt;/code&g
 &lt;li&gt;
 &lt;p&gt;회사에서 uv python install 잘 안될 때
 사용 중인 네트워크(예: 회사 네트워크)가 Zscaler, Cisco Umbrella 같은 프록시를 통해 SSL 검사를 수행하고 있을 가능성이 높습니다. 이 경우, 프록시가 중간에 자체 인증서를 삽입하여 uv가 사용하는 기본 인증서 저장소(Mozilla의 webpki-roots)에서 이를 신뢰하지 못해 UnknownIssuer 에러가 발생합니다.&lt;/p&gt;</description></item><item><title>Istio v1alpha3 라우팅 API 소개</title><link>https://hybridego.github.io/2018/06/04/introducing-the-istio-v1alpha3-routing-api/</link><pubDate>Mon, 04 Jun 2018 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/06/04/introducing-the-istio-v1alpha3-routing-api/</guid><description>&lt;p&gt;지금까지 Istio는 RouteRule, DestinationPolicy, EgressRule, Ingress(Kubernetes의 Ingress 리소스를 직접 사용)의 네 가지 리소스를 포함하는 간단한 트래픽 관리 API를 제공했습니다. 이 API를 통해 사용자는 Istio 서비스 메시 내에서 트래픽을 쉽게 관리할 수 있습니다. 이 API를 통해 사용자는 요청을 특정 서비스 버전으로 라우팅하고, 복원력 테스트를 위해 지연 및 오류를 주입하고, 타임아웃 및 회로 차단기를 추가하는 등 애플리케이션 코드를 수정할 필요 없이 모든 작업을 수행할 수 있습니다.&lt;/p&gt;</description></item><item><title>Istio 0.8 릴리스 발표</title><link>https://hybridego.github.io/2018/06/02/istio08/</link><pubDate>Sat, 02 Jun 2018 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/06/02/istio08/</guid><description>&lt;blockquote&gt;
-&lt;p&gt;6월 1일 아침, Istio 커뮤니티는 0.8 릴리스를 발표했습니다. 일반적인 버그 수정 및 성능 개선 외에, 이 어린이날 선물에는 어떤 기대할 만한 내용이 있을까요? 함께 살펴보겠습니다.&lt;/p&gt;&lt;/blockquote&gt;</description></item><item><title>마이크로서비스 보안 성찰록 3부</title><link>https://hybridego.github.io/2018/05/23/external_system_auth/</link><pubDate>Wed, 23 May 2018 18:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/05/23/external_system_auth/</guid><description>&lt;h2 id="외부-시스템-접근-제어"&gt;외부 시스템 접근 제어&lt;/h2&gt;
+&lt;p&gt;6월 1일 아침, Istio 커뮤니티는 0.8 릴리스를 발표했습니다. 일반적인 버그 수정 및 성능 개선 외에, 이 어린이날 선물에는 어떤 기대할 만한 내용이 있을까요? 함께 살펴보겠습니다.&lt;/p&gt;
+&lt;/blockquote&gt;</description></item><item><title>마이크로서비스 보안 성찰록 3부</title><link>https://hybridego.github.io/2018/05/23/external_system_auth/</link><pubDate>Wed, 23 May 2018 18:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/05/23/external_system_auth/</guid><description>&lt;h2 id="외부-시스템-접근-제어"&gt;외부 시스템 접근 제어&lt;/h2&gt;
 &lt;p&gt;사용자 접근 및 마이크로서비스 간 상호 접근 외에도, 외부 타사 시스템도 시스템 내부의 마이크로서비스에 접근해야 할 수 있습니다. 예를 들어 이전 블로그의 온라인 상점 예시에서, 외부 추천 서비스가 상점의 상품 카탈로그 정보를 얻기 위해 시스템에 연결해야 할 수 있습니다. 내부 서비스 간의 접근과 비교하여 외부 시스템의 접근은 엄격한 보안 제어가 필요합니다.&lt;/p&gt;</description></item><item><title>마이크로서비스 보안 성찰록 2부</title><link>https://hybridego.github.io/2018/05/23/service_2_service_auth/</link><pubDate>Wed, 23 May 2018 15:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/05/23/service_2_service_auth/</guid><description>&lt;h2 id="서비스-간-인증-및-권한-부여"&gt;서비스 간 인증 및 권한 부여&lt;/h2&gt;
 &lt;p&gt;사용자로부터의 접근 요청 외에도, 마이크로서비스 애플리케이션 내의 각 마이크로서비스는 서로 많은 접근을 합니다. 다음 시나리오를 포함합니다.&lt;/p&gt;
 &lt;ul&gt;
@@ -891,7 +892,8 @@ vscode 에서 Remote-SSH: Connect to Host...로 lj-ubuntu 로 접속.&lt;/code&g
 &lt;p&gt;Kubernetes 1.9 버전은 Admission Webhook(웹 콜백) 확장 메커니즘을 도입했습니다. 웹훅을 통해 개발자는 Kubernetes API 서버의 기능을 매우 유연하게 확장하여 API 서버가 리소스를 생성할 때 리소스를 검증하거나 수정할 수 있습니다.&lt;/p&gt;
 &lt;p&gt;웹훅 사용의 장점은 API 서버의 소스 코드를 수정하고 다시 컴파일할 필요 없이 기능을 확장할 수 있다는 것입니다. 삽입된 로직은 독립적인 웹 프로세스로 구현되며, 매개변수 방식으로 Kubernetes에 전달되어 Kubernetes가 자체 로직을 처리할 때 확장 로직을 콜백합니다.&lt;/p&gt;
 &lt;p&gt;Istio 0.7 버전은 Kubernetes 웹훅을 활용하여 사이드카 자동 주입을 구현했습니다.&lt;/p&gt;</description></item><item><title>Algolia를 사용하여 Gitpage 블로그에 사이트 내 검색 기능 제공</title><link>https://hybridego.github.io/2018/05/21/algolia-integration-with-jekyll/</link><pubDate>Mon, 21 May 2018 11:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/05/21/algolia-integration-with-jekyll/</guid><description>&lt;blockquote&gt;
-&lt;p&gt;이 일련의 기사는 &amp;ldquo;비트코인 및 암호화폐 기술&amp;rdquo; 온라인 강좌의 제 노트입니다.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;이 일련의 기사는 &amp;ldquo;비트코인 및 암호화폐 기술&amp;rdquo; 온라인 강좌의 제 노트입니다.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h2 id="목차"&gt;목차&lt;/h2&gt;
 &lt;p&gt;{:.no_toc}&lt;/p&gt;
 &lt;ul&gt;
