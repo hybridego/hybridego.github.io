@@ -1098,7 +1098,7 @@ export HTTPS_PROXY=&amp;#34;http://127.0.0.1:3128/&amp;#34;&lt;/code&gt;&lt;/pre
 &lt;h2 id="technical-stack"&gt;Technical Stack&lt;/h2&gt;
 &lt;h3 id="languages"&gt;Languages&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;C/C++, Python, Go, Java, Kotlin&lt;/li&gt;
+&lt;li&gt;C/C++, Python, Go, Java, Kotlin, Rust&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id="development"&gt;Development&lt;/h3&gt;
 &lt;ul&gt;
