@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Http on Lionel Blog</title><link>https://hybridego.github.io/tags/http/</link><description>Recent content in Http on Lionel Blog</description><generator>Hugo</generator><language>ko-kr</language><lastBuildDate>Wed, 12 Nov 2025 00:22:01 +0900</lastBuildDate><atom:link href="https://hybridego.github.io/tags/http/index.xml" rel="self" type="application/rss+xml"/><item><title>Squid 프록시 서버 설치 및 기본 설정</title><link>https://hybridego.github.io/2025/11/12/squid-proxt/</link><pubDate>Wed, 12 Nov 2025 22:11:01 +0900</pubDate><guid>https://hybridego.github.io/2025/11/12/squid-proxt/</guid><description>&lt;h1 id="squid"&gt;squid&lt;/h1&gt;
+&lt;h3 id="설치"&gt;설치&lt;/h3&gt;
+&lt;div class="highlight"&gt;
+ &lt;div class="code-toolbar"&gt;
+ &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
+ &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;pre&gt;&lt;code class=""&gt;sudo apt update 
+sudo apt install squid&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h3 id="상태확인"&gt;상태확인&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;설치하면 자동으로 시작 됨. 다음의 명령어로 상태 확인&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;
+ &lt;div class="code-toolbar"&gt;
+ &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
+ &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;pre&gt;&lt;code class=""&gt;sudo systemctl status squid&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h3 id="다시-실행하기"&gt;다시 실행하기&lt;/h3&gt;
+&lt;div class="highlight"&gt;
+ &lt;div class="code-toolbar"&gt;
+ &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
+ &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;pre&gt;&lt;code class=""&gt;sudo squid -k parse # 설정 오류 확인 (오류 없으면 OK)
+sudo systemctl restart squid
+sudo systemctl status squid # active (running) 확인
+sudo ufw allow 3128 # 방화벽 열기 (uFW 사용 시)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h3 id="설정"&gt;설정&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;/etc/squid/squid.conf&lt;/code&gt; 파일을 수정해서 설정 가능&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;
+ &lt;div class="code-toolbar"&gt;
+ &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
+ &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;pre&gt;&lt;code class=""&gt;# cat /etc/squid/squid.conf
+ 
+# 기본 포트 (터널링 모드, intercept 없음)
+http_port 3128
+
+# ACL 정의 (HTTPS CONNECT 허용 필수)
+acl localnet src 192.168.71.0/24 # Raspberry Pi 네트워크 (IP 범위 조정 가능, 테스트용: acl localnet src 0.0.0.0/0)
+acl SSL_ports port 443
+acl Safe_ports port 80 # HTTP
+acl Safe_ports port 443 # HTTPS (중복 포함으로 안전)
+acl CONNECT method CONNECT
+
+# 기본 포트 보호 (기본 deny)
+http_access deny !Safe_ports
+http_access deny CONNECT !SSL_ports
+
+# 접근 허용 (localnet에 CONNECT 허용, 순서 중요: allow 전에 deny!)
+http_access allow localnet Safe_ports
+http_access allow CONNECT localnet SSL_ports
+http_access deny all # 마지막에 deny all
+
+# 로그 및 캐시 (기본값)
+access_log /var/log/squid/access.log squid
+cache_dir ufs /var/spool/squid 100 16 256
+coredump_dir /var/spool/squid
+
+# 기타 (헤더 전달 위해 via off, 테스트용)
+via off&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;squid는 기본 포트가 3128&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="특정-ip만-허용-access-control-list"&gt;특정 ip만 허용 (Access control list)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;위의 &lt;code&gt;acl localnet src 192.168.71.0/2&lt;/code&gt; 대신 다음을 설정하고&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;
+ &lt;div class="code-toolbar"&gt;
+ &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
+ &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;pre&gt;&lt;code class=""&gt;acl allowed_ips src &amp;#34;/etc/squid/allowed_ips.txt&amp;#34;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h4 id="해당-파일을-만들어서-허용할-ip를-등록"&gt;해당 파일을 만들어서 허용할 ip를 등록&lt;/h4&gt;
+&lt;div class="highlight"&gt;
+ &lt;div class="code-toolbar"&gt;
+ &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
+ &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;pre&gt;&lt;code class=""&gt;# /etc/squid/allowed_ips.txt
+
+192.168.33.1
+# All other allowed IPs&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h3 id="기타-기능"&gt;기타 기능&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;인증된 사용자만 접근 하게 할 수도 있음. &lt;code&gt;/etc/squid/htpasswd&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;http 기본 자격증명 인증도 가능&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;사용하는 방법&lt;/p&gt;</description></item></channel></rss>
