@@ -145,7 +145,7 @@ spec:
 <img src=/img/istio-canary-release/product-page-default-v2.PNG alt></p><blockquote><p>참고: 카나리 릴리스 과정에서 새 버전 서비스에 문제가 발생하면 라우팅 규칙을 수정하여 트래픽을 V1 버전 서비스로 다시 라우팅하고, V2 버전의 문제를 수정한 후 다시 테스트를 진행할 수 있습니다.</p></blockquote><h3 id=v1-버전-reviews-서비스-삭제>V1 버전 reviews 서비스 삭제</h3><p>V2 버전이 안정적으로 출시된 후, V1 버전 reviews 서비스와 테스트 규칙을 삭제합니다.</p><div class=highlight><div class=code-toolbar><button class=copy-code-button title="Copy to clipboard">
 <i class="fas fa-copy"></i></button></div><pre><code>kubectl delete pod reviews-v1-1360980140-0zs9z
 
-istioctl delete -f route-rule-test-reviews-v2.yaml -n default</code></pre></div><h2 id=참고>참고</h2><ul><li><a href=https://istio.io/docs/>Istio 공식 문서</a></li></ul><link href=https://hybridego.github.io/dist/Artalk.css rel=stylesheet><script src=https://hybridego.github.io/dist/Artalk.js></script><div id=Comments></div><script>Artalk.init({el:"#Comments",pageKey:"https://hybridego.github.io/2017/11/08/istio-canary-release-ko/",pageTitle:"Istio를 이용한 카나리 릴리스(Canary Release) 구현",server:"https://hybridego.github.io",site:"lionel blog"})</script></div><div class="col-lg-3 col-lg-offset-0
+istioctl delete -f route-rule-test-reviews-v2.yaml -n default</code></pre></div><h2 id=참고>참고</h2><ul><li><a href=https://istio.io/docs/>Istio 공식 문서</a></li></ul></div><div class="col-lg-3 col-lg-offset-0
 col-md-3 col-md-offset-0
 col-sm-12
 col-xs-12
@@ -154,7 +154,7 @@ sidebar-container"><section class="visible-md visible-lg"><div class=short-about
 <i class="fab fa-twitter fa-stack-1x fa-inverse"></i></span></a></li><li><a target=_blank href=/img/wechat.png><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
 <i class="fab fa-weixin fa-stack-1x fa-inverse"></i></span></a></li><li><a target=_blank href=https://github.com/hybridego><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
 <i class="fab fa-github fa-stack-1x fa-inverse"></i></span></a></li><li><a target=_blank href=https://www.linkedin.com/in/hocheol-jeon-5569b067/><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
-<i class="fab fa-linkedin fa-stack-1x fa-inverse"></i></span></a></li></ul></div></section><section><hr><h5>QUICK LINKS</h5><ul class=list-inline><li><a target=_blank href=#ZgotmplZ>NotebookLM</a></li><li><a target=_blank href=https://www.perplexity.ai/>Perplexity</a></li><li><a target=_blank href=https://chatgpt.com/>Chatgpt</a></li><li><a target=_blank href=https://claude.ai/new>Claude</a></li><li><a target=_blank href=https://grok.com/>Grok</a></li></ul></section><section><hr class="hidden-sm hidden-xs"><h5>FEATURED TAGS</h5><div class=tags><a href=/tags/ai title=ai>ai
+<i class="fab fa-linkedin fa-stack-1x fa-inverse"></i></span></a></li></ul></div></section><section><hr><h5>QUICK LINKS</h5><ul class=list-inline><li><a target=_blank href=https://notebooklm.google/>NotebookLM</a></li><li><a target=_blank href=https://www.perplexity.ai/>Perplexity</a></li><li><a target=_blank href=https://chatgpt.com/>Chatgpt</a></li><li><a target=_blank href=https://claude.ai/new>Claude</a></li><li><a target=_blank href=https://grok.com/>Grok</a></li></ul></section><section><hr class="hidden-sm hidden-xs"><h5>FEATURED TAGS</h5><div class=tags><a href=/tags/ai title=ai>ai
 </a><a href=/tags/alsa title=alsa>alsa
 </a><a href=/tags/docker title=docker>docker
 </a><a href=/tags/github title=github>github
