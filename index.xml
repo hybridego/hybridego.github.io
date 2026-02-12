@@ -1194,18 +1194,8 @@ sudo pip3 install shadowsocks&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Istio 0.7 버전은 Kubernetes 웹훅을 활용하여 사이드카 자동 주입을 구현했습니다.&lt;/p&gt;</description></item><item><title>Algolia를 사용하여 Gitpage 블로그에 사이트 내 검색 기능 제공</title><link>https://hybridego.github.io/2018/05/21/algolia-integration-with-jekyll/</link><pubDate>Mon, 21 May 2018 11:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/05/21/algolia-integration-with-jekyll/</guid><description>&lt;blockquote&gt;
 &lt;p&gt;이 일련의 기사는 &amp;ldquo;비트코인 및 암호화폐 기술&amp;rdquo; 온라인 강좌의 제 노트입니다.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h2 id="목차"&gt;목차&lt;/h2&gt;
-&lt;p&gt;{:.no_toc}&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;목차
-{:toc}&lt;/li&gt;
-&lt;/ul&gt;
 &lt;h2 id="스크루지-코인-거래"&gt;스크루지 코인 거래&lt;/h2&gt;
-&lt;p&gt;스크루지 코인 프로그래밍 과제는 약간 까다롭습니다. 이 강의의 비디오는 일부 구현 세부 사항을 설명하지 않았습니다. 스크루지 코인에서 사용되는 거래 데이터 구조를 이해하는 데 도움이 되도록 이 다이어그램을 그렸습니다.
-
- &lt;img src="https://hybridego.github.io/img/2018-5-20-cryptocurrency_week1_scroogecoin/scroogecoin.png" alt="스크루지 코인"&gt;
-
-&lt;/p&gt;</description></item><item><title>Helm을 사용하여 Kubernetes에 배포하는 방법</title><link>https://hybridego.github.io/2018/04/16/using-helm-to-deploy-to-kubernetes/</link><pubDate>Mon, 16 Apr 2018 10:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/04/16/using-helm-to-deploy-to-kubernetes/</guid><description>&lt;h2 id="helm이란"&gt;Helm이란?&lt;/h2&gt;
+&lt;p&gt;스크루지 코인 프로그래밍 과제는 약간 까다롭습니다. 이 강의의 비디오는 일부 구현 세부 사항을 설명하지 않았습니다. 스크루지 코인에서 사용되는 거래 데이터 구조를 이해하는 데 도움이 되도록 이 다이어그램을 그렸습니다.&lt;/p&gt;</description></item><item><title>Helm을 사용하여 Kubernetes에 배포하는 방법</title><link>https://hybridego.github.io/2018/04/16/using-helm-to-deploy-to-kubernetes/</link><pubDate>Mon, 16 Apr 2018 10:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/04/16/using-helm-to-deploy-to-kubernetes/</guid><description>&lt;h2 id="helm이란"&gt;Helm이란?&lt;/h2&gt;
 &lt;p&gt;Helm은 Kubernetes 애플리케이션을 관리하는 도구입니다. Helm은 Kubernetes 애플리케이션을 패키징하고 배포하는 데 사용됩니다. Helm은 Kubernetes 애플리케이션을 쉽게 설치, 업그레이드, 롤백할 수 있도록 도와줍니다.&lt;/p&gt;</description></item><item><title>서비스 메시 vs API 게이트웨이 관계 탐구 (번역)</title><link>https://hybridego.github.io/2018/04/11/service-mesh-vs-api-gateway-ko/</link><pubDate>Wed, 11 Apr 2018 09:32:00 +0000</pubDate><guid>https://hybridego.github.io/2018/04/11/service-mesh-vs-api-gateway-ko/</guid><description>&lt;h2 id="서비스-메시-vs-api-게이트웨이"&gt;서비스 메시 vs API 게이트웨이&lt;/h2&gt;
 &lt;p&gt;&lt;a href="https://medium.com/microservices-in-practice/service-mesh-for-microservices-2953109a3c9a"&gt;이전 서비스 메시 관련 글&lt;/a&gt;에서 저는 서비스 메시와 API 게이트웨이 간의 관계에 대한 몇 가지 질문을 언급했습니다. 이 글에서는 서비스 메시와 API 게이트웨이의 용도에 대해 더 자세히 논의할 예정입니다.&lt;/p&gt;</description></item><item><title>마이크로서비스 아키텍처의 인프라: 서비스 메시와 Istio에 대해 이야기하다</title><link>https://hybridego.github.io/2018/03/29/what-is-service-mesh-and-istio/</link><pubDate>Thu, 29 Mar 2018 12:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/03/29/what-is-service-mesh-and-istio/</guid><description>&lt;h2 id="마이크로서비스-아키텍처의-진화"&gt;마이크로서비스 아키텍처의 진화&lt;/h2&gt;
 &lt;p&gt;아키텍처 패턴으로서 마이크로서비스는 복잡한 시스템을 수십에서 수백 개의 작은 서비스로 분할하며, 각 서비스는 독립적인 비즈니스 로직을 구현합니다. 이러한 작은 서비스는 소규모 소프트웨어 엔지니어링 팀이 이해하고 수정하기 쉽고, 언어 및 프레임워크 선택의 유연성을 제공하며, 애플리케이션 개발 및 출시 시간을 단축하고, 다양한 워크로드 및 리소스 요구 사항에 따라 서비스를 독립적으로 확장/축소할 수 있는 이점을 제공합니다.&lt;/p&gt;
