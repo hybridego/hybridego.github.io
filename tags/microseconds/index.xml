@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Microseconds on Lionel Blog</title><link>https://hybridego.github.io/tags/microseconds/</link><description>Recent content in Microseconds on Lionel Blog</description><generator>Hugo</generator><language>ko-KR</language><lastBuildDate>Fri, 17 Oct 2025 09:55:15 +0900</lastBuildDate><atom:link href="https://hybridego.github.io/tags/microseconds/index.xml" rel="self" type="application/rss+xml"/><item><title>Time 해상도 체크</title><link>https://hybridego.github.io/2025/10/17/sleep-time-check/</link><pubDate>Fri, 17 Oct 2025 10:10:05 +0900</pubDate><guid>https://hybridego.github.io/2025/10/17/sleep-time-check/</guid><description>&lt;div class="highlight"&gt;
  &lt;div class="code-toolbar"&gt;
- &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
- &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;button type="button" class="copy-code-button" title="코드 복사" aria-label="코드 복사"&gt;
+ &lt;i class="fas fa-copy" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/button&gt;
  &lt;/div&gt;
  &lt;pre&gt;&lt;code class=""&gt;#include &amp;lt;iostream&amp;gt;
@@ -47,8 +47,8 @@ int main() {
 &lt;h2 id="좀-더-개선"&gt;좀 더 개선&lt;/h2&gt;
 &lt;div class="highlight"&gt;
  &lt;div class="code-toolbar"&gt;
- &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
- &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;button type="button" class="copy-code-button" title="코드 복사" aria-label="코드 복사"&gt;
+ &lt;i class="fas fa-copy" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/button&gt;
  &lt;/div&gt;
  &lt;pre&gt;&lt;code class=""&gt;#include &amp;lt;iostream&amp;gt;

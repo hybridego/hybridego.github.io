@@ -4,8 +4,8 @@
 &lt;p&gt;사용자에게 docker 권한 부여하기&lt;/p&gt;
 &lt;div class="highlight"&gt;
  &lt;div class="code-toolbar"&gt;
- &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
- &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;button type="button" class="copy-code-button" title="코드 복사" aria-label="코드 복사"&gt;
+ &lt;i class="fas fa-copy" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/button&gt;
  &lt;/div&gt;
  &lt;pre&gt;&lt;code class=""&gt;sudo usermod -aG docker $USER
@@ -16,8 +16,8 @@ newgrp docker&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Dockerfile 작성&lt;/p&gt;
 &lt;div class="highlight"&gt;
  &lt;div class="code-toolbar"&gt;
- &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
- &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;button type="button" class="copy-code-button" title="코드 복사" aria-label="코드 복사"&gt;
+ &lt;i class="fas fa-copy" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/button&gt;
  &lt;/div&gt;
  &lt;pre&gt;&lt;code class=""&gt;FROM ubuntu:24.04
@@ -83,8 +83,8 @@ CMD [&amp;#34;/start.sh&amp;#34;]&lt;/code&gt;&lt;/pre&gt;
 &lt;/ol&gt;
 &lt;div class="highlight"&gt;
  &lt;div class="code-toolbar"&gt;
- &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
- &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;button type="button" class="copy-code-button" title="코드 복사" aria-label="코드 복사"&gt;
+ &lt;i class="fas fa-copy" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/button&gt;
  &lt;/div&gt;
  &lt;pre&gt;&lt;code class=""&gt;docker run -it \
@@ -99,8 +99,8 @@ CMD [&amp;#34;/start.sh&amp;#34;]&lt;/code&gt;&lt;/pre&gt;
 &lt;/ol&gt;
 &lt;div class="highlight"&gt;
  &lt;div class="code-toolbar"&gt;
- &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
- &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;button type="button" class="copy-code-button" title="코드 복사" aria-label="코드 복사"&gt;
+ &lt;i class="fas fa-copy" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/button&gt;
  &lt;/div&gt;
  &lt;pre&gt;&lt;code class=""&gt;apt-get update 
@@ -119,8 +119,8 @@ sudo locale-gen en_US.UTF-8&lt;/code&gt;&lt;/pre&gt;
 &lt;/ol&gt;
 &lt;div class="highlight"&gt;
  &lt;div class="code-toolbar"&gt;
- &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
- &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;button type="button" class="copy-code-button" title="코드 복사" aria-label="코드 복사"&gt;
+ &lt;i class="fas fa-copy" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/button&gt;
  &lt;/div&gt;
  &lt;pre&gt;&lt;code class=""&gt;# container name으로 접속
@@ -136,8 +136,8 @@ docker exec -it lj-ubuntu /bin/bash&lt;/code&gt;&lt;/pre&gt;
 &lt;/ol&gt;
 &lt;div class="highlight"&gt;
  &lt;div class="code-toolbar"&gt;
- &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
- &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;button type="button" class="copy-code-button" title="코드 복사" aria-label="코드 복사"&gt;
+ &lt;i class="fas fa-copy" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/button&gt;
  &lt;/div&gt;
  &lt;pre&gt;&lt;code class=""&gt;docker commit &amp;lt;컨테이너_ID&amp;gt; my-ubuntu:custom
@@ -156,8 +156,8 @@ ubuntu 24.04 602eb6fb314b 2 weeks ago 78.1MB&lt;/code&gt;&lt;/pre&gt;
 &lt;/ol&gt;
 &lt;div class="highlight"&gt;
  &lt;div class="code-toolbar"&gt;
- &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
- &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;button type="button" class="copy-code-button" title="코드 복사" aria-label="코드 복사"&gt;
+ &lt;i class="fas fa-copy" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/button&gt;
  &lt;/div&gt;
  &lt;pre&gt;&lt;code class=""&gt;$ docker images
@@ -177,8 +177,8 @@ docker run -it \
 &lt;/ol&gt;
 &lt;div class="highlight"&gt;
  &lt;div class="code-toolbar"&gt;
- &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
- &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;button type="button" class="copy-code-button" title="코드 복사" aria-label="코드 복사"&gt;
+ &lt;i class="fas fa-copy" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/button&gt;
  &lt;/div&gt;
  &lt;pre&gt;&lt;code class=""&gt;mkdir /run/sshd 
@@ -191,8 +191,8 @@ docker run -it \
 &lt;/ol&gt;
 &lt;div class="highlight"&gt;
  &lt;div class="code-toolbar"&gt;
- &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
- &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;button type="button" class="copy-code-button" title="코드 복사" aria-label="코드 복사"&gt;
+ &lt;i class="fas fa-copy" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/button&gt;
  &lt;/div&gt;
  &lt;pre&gt;&lt;code class=""&gt;$ ip addr
@@ -210,8 +210,8 @@ docker run -it \
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;
  &lt;div class="code-toolbar"&gt;
- &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
- &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;button type="button" class="copy-code-button" title="코드 복사" aria-label="코드 복사"&gt;
+ &lt;i class="fas fa-copy" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/button&gt;
  &lt;/div&gt;
  &lt;pre&gt;&lt;code class=""&gt;$ docker inspect 85d05024ca50 | grep IPAddress
@@ -224,8 +224,8 @@ docker run -it \
 &lt;/ol&gt;
 &lt;div class="highlight"&gt;
  &lt;div class="code-toolbar"&gt;
- &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
- &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;button type="button" class="copy-code-button" title="코드 복사" aria-label="코드 복사"&gt;
+ &lt;i class="fas fa-copy" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/button&gt;
  &lt;/div&gt;
  &lt;pre&gt;&lt;code class=""&gt;docker run -it --name lj-ubuntu \
@@ -241,8 +241,8 @@ docker run -it \
 &lt;/ol&gt;
 &lt;div class="highlight"&gt;
  &lt;div class="code-toolbar"&gt;
- &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
- &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;button type="button" class="copy-code-button" title="코드 복사" aria-label="코드 복사"&gt;
+ &lt;i class="fas fa-copy" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/button&gt;
  &lt;/div&gt;
  &lt;pre&gt;&lt;code class=""&gt;docker tag 원래_이미지_이름:태그 새_이미지_이름:태그
@@ -253,8 +253,8 @@ docker rmi 원래_이미지_이름:태그&lt;/code&gt;&lt;/pre&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;
  &lt;div class="code-toolbar"&gt;
- &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
- &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;button type="button" class="copy-code-button" title="코드 복사" aria-label="코드 복사"&gt;
+ &lt;i class="fas fa-copy" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/button&gt;
  &lt;/div&gt;
  &lt;pre&gt;&lt;code class=""&gt;ssh -L 2222:172.17.0.2:2222 lionelj@&amp;lt;호스트_IP&amp;gt;
@@ -265,8 +265,8 @@ ssh -L 2222:172.17.0.2:2222 lionelj@192.168.85.15&lt;/code&gt;&lt;/pre&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;
  &lt;div class="code-toolbar"&gt;
- &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
- &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;button type="button" class="copy-code-button" title="코드 복사" aria-label="코드 복사"&gt;
+ &lt;i class="fas fa-copy" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/button&gt;
  &lt;/div&gt;
  &lt;pre&gt;&lt;code class=""&gt;C:\Users\lionel.j\.ssh\config 파일을 열고

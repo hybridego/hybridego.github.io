@@ -1239,8 +1239,8 @@ Analysis target: 리노공업 (058470)&lt;/p&gt;
 &lt;h3 id="설치"&gt;설치&lt;/h3&gt;
 &lt;div class="highlight"&gt;
  &lt;div class="code-toolbar"&gt;
- &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
- &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;button type="button" class="copy-code-button" title="코드 복사" aria-label="코드 복사"&gt;
+ &lt;i class="fas fa-copy" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/button&gt;
  &lt;/div&gt;
  &lt;pre&gt;&lt;code class=""&gt;sudo apt update 
@@ -1252,8 +1252,8 @@ sudo apt install squid&lt;/code&gt;&lt;/pre&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;
  &lt;div class="code-toolbar"&gt;
- &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
- &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;button type="button" class="copy-code-button" title="코드 복사" aria-label="코드 복사"&gt;
+ &lt;i class="fas fa-copy" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/button&gt;
  &lt;/div&gt;
  &lt;pre&gt;&lt;code class=""&gt;sudo systemctl status squid&lt;/code&gt;&lt;/pre&gt;
@@ -1261,8 +1261,8 @@ sudo apt install squid&lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id="다시-실행하기"&gt;다시 실행하기&lt;/h3&gt;
 &lt;div class="highlight"&gt;
  &lt;div class="code-toolbar"&gt;
- &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
- &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;button type="button" class="copy-code-button" title="코드 복사" aria-label="코드 복사"&gt;
+ &lt;i class="fas fa-copy" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/button&gt;
  &lt;/div&gt;
  &lt;pre&gt;&lt;code class=""&gt;sudo squid -k parse # 설정 오류 확인 (오류 없으면 OK)
@@ -1276,8 +1276,8 @@ sudo ufw allow 3128 # 방화벽 열기 (uFW 사용 시)&lt;/code&gt;&lt;/pre&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;
  &lt;div class="code-toolbar"&gt;
- &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
- &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;button type="button" class="copy-code-button" title="코드 복사" aria-label="코드 복사"&gt;
+ &lt;i class="fas fa-copy" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/button&gt;
  &lt;/div&gt;
  &lt;pre&gt;&lt;code class=""&gt;# cat /etc/squid/squid.conf
@@ -1318,8 +1318,8 @@ via off&lt;/code&gt;&lt;/pre&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;
  &lt;div class="code-toolbar"&gt;
- &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
- &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;button type="button" class="copy-code-button" title="코드 복사" aria-label="코드 복사"&gt;
+ &lt;i class="fas fa-copy" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/button&gt;
  &lt;/div&gt;
  &lt;pre&gt;&lt;code class=""&gt;acl allowed_ips src &amp;#34;/etc/squid/allowed_ips.txt&amp;#34;&lt;/code&gt;&lt;/pre&gt;
@@ -1327,8 +1327,8 @@ via off&lt;/code&gt;&lt;/pre&gt;
 &lt;h4 id="해당-파일을-만들어서-허용할-ip를-등록"&gt;해당 파일을 만들어서 허용할 ip를 등록&lt;/h4&gt;
 &lt;div class="highlight"&gt;
  &lt;div class="code-toolbar"&gt;
- &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
- &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;button type="button" class="copy-code-button" title="코드 복사" aria-label="코드 복사"&gt;
+ &lt;i class="fas fa-copy" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/button&gt;
  &lt;/div&gt;
  &lt;pre&gt;&lt;code class=""&gt;# /etc/squid/allowed_ips.txt
@@ -1344,8 +1344,8 @@ via off&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;사용하는 방법&lt;/p&gt;</description></item><item><title>The Bitter Lesson</title><link>https://hybridego.github.io/2025/10/26/The-Bitter-Lesson/</link><pubDate>Sun, 26 Oct 2025 00:11:01 +0900</pubDate><guid>https://hybridego.github.io/2025/10/26/The-Bitter-Lesson/</guid><description>&lt;h3 id="리치-서튼의-쓴-교훈the-bitter-lesson-요약"&gt;리치 서튼의 &amp;ldquo;쓴 교훈(The Bitter Lesson)&amp;rdquo; 요약&lt;/h3&gt;
 &lt;p&gt;리치 서튼(Rich Sutton)이 2019년에 발표한 이 에세이는 AI 연구 70년의 역사를 바탕으로 한 핵심 교훈을 다룬다. &lt;strong&gt;주요 논지&lt;/strong&gt;: AI 개발에서 인간 지식이나 도메인 전문성을 시스템에 주입하는 접근은 단기적으로 효과적일 수 있지만, 장기적으로는 계산 능력(무어의 법칙에 따른 컴퓨팅 파워 증가)을 활용한 일반적 방법(검색과 학습)이 훨씬 우월하다. 인간 중심의 &amp;ldquo;지능&amp;quot;을 모방하려는 시도는 연구를 복잡하게 만들고 진척을 막지만, 컴퓨팅 스케일링에 의존하는 방법은 세계의 복잡성을 스스로 발견하며 지속적으로 발전한다.&lt;/p&gt;</description></item><item><title>Time 해상도 체크</title><link>https://hybridego.github.io/2025/10/17/sleep-time-check/</link><pubDate>Fri, 17 Oct 2025 10:10:05 +0900</pubDate><guid>https://hybridego.github.io/2025/10/17/sleep-time-check/</guid><description>&lt;div class="highlight"&gt;
  &lt;div class="code-toolbar"&gt;
- &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
- &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;button type="button" class="copy-code-button" title="코드 복사" aria-label="코드 복사"&gt;
+ &lt;i class="fas fa-copy" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/button&gt;
  &lt;/div&gt;
  &lt;pre&gt;&lt;code class=""&gt;#include &amp;lt;iostream&amp;gt;
@@ -1391,8 +1391,8 @@ int main() {
 &lt;h2 id="좀-더-개선"&gt;좀 더 개선&lt;/h2&gt;
 &lt;div class="highlight"&gt;
  &lt;div class="code-toolbar"&gt;
- &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
- &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;button type="button" class="copy-code-button" title="코드 복사" aria-label="코드 복사"&gt;
+ &lt;i class="fas fa-copy" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/button&gt;
  &lt;/div&gt;
  &lt;pre&gt;&lt;code class=""&gt;#include &amp;lt;iostream&amp;gt;
@@ -1451,8 +1451,8 @@ fd pulse 로 찾음&lt;/li&gt;
 &lt;/ol&gt;
 &lt;div class="highlight"&gt;
  &lt;div class="code-toolbar"&gt;
- &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
- &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;button type="button" class="copy-code-button" title="코드 복사" aria-label="코드 복사"&gt;
+ &lt;i class="fas fa-copy" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/button&gt;
  &lt;/div&gt;
  &lt;pre&gt;&lt;code class=""&gt;$ fd pulse
@@ -1489,8 +1489,8 @@ sudo cp -a ./etc/init.d/S50pulseaudio /home/lionelj/test/ipas/bwc_firmware/nt985
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;
  &lt;div class="code-toolbar"&gt;
- &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
- &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;button type="button" class="copy-code-button" title="코드 복사" aria-label="코드 복사"&gt;
+ &lt;i class="fas fa-copy" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/button&gt;
  &lt;/div&gt;
  &lt;pre&gt;&lt;code class=""&gt;&amp;lt;?xml version=&amp;#34;1.0&amp;#34;?&amp;gt;&amp;lt;!--*-nxml-*--&amp;gt;
@@ -1528,8 +1528,8 @@ License along with PulseAudio; if not, see &amp;lt;http://www.gnu.org/licenses/&
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;
  &lt;div class="code-toolbar"&gt;
- &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
- &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;button type="button" class="copy-code-button" title="코드 복사" aria-label="코드 복사"&gt;
+ &lt;i class="fas fa-copy" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/button&gt;
  &lt;/div&gt;
  &lt;pre&gt;&lt;code class=""&gt;killall dbus-daemon
@@ -1540,8 +1540,8 @@ dbus-daemon --system --nofork --nopidfile &amp;amp;&lt;/code&gt;&lt;/pre&gt;
 &lt;/ol&gt;
 &lt;div class="highlight"&gt;
  &lt;div class="code-toolbar"&gt;
- &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
- &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;button type="button" class="copy-code-button" title="코드 복사" aria-label="코드 복사"&gt;
+ &lt;i class="fas fa-copy" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/button&gt;
  &lt;/div&gt;
  &lt;pre&gt;&lt;code class=""&gt;echo &amp;#34;pulse:x:999:&amp;#34; &amp;gt;&amp;gt; /etc/group
@@ -1585,8 +1585,8 @@ paplay --device=nvtcard ./sine_48_le16s_1ch.wav&lt;/code&gt;&lt;/pre&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;
  &lt;div class="code-toolbar"&gt;
- &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
- &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;button type="button" class="copy-code-button" title="코드 복사" aria-label="코드 복사"&gt;
+ &lt;i class="fas fa-copy" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/button&gt;
  &lt;/div&gt;
  &lt;pre&gt;&lt;code class=""&gt;# module-detect를 주석 처리하여 자동 탐지 비활성화:
@@ -1607,8 +1607,8 @@ load-module module-combine-sink sink_name=combined slaves=nvtcard,rtp_multicast&
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;
  &lt;div class="code-toolbar"&gt;
- &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
- &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;button type="button" class="copy-code-button" title="코드 복사" aria-label="코드 복사"&gt;
+ &lt;i class="fas fa-copy" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/button&gt;
  &lt;/div&gt;
  &lt;pre&gt;&lt;code class=""&gt;# Disable auto detection to avoid failures
@@ -1625,8 +1625,8 @@ load-module module-combine-sink sink_name=combined slaves=nvtcard,rtp_multicast&
 &lt;h1 id="수신-디바이스"&gt;수신 디바이스&lt;/h1&gt;
 &lt;div class="highlight"&gt;
  &lt;div class="code-toolbar"&gt;
- &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
- &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;button type="button" class="copy-code-button" title="코드 복사" aria-label="코드 복사"&gt;
+ &lt;i class="fas fa-copy" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/button&gt;
  &lt;/div&gt;
  &lt;pre&gt;&lt;code class=""&gt;# rtp_recv 용 null-sink 추가
@@ -1638,8 +1638,8 @@ paplay --device=rtp_multicast /root/sine8.wav&lt;/code&gt;&lt;/pre&gt;
 &lt;h1 id="로딩된-모듈-리스트-확인"&gt;로딩된 모듈 리스트 확인&lt;/h1&gt;
 &lt;div class="highlight"&gt;
  &lt;div class="code-toolbar"&gt;
- &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
- &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;button type="button" class="copy-code-button" title="코드 복사" aria-label="코드 복사"&gt;
+ &lt;i class="fas fa-copy" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/button&gt;
  &lt;/div&gt;
  &lt;pre&gt;&lt;code class=""&gt;pactl list short modules
@@ -1651,8 +1651,8 @@ pactl list module&lt;/code&gt;&lt;/pre&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;
  &lt;div class="code-toolbar"&gt;
- &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
- &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;button type="button" class="copy-code-button" title="코드 복사" aria-label="코드 복사"&gt;
+ &lt;i class="fas fa-copy" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/button&gt;
  &lt;/div&gt;
  &lt;pre&gt;&lt;code class=""&gt;pactl list sources short&lt;/code&gt;&lt;/pre&gt;
@@ -1660,8 +1660,8 @@ pactl list module&lt;/code&gt;&lt;/pre&gt;
 &lt;h1 id="inittab-에-추가"&gt;inittab 에 추가&lt;/h1&gt;
 &lt;div class="highlight"&gt;
  &lt;div class="code-toolbar"&gt;
- &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
- &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;button type="button" class="copy-code-button" title="코드 복사" aria-label="코드 복사"&gt;
+ &lt;i class="fas fa-copy" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/button&gt;
  &lt;/div&gt;
  &lt;pre&gt;&lt;code class=""&gt;# PulseAudio를 pulse 유저 대신 root로 실행하도록 설정.
@@ -1671,8 +1671,8 @@ pactl list module&lt;/code&gt;&lt;/pre&gt;
 &lt;h1 id="ntp-설정-target-에서"&gt;ntp 설정 (target 에서)&lt;/h1&gt;
 &lt;div class="highlight"&gt;
  &lt;div class="code-toolbar"&gt;
- &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
- &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;button type="button" class="copy-code-button" title="코드 복사" aria-label="코드 복사"&gt;
+ &lt;i class="fas fa-copy" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/button&gt;
  &lt;/div&gt;
  &lt;pre&gt;&lt;code class=""&gt;busybox ntpd -p 192.168.71.41 -g -n&lt;/code&gt;&lt;/pre&gt;
@@ -1680,8 +1680,8 @@ pactl list module&lt;/code&gt;&lt;/pre&gt;
 &lt;h1 id="ffmpeg-변환"&gt;ffmpeg 변환&lt;/h1&gt;
 &lt;div class="highlight"&gt;
  &lt;div class="code-toolbar"&gt;
- &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
- &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;button type="button" class="copy-code-button" title="코드 복사" aria-label="코드 복사"&gt;
+ &lt;i class="fas fa-copy" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/button&gt;
  &lt;/div&gt;
  &lt;pre&gt;&lt;code class=""&gt;ffmpeg -i test.mp3 -t 30 -c:a pcm_s16le test_30s.wav&lt;/code&gt;&lt;/pre&gt;
@@ -1689,8 +1689,8 @@ pactl list module&lt;/code&gt;&lt;/pre&gt;
 &lt;h2 id="명령어"&gt;명령어&lt;/h2&gt;
 &lt;div class="highlight"&gt;
  &lt;div class="code-toolbar"&gt;
- &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
- &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;button type="button" class="copy-code-button" title="코드 복사" aria-label="코드 복사"&gt;
+ &lt;i class="fas fa-copy" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/button&gt;
  &lt;/div&gt;
  &lt;pre&gt;&lt;code class=""&gt;chown pulse:pulse /dev/snd/*
@@ -1831,24 +1831,24 @@ pactl list modules short&lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id="bash에서-do-while-패턴을-사용하여-무한-루프를-구현하고-시스템-정보를-주기적으로-확인하는-방법을-소개합니다"&gt;Bash에서 do-while 패턴을 사용하여 무한 루프를 구현하고, 시스템 정보를 주기적으로 확인하는 방법을 소개합니다.&lt;/h3&gt;
 &lt;div class="highlight"&gt;
  &lt;div class="code-toolbar"&gt;
- &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
- &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;button type="button" class="copy-code-button" title="코드 복사" aria-label="코드 복사"&gt;
+ &lt;i class="fas fa-copy" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/button&gt;
  &lt;/div&gt;
  &lt;pre&gt;&lt;code class=""&gt;while true; do cat /sys/devices/platform/f01d0000.adc/iio:device0/in_voltage3_raw; sleep 1; done&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class="highlight"&gt;
  &lt;div class="code-toolbar"&gt;
- &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
- &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;button type="button" class="copy-code-button" title="코드 복사" aria-label="코드 복사"&gt;
+ &lt;i class="fas fa-copy" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/button&gt;
  &lt;/div&gt;
  &lt;pre&gt;&lt;code class=""&gt;while true; do cat /sys/devices/platform/f01d0000.adc/iio:device0/in_voltage3_raw; done&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class="highlight"&gt;
  &lt;div class="code-toolbar"&gt;
- &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
- &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;button type="button" class="copy-code-button" title="코드 복사" aria-label="코드 복사"&gt;
+ &lt;i class="fas fa-copy" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/button&gt;
  &lt;/div&gt;
  &lt;pre&gt;&lt;code class=""&gt;while true; do free -h; sleep 1; echo &amp;#34;---&amp;#34;; done&lt;/code&gt;&lt;/pre&gt;
@@ -1869,16 +1869,16 @@ pactl list modules short&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;유닉스 계열 운영 체제(리눅스, BSD 등)에서 고성능 I/O 작업은 대용량 데이터 전송, 네트워크 서버, 데이터 스트리밍 등에서 필수적입니다. 이번 포스팅에서는 &lt;code&gt;readv()&lt;/code&gt;, &lt;code&gt;writev()&lt;/code&gt;, &lt;code&gt;splice()&lt;/code&gt;, &lt;code&gt;sendfile()&lt;/code&gt;, &lt;code&gt;funopen()&lt;/code&gt;, &lt;code&gt;sendmsg()&lt;/code&gt;, &lt;code&gt;io_uring&lt;/code&gt;, 그리고 &lt;code&gt;shm_open&lt;/code&gt; 같은 함수들의 기능과 사용 예시를 정리하며, 리눅스와 BSD에서의 차이점을 살펴봅니다.&lt;/p&gt;</description></item><item><title>Buildroot Package version up</title><link>https://hybridego.github.io/2025/07/04/Buildroot-package-version-up/</link><pubDate>Fri, 04 Jul 2025 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2025/07/04/Buildroot-package-version-up/</guid><description>&lt;h1 id="buildroot-version-변경하는-방법"&gt;buildroot version 변경하는 방법&lt;/h1&gt;
 &lt;div class="highlight"&gt;
  &lt;div class="code-toolbar"&gt;
- &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
- &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;button type="button" class="copy-code-button" title="코드 복사" aria-label="코드 복사"&gt;
+ &lt;i class="fas fa-copy" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/button&gt;
  &lt;/div&gt;
  &lt;pre&gt;&lt;code class=""&gt;make nt98567_buildroot_defconfig&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class="highlight"&gt;
  &lt;div class="code-toolbar"&gt;
- &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
- &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;button type="button" class="copy-code-button" title="코드 복사" aria-label="코드 복사"&gt;
+ &lt;i class="fas fa-copy" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/button&gt;
  &lt;/div&gt;
  &lt;pre&gt;&lt;code class=""&gt;make clean
@@ -1889,8 +1889,8 @@ make &amp;lt;패키지이름&amp;gt;-rebuild&lt;/code&gt;&lt;/pre&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;
  &lt;div class="code-toolbar"&gt;
- &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
- &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;button type="button" class="copy-code-button" title="코드 복사" aria-label="코드 복사"&gt;
+ &lt;i class="fas fa-copy" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/button&gt;
  &lt;/div&gt;
  &lt;pre&gt;&lt;code class=""&gt;make &amp;lt;패키지이름&amp;gt;-dirclean
@@ -1901,8 +1901,8 @@ make &amp;lt;패키지이름&amp;gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;
  &lt;div class="code-toolbar"&gt;
- &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
- &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;button type="button" class="copy-code-button" title="코드 복사" aria-label="코드 복사"&gt;
+ &lt;i class="fas fa-copy" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/button&gt;
  &lt;/div&gt;
  &lt;pre&gt;&lt;code class=""&gt;$(eval $(virtual-package))
@@ -1913,8 +1913,8 @@ $(eval $(host-virtual-package))&lt;/code&gt;&lt;/pre&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;
  &lt;div class="code-toolbar"&gt;
- &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
- &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;button type="button" class="copy-code-button" title="코드 복사" aria-label="코드 복사"&gt;
+ &lt;i class="fas fa-copy" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/button&gt;
  &lt;/div&gt;
  &lt;pre&gt;&lt;code class=""&gt;pkg-config --modversion zlib&lt;/code&gt;&lt;/pre&gt;
@@ -1922,8 +1922,8 @@ $(eval $(host-virtual-package))&lt;/code&gt;&lt;/pre&gt;
 &lt;h1 id="sha256-hash값-구하기"&gt;sha256 hash값 구하기&lt;/h1&gt;
 &lt;div class="highlight"&gt;
  &lt;div class="code-toolbar"&gt;
- &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
- &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;button type="button" class="copy-code-button" title="코드 복사" aria-label="코드 복사"&gt;
+ &lt;i class="fas fa-copy" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/button&gt;
  &lt;/div&gt;
  &lt;pre&gt;&lt;code class=""&gt;sha256sum 파일이름&lt;/code&gt;&lt;/pre&gt;
@@ -1934,8 +1934,8 @@ $(eval $(host-virtual-package))&lt;/code&gt;&lt;/pre&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;
  &lt;div class="code-toolbar"&gt;
- &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
- &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;button type="button" class="copy-code-button" title="코드 복사" aria-label="코드 복사"&gt;
+ &lt;i class="fas fa-copy" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/button&gt;
  &lt;/div&gt;
  &lt;pre&gt;&lt;code class=""&gt;# 캐시 비우기 (페이지 캐시만 비움)
@@ -1952,8 +1952,8 @@ echo 3 | tee /proc/sys/vm/drop_caches&lt;/code&gt;&lt;/pre&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;
  &lt;div class="code-toolbar"&gt;
- &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
- &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;button type="button" class="copy-code-button" title="코드 복사" aria-label="코드 복사"&gt;
+ &lt;i class="fas fa-copy" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/button&gt;
  &lt;/div&gt;
  &lt;pre&gt;&lt;code class=""&gt;sudo apt install stress # 설치 (Ubuntu/Debian 기준)
@@ -1964,8 +1964,8 @@ stress --vm 1 --vm-bytes 200G # 200GB 메모리 사용 시뮬레이션&lt;/code&
 &lt;p&gt;사용자에게 docker 권한 부여하기&lt;/p&gt;
 &lt;div class="highlight"&gt;
  &lt;div class="code-toolbar"&gt;
- &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
- &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;button type="button" class="copy-code-button" title="코드 복사" aria-label="코드 복사"&gt;
+ &lt;i class="fas fa-copy" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/button&gt;
  &lt;/div&gt;
  &lt;pre&gt;&lt;code class=""&gt;sudo usermod -aG docker $USER
@@ -1976,8 +1976,8 @@ newgrp docker&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Dockerfile 작성&lt;/p&gt;
 &lt;div class="highlight"&gt;
  &lt;div class="code-toolbar"&gt;
- &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
- &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;button type="button" class="copy-code-button" title="코드 복사" aria-label="코드 복사"&gt;
+ &lt;i class="fas fa-copy" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/button&gt;
  &lt;/div&gt;
  &lt;pre&gt;&lt;code class=""&gt;FROM ubuntu:24.04
@@ -2060,8 +2060,8 @@ CMD [&amp;#34;/start.sh&amp;#34;]&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;site 만들기&lt;/p&gt;
 &lt;div class="highlight"&gt;
  &lt;div class="code-toolbar"&gt;
- &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
- &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;button type="button" class="copy-code-button" title="코드 복사" aria-label="코드 복사"&gt;
+ &lt;i class="fas fa-copy" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/button&gt;
  &lt;/div&gt;
  &lt;pre&gt;&lt;code class=""&gt;PS D:\dev&amp;gt; hugo new site hybridego_playground
@@ -2085,8 +2085,8 @@ See documentation at https://gohugo.io/.&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;cargo로 뭐 설치하려고 할 때&lt;/p&gt;
 &lt;div class="highlight"&gt;
  &lt;div class="code-toolbar"&gt;
- &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
- &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;button type="button" class="copy-code-button" title="코드 복사" aria-label="코드 복사"&gt;
+ &lt;i class="fas fa-copy" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/button&gt;
  &lt;/div&gt;
  &lt;pre&gt;&lt;code class=""&gt;PS D:\dev\rust&amp;gt; rustup update
@@ -2118,8 +2118,8 @@ Caused by:
 &lt;/ol&gt;
 &lt;div class="highlight"&gt;
  &lt;div class="code-toolbar"&gt;
- &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
- &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;button type="button" class="copy-code-button" title="코드 복사" aria-label="코드 복사"&gt;
+ &lt;i class="fas fa-copy" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/button&gt;
  &lt;/div&gt;
  &lt;pre&gt;&lt;code class=""&gt;docker run -it \
@@ -2134,8 +2134,8 @@ Caused by:
 &lt;/ol&gt;
 &lt;div class="highlight"&gt;
  &lt;div class="code-toolbar"&gt;
- &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
- &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;button type="button" class="copy-code-button" title="코드 복사" aria-label="코드 복사"&gt;
+ &lt;i class="fas fa-copy" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/button&gt;
  &lt;/div&gt;
  &lt;pre&gt;&lt;code class=""&gt;apt-get update 
@@ -2154,8 +2154,8 @@ sudo locale-gen en_US.UTF-8&lt;/code&gt;&lt;/pre&gt;
 &lt;/ol&gt;
 &lt;div class="highlight"&gt;
  &lt;div class="code-toolbar"&gt;
- &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
- &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;button type="button" class="copy-code-button" title="코드 복사" aria-label="코드 복사"&gt;
+ &lt;i class="fas fa-copy" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/button&gt;
  &lt;/div&gt;
  &lt;pre&gt;&lt;code class=""&gt;# container name으로 접속
@@ -2171,8 +2171,8 @@ docker exec -it lj-ubuntu /bin/bash&lt;/code&gt;&lt;/pre&gt;
 &lt;/ol&gt;
 &lt;div class="highlight"&gt;
  &lt;div class="code-toolbar"&gt;
- &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
- &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;button type="button" class="copy-code-button" title="코드 복사" aria-label="코드 복사"&gt;
+ &lt;i class="fas fa-copy" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/button&gt;
  &lt;/div&gt;
  &lt;pre&gt;&lt;code class=""&gt;docker commit &amp;lt;컨테이너_ID&amp;gt; my-ubuntu:custom
@@ -2191,8 +2191,8 @@ ubuntu 24.04 602eb6fb314b 2 weeks ago 78.1MB&lt;/code&gt;&lt;/pre&gt;
 &lt;/ol&gt;
 &lt;div class="highlight"&gt;
  &lt;div class="code-toolbar"&gt;
- &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
- &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;button type="button" class="copy-code-button" title="코드 복사" aria-label="코드 복사"&gt;
+ &lt;i class="fas fa-copy" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/button&gt;
  &lt;/div&gt;
  &lt;pre&gt;&lt;code class=""&gt;$ docker images
@@ -2212,8 +2212,8 @@ docker run -it \
 &lt;/ol&gt;
 &lt;div class="highlight"&gt;
  &lt;div class="code-toolbar"&gt;
- &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
- &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;button type="button" class="copy-code-button" title="코드 복사" aria-label="코드 복사"&gt;
+ &lt;i class="fas fa-copy" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/button&gt;
  &lt;/div&gt;
  &lt;pre&gt;&lt;code class=""&gt;mkdir /run/sshd 
@@ -2226,8 +2226,8 @@ docker run -it \
 &lt;/ol&gt;
 &lt;div class="highlight"&gt;
  &lt;div class="code-toolbar"&gt;
- &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
- &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;button type="button" class="copy-code-button" title="코드 복사" aria-label="코드 복사"&gt;
+ &lt;i class="fas fa-copy" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/button&gt;
  &lt;/div&gt;
  &lt;pre&gt;&lt;code class=""&gt;$ ip addr
@@ -2245,8 +2245,8 @@ docker run -it \
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;
  &lt;div class="code-toolbar"&gt;
- &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
- &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;button type="button" class="copy-code-button" title="코드 복사" aria-label="코드 복사"&gt;
+ &lt;i class="fas fa-copy" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/button&gt;
  &lt;/div&gt;
  &lt;pre&gt;&lt;code class=""&gt;$ docker inspect 85d05024ca50 | grep IPAddress
@@ -2259,8 +2259,8 @@ docker run -it \
 &lt;/ol&gt;
 &lt;div class="highlight"&gt;
  &lt;div class="code-toolbar"&gt;
- &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
- &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;button type="button" class="copy-code-button" title="코드 복사" aria-label="코드 복사"&gt;
+ &lt;i class="fas fa-copy" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/button&gt;
  &lt;/div&gt;
  &lt;pre&gt;&lt;code class=""&gt;docker run -it --name lj-ubuntu \
@@ -2276,8 +2276,8 @@ docker run -it \
 &lt;/ol&gt;
 &lt;div class="highlight"&gt;
  &lt;div class="code-toolbar"&gt;
- &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
- &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;button type="button" class="copy-code-button" title="코드 복사" aria-label="코드 복사"&gt;
+ &lt;i class="fas fa-copy" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/button&gt;
  &lt;/div&gt;
  &lt;pre&gt;&lt;code class=""&gt;docker tag 원래_이미지_이름:태그 새_이미지_이름:태그
@@ -2288,8 +2288,8 @@ docker rmi 원래_이미지_이름:태그&lt;/code&gt;&lt;/pre&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;
  &lt;div class="code-toolbar"&gt;
- &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
- &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;button type="button" class="copy-code-button" title="코드 복사" aria-label="코드 복사"&gt;
+ &lt;i class="fas fa-copy" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/button&gt;
  &lt;/div&gt;
  &lt;pre&gt;&lt;code class=""&gt;ssh -L 2222:172.17.0.2:2222 lionelj@&amp;lt;호스트_IP&amp;gt;
@@ -2300,8 +2300,8 @@ ssh -L 2222:172.17.0.2:2222 lionelj@192.168.85.15&lt;/code&gt;&lt;/pre&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;
  &lt;div class="code-toolbar"&gt;
- &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
- &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;button type="button" class="copy-code-button" title="코드 복사" aria-label="코드 복사"&gt;
+ &lt;i class="fas fa-copy" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/button&gt;
  &lt;/div&gt;
  &lt;pre&gt;&lt;code class=""&gt;C:\Users\lionel.j\.ssh\config 파일을 열고
@@ -2330,8 +2330,8 @@ While I created this theme, I followed the Hugo theme best practice and tried to
 &lt;/blockquote&gt;</description></item><item><title>내 Ubuntu 데스크톱 설정에 대한 모든 것</title><link>https://hybridego.github.io/2018/05/24/set_up_my_ubuntu_desktop/</link><pubDate>Thu, 24 May 2018 00:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/05/24/set_up_my_ubuntu_desktop/</guid><description>&lt;h2 id="ssh-키-쌍-생성"&gt;SSH 키 쌍 생성&lt;/h2&gt;
 &lt;div class="highlight"&gt;
  &lt;div class="code-toolbar"&gt;
- &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
- &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;button type="button" class="copy-code-button" title="코드 복사" aria-label="코드 복사"&gt;
+ &lt;i class="fas fa-copy" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/button&gt;
  &lt;/div&gt;
  &lt;pre&gt;&lt;code class=""&gt;ssh-keygen -C &amp;#34;hybridego@gmail.com&amp;#34;&lt;/code&gt;&lt;/pre&gt;
@@ -2340,34 +2340,15 @@ While I created this theme, I followed the Hugo theme best practice and tried to
 &lt;p&gt;Shadowsocks 설치&lt;/p&gt;
 &lt;div class="highlight"&gt;
  &lt;div class="code-toolbar"&gt;
- &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
- &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;button type="button" class="copy-code-button" title="코드 복사" aria-label="코드 복사"&gt;
+ &lt;i class="fas fa-copy" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/button&gt;
  &lt;/div&gt;
  &lt;pre&gt;&lt;code class=""&gt;sudo apt-get install python3-pip
 
 sudo pip3 install shadowsocks&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;p&gt;다음 내용을 포함하는 &lt;code&gt;config/shadowsocks.json&lt;/code&gt;에 구성 파일 생성:&lt;/p&gt;
-&lt;div class="highlight"&gt;
- &lt;div class="code-toolbar"&gt;
- &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
- &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
- &lt;/button&gt;
- &lt;/div&gt;
- &lt;pre&gt;&lt;code class=""&gt;{
-	&amp;#34;server&amp;#34;:&amp;#34;remote-shadowsocks-server-ip-addr&amp;#34;,
-	&amp;#34;server_port&amp;#34;:443,
-	&amp;#34;local_address&amp;#34;:&amp;#34;127.0.0.1&amp;#34;,
-	&amp;#34;local_port&amp;#34;:1080,
-	&amp;#34;password&amp;#34;:&amp;#34;your-passwd&amp;#34;,
-	&amp;#34;timeout&amp;#34;:300,
-	&amp;#34;method&amp;#34;:&amp;#34;aes-256-cfb&amp;#34;,
-	&amp;#34;fast_open&amp;#34;:false,
-	&amp;#34;workers&amp;#34;:1
-}&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;로컬 socks 프록시 시작&lt;/p&gt;</description></item><item><title>마이크로서비스 보안 성찰록 3부</title><link>https://hybridego.github.io/2018/05/23/external_system_auth/</link><pubDate>Wed, 23 May 2018 18:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/05/23/external_system_auth/</guid><description>&lt;h2 id="외부-시스템-접근-제어"&gt;외부 시스템 접근 제어&lt;/h2&gt;
+&lt;p&gt;다음 내용을 포함하는 &lt;code&gt;config/shadowsocks.json&lt;/code&gt;에 구성 파일 생성:&lt;/p&gt;</description></item><item><title>마이크로서비스 보안 성찰록 3부</title><link>https://hybridego.github.io/2018/05/23/external_system_auth/</link><pubDate>Wed, 23 May 2018 18:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/05/23/external_system_auth/</guid><description>&lt;h2 id="외부-시스템-접근-제어"&gt;외부 시스템 접근 제어&lt;/h2&gt;
 &lt;p&gt;사용자 접근 및 마이크로서비스 간 상호 접근 외에도, 외부 타사 시스템도 시스템 내부의 마이크로서비스에 접근해야 할 수 있습니다. 예를 들어 이전 블로그의 온라인 상점 예시에서, 외부 추천 서비스가 상점의 상품 카탈로그 정보를 얻기 위해 시스템에 연결해야 할 수 있습니다. 내부 서비스 간의 접근과 비교하여 외부 시스템의 접근은 엄격한 보안 제어가 필요합니다.&lt;/p&gt;</description></item><item><title>마이크로서비스 보안 성찰록 2부</title><link>https://hybridego.github.io/2018/05/23/service_2_service_auth/</link><pubDate>Wed, 23 May 2018 15:00:00 +0000</pubDate><guid>https://hybridego.github.io/2018/05/23/service_2_service_auth/</guid><description>&lt;h2 id="서비스-간-인증-및-권한-부여"&gt;서비스 간 인증 및 권한 부여&lt;/h2&gt;
 &lt;p&gt;사용자로부터의 접근 요청 외에도, 마이크로서비스 애플리케이션 내의 각 마이크로서비스는 서로 많은 접근을 합니다. 다음 시나리오를 포함합니다.&lt;/p&gt;
 &lt;ul&gt;
@@ -2393,8 +2374,8 @@ sudo pip3 install shadowsocks&lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id="docker에서-http-프록시-설정"&gt;Docker에서 HTTP 프록시 설정&lt;/h3&gt;
 &lt;div class="highlight"&gt;
  &lt;div class="code-toolbar"&gt;
- &lt;button class="copy-code-button" title="Copy to clipboard"&gt;
- &lt;i class="fas fa-copy"&gt;&lt;/i&gt;
+ &lt;button type="button" class="copy-code-button" title="코드 복사" aria-label="코드 복사"&gt;
+ &lt;i class="fas fa-copy" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/button&gt;
  &lt;/div&gt;
  &lt;pre&gt;&lt;code class=""&gt;sudo /etc/default/docker

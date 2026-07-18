@@ -1,59 +1,105 @@
-function ZanShang(){
-  this.popbg = $('.zs-modal-bg');
-  this.popcon = $('.zs-modal-box');
-  this.closeBtn = $('.zs-modal-box .close');
-  this.zsbtn = $('.zs-modal-btns .btn');
-  this.zsPay = $('.zs-modal-pay');
-  this.zsBtns = $('.zs-modal-btns');
-  this.zsFooter = $('.zs-modal-footer');
-  var that = this;
-  $('.show-zs').on('click',function(){
-    //点击赞赏按钮出现弹窗
-    that._show();
-    that._init();
-  })
-}
-ZanShang.prototype._hide = function(){
-  this.popbg.hide();
-  this.popcon.hide();
-}
-ZanShang.prototype._show = function(){
-  this.popbg.show();
-  this.popcon.show();
-  this.zsBtns.show();
-  this.zsFooter.show();
-  this.zsPay.hide();
-}
-ZanShang.prototype._init = function(){
-  var that = this;
-  this.closeBtn.on('click',function(){
-    that._hide();
-  })
-  this.popbg.on('click',function(){
-    that._hide();
-  })
-  this.zsbtn.each(function(el){
-    $(this).on('click',function(){
-      var num = $(this).attr('data-num'); //按钮的对应的数字
-      var type = $('.zs-type:radio:checked').val();//付款方式
-      //根据不同付款方式和选择对应的按钮的数字来生成对应的二维码图片，你可以自定义这个图片的路径，默认放在/img/reward目录中
-      //假如你需要加一个远程路径，比如我的就是
-      //http://zhaohuabing.com/img/reward/'+type+'-'+num+'.png';
-      var src = '/img/reward/'+type+'-'+num+'.png';
-      var text = $(this).html();
-      var payType=$('#pay-type'), payImage = $('#pay-image'),payText = $('#pay-text');
-      if(type=='alipay'){
-        payType.html('支付宝');
-      }else{
-        payType.html('微信');
-      }
-      payImage.attr('src',src);
-      payText.html(text);
-      that.zsPay.show();
-      that.zsBtns.hide();
-      that.zsFooter.hide();
+(() => {
+  const initReward = function () {
+  const openButton = document.querySelector(".show-zs");
+  const backdrop = document.querySelector(".zs-modal-bg");
+  const dialog = document.querySelector(".zs-modal-box");
+  if (!openButton || !backdrop || !dialog) return;
 
-    })
-  })
-}
-var zs = new ZanShang();
+  const closeButton = dialog.querySelector(".close");
+  const amountButtons = [...dialog.querySelectorAll(".zs-modal-btns .btn")];
+  const amountChoices = dialog.querySelector(".zs-modal-btns");
+  const payment = dialog.querySelector(".zs-modal-pay");
+  const footer = dialog.querySelector(".zs-modal-footer");
+  const payType = dialog.querySelector("#pay-type");
+  const payImage = dialog.querySelector("#pay-image");
+  const payText = dialog.querySelector("#pay-text");
+  let selectedAmount = "2";
+  let selectedText = "2元";
+  let previousFocus = null;
+
+  const setVisible = function (element, visible, display = "block") {
+    if (!element) return;
+    element.hidden = !visible;
+    element.style.display = visible ? display : "none";
+  };
+
+  const currentPaymentType = function () {
+    return dialog.querySelector('.zs-type:checked')?.value || "wechat";
+  };
+
+  const updatePayment = function () {
+    const type = currentPaymentType();
+    payType.textContent = type === "alipay" ? "支付宝" : "微信";
+    payText.textContent = selectedText;
+    payImage.src = `/img/reward/${type}-${selectedAmount}.png`;
+    payImage.alt = `${payType.textContent} 결제 QR 코드`;
+  };
+
+  const hide = function () {
+    setVisible(backdrop, false);
+    setVisible(dialog, false);
+    dialog.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("reward-dialog-open");
+    previousFocus?.focus();
+  };
+
+  const show = function () {
+    previousFocus = document.activeElement;
+    setVisible(backdrop, true);
+    setVisible(dialog, true);
+    setVisible(amountChoices, true);
+    setVisible(footer, true);
+    setVisible(payment, false);
+    dialog.setAttribute("aria-hidden", "false");
+    document.body.classList.add("reward-dialog-open");
+    closeButton?.focus();
+  };
+
+  openButton.addEventListener("click", show);
+  closeButton?.addEventListener("click", hide);
+  backdrop.addEventListener("click", hide);
+
+  amountButtons.forEach(function (button) {
+    button.addEventListener("click", function () {
+      selectedAmount = button.dataset.num || "1";
+      selectedText = button.textContent.trim();
+      updatePayment();
+      setVisible(payment, true);
+      setVisible(amountChoices, false);
+      setVisible(footer, false);
+    });
+  });
+
+  dialog.querySelectorAll(".zs-type").forEach(function (radio) {
+    radio.addEventListener("change", updatePayment);
+  });
+
+  dialog.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+      event.preventDefault();
+      hide();
+      return;
+    }
+    if (event.key !== "Tab") return;
+
+    const focusable = [...dialog.querySelectorAll('button:not([disabled]), a[href], input:not([disabled]), [tabindex]:not([tabindex="-1"])')]
+      .filter(function (element) { return !element.hidden && element.getClientRects().length; });
+    if (!focusable.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initReward, { once: true });
+  } else {
+    initReward();
+  }
+})();
