@@ -10,7 +10,7 @@ col-sm-12
 col-xs-12
 post-container"><header class=article-header><h1>Docker SSH tunneling</h1><p class=article-meta><span>Lionel.J</span>
 <span aria-hidden=true>·</span>
-<time datetime=2025-05-21T23:11:23+09:00>2025.05.21</time></p><ul class=article-tags aria-label="글 태그"><li><a href=/tags/docker/>Docker</a></li><li><a href=/tags/ssh/>Ssh</a></li><li><a href=/tags/tunneling/>Tunneling</a></li><li><a href=/tags/vscode/>Vscode</a></li><li><a href=/tags/ssh-remote/>SSH Remote</a></li></ul></header><h2 id=docker-와-ssh-터널링-설정>Docker 와 ssh 터널링 설정</h2><ol><li>처음 실행 (필요한 디렉토리 mount 하고 이미지와 shell 선택, user 지정)</li></ol><div class=highlight><div class=code-toolbar><button type=button class=copy-code-button title="코드 복사" aria-label="코드 복사">
+<span class=post-date-published>게시 <time datetime=2025-05-21T23:11:23+09:00>2025. 05. 21.</time></span></p><ul class=article-tags aria-label="글 태그"><li><a href=/tags/docker/>Docker</a></li><li><a href=/tags/ssh/>Ssh</a></li><li><a href=/tags/tunneling/>Tunneling</a></li><li><a href=/tags/vscode/>Vscode</a></li><li><a href=/tags/ssh-remote/>SSH Remote</a></li></ul></header><h2 id=docker-와-ssh-터널링-설정>Docker 와 ssh 터널링 설정</h2><ol><li>처음 실행 (필요한 디렉토리 mount 하고 이미지와 shell 선택, user 지정)</li></ol><div class=highlight><div class=code-toolbar><button type=button class=copy-code-button title="코드 복사" aria-label="코드 복사">
 <i class="fas fa-copy" aria-hidden=true></i></button></div><pre><code>docker run -it \
   -v /home/lionelj:/home/lionelj \
   --name lj-ubuntu \
